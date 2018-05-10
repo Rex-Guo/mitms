@@ -233,9 +233,12 @@
     <Compile Include="Controllers\ButtonAttribute.cs" />
     <Compile Include="Controllers\CodeItemsController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EFMigrationsManagerController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Migrations\201803120846216_addtitle.cs" />
     <Compile Include="Migrations\201803120846216_addtitle.Designer.cs">
       <DependentUpon>201803120846216_addtitle.cs</DependentUpon>
@@ -256,6 +259,36 @@
     <Compile Include="Migrations\201805100100145_redo.Designer.cs">
       <DependentUpon>201805100100145_redo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805100512336_crtb.cs" />
+    <Compile Include="Migrations\201805100512336_crtb.Designer.cs">
+      <DependentUpon>201805100512336_crtb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805100720308_addf1.cs" />
+    <Compile Include="Migrations\201805100720308_addf1.Designer.cs">
+      <DependentUpon>201805100720308_addf1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805100727341_addusing.cs" />
+    <Compile Include="Migrations\201805100727341_addusing.Designer.cs">
+      <DependentUpon>201805100727341_addusing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerMetadata.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderMetadata.cs" />
+    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\VehicleMetadata.cs" />
+    <Compile Include="Repositories\Customers\CustomerQuery.cs" />
+    <Compile Include="Repositories\Customers\CustomerRepository.cs" />
+    <Compile Include="Repositories\Orders\OrderQuery.cs" />
+    <Compile Include="Repositories\Orders\OrderRepository.cs" />
+    <Compile Include="Repositories\Vehicles\VehicleQuery.cs" />
+    <Compile Include="Repositories\Vehicles\VehicleRepository.cs" />
+    <Compile Include="Services\Customers\CustomerService.cs" />
+    <Compile Include="Services\Customers\ICustomerService.cs" />
+    <Compile Include="Services\Orders\IOrderService.cs" />
+    <Compile Include="Services\Orders\OrderService.cs" />
+    <Compile Include="Services\Vehicles\IVehicleService.cs" />
+    <Compile Include="Services\Vehicles\VehicleService.cs" />
     <Compile Include="SmartChatHub\ChatHub.cs" />
     <Compile Include="App_Start\CustomModelBinders.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -2785,6 +2818,8 @@
     </Content>
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Scripts\easyui\themes\material-teal\images\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\mitms - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\mitms - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\smartadmin - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\smartadmin - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.extend.formatter.tmp">
@@ -3543,6 +3578,11 @@
     <Content Include="Views\Companies\_PopupDetailFormView.cshtml" />
     <Content Include="Views\Companies\_DepartmentEditForm.cshtml" />
     <Content Include="Views\Companies\_EmployeeEditForm.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\EditForm.cshtml" />
+    <Content Include="Views\Customers\_PopupDetailFormView.cshtml" />
     <None Include="Views\Notifications\_notifications.cshtml" />
     <None Include="Views\Messages\_notifications.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Int.cshtml">
@@ -3589,6 +3629,17 @@
     <Content Include="Views\RoleMenus\_navMenuBar.cshtml" />
     <Content Include="Views\RoleMenus\Index.cshtml" />
     <Content Include="Views\Shared\_StylesheetsPartial.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\EditForm.cshtml" />
+    <Content Include="Views\Vehicles\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\EditForm.cshtml" />
+    <Content Include="Views\Orders\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\Orders\Shipping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3846,6 +3897,15 @@
     <EmbeddedResource Include="Migrations\201805100100145_redo.resx">
       <DependentUpon>201805100100145_redo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805100512336_crtb.resx">
+      <DependentUpon>201805100512336_crtb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805100720308_addf1.resx">
+      <DependentUpon>201805100720308_addf1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805100727341_addusing.resx">
+      <DependentUpon>201805100727341_addusing.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -3864,18 +3924,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>12143</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:16143/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:15143/</IISAppRootUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

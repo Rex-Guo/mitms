@@ -118,6 +118,14 @@ namespace WebApp
 
             container.RegisterType<IRepositoryAsync<CodeItem>, Repository<CodeItem>>();
             container.RegisterType<ICodeItemService, CodeItemService>();
+
+
+            container.RegisterType<IRepositoryAsync<Order>, Repository<Order>>();
+            container.RegisterType<IOrderService, OrderService>();
+            container.RegisterType<IRepositoryAsync<Vehicle>, Repository<Vehicle>>();
+            container.RegisterType<IVehicleService, VehicleService>();
+            container.RegisterType<IRepositoryAsync<Customer>, Repository<Customer>>();
+            container.RegisterType<ICustomerService, CustomerService>();
         }
     }
 }

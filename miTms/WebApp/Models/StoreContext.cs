@@ -47,8 +47,9 @@ namespace WebApp.Models
         public DbSet<Notification> Notifications { get; set; }
 
         public DbSet<Message> Messages { get; set; }
-        //public DbSet<Work1> Work1es { get; set; }
-
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {

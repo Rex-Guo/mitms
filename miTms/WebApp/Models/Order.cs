@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+using Repository.Pattern.Ef6;
+
+namespace WebApp.Models
+{
+    public partial class Order:Entity
+    {
+        [Key]
+        public int Id { get; set; }
+
+        #region 派车信息
+        [Display(Name = "派车单号", Description = "派车单号")]
+        [MaxLength(20)]
+        public string OrderNo { get; set; }
+        [Display(Name = "对账单号", Description = "对账单号")]
+        [MaxLength(20)]
+        public string ExternalNo { get; set; }
+        [Display(Name = "派车时间", Description = "派车时间")]
+        public DateTime? OrderDate { get; set; }
+        [Display(Name = "起点", Description = "起点")]
+        [MaxLength(120)]
+        public string Location1 { get; set; }
+        [Display(Name = "终点", Description = "终点")]
+        [MaxLength(120)]
+        public string Location2 { get; set; }
+        [Display(Name = "额外要求", Description = "额外要求")]
+        [MaxLength(120)]
+        public string Requirements { get; set; }
+
+        [Display(Name = "计划送达时间", Description = "计划送达时间")]
+        public DateTime? PlanDeliveryDate { get; set; }
+        [Display(Name = "时效(小时)", Description = "时效(小时)")]
+        public int TimePeriod { get; set; }
+        #endregion
+
+        #region 车辆信息
+        [Display(Name = "车牌号", Description = "车牌号")]
+        public int VehicleId { get; set; }
+        [ForeignKey("VehicleId")]
+        public virtual Vehicle Vehicle { get; set; }
+        [Required]
+        [Index(IsUnique = true)]
+        [MaxLength(10)]
+        [Display(Name = "车牌号", Description = "车牌号")]
+        public string PlateNumber { get; set; }
+
+       
+        [MaxLength(20)]
+        [Display(Name = "主驾司机", Description = "主驾司机")]
+        public string Driver { get; set; }
+
+       
+        [MaxLength(50)]
+        [Display(Name = "主驾司机电话", Description = "主驾司机电话")]
+        public string DriverPhone { get; set; }
+
+        #endregion
+        #region 货物信息
+        [Display(Name = "总件数", Description = "总件数")]
+        public int? Packages { get; set; }
+        [Display(Name = "重量(千克)", Description = "重量(千克)")]
+        public decimal? Weight { get; set; }
+        [Display(Name = "体积(立方)", Description = "体积(立方)")]
+        public decimal? Volume { get; set; }
+        [Display(Name = "箱数", Description = "箱数")]
+        public int? Cartons { get; set; }
+        [Display(Name = "栈板数", Description = "栈板数")]
+        public int? Pallets { get; set; }
+        #endregion
+        #region 订单状态信息
+        [Display(Name = "状态", Description = "状态")]
+        [MaxLength(20)]
+        public string Status { get; set; }
+        [Display(Name = "实际送达时间", Description = "实际送达时间")]
+        public DateTime? DeliveryDate { get; set; }
+        [Display(Name = "结案时间", Description = "结案时间")]
+        public DateTime? CloseDate { get; set; }
+
+        #endregion
+        #region 客户信息
+        [Display(Name = "客户", Description = "客户")]
+        public int CustomerId { get; set; }
+        [ForeignKey("CustomerId")]
+        [Display(Name = "客户", Description = "客户")]
+        public virtual Customer Customer { get; set; }
+
+        [Required]
+        [Display(Name = "所属公司", Description = "所属公司")]
+        public int CompanyId { get; set; }
+
+        [ForeignKey("CompanyId")]
+        [Display(Name = "所属公司", Description = "所属公司")]
+        public virtual Company Company { get; set; }
+
+        #endregion
+    }
+}

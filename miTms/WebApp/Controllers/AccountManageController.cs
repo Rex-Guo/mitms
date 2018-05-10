@@ -153,7 +153,7 @@ namespace WebApp.Controllers
             {
                 foreach (var item in users.deleted)
                 {
-                    var user = new ApplicationUser { UserName = item.UserName, Email = item.Email, FullName = item.FullName, CompanyCode = item.CompanyCode, CompanyName = item.CompanyName };
+                    var user = UserManager.FindByEmail(item.Email);
                     var result = UserManager.Delete(user);
                 }
             }
