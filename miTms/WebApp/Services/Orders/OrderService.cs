@@ -26,108 +26,139 @@ using System.IO;
 
 namespace WebApp.Services
 {
-    public class OrderService : Service< Order >, IOrderService
+    public class OrderService : Service<Order>, IOrderService
     {
 
         private readonly IRepositoryAsync<Order> _repository;
-		 private readonly IDataTableImportMappingService _mappingservice;
-        public  OrderService(IRepositoryAsync< Order> repository,IDataTableImportMappingService mappingservice)
+        private readonly IDataTableImportMappingService _mappingservice;
+        private readonly IVehicleService _vehicleService;
+        public OrderService(IVehicleService _vehicleService,IRepositoryAsync<Order> repository, IDataTableImportMappingService mappingservice)
             : base(repository)
         {
-            _repository=repository;
-			_mappingservice = mappingservice;
+            _repository = repository;
+            _mappingservice = mappingservice;
+            this._vehicleService = _vehicleService;
         }
-        
-                 public  IEnumerable<Order> GetByVehicleId(int  vehicleid)
-         {
-            return _repository.GetByVehicleId(vehicleid);
-         }
-                  public  IEnumerable<Order> GetByCustomerId(int  customerid)
-         {
-            return _repository.GetByCustomerId(customerid);
-         }
-                   
-        
 
-		public void ImportDataTable(System.Data.DataTable datatable)
+        public IEnumerable<Order> GetByVehicleId(int vehicleid)
+        {
+            return _repository.GetByVehicleId(vehicleid);
+        }
+        public IEnumerable<Order> GetByCustomerId(int customerid)
+        {
+            return _repository.GetByCustomerId(customerid);
+        }
+
+
+
+        public void ImportDataTable(System.Data.DataTable datatable)
         {
             foreach (DataRow row in datatable.Rows)
             {
-                 
+
                 Order item = new Order();
-				var mapping = _mappingservice.Queryable().Where(x => x.EntitySetName == "Order" &&  x.IsEnabled==true).ToList();
+                var mapping = _mappingservice.Queryable().Where(x => x.EntitySetName == "Order" && x.IsEnabled == true).ToList();
 
                 foreach (var field in mapping)
                 {
-                 
-						var defval = field.DefaultValue;
-						var contation = datatable.Columns.Contains((field.SourceFieldName == null ? "" : field.SourceFieldName));
-						if (contation && row[field.SourceFieldName] != DBNull.Value)
-						{
-							Type ordertype = item.GetType();
-							PropertyInfo propertyInfo = ordertype.GetProperty(field.FieldName);
-							propertyInfo.SetValue(item, Convert.ChangeType(row[field.SourceFieldName], propertyInfo.PropertyType), null);
-						}
-						else if (!string.IsNullOrEmpty(defval))
-						{
-							Type ordertype = item.GetType();
-							PropertyInfo propertyInfo = ordertype.GetProperty(field.FieldName);
-							if (defval.ToLower() == "now" && propertyInfo.PropertyType ==typeof(DateTime))
-                            {
-                                propertyInfo.SetValue(item, Convert.ChangeType(DateTime.Now, propertyInfo.PropertyType), null);
-                            }
-                            else
-                            {
-                                propertyInfo.SetValue(item, Convert.ChangeType(defval, propertyInfo.PropertyType), null);
-                            }
-						}
+
+                    var defval = field.DefaultValue;
+                    var contation = datatable.Columns.Contains((field.SourceFieldName == null ? "" : field.SourceFieldName));
+                    if (contation && row[field.SourceFieldName] != DBNull.Value)
+                    {
+                        Type ordertype = item.GetType();
+                        PropertyInfo propertyInfo = ordertype.GetProperty(field.FieldName);
+                        propertyInfo.SetValue(item, Convert.ChangeType(row[field.SourceFieldName], propertyInfo.PropertyType), null);
+                    }
+                    else if (!string.IsNullOrEmpty(defval))
+                    {
+                        Type ordertype = item.GetType();
+                        PropertyInfo propertyInfo = ordertype.GetProperty(field.FieldName);
+                        if (defval.ToLower() == "now" && propertyInfo.PropertyType == typeof(DateTime))
+                        {
+                            propertyInfo.SetValue(item, Convert.ChangeType(DateTime.Now, propertyInfo.PropertyType), null);
+                        }
+                        else
+                        {
+                            propertyInfo.SetValue(item, Convert.ChangeType(defval, propertyInfo.PropertyType), null);
+                        }
+                    }
                 }
-                
+
                 this.Insert(item);
-               
+
 
             }
         }
-		
-		public Stream ExportExcel(string filterRules = "",string sort = "Id", string order = "asc")
+
+        public Stream ExportExcel(string filterRules = "", string sort = "Id", string order = "asc")
         {
             var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
-                       			 
-            var orders  = this.Query(new OrderQuery().Withfilter(filters)).Include(p => p.Customer).Include(p => p.Vehicle).OrderBy(n=>n.OrderBy(sort,order)).Select().ToList();
-            
-                        var datarows = orders .Select(  n => new { 
-CustomerName = (n.Customer==null?"": n.Customer.Name) 
- ,VehicleOrderNo = (n.Vehicle==null?"": n.Vehicle.OrderNo) 
- , Id = n.Id 
-, OrderNo = n.OrderNo 
-, ExternalNo = n.ExternalNo 
-, OrderDate = n.OrderDate 
-, Location1 = n.Location1 
-, Location2 = n.Location2 
-, Requirements = n.Requirements 
-, PlanDeliveryDate = n.PlanDeliveryDate 
-, TimePeriod = n.TimePeriod 
-, VehicleId = n.VehicleId 
-, PlateNumber = n.PlateNumber 
-, Driver = n.Driver 
-, DriverPhone = n.DriverPhone 
-, Packages = n.Packages 
-, Weight = n.Weight 
-, Volume = n.Volume 
-, Cartons = n.Cartons 
-, Pallets = n.Pallets 
-, Status = n.Status 
-, DeliveryDate = n.DeliveryDate 
-, CloseDate = n.CloseDate 
-, CustomerId = n.CustomerId 
-, CreatedDate = n.CreatedDate 
-, CreatedBy = n.CreatedBy 
-, LastModifiedDate = n.LastModifiedDate 
-, LastModifiedBy = n.LastModifiedBy 
 
-}).ToList();
-           
+            var orders = this.Query(new OrderQuery().Withfilter(filters)).Include(p => p.Customer).Include(p => p.Vehicle).OrderBy(n => n.OrderBy(sort, order)).Select().ToList();
+
+            var datarows = orders.Select(n => new
+            {
+                CustomerName = (n.Customer == null ? "" : n.Customer.Name),
+                VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
+                Id = n.Id,
+                OrderNo = n.OrderNo,
+                ExternalNo = n.ExternalNo,
+                OrderDate = n.OrderDate,
+                Location1 = n.Location1,
+                Location2 = n.Location2,
+                Requirements = n.Requirements,
+                PlanDeliveryDate = n.PlanDeliveryDate,
+                TimePeriod = n.TimePeriod,
+                VehicleId = n.VehicleId,
+                PlateNumber = n.PlateNumber,
+                Driver = n.Driver,
+                DriverPhone = n.DriverPhone,
+                Packages = n.Packages,
+                Weight = n.Weight,
+                Volume = n.Volume,
+                Cartons = n.Cartons,
+                Pallets = n.Pallets,
+                Status = n.Status,
+                DeliveryDate = n.DeliveryDate,
+                CloseDate = n.CloseDate,
+                CustomerId = n.CustomerId,
+                CreatedDate = n.CreatedDate,
+                CreatedBy = n.CreatedBy,
+                LastModifiedDate = n.LastModifiedDate,
+                LastModifiedBy = n.LastModifiedBy
+
+            }).ToList();
+
             return ExcelHelper.ExportExcel(typeof(Order), datarows);
+
+        }
+
+        public void DoShippingOrder(Order order)
+        {
+            order.OrderNo = DbSequence.GetNextOrderNo();
+            order.OrderDate = DateTime.Now;
+            order.PlanDeliveryDate = DateTime.Now.AddHours(order.TimePeriod);
+            order.Status = "接单";
+            this.Insert(order);
+            var veh = this._vehicleService.Find(order.VehicleId);
+            veh.OrderId = order.Id;
+            veh.OrderNo = order.OrderNo;
+            veh.Status = "接单";
+            veh.Location1 = order.Location1;
+            veh.Location2 = order.Location2;
+            veh.UsingDate = order.OrderDate;
+            veh.ExternalNo = order.ExternalNo;
+            veh.Requirements = order.Requirements;
+            veh.TimePeriod = order.TimePeriod;
+            veh.Packages = order.Packages;
+            veh.Pallets = order.Pallets;
+            veh.Cartons = order.Cartons;
+            veh.InputUser = order.InputUser;
+            veh.Volume = order.Volume;
+            veh.Weight = order.Weight;
+            this._vehicleService.Update(veh);
+            
 
         }
     }

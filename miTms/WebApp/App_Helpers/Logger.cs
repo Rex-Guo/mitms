@@ -21,7 +21,7 @@ namespace WebApp
                     Content = content,
                     Tags = tags,
                     Method = method,
-                    User = Auth.CurrentUserName
+                    User = Auth.UserName
 
                 }
                 );
@@ -38,7 +38,7 @@ namespace WebApp
                     Content = content,
                     Tags = tags,
                     Method = method,
-                    User = Auth.CurrentUserName
+                    User = Auth.UserName
                 }
                 );
         }
@@ -57,7 +57,7 @@ namespace WebApp
                 Method = method,
                 StackTrace = stackTrace,
                 ExtensionKey2= extensionKey1,
-                User = Auth.CurrentUserName
+                User = Auth.UserName
 
             }
             );

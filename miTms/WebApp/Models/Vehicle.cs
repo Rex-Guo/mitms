@@ -21,6 +21,8 @@ namespace WebApp.Models
         [Display(Name = "车牌号", Description = "车牌号")]
         public string PlateNumber { get; set; }
         #region 派车信息
+        [Display(Name = "派车单编号", Description = "派车单编号")]
+        public int? OrderId { get; set; }
         [Display(Name = "派车单号", Description = "派车单号")]
         [MaxLength(20)]
         public string OrderNo { get; set; }
@@ -41,13 +43,29 @@ namespace WebApp.Models
         [Display(Name = "额外要求", Description = "额外要求")]
         [MaxLength(120)]
         public string Requirements { get; set; }
+        [Display(Name = "总件数", Description = "总件数")]
+        public int? Packages { get; set; }
+        [Display(Name = "重量(千克)", Description = "重量(千克)")]
+        public decimal? Weight { get; set; }
+        [Display(Name = "体积(立方)", Description = "体积(立方)")]
+        public decimal? Volume { get; set; }
+        [Display(Name = "箱数", Description = "箱数")]
+        public int? Cartons { get; set; }
+        [Display(Name = "栈板数", Description = "栈板数")]
+        public int? Pallets { get; set; }
+        [Display(Name = "调度人员", Description = "调度人员")]
+        [MaxLength(20)]
+        [Required]
+        public string InputUser { get; set; }
+        [Display(Name = "客户编号", Description = "客户编号")]
+        public int? CustomerId { get; set; }
         #endregion
 
         #region 车辆基本信息
 
         #region 必填字段
 
-        
+
 
         [Required]
         [Display(Name = "车头/车挂", Description = "车头/车挂/一体车")]

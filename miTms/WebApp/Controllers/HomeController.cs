@@ -14,6 +14,7 @@ namespace WebApp.Controllers
         
         public ActionResult Index()
         {
+            var d = DbSequence.GetNextOrderNo();
             //throw new Exception();
             string subjectString = "validType:'length[0,50]'";
             var match = Regex.Split(subjectString, @"\D+", RegexOptions.IgnorePatternWhitespace).Where(x=>!string.IsNullOrEmpty(x)).ToArray();

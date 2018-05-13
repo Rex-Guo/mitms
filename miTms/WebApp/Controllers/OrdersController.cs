@@ -60,7 +60,7 @@ namespace WebApp.Controllers
             var datarows = orders.Select(n => new
             {
                 CustomerName = (n.Customer == null ? "" : n.Customer.Name),
-                VehicleOrderNo = (n.Vehicle == null ? "" : n.Vehicle.OrderNo),
+                VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
                 OrderNo = n.OrderNo,
                 ExternalNo = n.ExternalNo,
@@ -104,7 +104,7 @@ namespace WebApp.Controllers
             var datarows = orders.Select(n => new
             {
                 CustomerName = (n.Customer == null ? "" : n.Customer.Name),
-                VehicleOrderNo = (n.Vehicle == null ? "" : n.Vehicle.OrderNo),
+                VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
                 OrderNo = n.OrderNo,
                 ExternalNo = n.ExternalNo,
@@ -147,7 +147,7 @@ namespace WebApp.Controllers
             var datarows = orders.Select(n => new
             {
                 CustomerName = (n.Customer == null ? "" : n.Customer.Name),
-                VehicleOrderNo = (n.Vehicle == null ? "" : n.Vehicle.OrderNo),
+                VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
                 OrderNo = n.OrderNo,
                 ExternalNo = n.ExternalNo,
@@ -369,9 +369,29 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
         public ActionResult Shipping() {
+
+            var customrep = this._unitOfWork.RepositoryAsync<Customer>();
+            ViewBag.Customer = new SelectList(customrep.Queryable().OrderBy(n=>n.Name).ToList(), "Id", "Name");
+            var coderep = this._unitOfWork.RepositoryAsync<CodeItem>();
+            ViewBag.TimePeriod = new SelectList(coderep.Queryable().Where(x=>x.CodeType== "TimePeriod").OrderBy(n => n.Code).ToList(), "Code", "Text");
             return View();
         }
+        //生存派车单
+        public async Task<ActionResult> DoShippingOrder(Order order) {
 
+            if (ModelState.IsValid)
+            {
+                this._orderService.DoShippingOrder(order);
+                var result= await this._unitOfWork.SaveChangesAsync();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            else {
+                var modelStateErrors = String.Join("", this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors.Select(n => n.ErrorMessage)));
+              
+                    return Json(new { success = false, err = modelStateErrors }, JsonRequestBehavior.AllowGet);
+               
+            }
+        }
         //导出Excel
         [HttpPost]
         public ActionResult ExportExcel(string filterRules = "", string sort = "Id", string order = "asc")

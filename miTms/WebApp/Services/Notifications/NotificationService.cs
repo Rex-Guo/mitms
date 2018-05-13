@@ -90,10 +90,10 @@ namespace WebApp.Services
             item.Title = $"新导入 {productNo} - {customCode} 需求.";
             item.Content = $"新导入 {productNo} - {customCode} 需求.请确认";
             item.Link = "/Requirements/Check";
-            item.From = Auth.CurrentUserName;
+            item.From = Auth.UserName;
             item.To = "ALL";
             item.Created = DateTime.Now;
-            item.Creator = Auth.CurrentUserName;
+            item.Creator = Auth.UserName;
             item.Group = 1;
             this.Insert(item);
         }

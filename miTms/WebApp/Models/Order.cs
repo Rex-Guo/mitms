@@ -71,6 +71,10 @@ namespace WebApp.Models
         public int? Cartons { get; set; }
         [Display(Name = "栈板数", Description = "栈板数")]
         public int? Pallets { get; set; }
+        [Display(Name = "调度人员", Description = "调度人员")]
+        [MaxLength(20)]
+        [Required]
+        public string InputUser { get; set; }
         #endregion
         #region 订单状态信息
         [Display(Name = "状态", Description = "状态")]

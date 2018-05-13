@@ -10,7 +10,7 @@ namespace WebApp
         /// <summary>
         /// 获取当前登录用户名
         /// </summary>
-        public static string CurrentUserName {
+        public static string UserName {
 
             get {
                 string fullName = string.Empty;
@@ -25,6 +25,15 @@ namespace WebApp
 
                 return fullName;
             }
+        }
+        public static string CompanyId {
+            get {
+                var username = HttpContext.Current.User.Identity.Name;
+                var db = SqlHelper2.DatabaseFactory.CreateDatabase();
+                var companyid = db.ExecuteScalar<string>("select [CompanyCode] from [dbo].[AspNetUsers] where [username]=@username", new { username });
+                return companyid;
+            }
+
         }
 
         public static string GetUserIdByName(string username) {

@@ -10,3 +10,9 @@ D:\开源项目\mitms\miTms\Source\Public.CodeText.Data\obj\Release\PublicPara.C
 D:\开源项目\mitms\miTms\Source\Public.CodeText.Data\obj\Release\PublicPara.CodeText.Data.csproj.CoreCompileInputs.cache
 D:\开源项目\mitms\miTms\Source\Public.CodeText.Data\obj\Release\PublicPara.CodeText.Data.dll
 D:\开源项目\mitms\miTms\Source\Public.CodeText.Data\obj\Release\PublicPara.CodeText.Data.pdb
+D:\github\mitms\miTms\Source\Public.CodeText.Data\bin\Release\PublicPara.CodeText.Data.dll
+D:\github\mitms\miTms\Source\Public.CodeText.Data\bin\Release\PublicPara.CodeText.Data.pdb
+D:\github\mitms\miTms\Source\Public.CodeText.Data\obj\Release\PublicPara.CodeText.Data.csprojAssemblyReference.cache
+D:\github\mitms\miTms\Source\Public.CodeText.Data\obj\Release\PublicPara.CodeText.Data.csproj.CoreCompileInputs.cache
+D:\github\mitms\miTms\Source\Public.CodeText.Data\obj\Release\PublicPara.CodeText.Data.dll
+D:\github\mitms\miTms\Source\Public.CodeText.Data\obj\Release\PublicPara.CodeText.Data.pdb

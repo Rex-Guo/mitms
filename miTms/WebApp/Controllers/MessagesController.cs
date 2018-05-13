@@ -291,7 +291,7 @@ namespace WebApp.Controllers
                 Method = SubUrlString(url),
                 Tags = tags,
                 ExtensionKey1 = "js",
-                User = Auth.CurrentUserName
+                User = Auth.UserName
 
 
 

@@ -34,5 +34,6 @@ namespace WebApp.Services
  
 		void ImportDataTable(DataTable datatable);
 		Stream ExportExcel( string filterRules = "",string sort = "Id", string order = "asc");
-	}
+        void DoShippingOrder(Order order);
+    }
 }

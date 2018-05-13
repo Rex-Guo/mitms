@@ -91,7 +91,7 @@ namespace WebApp
                     Code = code,
                     Method = $"{controllerName}/{actionName}",
                     StackTrace = stackTrace,
-                    User = Auth.CurrentUserName
+                    User = Auth.UserName
                 }
                 );
         }
