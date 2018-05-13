@@ -55,7 +55,7 @@ namespace WebApp.Models
         public int? Pallets { get; set; }
         [Display(Name = "调度人员", Description = "调度人员")]
         [MaxLength(20)]
-        [Required]
+    
         public string InputUser { get; set; }
         [Display(Name = "客户编号", Description = "客户编号")]
         public int? CustomerId { get; set; }

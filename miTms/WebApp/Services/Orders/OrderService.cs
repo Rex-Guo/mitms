@@ -146,6 +146,7 @@ namespace WebApp.Services
             veh.OrderNo = order.OrderNo;
             veh.Status = "接单";
             veh.Location1 = order.Location1;
+            veh.CustomerId = order.CustomerId;
             veh.Location2 = order.Location2;
             veh.UsingDate = order.OrderDate;
             veh.ExternalNo = order.ExternalNo;
@@ -160,6 +161,67 @@ namespace WebApp.Services
             this._vehicleService.Update(veh);
             
 
+        }
+
+        public void UpdateStatus(Order order)
+        {
+            var item =  this.Queryable().Where(x=>x.OrderNo == order.OrderNo).First();
+            item.Status = order.Status;
+            item.Location1 = order.Location1;
+            item.Location2 = order.Location2;
+            item.Packages = order.Packages;
+            item.Pallets = order.Pallets;
+            item.Cartons = order.Cartons;
+            item.Weight = order.Weight;
+            item.Volume = order.Volume;
+            item.TimePeriod = order.TimePeriod;
+            item.PlanDeliveryDate = item.OrderDate.AddHours(order.TimePeriod);
+            item.InputUser = order.InputUser;
+            item.Requirements = order.Requirements;
+            if(order.Status=="入库" || order.Status == "完成" ||
+                order.Status == "卸货")
+            {
+                item.DeliveryDate = DateTime.Now;
+            }
+            this.Update(item);
+            var veh = this._vehicleService.Find(order.VehicleId);
+            veh.OrderId = item.Id;
+            veh.CustomerId = order.CustomerId;
+            veh.OrderNo = order.OrderNo;
+            veh.Status = order.Status;
+            veh.Location1 = order.Location1;
+            veh.Location2 = order.Location2;
+            veh.ExternalNo = order.ExternalNo;
+            veh.Requirements = order.Requirements;
+            veh.TimePeriod = order.TimePeriod;
+            veh.Packages = order.Packages;
+            veh.Pallets = order.Pallets;
+            veh.Cartons = order.Cartons;
+            veh.InputUser = order.InputUser;
+            veh.Volume = order.Volume;
+            veh.Weight = order.Weight;
+            
+            if (order.Status == "入库" || order.Status == "完成" ||
+                order.Status == "卸货")
+            {
+                veh.Status = "空车";
+                veh.OrderId = null;
+                veh.OrderNo = "";
+            
+                veh.Location1 = "";
+                veh.Location2 = "";
+                veh.UsingDate = null;
+                veh.ExternalNo = "";
+                veh.Requirements = "";
+                veh.TimePeriod = 0;
+                veh.Packages = null;
+                veh.Pallets = null;
+                veh.Cartons = null;
+                veh.InputUser = "";
+                veh.Volume = null;
+                veh.Weight = null;
+            }
+            this._vehicleService.Update(veh);
         }
     }
 }

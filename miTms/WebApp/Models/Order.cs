@@ -21,7 +21,7 @@ namespace WebApp.Models
         [MaxLength(20)]
         public string ExternalNo { get; set; }
         [Display(Name = "派车时间", Description = "派车时间")]
-        public DateTime? OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
         [Display(Name = "起点", Description = "起点")]
         [MaxLength(120)]
         public string Location1 { get; set; }

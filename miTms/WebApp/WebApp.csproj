@@ -296,6 +296,14 @@
     <Compile Include="Migrations\201805130933147_addtrans.Designer.cs">
       <DependentUpon>201805130933147_addtrans.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805131109504_ch.cs" />
+    <Compile Include="Migrations\201805131109504_ch.Designer.cs">
+      <DependentUpon>201805131109504_ch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131204050_cinp.cs" />
+    <Compile Include="Migrations\201805131204050_cinp.Designer.cs">
+      <DependentUpon>201805131204050_cinp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerMetadata.cs" />
     <Compile Include="Models\Order.cs" />
@@ -3943,6 +3951,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805130933147_addtrans.resx">
       <DependentUpon>201805130933147_addtrans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131109504_ch.resx">
+      <DependentUpon>201805131109504_ch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131204050_cinp.resx">
+      <DependentUpon>201805131204050_cinp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

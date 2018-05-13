@@ -318,3 +318,5 @@ D:\github\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.ppp.resources
 D:\github\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.addtrans.resources
 D:\github\mitms\miTms\WebApp\bin\System.ValueTuple.dll
 D:\github\mitms\miTms\WebApp\bin\TechTalk.SpecFlow.dll
+D:\github\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.ch.resources
+D:\github\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.cinp.resources

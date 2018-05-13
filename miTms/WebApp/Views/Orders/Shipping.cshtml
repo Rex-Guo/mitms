@@ -191,25 +191,25 @@
                                 <div class="well well-sm well-primary">
 
                                     <div class="form-group">
-                                        <button type="submit" id="state1" name="state1" class="btn btn-success btn-sm">
+                                        <button type="button" id="state1" name="state" class="btn btn-success btn-sm">
                                             <span class="fa fa-pencil-square-o"></span> 发车
                                         </button>
-                                        <button type="submit" id="state2" name="state2" class="btn btn-default btn-sm">
+                                        <button type="button" id="state2" name="state" class="btn btn-default btn-sm">
                                             <span class="fa fa-pencil-square-o"></span> 提货
                                         </button>
-                                        <button type="submit" id="state3" name="state3" class="btn btn-default btn-sm">
+                                        <button type="button" id="state3" name="state" class="btn btn-default btn-sm">
                                             <span class="fa fa-pencil-square-o"></span> 在途
                                         </button>
-                                        <button type="submit" id="state4" name="state4" class="btn btn-default btn-sm">
+                                        <button type="button" id="state4" name="state" class="btn btn-default btn-sm">
                                             <span class="fa fa-pencil-square-o"></span> 卸货
                                         </button>
-                                        <button type="submit" id="state5" name="state5" class="btn btn-default btn-sm">
+                                        <button type="button" id="state5" name="state" class="btn btn-default btn-sm">
                                             <span class="fa fa-pencil-square-o"></span> 入仓
                                         </button>
-                                        <button type="submit" id="state7" name="state7" class="btn btn-danger btn-sm">
+                                        <button type="button" id="state7" name="state" class="btn btn-danger btn-sm">
                                             <span class="fa fa-pencil-square-o"></span> 异常
                                         </button>
-                                        <button type="button" id="state0" name="state0" class="btn btn-default btn-sm">
+                                        <button type="button" id="state0" name="state" class="btn btn-default btn-sm">
                                             <span class="fa fa-pencil-square-o"></span> 完成
                                         </button>
                                     </div>
@@ -249,11 +249,11 @@
 
 
     <script type="text/javascript">
-
+        var $form = $('#shippingform');
         $(document).ready(function () {
 
             initdg();
-            var $form =  $('#shippingform').bootstrapValidator({
+            $form = $form.bootstrapValidator({
                 feedbackIcons: {
                     valid: 'glyphicon glyphicon-ok',
                     invalid: 'glyphicon glyphicon-remove',
@@ -1130,22 +1130,25 @@
        
      if (row.Status == "空车")
          return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ' )" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 接单 </a>';
-     if (row.Status == "接单")
+            if (row.Status == "接单" || row.Status == "发车" || row.Status == "提货" ||
+                row.Status == "在途" || row.Status == "异常"
+            )
          return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ')" class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 跟踪 </a>';
 
  }
  //弹出明细信息
         function showDetailsWindow(id, index) {
             var row = $dg.datagrid('getRows')[index];
-            console.log(row);
+     
             $('#myModal').modal('toggle');
             $('#PlateNumber').val(row.PlateNumber);
             $('#PlateNumber').prop('readonly', 'readonly');
             $('#VehicleId').val(row.Id.toString()   );
             if (row.OrderNo != null && row.ExternalNo != null && row.OrderId != null) {
+                console.log(row.CustomerId,row.OrderId);
                 $('#CustomerId').val(row.CustomerId);
                 $('#CustomerId').prop('readonly', 'readonly');
-                $('#OrderId').val(row.OrderId.toString());
+                $('#Id').val(row.OrderId.toString());
                 $('#OrderNo').val(row.OrderNo);
                 $('#ExternalNo').val(row.ExternalNo);
                 $('#OrderDate').val(row.usingDate);
@@ -1153,12 +1156,36 @@
                 $('#Location2').val(row.Location2);
                 $('#Requirements').val(row.Requirements);
                 $('#TimePeriod').val(row.TimePeriod);
+                $('#Packages').val(row.Packages.toString());
+                $('#Pallets').val(row.Pallets.toString());
+                $('#Cartons').val(row.Cartons.toString());
+                $('#Volume').val(row.Volume.toString());
+                $('#Weight').val(row.Weight.toString());
+                if (row.Packages!=null)
                 $('#inputloadnum').val(row.Packages + "/" + row.Pallets + "/" + row.Cartons);
+                if (row.Volume != null)
                 $('#inputloadsize').val(row.Volume + "/" + row.Weight);
                 $('#doshippingbtn').prop('disabled', true);
 
+                //console.log($('button[name="state"]'));
+                $('button[name="state"]').prop('disabled', false);
+                //$.get('/TransactionHistories/GetByOrderNo?orderno=' + row.OrderNo, function (data) {
+                //    $.each(data, function (index, item) {
+               //         $.each($('button[name="state"]'), function (i, elment) {
+                //            var txt = $.trim(elment.text());
+                //            if (txt == item.Status) {
+                //                elment.prop('disabled', true);
+                //            }
+                //        });
+                 //   });
+                //    
+                //});
+
+               
+
             } else {
-                $('#OrderId').val("-1");
+                $('button[name="state"]').prop('disabled', true);
+                $('#Id').val("-1");
                 $('#OrderNo').val("");
                 $('#ExternalNo').val("");
                 $('#OrderDate').val("");
@@ -1183,7 +1210,21 @@
 
 
 
-
+        //更新订单状态
+        $('button[name="state"]').click(function () {
+            //do stuff
+            $form.bootstrapValidator('validate');
+            if ($form.data('bootstrapValidator').isValid()) {
+                var statetext = $.trim($(this).text())
+                console.log(statetext);
+                var data = $('#shippingform').serializeJSON();
+                data.Status = statetext;
+                console.log(data);
+                $.post('/Orders/UpdateStatus', data, function (data) {
+                    console.log(data);
+                });
+            }
+        });
 
     </script>
     <script src="~/Scripts/jquery.filerupload.js"></script>
