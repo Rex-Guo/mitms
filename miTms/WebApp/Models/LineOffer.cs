@@ -34,6 +34,9 @@ namespace WebApp.Models
         [Display(Name = "详细备注", Description = "详细备注")]
         [MaxLength(520)]
         public string Remark { get; set; }
+        [MaxLength(20)]
+        [Display(Name = "输入人员", Description = "输入人员")]
+        public string InputUser { get; set; }
 
     }
 }
