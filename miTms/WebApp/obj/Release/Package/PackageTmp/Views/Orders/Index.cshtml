@@ -358,7 +358,7 @@
                   sortable: true,
                   resizable: true,
                   formatter: function(value, row) {
-                      return row.VehicleOrderNo;
+                      return row.VehiclePlateNumber;
                   },
                   editor: {
                       type: 'combobox',
@@ -366,7 +366,7 @@
                           prompt: '车牌号',
                           mode: 'remote',
                           valueField: 'Id',
-                          textField: 'OrderNo',
+                          textField: 'PlateNumber',
                           method: 'get',
                           url: '/Orders/GetVehicles',
                           required: true
@@ -697,32 +697,8 @@
 
       $dg.datagrid("enableFilter", [{
               field: "Status",
-              type: "combobox",
-              options: {
-                  panelHeight: "auto",
-                  data: [{
-                      value: "",
-                      text: "All"
-                  }, {
-                      value: 0,
-                      text: "启用"
-                  }, {
-                      value: 1,
-                      text: "禁用"
-                  }],
-                  onChange: function(value) {
-                      if (value == "") {
-                          $dg.datagrid("removeFilterRule", "Status");
-                      } else {
-                          $dg.datagrid("addFilterRule", {
-                              field: "Status",
-                              op: "equal",
-                              value: value
-                          });
-                      }
-                      $dg.datagrid("doFilter");
-                  }
-              }
+              type: "orderstatusfilter",
+              
           },
 
           {

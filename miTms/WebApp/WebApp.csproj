@@ -236,6 +236,7 @@
     <Compile Include="App_Helpers\ApplicationPreload.cs" />
     <Compile Include="App_Helpers\ApplicationRoleManager.cs" />
     <Compile Include="App_Helpers\Auth.cs" />
+    <Compile Include="App_Start\ApplicationOAuthProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\EFMigrationsManagerConfig.cs" />
     <Compile Include="App_Start\Sequence.cs" />
@@ -315,6 +316,7 @@
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerMetadata.cs" />
+    <Compile Include="Models\LineOffer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderMetadata.cs" />
     <Compile Include="Models\TransactionHistory.cs" />

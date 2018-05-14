@@ -312,3 +312,13 @@ D:\github\mitms\miTms\WebApp\obj\Release\WebApp.csproj.CoreCompileInputs.cache
 D:\github\mitms\miTms\WebApp\obj\Release\WebApp.csproj.CopyComplete
 D:\github\mitms\miTms\WebApp\obj\Release\WebApp.dll
 D:\github\mitms\miTms\WebApp\obj\Release\WebApp.pdb
+D:\开源项目\mitms\miTms\WebApp\bin\System.ValueTuple.dll
+D:\开源项目\mitms\miTms\WebApp\bin\TechTalk.SpecFlow.dll
+D:\开源项目\mitms\miTms\WebApp\obj\Release\WebApp.Migrations.addtest.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Release\WebApp.Migrations.addorderid.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Release\WebApp.Migrations.ppp.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Release\WebApp.Migrations.addtrans.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Release\WebApp.Migrations.ch.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Release\WebApp.Migrations.cinp.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Release\WebApp.Migrations.tch.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Release\WebApp.Migrations.tch1.resources

@@ -111,8 +111,6 @@ filtersource.push({ value: '商业险',text:'商业险'  });
 datasource.push({ value: '商业险',text:'商业险'  });
 filtersource.push({ value: '外省',text:'外省'  });
 datasource.push({ value: '外省',text:'外省'  });
-filtersource.push({ value: '外租车',text:'外租车'  });
-datasource.push({ value: '外租车',text:'外租车'  });
 filtersource.push({ value: '大专',text:'大专'  });
 datasource.push({ value: '大专',text:'大专'  });
 filtersource.push({ value: '女',text:'女'  });
@@ -231,8 +229,6 @@ filtersource.push({ value: '货物类型2',text:'货物类型2'  });
 datasource.push({ value: '货物类型2',text:'货物类型2'  });
 filtersource.push({ value: '货物类型3',text:'货物类型3'  });
 datasource.push({ value: '货物类型3',text:'货物类型3'  });
-filtersource.push({ value: '车头',text:'车头'  });
-datasource.push({ value: '车头',text:'车头'  });
 filtersource.push({ value: '车挂',text:'车挂'  });
 datasource.push({ value: '车挂',text:'车挂'  });
 filtersource.push({ value: '转关',text:'转关'  });
@@ -683,12 +679,12 @@ airtypeeditor: {
 //-------业务类型---------//
 var businesstypefiltersource = [{ value: '', text: 'All'}];
 var businesstypedatasource = [];
-businesstypefiltersource.push({ value: '业务类型1',text:'业务类型1'  });
-businesstypedatasource.push({ value: '业务类型1',text:'业务类型1'  });
-businesstypefiltersource.push({ value: '业务类型2',text:'业务类型2'  });
-businesstypedatasource.push({ value: '业务类型2',text:'业务类型2'  });
-businesstypefiltersource.push({ value: '业务类型3',text:'业务类型3'  });
-businesstypedatasource.push({ value: '业务类型3',text:'业务类型3'  });
+businesstypefiltersource.push({ value: '干线业务',text:'干线业务'  });
+businesstypedatasource.push({ value: '干线业务',text:'干线业务'  });
+businesstypefiltersource.push({ value: '快递业务',text:'快递业务'  });
+businesstypedatasource.push({ value: '快递业务',text:'快递业务'  });
+businesstypefiltersource.push({ value: '电商业务',text:'电商业务'  });
+businesstypedatasource.push({ value: '电商业务',text:'电商业务'  });
 //for datagrid BusinessType field  formatter
 function businesstypeformatter(value, row, index) { 
      if (value === null || value === '' || value === undefined) 
@@ -3568,6 +3564,100 @@ oiluniteditor: {
         }
   }  
 });
+//-------订单状态---------//
+var orderstatusfiltersource = [{ value: '', text: 'All'}];
+var orderstatusdatasource = [];
+orderstatusfiltersource.push({ value: '入仓',text:'入仓'  });
+orderstatusdatasource.push({ value: '入仓',text:'入仓'  });
+orderstatusfiltersource.push({ value: '卸货',text:'卸货'  });
+orderstatusdatasource.push({ value: '卸货',text:'卸货'  });
+orderstatusfiltersource.push({ value: '发车',text:'发车'  });
+orderstatusdatasource.push({ value: '发车',text:'发车'  });
+orderstatusfiltersource.push({ value: '在途',text:'在途'  });
+orderstatusdatasource.push({ value: '在途',text:'在途'  });
+orderstatusfiltersource.push({ value: '完成',text:'完成'  });
+orderstatusdatasource.push({ value: '完成',text:'完成'  });
+orderstatusfiltersource.push({ value: '异常',text:'异常'  });
+orderstatusdatasource.push({ value: '异常',text:'异常'  });
+orderstatusfiltersource.push({ value: '接单',text:'接单'  });
+orderstatusdatasource.push({ value: '接单',text:'接单'  });
+orderstatusfiltersource.push({ value: '提货',text:'提货'  });
+orderstatusdatasource.push({ value: '提货',text:'提货'  });
+orderstatusfiltersource.push({ value: '新增',text:'新增'  });
+orderstatusdatasource.push({ value: '新增',text:'新增'  });
+orderstatusfiltersource.push({ value: '空车',text:'空车'  });
+orderstatusdatasource.push({ value: '空车',text:'空车'  });
+//for datagrid OrderStatus field  formatter
+function orderstatusformatter(value, row, index) { 
+     if (value === null || value === '' || value === undefined) 
+     { 
+         return "";
+     } 
+     for (var i = 0; i < orderstatusdatasource.length; i++) {
+      var item = orderstatusdatasource[i];
+     if (item.value === value.toString())
+     {
+         return item.text;
+     }
+     };
+ return value;
+ } 
+//for datagrid   OrderStatus  field filter 
+$.extend($.fn.datagrid.defaults.filters, {
+orderstatusfilter: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+             panelHeight: "auto",
+             data: orderstatusfiltersource
+         }
+         $.extend(options, myoptions);
+         input.combobox(options);
+         return input;
+      },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+     },
+     getValue: function(target) {
+         return $(target).combobox('getValue');
+     },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+     },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+     }
+   }
+});
+//for datagrid   OrderStatus   field  editor 
+$.extend($.fn.datagrid.defaults.editors, {
+orderstatuseditor: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+         panelHeight: "auto",
+         data: orderstatusdatasource,
+         valueField: 'value',
+         textField: 'text'
+     }
+    $.extend(options, myoptions);
+           input.combobox(options);
+           return input;
+       },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+        },
+     getValue: function(target) {
+        return $(target).combobox('getValue');
+        },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+         },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+        }
+  }  
+});
 //-------包装方式---------//
 var packagefiltersource = [{ value: '', text: 'All'}];
 var packagedatasource = [];
@@ -5077,6 +5167,88 @@ tageditor: {
         var myoptions = {
          panelHeight: "auto",
          data: tagdatasource,
+         valueField: 'value',
+         textField: 'text'
+     }
+    $.extend(options, myoptions);
+           input.combobox(options);
+           return input;
+       },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+        },
+     getValue: function(target) {
+        return $(target).combobox('getValue');
+        },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+         },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+        }
+  }  
+});
+//-------订单时效---------//
+var timeperiodfiltersource = [{ value: '', text: 'All'}];
+var timeperioddatasource = [];
+timeperiodfiltersource.push({ value: '24',text:'24'  });
+timeperioddatasource.push({ value: '24',text:'24'  });
+timeperiodfiltersource.push({ value: '48',text:'48'  });
+timeperioddatasource.push({ value: '48',text:'48'  });
+timeperiodfiltersource.push({ value: '72',text:'72'  });
+timeperioddatasource.push({ value: '72',text:'72'  });
+timeperiodfiltersource.push({ value: '8',text:'8'  });
+timeperioddatasource.push({ value: '8',text:'8'  });
+//for datagrid TimePeriod field  formatter
+function timeperiodformatter(value, row, index) { 
+     if (value === null || value === '' || value === undefined) 
+     { 
+         return "";
+     } 
+     for (var i = 0; i < timeperioddatasource.length; i++) {
+      var item = timeperioddatasource[i];
+     if (item.value === value.toString())
+     {
+         return item.text;
+     }
+     };
+ return value;
+ } 
+//for datagrid   TimePeriod  field filter 
+$.extend($.fn.datagrid.defaults.filters, {
+timeperiodfilter: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+             panelHeight: "auto",
+             data: timeperiodfiltersource
+         }
+         $.extend(options, myoptions);
+         input.combobox(options);
+         return input;
+      },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+     },
+     getValue: function(target) {
+         return $(target).combobox('getValue');
+     },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+     },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+     }
+   }
+});
+//for datagrid   TimePeriod   field  editor 
+$.extend($.fn.datagrid.defaults.editors, {
+timeperiodeditor: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+         panelHeight: "auto",
+         data: timeperioddatasource,
          valueField: 'value',
          textField: 'text'
      }

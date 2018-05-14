@@ -22,7 +22,7 @@ $.extend($.fn.datetimebox.defaults, {
     formatter: function (value) {
         //console.log(value, 'formatter');
         if (moment(value).isValid()) {
-            var date = moment(value).format('MM/DD/YYYY HH:mm:ss');
+            var date = moment(value).format('MM/DD/YYYY HH:mm');
             return date;
         }
     },
@@ -208,7 +208,7 @@ function datetimeformatter(value, row, index) {
     if (value == null)
         return null;
     if (moment(value).isValid())
-        return moment(value).format('MM/DD/YYYY HH:mm:ss');
+        return moment(value).format('MM/DD/YYYY HH:mm');
 }
 
 function isTrue(value) {

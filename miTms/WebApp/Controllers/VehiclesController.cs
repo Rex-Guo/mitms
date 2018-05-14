@@ -162,7 +162,9 @@ namespace WebApp.Controllers
                 LastModifiedDate = n.LastModifiedDate,
                 LastModifiedBy = n.LastModifiedBy
             }).ToList();
-            var pagelist = new { total = totalCount, rows = datarows };
+
+            var group = this._vehicleService.Queryable().GroupBy(x => x.Status).Select(x => new { Footer=true, PlateNumber = "汇总:", Status = x.Key, ExternalNo = x.Count() }).ToList();
+            var pagelist = new { total = totalCount, rows = datarows, footer = group };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
@@ -275,7 +277,13 @@ namespace WebApp.Controllers
                 LastModifiedDate = n.LastModifiedDate,
                 LastModifiedBy = n.LastModifiedBy
             }).ToList();
-            var pagelist = new { total = totalCount, rows = datarows };
+
+            //统计状态
+            var group = this._vehicleService.Queryable().GroupBy(x => x.Status).Select(x => new { PlateNumber = "汇总:", Status = x.Key, ExternalNo = x.Count() }).ToList() ;
+
+
+
+            var pagelist = new { total = totalCount, rows = datarows, footer = group };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]

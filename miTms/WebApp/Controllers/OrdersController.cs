@@ -218,8 +218,8 @@ namespace WebApp.Controllers
         public async Task<JsonResult> GetVehicles(string q = "")
         {
             var vehicleRepository = _unitOfWork.RepositoryAsync<Vehicle>();
-            var data = await vehicleRepository.Queryable().Where(n => n.OrderNo.Contains(q)).ToListAsync();
-            var rows = data.Select(n => new { Id = n.Id, OrderNo = n.OrderNo });
+            var data = await vehicleRepository.Queryable().Where(n => n.PlateNumber.Contains(q)).ToListAsync();
+            var rows = data.Select(n => new { Id = n.Id, PlateNumber = n.PlateNumber });
             return Json(rows, JsonRequestBehavior.AllowGet);
         }
         // GET: Orders/Details/5

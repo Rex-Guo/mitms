@@ -404,6 +404,7 @@
                 method: 'get',
                 onClickCell: onClickCell,
                 pagination: true,
+                showFooter: true,
               striped: true,
               rowStyler: function (index, row) {
 
@@ -1114,14 +1115,14 @@
  //datagrid onSelect
  //-----------------------------------------------------
         function showdetailsformatter(value, row, index) {
-       
-     if (row.Status == "空车")
-         return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ' )" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 接单 </a>';
-            if (row.Status == "接单" || row.Status == "发车" || row.Status == "提货" ||
-                row.Status == "在途" || row.Status == "异常"
-            )
-         return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ')" class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 跟踪 </a>';
-
+            if (!row.Footer) {
+                if (row.Status == "空车")
+                    return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ' )" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 接单 </a>';
+                if (row.Status == "接单" || row.Status == "发车" || row.Status == "提货" ||
+                    row.Status == "在途" || row.Status == "异常"
+                )
+                    return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ')" class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 跟踪 </a>';
+            }
  }
  //弹出明细信息
         function showDetailsWindow(id, index) {
