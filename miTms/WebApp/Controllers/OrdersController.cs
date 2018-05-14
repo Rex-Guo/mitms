@@ -381,9 +381,15 @@ namespace WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                this._orderService.DoShippingOrder(order);
-                var result= await this._unitOfWork.SaveChangesAsync();
-                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                try
+                {
+                    this._orderService.DoShippingOrder(order);
+                    var result = await this._unitOfWork.SaveChangesAsync();
+                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception e) {
+                    return Json(new { success = false,err = e.Message }, JsonRequestBehavior.AllowGet);
+                }
             }
             else {
                 var modelStateErrors = String.Join("", this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors.Select(n => n.ErrorMessage)));

@@ -126,6 +126,8 @@ namespace WebApp
             container.RegisterType<IVehicleService, VehicleService>();
             container.RegisterType<IRepositoryAsync<Customer>, Repository<Customer>>();
             container.RegisterType<ICustomerService, CustomerService>();
+            container.RegisterType<IRepositoryAsync<TransactionHistory>, Repository<TransactionHistory>>();
+            container.RegisterType<ITransactionHistoryService, TransactionHistoryService>();
         }
     }
 }

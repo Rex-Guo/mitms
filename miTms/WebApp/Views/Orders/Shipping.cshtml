@@ -66,15 +66,8 @@
                                 <table id="vehicles_datagrid"></table>
                                 <div id="vehicles_toolbar" style="height:auto">
 
-                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
-                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
-                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="accept()">保存</a>
-                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="reject()">取消</a>
-                                    <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
-                                    <div id="importmenu" style="width:150px;">
-                                        <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
-                                        <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()">下载用于导入的模板</div>
-                                    </div>
+
+                                    
                                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
                                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
                                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-question-circle-o fa-fw',plain:true" onclick="dohelp()">帮助</a>
@@ -353,7 +346,23 @@
             })
         });
 
+        //执行Excel到处下载
+        function exportexcel() {
+            var filterRules = JSON.stringify($dg.datagrid("options").filterRules);
+            //console.log(filterRules);
+            $.messager.progress({
+                title: "正在执行导出！"
+            });
+            var formData = new FormData();
+            formData.append("filterRules", filterRules);
+            formData.append("sort", "Id");
+            formData.append("order", "asc");
+            $.postDownload("/Vehicles/OrderExportExcel", formData, function (fileName) {
+                $.messager.progress("close");
+                console.log(fileName);
 
+            })
+        }
        var entityname = "Vehicle";
 
 //保存订单并更新车辆状态
@@ -361,20 +370,16 @@
             var data = $('#shippingform').serializeJSON();
             console.log(data);
             $.post('/Orders/DoShippingOrder', data, function (data) {
-                console.log(data);
+                if (data.success) {
+                    $('#myModal').modal('toggle');
+                    reload();
+                } else {
+                    $.messager.alert("异常", data.err);
+                }
             })
 
         }
- //下载Excel导入模板
- function downloadtemplate() {
-     //TODO: 修改下载模板的路径
-     var url = "/ExcelTemplate/Vehicle.xlsx";
-     $.fileDownload(url)
-         .fail(function() {
-             $.messager.alert("错误", "没有找到模板文件! {" + url + "}");
-         });
 
- }
 
  //显示帮助信息
  function dohelp() {
@@ -399,7 +404,13 @@
                 method: 'get',
                 onClickCell: onClickCell,
                 pagination: true,
-                striped: true,
+              striped: true,
+              rowStyler: function (index, row) {
+
+                  if (row.UsingDate != null && moment().isAfter(moment(row.UsingDate).add(row.TimePeriod, 'hours'))) {
+                      return 'background-color:#efe1b3;color:#826430;font-weight:bold;';
+                  }
+              },
                 columns: [
                     [
                         /*{ field: 'ck', checkbox: true },*/
@@ -689,32 +700,8 @@
 
             $dg.datagrid("enableFilter", [{
                 field: "Status",
-                type: "combobox",
-                options: {
-                    panelHeight: "auto",
-                    data: [{
-                        value: "",
-                        text: "All"
-                    }, {
-                        value: 0,
-                        text: "启用"
-                    }, {
-                        value: 1,
-                        text: "禁用"
-                    }],
-                    onChange: function (value) {
-                        if (value == "") {
-                            $dg.datagrid("removeFilterRule", "Status");
-                        } else {
-                            $dg.datagrid("addFilterRule", {
-                                field: "Status",
-                                op: "equal",
-                                value: value
-                            });
-                        }
-                        $dg.datagrid("doFilter");
-                    }
-                }
+                type: "orderstatusfilter",
+                
             },
 
             {
@@ -1094,9 +1081,9 @@
  var editIndex = undefined;
 
  function reload() {
-     if (endEditing()) {
+      
          $dg.datagrid("reload");
-     }
+     
  }
 
 
@@ -1145,7 +1132,7 @@
             $('#PlateNumber').prop('readonly', 'readonly');
             $('#VehicleId').val(row.Id.toString()   );
             if (row.OrderNo != null && row.ExternalNo != null && row.OrderId != null) {
-                console.log(row.CustomerId,row.OrderId);
+                //console.log(row.CustomerId,row.OrderId);
                 $('#CustomerId').val(row.CustomerId);
                 $('#CustomerId').prop('readonly', 'readonly');
                 $('#Id').val(row.OrderId.toString());
@@ -1156,30 +1143,53 @@
                 $('#Location2').val(row.Location2);
                 $('#Requirements').val(row.Requirements);
                 $('#TimePeriod').val(row.TimePeriod);
-                $('#Packages').val(row.Packages.toString());
-                $('#Pallets').val(row.Pallets.toString());
-                $('#Cartons').val(row.Cartons.toString());
-                $('#Volume').val(row.Volume.toString());
-                $('#Weight').val(row.Weight.toString());
-                if (row.Packages!=null)
-                $('#inputloadnum').val(row.Packages + "/" + row.Pallets + "/" + row.Cartons);
-                if (row.Volume != null)
-                $('#inputloadsize').val(row.Volume + "/" + row.Weight);
+               
+                if (row.Packages != null) {
+                    $('#Packages').val(row.Packages.toString());
+                    $('#Pallets').val(row.Pallets.toString());
+                    $('#Cartons').val(row.Cartons.toString());
+                   
+                    $('#inputloadnum').val(row.Packages + "/" + row.Pallets + "/" + row.Cartons);
+                } else {
+                    $('#Packages').val("");
+                    $('#Pallets').val("");
+                    $('#Cartons').val("");
+                    $('#Volume').val("");
+                    $('#Weight').val("");
+                    $('#inputloadnum').val("");
+                }
+                if (row.Volume != null) {
+                    $('#Volume').val(row.Volume.toString());
+                    $('#Weight').val(row.Weight.toString());
+                    $('#inputloadsize').val(row.Volume + "/" + row.Weight);
+                } else {
+                    $('#Volume').val("");
+                    $('#Weight').val("");
+                    $('#inputloadsize').val("");
+                }
                 $('#doshippingbtn').prop('disabled', true);
 
                 //console.log($('button[name="state"]'));
                 $('button[name="state"]').prop('disabled', false);
-                //$.get('/TransactionHistories/GetByOrderNo?orderno=' + row.OrderNo, function (data) {
-                //    $.each(data, function (index, item) {
-               //         $.each($('button[name="state"]'), function (i, elment) {
-                //            var txt = $.trim(elment.text());
-                //            if (txt == item.Status) {
-                //                elment.prop('disabled', true);
-                //            }
-                //        });
-                 //   });
-                //    
-                //});
+                $.get('/TransactionHistories/GetByOrderNo?orderno=' + row.OrderNo, function (data) {
+                    //console.log(data);
+                    $.each(data, function (index, item) {
+                        $.each($('button[name="state"]'), function (i, elment) {
+                            
+                            var txt = $.trim($(elment).text());
+                            //console.log(txt, item.Status);
+                            if (txt == item.Status) {
+                                $(elment).text(item.Status + "(" + moment(item.TransactioDateTime).format('MM/DD HH:mm') + ")")
+                                if (txt != "异常") {
+                                    $(elment).addClass("btn-success");
+                                    $(elment).removeClass("btn-default");
+                                }
+                                $(elment).prop('disabled', true);
+                            }
+                        });
+                    });
+                    
+                });
 
                
 
@@ -1216,12 +1226,17 @@
             $form.bootstrapValidator('validate');
             if ($form.data('bootstrapValidator').isValid()) {
                 var statetext = $.trim($(this).text())
-                console.log(statetext);
+                //console.log(statetext);
                 var data = $('#shippingform').serializeJSON();
                 data.Status = statetext;
-                console.log(data);
+                //console.log(data);
                 $.post('/Orders/UpdateStatus', data, function (data) {
-                    console.log(data);
+                    if (data.success) {
+                        $('#myModal').modal('toggle');
+                        reload();
+                    } else {
+                        $.messager.alert("异常", data.err);
+                    }
                 });
             }
         });

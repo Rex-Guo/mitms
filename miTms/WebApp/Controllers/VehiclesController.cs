@@ -461,6 +461,14 @@ namespace WebApp.Controllers
             var stream = _vehicleService.ExportExcel(filterRules, sort, order);
             return File(stream, "application/vnd.ms-excel", fileName);
         }
+        //导出Excel
+        [HttpPost]
+        public ActionResult OrderExportExcel(string filterRules = "", string sort = "Id", string order = "asc")
+        {
+            var fileName = "vehicles_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+            var stream = _vehicleService.OrderExportExcel(filterRules, sort, order);
+            return File(stream, "application/vnd.ms-excel", fileName);
+        }
         private void DisplaySuccessMessage(string msgText)
         {
             TempData["SuccessMessage"] = msgText;

@@ -247,6 +247,7 @@
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EFMigrationsManagerController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\TransactionHistoriesController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Migrations\201803120846216_addtitle.cs" />
     <Compile Include="Migrations\201803120846216_addtitle.Designer.cs">
@@ -304,23 +305,36 @@
     <Compile Include="Migrations\201805131204050_cinp.Designer.cs">
       <DependentUpon>201805131204050_cinp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805140054429_tch.cs" />
+    <Compile Include="Migrations\201805140054429_tch.Designer.cs">
+      <DependentUpon>201805140054429_tch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805140110025_tch1.cs" />
+    <Compile Include="Migrations\201805140110025_tch1.Designer.cs">
+      <DependentUpon>201805140110025_tch1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerMetadata.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderMetadata.cs" />
     <Compile Include="Models\TransactionHistory.cs" />
+    <Compile Include="Models\TransactionHistoryMetadata.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleMetadata.cs" />
     <Compile Include="Repositories\Customers\CustomerQuery.cs" />
     <Compile Include="Repositories\Customers\CustomerRepository.cs" />
     <Compile Include="Repositories\Orders\OrderQuery.cs" />
     <Compile Include="Repositories\Orders\OrderRepository.cs" />
+    <Compile Include="Repositories\TransactionHistories\TransactionHistoryQuery.cs" />
+    <Compile Include="Repositories\TransactionHistories\TransactionHistoryRepository.cs" />
     <Compile Include="Repositories\Vehicles\VehicleQuery.cs" />
     <Compile Include="Repositories\Vehicles\VehicleRepository.cs" />
     <Compile Include="Services\Customers\CustomerService.cs" />
     <Compile Include="Services\Customers\ICustomerService.cs" />
     <Compile Include="Services\Orders\IOrderService.cs" />
     <Compile Include="Services\Orders\OrderService.cs" />
+    <Compile Include="Services\TransactionHistories\ITransactionHistoryService.cs" />
+    <Compile Include="Services\TransactionHistories\TransactionHistoryService.cs" />
     <Compile Include="Services\Vehicles\IVehicleService.cs" />
     <Compile Include="Services\Vehicles\VehicleService.cs" />
     <Compile Include="SmartChatHub\ChatHub.cs" />
@@ -3674,6 +3688,11 @@
     <Content Include="Views\Orders\EditForm.cshtml" />
     <Content Include="Views\Orders\_PopupDetailFormView.cshtml" />
     <Content Include="Views\Orders\Shipping.cshtml" />
+    <Content Include="Views\TransactionHistories\Index.cshtml" />
+    <Content Include="Views\TransactionHistories\Create.cshtml" />
+    <Content Include="Views\TransactionHistories\Edit.cshtml" />
+    <Content Include="Views\TransactionHistories\EditForm.cshtml" />
+    <Content Include="Views\TransactionHistories\_PopupDetailFormView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3957,6 +3976,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805131204050_cinp.resx">
       <DependentUpon>201805131204050_cinp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805140054429_tch.resx">
+      <DependentUpon>201805140054429_tch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805140110025_tch1.resx">
+      <DependentUpon>201805140110025_tch1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

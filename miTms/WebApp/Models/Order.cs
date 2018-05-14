@@ -44,7 +44,7 @@ namespace WebApp.Models
         [ForeignKey("VehicleId")]
         public virtual Vehicle Vehicle { get; set; }
         [Required]
-        [Index(IsUnique = true)]
+     
         [MaxLength(10)]
         [Display(Name = "车牌号", Description = "车牌号")]
         public string PlateNumber { get; set; }

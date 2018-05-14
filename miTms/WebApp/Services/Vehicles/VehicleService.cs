@@ -191,6 +191,48 @@ CompanyName = (n.Company==null?"": n.Company.Name)
             return ExcelHelper.ExportExcel(typeof(Vehicle), datarows);
 
         }
+
+        public Stream OrderExportExcel(string filterRules, string sort, string order)
+        {
+            var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
+
+            var vehicles = this.Query(new VehicleQuery().Withfilter(filters)).Include(p => p.Company).OrderBy(n => n.OrderBy(sort, order)).Select().ToList();
+
+            var datarows = vehicles.Select(n => new {
+                CompanyName = (n.Company == null ? "" : n.Company.Name),
+                Id = n.Id,
+                OrderNo = n.OrderNo,
+                ExternalNo = n.ExternalNo,
+                UsingDate = n.UsingDate,
+                Location1 = n.Location1,
+                Location2 = n.Location2,
+                TimePeriod = n.TimePeriod,
+                Requirements = n.Requirements,
+                PlateNumber = n.PlateNumber,
+                Packages=     n.Packages,
+                Pallets= n.Pallets,
+                Cartons =n.Cartons,
+                Volume =n.Volume,
+                Weight=n.Weight,
+                VehStatus = n.VehStatus,
+                CarType = n.CarType,
+                VehicleType = n.VehicleType,
+                VehicleProperty = n.VehicleProperty,
+                Axles = n.Axles,
+                ECOMark = n.ECOMark,
+                StrLoadWeight = n.StrLoadWeight,
+                LoadWeight = n.LoadWeight,
+                LoadVolume = n.LoadVolume,
+                CarriageSize = n.CarriageSize,
+                Driver = n.Driver,
+                DriverPhone = n.DriverPhone,               
+                Status = n.Status,
+                LastModifiedDate = n.LastModifiedDate,
+                LastModifiedBy = n.LastModifiedBy
+            }).ToList();
+
+            return ExcelHelper.ExportExcel(typeof(Vehicle), datarows);
+        }
     }
 }
 

@@ -35,6 +35,21 @@ namespace WebApp.Models
         [MaxLength(20)]
         public string InputUser { get; set; }
 
+        #region 跟踪信息
+        [Display(Name = "经度", Description = "经度")]
+        public decimal Longitude { get; set; }
+        [Display(Name = "维度", Description = "维度")]
+        public decimal Latitude { get; set; }
+        [Display(Name = "照片路径", Description = "照片路径")]
+        [MaxLength(50)]
+        public string PhotographPath { get; set; }
+        [Display(Name = "照片", Description = "照片")]
+        public byte[] Photograph { get; set; }
+        [Display(Name = "备注", Description = "备注")]
+        [MaxLength(150)]
+        public string Remark2 { get; set; }
+        #endregion
+
 
     }
 }

@@ -32,12 +32,14 @@ namespace WebApp.Services
         private readonly IRepositoryAsync<Order> _repository;
         private readonly IDataTableImportMappingService _mappingservice;
         private readonly IVehicleService _vehicleService;
-        public OrderService(IVehicleService _vehicleService,IRepositoryAsync<Order> repository, IDataTableImportMappingService mappingservice)
+        private readonly ITransactionHistoryService historyService;
+        public OrderService(ITransactionHistoryService historyService,IVehicleService _vehicleService,IRepositoryAsync<Order> repository, IDataTableImportMappingService mappingservice)
             : base(repository)
         {
             _repository = repository;
             _mappingservice = mappingservice;
             this._vehicleService = _vehicleService;
+            this.historyService = historyService;
         }
 
         public IEnumerable<Order> GetByVehicleId(int vehicleid)
@@ -159,6 +161,14 @@ namespace WebApp.Services
             veh.Volume = order.Volume;
             veh.Weight = order.Weight;
             this._vehicleService.Update(veh);
+            TransactionHistory item = new TransactionHistory();
+            item.InputUser = order.InputUser;
+            item.OrderNo = order.OrderNo;
+            item.PlateNumber = order.PlateNumber;
+            item.Status = order.Status;
+            item.TransactioDateTime = order.OrderDate;
+            this.historyService.Insert(item);
+
             
 
         }
@@ -222,6 +232,13 @@ namespace WebApp.Services
                 veh.Weight = null;
             }
             this._vehicleService.Update(veh);
+            TransactionHistory tran = new TransactionHistory();
+            tran.InputUser = order.InputUser;
+            tran.OrderNo = order.OrderNo;
+            tran.PlateNumber = order.PlateNumber;
+            tran.Status = order.Status;
+            tran.TransactioDateTime = DateTime.Now;
+            this.historyService.Insert(tran);
         }
     }
 }

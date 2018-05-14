@@ -320,3 +320,13 @@ D:\github\mitms\miTms\WebApp\bin\System.ValueTuple.dll
 D:\github\mitms\miTms\WebApp\bin\TechTalk.SpecFlow.dll
 D:\github\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.ch.resources
 D:\github\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.cinp.resources
+D:\开源项目\mitms\miTms\WebApp\bin\System.ValueTuple.dll
+D:\开源项目\mitms\miTms\WebApp\bin\TechTalk.SpecFlow.dll
+D:\开源项目\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.addtest.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.addorderid.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.ppp.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.addtrans.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.ch.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.cinp.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.tch.resources
+D:\开源项目\mitms\miTms\WebApp\obj\Debug\WebApp.Migrations.tch1.resources
