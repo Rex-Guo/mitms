@@ -271,7 +271,9 @@
                                             $('#Cartons').val(numbers[2]);
                                             return true;
                                         } else {
-
+                                            $('#Packages').val("");
+                                            $('#Pallets').val("");
+                                            $('#Cartons').val("");
                                             return false;
                                         }
                                     }
@@ -282,21 +284,22 @@
                     inputloadsize: {
                         validators: {
                             callback: {
-                                message: '请输入体积(立方)[5位以内]/重量(吨)[5位以内]',
+                                message: '请输入体积(立方)[5位以内可带小数]/重量(吨)[5位以内可带小数]',
                                 callback: function (value, validator, $field) {
 
                                     if (value === '') {
                                         return true;
                                     } else {
-                                        var patt = /^\d+(.\d{0,2}){1,5}\/\d+(.\d{0,2}){1,5}$/;
+                                        var patt = /^((\d{1,5}\.\d{0,2})|\d{1,5}$)\/(\d{1,5}\.\d{0,2})$|\d{1,5}$/;
                                         if (patt.test(value)) {
                                         
-                                            var numbers = value.match(/\d+(.\d{0,2})/g).map(Number);
+                                            var numbers = value.match(/(\d+\.\d+)|\d+/g).map(Number);
                                             $('#Volume').val(numbers[0]);
                                             $('#Weight').val(numbers[1]);
                                             return true;
                                         } else {
-
+                                            $('#Volume').val("");
+                                            $('#Weight').val("");
                                             return false;
                                         }
                                          

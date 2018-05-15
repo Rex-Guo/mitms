@@ -50,6 +50,8 @@ namespace WebApp.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<LineOffer> LineOffers { get; set; }
         public DbSet<TransactionHistory> TransactionHistories { get; set; }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {

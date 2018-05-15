@@ -314,11 +314,17 @@
     <Compile Include="Migrations\201805140110025_tch1.Designer.cs">
       <DependentUpon>201805140110025_tch1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805150405477_addtb.cs" />
+    <Compile Include="Migrations\201805150405477_addtb.Designer.cs">
+      <DependentUpon>201805150405477_addtb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerMetadata.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\LineOffer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderMetadata.cs" />
+    <Compile Include="Models\PoolsViewModel.cs" />
     <Compile Include="Models\TransactionHistory.cs" />
     <Compile Include="Models\TransactionHistoryMetadata.cs" />
     <Compile Include="Models\Vehicle.cs" />
@@ -3984,6 +3990,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805140110025_tch1.resx">
       <DependentUpon>201805140110025_tch1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805150405477_addtb.resx">
+      <DependentUpon>201805150405477_addtb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
