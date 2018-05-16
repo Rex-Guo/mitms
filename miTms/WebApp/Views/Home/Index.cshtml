@@ -214,18 +214,18 @@
                 <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-fullscreenbutton="false">
 
                     <!-- widget options:
-                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-                    data-widget-colorbutton="false"
-                    data-widget-editbutton="false"
-                    data-widget-togglebutton="false"
-                    data-widget-deletebutton="false"
-                    data-widget-fullscreenbutton="false"
-                    data-widget-custombutton="false"
-                    data-widget-collapsed="true"
-                    data-widget-sortable="false"
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
 
-                    -->
+        -->
 
                     <header>
                         <span class="widget-icon"> <i class="fa fa-comments txt-color-white"></i> </span>
@@ -233,8 +233,8 @@
                         <div class="widget-toolbar">
                             <!-- add: non-hidden - to disable auto hide -->
 
-                           
-                           
+
+
                         </div>
                     </header>
 
@@ -262,37 +262,37 @@
                                     </thead>
                                     <tbody>
                                         @foreach (var item in ViewBag.Pools)
-                                        {
-                                        <tr>
-                                            <td>@item.Status</td>
-                                            <td>
-                                                @foreach (var str in item.PlateNumbers)
-    {
-        if (item.Status == "空车")
+                            {
+                                <tr>
+                                    <td>@item.Status</td>
+                                    <td>
+                                        @foreach (var str in item.PlateNumbers)
+                            {
+                                if (item.Status == "空车")
+                                {
+                                    <span class="label label-success" style="line-height:26px;font-size:14px">@str</span>
+                    }
+                    else if (item.Status == "发车")
+                    {
+                        <span class="label label-warning" style="line-height:26px;font-size:14px">@str</span>
+        }
+        else if (item.Status == "异常")
         {
-                                            <span class="label label-success" style="line-height:26px;font-size:14px">@str</span>
-}
-else if (item.Status == "发车")
-{
-                                            <span class="label label-warning" style="line-height:26px;font-size:14px">@str</span>
-}
-else if (item.Status == "异常")
-{
-                                            <span class="label label-danger" style="line-height:26px;font-size:14px">@str</span>
+            <span class="label label-danger" style="line-height:26px;font-size:14px">@str</span>
 }
 else if (item.Status == "接单")
 {
-                                            <span class="label label-primary" style="line-height:26px;font-size:14px">@str</span>
+            <span class="label label-primary" style="line-height:26px;font-size:14px">@str</span>
 }
 else
 {
-                                            <span class="label label-default" style="line-height:26px;font-size:14px">@str</span>
+            <span class="label label-default" style="line-height:26px;font-size:14px">@str</span>
 }
 }
-                                            </td>
-                                            
-                                        </tr>
-                                        }
+                                    </td>
+
+                                </tr>
+                }
                                     </tbody>
                                 </table>
 
@@ -305,7 +305,136 @@ else
                     <!-- end widget div -->
                 </div>
                 <!-- end widget -->
-             
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
+
+        -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2> 快速下单 </h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+                            <form id="order-form" class="smart-form" novalidate="novalidate">
+
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-pencil"></i>
+                                                <input type="text" name="ExternalNo" placeholder="对账单号">
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-user"></i>
+                                                <input type="text" name="CustomerId" placeholder="客户">
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input type="text" name="Location1" placeholder="起点">
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input type="text" name="Location2" placeholder="终点">
+                                            </label>
+                                        </section>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <section class="col col-6">
+                                            <label class="select">
+                                                <select name="Time">
+                                                    <option value="0" selected="" disabled="">时效</option>
+                                                    <option value="12">当天达</option>
+                                                    <option value="48">次日达</option>
+                                                    <option value="72">隔天达</option>
+
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-phone"></i>
+                                                <input type="tel" name="phone" placeholder="联系电话" data-mask="(999) 999-9999">
+                                            </label>
+                                        </section>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-5">
+                                            <label class="input">
+                                                <input type="text" name="city" placeholder="货物名称">
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                <input type="text" name="city" placeholder="件数/托数/箱数">
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-3">
+                                            <label class="input">
+                                                <input type="text" name="code" placeholder="立方数/吨">
+                                            </label>
+                                        </section>
+                                    </div>
+
+                                  
+
+                                    <section>
+                                        <label class="textarea">
+                                            <textarea rows="3" name="info" placeholder="额外要求"></textarea>
+                                        </label>
+                                    </section>
+                                </fieldset>
+
+                                 
+
+                                <footer>
+                                    <button type="submit" class="btn btn-primary">
+                                        保存
+                                    </button>
+                                </footer>
+                            </form>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
 
             </article>
 
@@ -315,18 +444,18 @@ else
                 <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3" data-widget-editbutton="false" data-widget-colorbutton="false">
 
                     <!-- widget options:
-        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-        data-widget-colorbutton="false"
-        data-widget-editbutton="false"
-        data-widget-togglebutton="false"
-        data-widget-deletebutton="false"
-        data-widget-fullscreenbutton="false"
-        data-widget-custombutton="false"
-        data-widget-collapsed="true"
-        data-widget-sortable="false"
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
 
-        -->
+            -->
                     <header>
                         <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
                         <h2> 在途车辆任务列表 </h2>
@@ -354,7 +483,6 @@ else
                     <!-- widget div-->
                     <div>
                         <!-- widget edit box -->
-                         
                         <!-- end widget edit box -->
 
                         <div class="widget-body no-padding">
@@ -380,6 +508,10 @@ else
                 <!-- end widget -->
 
 
+            </article>
+
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                
             </article>
 
         </div>
