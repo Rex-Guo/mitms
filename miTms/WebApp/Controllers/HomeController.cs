@@ -58,6 +58,10 @@ namespace WebApp.Controllers
                 }
             });
             ViewBag.CompletePercent = CompletePercent * 100;
+
+            var customrep = this._unitOfWork.RepositoryAsync<Customer>();
+            ViewBag.Customer = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
+
             return View();
         }
         public async Task<ActionResult> GetEvents() {
@@ -91,6 +95,7 @@ namespace WebApp.Controllers
                     var array = new string[] { "event", "bg-color-redLight" };
                     ev.className = array;
                     ev.icon = "fa-lock";
+                    ev.description = "该订单有异常，请及时关注!";
                 }
                 else
                 {
@@ -102,15 +107,21 @@ namespace WebApp.Controllers
                     ev.end = item.DeliveryDate;
                     if ((item.OrderDate.AddHours(item.TimePeriod) - item.DeliveryDate.Value).Minutes < 0)
                     {
-                        var array = new string[] { "event", "bg-color-red" };
+                        var t = Math.Abs((item.OrderDate.AddHours(item.TimePeriod) - item.DeliveryDate.Value).Minutes);
+                        var array = new string[] { "event", "bg-color-yellow" };
                         ev.className = array;
+                        ev.icon = "fa-clock-o";
+                        ev.description = "超过定制的时间[" + t.ToString() + "]";
                     }
                 }
                 else {
                     if ((item.OrderDate.AddHours(item.TimePeriod) - DateTime.Now).Minutes < 0)
                     {
-                        var array = new string[] { "event", "bg-color-red" };
+                        var t = Math.Abs((item.OrderDate.AddHours(item.TimePeriod) - DateTime.Now).Minutes);
+                        var array = new string[] { "event", "bg-color-yellow" };
                         ev.className = array;
+                        ev.icon = "fa-clock-o";
+                        ev.description = "超过定制的时间[" + t.ToString() + "]";
                     }
                 }
                 

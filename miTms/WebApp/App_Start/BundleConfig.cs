@@ -61,7 +61,8 @@ namespace WebApp
             //    "~/scripts/app.min.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/full-calendar").Include(
-                    "~/scripts/plugin/fullcalendar/fullcalendar.js"
+                    "~/scripts/plugin/fullcalendar/jquery.qtip.js",
+                    "~/scripts/plugin/fullcalendar/fullcalendar.3.9.0.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/charts").Include(

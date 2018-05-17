@@ -140,7 +140,7 @@ namespace WebApp.Services
         {
             order.OrderNo = DbSequence.GetNextOrderNo();
             order.OrderDate = DateTime.Now;
-            order.PlanDeliveryDate = DateTime.Now.AddHours(order.TimePeriod);
+            order.PlanDeliveryDate = order.OrderDate.AddHours(order.TimePeriod);
             order.Status = "接单";
             this.Insert(order);
             var veh = this._vehicleService.Find(order.VehicleId);
@@ -239,6 +239,22 @@ namespace WebApp.Services
             tran.Status = order.Status;
             tran.TransactioDateTime = DateTime.Now;
             this.historyService.Insert(tran);
+        }
+
+        public void Create(Order order)
+        {
+            order.OrderNo = DbSequence.GetNextOrderNo();
+            order.OrderDate = DateTime.Now;
+            order.PlanDeliveryDate = order.OrderDate.AddHours(order.TimePeriod);
+            order.Status = "新增";
+            TransactionHistory tran = new TransactionHistory();
+            tran.InputUser = order.InputUser;
+            tran.OrderNo = order.OrderNo;
+            tran.PlateNumber = order.PlateNumber;
+            tran.Status = order.Status;
+            tran.TransactioDateTime = order.OrderDate;
+            this.historyService.Insert(tran);
+            this.Insert(order);
         }
     }
 }

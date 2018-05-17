@@ -318,6 +318,18 @@
     <Compile Include="Migrations\201805150405477_addtb.Designer.cs">
       <DependentUpon>201805150405477_addtb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805170135207_ch3.cs" />
+    <Compile Include="Migrations\201805170135207_ch3.Designer.cs">
+      <DependentUpon>201805170135207_ch3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805170140372_ch4.cs" />
+    <Compile Include="Migrations\201805170140372_ch4.Designer.cs">
+      <DependentUpon>201805170140372_ch4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805170420571_chorder.cs" />
+    <Compile Include="Migrations\201805170420571_chorder.Designer.cs">
+      <DependentUpon>201805170420571_chorder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerMetadata.cs" />
     <Compile Include="Models\EventViewModel.cs" />
@@ -3355,9 +3367,12 @@
     <Content Include="Scripts\plugin\fuelux\wizard\wizard.js" />
     <Content Include="Scripts\plugin\fuelux\wizard\wizard.min.js" />
     <Content Include="Scripts\plugin\fullcalendar\-jquery.fullcalendar.min.js" />
+    <Content Include="Scripts\plugin\fullcalendar\fullcalendar.3.9.0.js" />
     <Content Include="Scripts\plugin\fullcalendar\fullcalendar.js" />
+    <Content Include="Scripts\plugin\fullcalendar\fullcalendar.min.3.9.0.js" />
     <Content Include="Scripts\plugin\fullcalendar\fullcalendar.min.js" />
     <Content Include="Scripts\plugin\fullcalendar\jquery.fullcalendar.min.js" />
+    <Content Include="Scripts\plugin\fullcalendar\jquery.qtip.js" />
     <Content Include="Scripts\plugin\fullcalendar\LICENSE.txt" />
     <Content Include="Scripts\plugin\gmap3\gmap3.min.js" />
     <Content Include="Scripts\plugin\highChartCore\highcharts-custom.js" />
@@ -3993,6 +4008,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805150405477_addtb.resx">
       <DependentUpon>201805150405477_addtb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805170135207_ch3.resx">
+      <DependentUpon>201805170135207_ch3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805170140372_ch4.resx">
+      <DependentUpon>201805170140372_ch4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805170420571_chorder.resx">
+      <DependentUpon>201805170420571_chorder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -117,8 +117,8 @@
                                 <div class="form-group">
                                     <label for="CustomerId"> 客户 </label>
                                     @Html.DropDownList("CustomerId", (IEnumerable
-        <SelectListItem>)ViewBag.Customer,new {@class= "form-control" })
-                                     
+<SelectListItem>)ViewBag.Customer, new { @class = "form-control" })
+
                                 </div>
 
                             </div>
@@ -150,8 +150,8 @@
                                 <div class="form-group">
                                     <label for="TimePeriod"> 时效 </label>
                                     @Html.DropDownList("TimePeriod", (IEnumerable
-        <SelectListItem>)ViewBag.TimePeriod, new {@class= "form-control" })
-                                     
+<SelectListItem>)ViewBag.TimePeriod, new { @class = "form-control" })
+
                                 </div>
                             </div>
 
@@ -210,7 +210,8 @@
                                 </div>
                             </div>
                         </div>
-
+                        <input type="hidden" id="Driver" name="Driver" value="" />
+                        <input type="hidden" id="DriverPhone" name="DriverPhone" value="" />
                         <input type="hidden" id="OrderNo" name="OrderNo" value="" />
                         <input type="hidden" id="Id" name="Id" value="-1" />
                         <input type="hidden" id="Packages" name="Packages" value="" />
@@ -1134,7 +1135,9 @@
             $('#myModal').modal('toggle');
             $('#PlateNumber').val(row.PlateNumber);
             $('#PlateNumber').prop('readonly', 'readonly');
-            $('#VehicleId').val(row.Id.toString()   );
+            $('#VehicleId').val(row.Id.toString());
+            $('#Driver').val(row.Driver);
+            $('#DriverPhone').val(row.DriverPhone);
             if (row.OrderNo != null && row.ExternalNo != null && row.OrderId != null) {
                 //console.log(row.CustomerId,row.OrderId);
                 $('#CustomerId').val(row.CustomerId);

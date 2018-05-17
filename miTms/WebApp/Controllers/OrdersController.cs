@@ -251,15 +251,16 @@ namespace WebApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Customer,Vehicle,Id,OrderNo,ExternalNo,OrderDate,Location1,Location2,Requirements,PlanDeliveryDate,TimePeriod,VehicleId,PlateNumber,Driver,DriverPhone,Packages,Weight,Volume,Cartons,Pallets,Status,DeliveryDate,CloseDate,CustomerId,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] Order order)
+        public async Task<ActionResult> Create( Order order)
         {
             if (ModelState.IsValid)
             {
-                _orderService.Insert(order);
+                 
+                _orderService.Create(order);
                 await _unitOfWork.SaveChangesAsync();
                 if (Request.IsAjaxRequest())
                 {
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true,message="订单号:[" + order.OrderNo + "]创建成功!" }, JsonRequestBehavior.AllowGet);
                 }
                 DisplaySuccessMessage("Has append a Order record");
                 return RedirectToAction("Index");

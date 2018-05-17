@@ -13,5 +13,6 @@ namespace WebApp.Models
           public bool allDay { get; set; }
          public string[] className { get; set; }
         public string icon { get; set; }
+        public string description { get; set; }
     }
 }

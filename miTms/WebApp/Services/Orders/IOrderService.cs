@@ -36,5 +36,6 @@ namespace WebApp.Services
 		Stream ExportExcel( string filterRules = "",string sort = "Id", string order = "asc");
         void DoShippingOrder(Order order);
         void UpdateStatus(Order order);
+        void Create(Order order);
     }
 }

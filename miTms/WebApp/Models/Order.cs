@@ -40,16 +40,15 @@ namespace WebApp.Models
 
         #region 车辆信息
         [Display(Name = "车牌号", Description = "车牌号")]
-        public int VehicleId { get; set; }
+        public int? VehicleId { get; set; }
         [ForeignKey("VehicleId")]
         public virtual Vehicle Vehicle { get; set; }
-        [Required]
+    
      
         [MaxLength(10)]
         [Display(Name = "车牌号", Description = "车牌号")]
         public string PlateNumber { get; set; }
 
-       
         [MaxLength(20)]
         [Display(Name = "主驾司机", Description = "主驾司机")]
         public string Driver { get; set; }
@@ -61,6 +60,9 @@ namespace WebApp.Models
 
         #endregion
         #region 货物信息
+        [Display(Name = "货物名称", Description = "货物名称")]
+        [MaxLength(150)]
+        public string ProductName { get; set; }
         [Display(Name = "总件数", Description = "总件数")]
         public int? Packages { get; set; }
         [Display(Name = "重量(千克)", Description = "重量(千克)")]
@@ -84,6 +86,14 @@ namespace WebApp.Models
         public DateTime? DeliveryDate { get; set; }
         [Display(Name = "结案时间", Description = "结案时间")]
         public DateTime? CloseDate { get; set; }
+        [Display(Name = "POD单号", Description = "POD单号")]
+        [MaxLength(20)]
+        public string PodNo { get; set; }
+        [Display(Name = "回单文件路径", Description = "回单文件路径")]
+        [MaxLength(120)]
+        public string PodPhotographPath { get; set; }
+        [Display(Name = "回单文件", Description = "回单文件")]
+        public byte[] PodPhotograph { get; set; }
 
         #endregion
         #region 客户信息
@@ -92,7 +102,12 @@ namespace WebApp.Models
         [ForeignKey("CustomerId")]
         [Display(Name = "客户", Description = "客户")]
         public virtual Customer Customer { get; set; }
-
+        [Display(Name = "联系电话", Description = "联系电话")]
+        [MaxLength(20)]
+        public string PhoneNumber { get; set; }
+        [Display(Name = "联系人", Description = "联系人")]
+        [MaxLength(20)]
+        public string Contact { get; set; }
         [Required]
         [Display(Name = "所属公司", Description = "所属公司")]
         public int CompanyId { get; set; }
