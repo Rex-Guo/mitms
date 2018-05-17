@@ -37,5 +37,6 @@ namespace WebApp.Services
         void DoShippingOrder(Order order);
         void UpdateStatus(Order order);
         void Create(Order order);
+        void ShippingOrder(Order item);
     }
 }

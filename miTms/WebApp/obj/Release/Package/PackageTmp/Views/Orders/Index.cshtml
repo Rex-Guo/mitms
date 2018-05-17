@@ -361,15 +361,48 @@
                       return row.VehiclePlateNumber;
                   },
                   editor: {
-                      type: 'combobox',
+                      type: 'combogrid',
                       options: {
+                          panelWidth: 500,
                           prompt: '车牌号',
                           mode: 'remote',
-                          valueField: 'Id',
+                          idField: 'Id',
                           textField: 'PlateNumber',
                           method: 'get',
-                          url: '/Orders/GetVehicles',
-                          required: true
+                          url: '/Orders/GetAvailableVehicles',
+                          required: true,
+                          columns: [[
+                              { field: 'PlateNumber', title: '车牌号', width: 120 },
+                              { field: 'CarType', title: '车型', width: 80 },
+                              { field: 'Status', title: '状态', width: 80 },
+                              { field: 'StrLoadWeight', title: '载重', width: 80, align: 'right' },
+                              { field: 'Driver', title: '司机', width: 80 },
+                              { field: 'DriverPhone', title: '司机电话', width: 80 }
+                          ]],
+                          fitColumns: false,
+                          onSelect: function (index, row) {
+                              var rowdata = $dg.datagrid('getRows')[editIndex];
+                              rowdata.PlateNumber = row.PlateNumber;
+                              rowdata.Driver = row.Driver;
+                              rowdata.DriverPhone = row.DriverPhone;
+                              var ed1 = $dg.datagrid("getEditor", {
+                                  index: editIndex,
+                                  field: "PlateNumber"
+                              });
+                              $(ed1.target).textbox("setValue", row.PlateNumber);
+                              var ed2 = $dg.datagrid("getEditor", {
+                                  index: editIndex,
+                                  field: "Driver"
+                              });
+                              $(ed2.target).textbox("setValue", row.Driver);
+                              var ed3 = $dg.datagrid("getEditor", {
+                                  index: editIndex,
+                                  field: "DriverPhone"
+                              });
+                              $(ed3.target).textbox("setValue", row.DriverPhone);
+
+                              console.log(rowdata);
+                          }
                       }
                   }
               },
@@ -582,12 +615,13 @@
               index: editIndex,
               field: "VehicleId"
           });
-          var vehicleorderno = $(ed.target).combobox("getText");
-          var vehicleid = $(ed.target).combobox("getValue");
+          var vehicleplatenumber = $(ed.target).combogrid("getText");
+          var vehicleid = $(ed.target).combogrid("getValue");
 
-          $dg.datagrid("getRows")[editIndex]["VehicleOrderNo"] = vehicleorderno;
+          $dg.datagrid("getRows")[editIndex]["VehiclePlateNumber"] = vehicleplatenumber;
+          $dg.datagrid("getRows")[editIndex]["PlateNumber"] = vehicleplatenumber;
           $dg.datagrid("getRows")[editIndex]["VehicleId"] = vehicleid;
-
+     
 
           $dg.datagrid("endEdit", editIndex);
           editIndex = undefined;
@@ -601,7 +635,9 @@
 
   function onClickCell(index, field) {
       var _operates = ["_operate1", "_operate2", "_operate3", "ck"]
-      if ($.inArray(field, _operates) >= 0) {
+      var row = $dg.datagrid('getRows')[index];
+
+      if ($.inArray(field, _operates) >= 0 || row.Status!="新增") {
           return;
       }
       if (editIndex != index) {
@@ -662,13 +698,15 @@
               if (updated.length) {
                   effectRow.updated = updated;
               }
-              //console.log(JSON.stringify(effectRow));
+              console.log(JSON.stringify(effectRow));
               $.post("/Orders/SaveData", effectRow, function(response) {
                   //console.log(response);
-                  if (response.Success) {
+                  if (response.success) {
                       $.messager.alert("提示", "提交成功！");
                       $dg.datagrid("acceptChanges");
                       $dg.datagrid("reload");
+                  } else {
+                      $.messager.alert("错误", response.err);
                   }
               }, "json").fail(function(response) {
                   //console.log(response);
@@ -804,7 +842,7 @@
               type: "combobox",
               options: {
                   valueField: "Id",
-                  textField: "OrderNo",
+                  textField: "PlateNumber",
                   method: "get",
                   url: "/Orders/GetVehicles",
                   onChange: function(value) {

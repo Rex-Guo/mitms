@@ -74,6 +74,13 @@ namespace WebApp.Controllers
                 PlateNumber = n.PlateNumber,
                 Driver = n.Driver,
                 DriverPhone = n.DriverPhone,
+                ProductName = n.ProductName,
+                InputUser = n.InputUser,
+                PodNo = n.PodNo,
+                PodPhotographPath = n.PodPhotographPath,
+                CompanyId = n.CompanyId,
+                PhoneNumber = n.PhoneNumber,
+                Contact = n.Contact,
                 Packages = n.Packages,
                 Weight = n.Weight,
                 Volume = n.Volume,
@@ -118,6 +125,13 @@ namespace WebApp.Controllers
                 PlateNumber = n.PlateNumber,
                 Driver = n.Driver,
                 DriverPhone = n.DriverPhone,
+                ProductName = n.ProductName,
+                InputUser = n.InputUser,
+                PodNo = n.PodNo,
+                PodPhotographPath = n.PodPhotographPath,
+                CompanyId = n.CompanyId,
+                PhoneNumber = n.PhoneNumber,
+                Contact = n.Contact,
                 Packages = n.Packages,
                 Weight = n.Weight,
                 Volume = n.Volume,
@@ -182,11 +196,12 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<JsonResult> SaveData(OrderChangeViewModel orders)
         {
+            
             if (orders.updated != null)
             {
                 foreach (var item in orders.updated)
                 {
-                    _orderService.Update(item);
+                    _orderService.ShippingOrder(item);
                 }
             }
             if (orders.deleted != null)
@@ -203,8 +218,14 @@ namespace WebApp.Controllers
                     _orderService.Insert(item);
                 }
             }
-            await _unitOfWork.SaveChangesAsync();
-            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+            try
+            {
+                await _unitOfWork.SaveChangesAsync();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e) {
+                return Json(new { success = false,err=e.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
         //[OutputCache(Duration = 360, VaryByParam = "none")]
         public async Task<JsonResult> GetCustomers(string q = "")
@@ -222,6 +243,24 @@ namespace WebApp.Controllers
             var rows = data.Select(n => new { Id = n.Id, PlateNumber = n.PlateNumber });
             return Json(rows, JsonRequestBehavior.AllowGet);
         }
+        public async Task<JsonResult> GetAvailableVehicles(string q = "")
+        {
+            var vehicleRepository = _unitOfWork.RepositoryAsync<Vehicle>();
+            var data = await vehicleRepository.Queryable().Where(n => (n.Status=="空车" || n.Status=="接单") && n.PlateNumber.Contains(q)).ToListAsync();
+            var rows = data.Select(n => new
+            {
+                Id = n.Id,
+                PlateNumber = n.PlateNumber,
+                Status = n.Status,
+                CarType = n.CarType,
+                StrLoadWeight = n.StrLoadWeight,
+                Driver =n.Driver,
+                DriverPhone = n.DriverPhone
+
+            });
+            return Json(rows, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Orders/Details/5
         public async Task<ActionResult> Details(int? id)
         {

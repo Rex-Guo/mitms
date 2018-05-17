@@ -256,6 +256,47 @@ namespace WebApp.Services
             this.historyService.Insert(tran);
             this.Insert(order);
         }
+
+        public void ShippingOrder(Order order)
+        {
+            var orderitem = this.Find(order.Id);
+            orderitem.VehicleId = order.VehicleId;
+            orderitem.Driver = order.Driver;
+            orderitem.PlateNumber = order.PlateNumber;
+            orderitem.DriverPhone = order.DriverPhone;
+            orderitem.Packages = order.Packages;
+            orderitem.Pallets = order.Pallets;
+            orderitem.Cartons = order.Cartons;
+            orderitem.Volume = order.Volume;
+            orderitem.Weight = order.Weight;
+            orderitem.Status = "接单";
+            this.Update(orderitem);
+            var veh = this._vehicleService.Find(order.VehicleId);
+            veh.OrderId = orderitem.Id;
+            veh.OrderNo = orderitem.OrderNo;
+            veh.Status = "接单";
+            veh.Location1 = orderitem.Location1;
+            veh.CustomerId = orderitem.CustomerId;
+            veh.Location2 = orderitem.Location2;
+            veh.UsingDate = orderitem.OrderDate;
+            veh.ExternalNo = orderitem.ExternalNo;
+            veh.Requirements = orderitem.Requirements;
+            veh.TimePeriod = orderitem.TimePeriod;
+            veh.Packages = orderitem.Packages;
+            veh.Pallets = orderitem.Pallets;
+            veh.Cartons = orderitem.Cartons;
+            veh.InputUser = orderitem.InputUser;
+            veh.Volume = orderitem.Volume;
+            veh.Weight = orderitem.Weight;
+            this._vehicleService.Update(veh);
+            TransactionHistory item = new TransactionHistory();
+            item.InputUser = orderitem.InputUser;
+            item.OrderNo = orderitem.OrderNo;
+            item.PlateNumber = orderitem.PlateNumber;
+            item.Status = orderitem.Status;
+            item.TransactioDateTime = DateTime.Now;
+            this.historyService.Insert(item);
+        }
     }
 }
 

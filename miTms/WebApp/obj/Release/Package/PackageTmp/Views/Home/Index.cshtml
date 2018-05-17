@@ -344,25 +344,28 @@ else
                                         <section class="col col-6">
                                             <label class="input">
                                                 <i class="icon-prepend fa fa-pencil"></i>
-                                                <input type="text" name="ExternalNo" placeholder="对账单号">
+                                                <input type="text" name="ExternalNo" id="ExternalNo" placeholder="对账单号">
                                             </label>
                                         </section>
                                         <section class="col col-6">
+                                            <label class="select">
+
+                                                @Html.DropDownList("CustomerId", (IEnumerable
+<SelectListItem>)ViewBag.Customer, new { @class = "form-control" })
+                                                <i></i>
+                                            </label>
+                                        </section>
+                                    </div><div class="row">
+                                        <section class="col col-6">
                                             <label class="input">
-                                                <i class="icon-prepend fa fa-user"></i>
-                                                <input type="text" name="CustomerId" placeholder="客户">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input type="text" name="Location1" id="Location1" placeholder="起点">
                                             </label>
                                         </section>
                                         <section class="col col-6">
                                             <label class="input">
                                                 <i class="icon-prepend fa fa-map-marker"></i>
-                                                <input type="text" name="Location1" placeholder="起点">
-                                            </label>
-                                        </section>
-                                        <section class="col col-6">
-                                            <label class="input">
-                                                <i class="icon-prepend fa fa-map-marker"></i>
-                                                <input type="text" name="Location2" placeholder="终点">
+                                                <input type="text" name="Location2" id="Location2" placeholder="终点">
                                             </label>
                                         </section>
 
@@ -371,7 +374,7 @@ else
                                     <div class="row">
                                         <section class="col col-6">
                                             <label class="select">
-                                                <select name="Time">
+                                                <select name="TimePeriod" id="TimePeriod">
                                                     <option value="0" selected="" disabled="">时效</option>
                                                     <option value="12">当天达</option>
                                                     <option value="48">次日达</option>
@@ -383,7 +386,7 @@ else
                                         <section class="col col-6">
                                             <label class="input">
                                                 <i class="icon-prepend fa fa-phone"></i>
-                                                <input type="tel" name="phone" placeholder="联系电话" data-mask="(999) 999-9999">
+                                                <input name="PhoneNumber" id="PhoneNumber" placeholder="联系电话" data-mask="999 9999 9999">
                                             </label>
                                         </section>
                                     </div>
@@ -393,33 +396,42 @@ else
                                     <div class="row">
                                         <section class="col col-5">
                                             <label class="input">
-                                                <input type="text" name="city" placeholder="货物名称">
+                                                <input type="text" name="ProductName" id="ProductName" placeholder="货物名称">
                                             </label>
                                         </section>
 
                                         <section class="col col-4">
                                             <label class="input">
-                                                <input type="text" name="city" placeholder="件数/托数/箱数">
+                                                <input type="text" name="inputloadnum" id="inputloadnum" placeholder="件数/托数/箱数">
                                             </label>
                                         </section>
 
                                         <section class="col col-3">
                                             <label class="input">
-                                                <input type="text" name="code" placeholder="立方数/吨">
+                                                <input type="text" name="inputloadsize" id="inputloadsize" placeholder="立方数/吨">
                                             </label>
                                         </section>
                                     </div>
 
-                                  
+
 
                                     <section>
                                         <label class="textarea">
-                                            <textarea rows="3" name="info" placeholder="额外要求"></textarea>
+                                            <textarea rows="3" name="Requirements" id="Requirements" placeholder="额外要求"></textarea>
                                         </label>
                                     </section>
                                 </fieldset>
-
-                                 
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" id="OrderNo" name="OrderNo" value="" />
+                                <input type="hidden" id="Id" name="Id" value="-1" />
+                                <input type="hidden" id="Packages" name="Packages" value="" />
+                                <input type="hidden" id="Weight" name="Weight" value="" />
+                                <input type="hidden" id="Volume" name="Volume" value="" />
+                                <input type="hidden" id="Cartons" name="Cartons" value="" />
+                                <input type="hidden" id="Pallets" name="Pallets" value="" />
+                                <input type="hidden" id="VehicleId" name="VehicleId" value="" />
+                                <input type="hidden" id="CompanyId" name="CompanyId" value="@Auth.CompanyId" />
+                                <input type="hidden" id="InputUser" name="InputUser" value="@Auth.UserName" />
 
                                 <footer>
                                     <button type="submit" class="btn btn-primary">
@@ -511,7 +523,7 @@ else
             </article>
 
             <article class="col-sm-12 col-md-12 col-lg-6">
-                
+               
             </article>
 
         </div>
@@ -528,14 +540,7 @@ else
     <script>
 
         $(document).ready(function () {
-            $(".js-status-update a").click(function () {
-                var selText = $(this).text();
-                var $this = $(this);
-                $this.parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
-                $this.parents('.dropdown-menu').find('li').removeClass('active');
-                $this.parent().addClass('active');
-            });
-
+         
              
 
             /*
@@ -704,136 +709,9 @@ else
 
             // END TAB 2
 
-            // TAB THREE GRAPH //
-            /* TAB 3: Revenew  */
+           
 
-            $(function () {
-
-                var trgt = [[1354586000000, 153], [1364587000000, 658], [1374588000000, 198], [1384589000000, 663], [1394590000000, 801], [1404591000000, 1080], [1414592000000, 353], [1424593000000, 749], [1434594000000, 523], [1444595000000, 258], [1454596000000, 688], [1464597000000, 364]], prft = [[1354586000000, 53], [1364587000000, 65], [1374588000000, 98], [1384589000000, 83], [1394590000000, 980], [1404591000000, 808], [1414592000000, 720], [1424593000000, 674], [1434594000000, 23], [1444595000000, 79], [1454596000000, 88], [1464597000000, 36]], sgnups = [[1354586000000, 647], [1364587000000, 435], [1374588000000, 784], [1384589000000, 346], [1394590000000, 487], [1404591000000, 463], [1414592000000, 479], [1424593000000, 236], [1434594000000, 843], [1444595000000, 657], [1454596000000, 241], [1464597000000, 341]], toggles = $("#rev-toggles"), target = $("#flotcontainer");
-
-                var data = [{
-                    label: "Target Profit",
-                    data: trgt,
-                    bars: {
-                        show: true,
-                        align: "center",
-                        barWidth: 30 * 30 * 60 * 1000 * 80
-                    }
-                }, {
-                    label: "Actual Profit",
-                    data: prft,
-                    color: '#3276B1',
-                    lines: {
-                        show: true,
-                        lineWidth: 3
-                    },
-                    points: {
-                        show: true
-                    }
-                }, {
-                    label: "Actual Signups",
-                    data: sgnups,
-                    color: '#71843F',
-                    lines: {
-                        show: true,
-                        lineWidth: 1
-                    },
-                    points: {
-                        show: true
-                    }
-                }]
-
-                var options = {
-                    grid: {
-                        hoverable: true
-                    },
-                    tooltip: true,
-                    tooltipOpts: {
-                        //content: '%x - %y',
-                        //dateFormat: '%b %y',
-                        defaultTheme: false
-                    },
-                    xaxis: {
-                        mode: "time"
-                    },
-                    yaxes: {
-                        tickFormatter: function (val, axis) {
-                            return "$" + val;
-                        },
-                        max: 1200
-                    }
-
-                };
-
-                plot2 = null;
-
-                function plotNow() {
-                    var d = [];
-                    toggles.find(':checkbox').each(function () {
-                        if ($(this).is(':checked')) {
-                            d.push(data[$(this).attr("name").substr(4, 1)]);
-                        }
-                    });
-                    if (d.length > 0) {
-                        if (plot2) {
-                            plot2.setData(d);
-                            plot2.draw();
-                        } else {
-                            plot2 = $.plot(target, d, options);
-                        }
-                    }
-
-                };
-
-                toggles.find(':checkbox').on('change', function () {
-                    plotNow();
-                });
-                plotNow()
-
-            });
-
-            /*
-             * VECTOR MAP
-             */
-
-            data_array = {
-                "US": 4977,
-                "AU": 4873,
-                "IN": 3671,
-                "BR": 2476,
-                "TR": 1476,
-                "CN": 146,
-                "CA": 134,
-                "BD": 100
-            };
-
-            $('#vector-map').vectorMap({
-                map: 'world_mill_en',
-                backgroundColor: '#fff',
-                regionStyle: {
-                    initial: {
-                        fill: '#c4c4c4'
-                    },
-                    hover: {
-                        "fill-opacity": 1
-                    }
-                },
-                series: {
-                    regions: [{
-                        values: data_array,
-                        scale: ['#85a8b6', '#4d7686'],
-                        normalizeFunction: 'polynomial'
-                    }]
-                },
-                onRegionLabelShow: function (e, el, code) {
-                    if (typeof data_array[code] == 'undefined') {
-                        e.preventDefault();
-                    } else {
-                        var countrylbl = data_array[code];
-                        el.html(el.html() + ': ' + countrylbl + ' visits');
-                    }
-                }
-            });
+             
 
             /*
             * FULL CALENDAR JS
@@ -882,6 +760,7 @@ else
 
 
                     eventRender: function (event, element, icon) {
+                        //console.log(event, element, icon);
                         if (!event.description == "") {
                             element.find('.fc-title')
                                 .append("<br/><span class='ultra-light'>" + event.description + "</span>");
@@ -896,7 +775,7 @@ else
             };
 
             $.get('/Home/GetEvents', function (data) {
-                console.log(data);
+           
                 $("#calendar").fullCalendar('addEventSource', data)
             });
 
@@ -938,11 +817,138 @@ else
             });
 
              
- 
+            $.validator.methods.inppc = function( value, element ) {
+                var patt = /^\d{1,5}\/\d{1,5}\/\d{1,5}$/;
+                if (patt.test(value)) {
+                    var numbers = value.match(/\d+/g).map(Number);
 
-            
+                    $('#Packages').val(numbers[0]);
+                    $('#Pallets').val(numbers[1]);
+                    $('#Cartons').val(numbers[2]);
+                    return this.optional(element) || true;
+                } else {
+                    $('#Packages').val("");
+                    $('#Pallets').val("");
+                    $('#Cartons').val("");
+                    return this.optional(element) || false;
+                }
+
+                
+            }
+            $.validator.methods.invw = function (value, element) {
+                var patt = /^((\d{1,5}\.\d{0,2})|\d{1,5}$)\/(\d{1,5}\.\d{0,2})$|\d{1,5}$/;
+                if (patt.test(value)) {
+                    var numbers = value.match(/(\d+\.\d+)|\d+/g).map(Number);
+                    $('#Volume').val(numbers[0]);
+                    $('#Weight').val(numbers[1]);
+                    return this.optional(element) || true;
+                } else {
+                    $('#Volume').val("");
+                    $('#Weight').val("");
+                    return this.optional(element) || false;
+                }
+
+
+            }
+            var errorClass = 'invalid';
+            var errorElement = 'em';
+            var $form = $("#order-form").validate({
+                errorClass: errorClass,
+                errorElement: errorElement,
+                highlight: function (element) {
+                    $(element).parent().removeClass('state-success').addClass("state-error");
+                    $(element).removeClass('valid');
+                },
+                unhighlight: function (element) {
+                    $(element).parent().removeClass("state-error").addClass('state-success');
+                    $(element).addClass('valid');
+                },
+
+                // Rules for form validation
+                rules: {
+                    ExternalNo: {
+                        required: true,
+                        maxlength: 30
+                    },
+                    CustomerId: {
+                        required: true
+                    },
+                    Location1: {
+                        required: true,
+                        maxlength: 120
+                    },
+                    Location2: {
+                        required: true,
+                        maxlength: 120
+                    },
+                    TimePeriod: {
+                        required: true
+                    },
+                    inputloadsize: {
+                        invw: true
+                    },
+                    inputloadnum: {
+                        inppc: true
+                    },
+                    Contact: {
+                        maxlength: 20
+                    },
+                    PhoneNumber: {
+                        maxlength: 20
+                    }
+                },
+
+                // Messages for form validation
+                messages: {
+                    ExternalNo: {
+                        required: '请输入客户对账单号'
+                    },
+                    
+                    Location1: {
+                        required: '请输入起点'
+                    },
+                    Location2: {
+                        required: '请输入终点'
+                    },
+                    TimePeriod: {
+                        required: '请输入时效'
+                    } ,
+                    inputloadsize: {
+                        invw: '请输入体积(立方)[5位以内可带小数]/重量(吨)[5位以内可带小数]'
+                    },
+                    inputloadnum: {
+                        inppc: '请输入件数[5位以内]/板数[5位以内]/箱数(或散箱数)[5位以内]'
+                    }
+                },
+
+                // Do not change code below
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element.parent());
+                },
+                submitHandler: function (form) {
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+                    var data = $(form).serializeJSON();
+                    console.log("do sumbit ", data);
+                    $.post("/Orders/Create", {
+                        __RequestVerificationToken: token,
+                        order: data
+                    }, function (res){
+                        //console.log(res);
+                        if (res.success == false) {
+                            $.messager.alert('错误', res.err);
+                        } else {
+                            $.messager.alert('提示', res.message);
+                            $(form).resetForm();
+                        }
+                    });
+                }
+            });
 
         });
-
+        $('#test').qtip({ // Grab some elements to apply the tooltip to
+            content: {
+                text: 'My common piece of text here'
+            }
+        })
     </script>
 }
