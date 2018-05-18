@@ -74,7 +74,7 @@
                             <label class="select">
                                 @Html.DropDownListFor(model => model.CompanyCode, new SelectList(ViewBag.companylist, "Value", "Text")) <i></i>
                             </label>
-                            <input hidden id="companyName" name="companyName" type="text" />
+                            <input hidden id="companyName" name="companyName" type="text" value="" />
 
                         </section>
                         <div class="row">
@@ -92,7 +92,7 @@
                             <section class="col col-6">
                                 <label class="input">
                                     <i class="icon-append fa fa-calendar"></i>
-                                    <input type="text" name="birthdate" placeholder="Birthdate" class="datepicker" data-dateformat='dd/mm/yy'>
+                                    <input type="text" name="birthdate" placeholder="Birthdate" class="datepicker" data-dateformat='mm/dd/yy'>
                                 </label>
                             </section>
                         </div>
@@ -169,7 +169,8 @@
                         email: true,
                         equalTo: '#email'
                     },
-                    companyName:{ required: true},
+                    companyName: { required: true },
+                    birthdate: { required: true },
                     password: {
                         required: true,
                         minlength: 4,
@@ -223,6 +224,10 @@
                     error.insertAfter(element.parent());
                 }
             });
+       
+            
+            $('#companyName').val($('#CompanyCode option:selected').text());
+            $('#CompanyCode').trigger('change');
         });
     </script>
 }

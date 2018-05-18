@@ -43,6 +43,8 @@ namespace WebApp.Controllers
         //[OutputCache(Duration = 360, VaryByParam = "none")]
         public ActionResult Index()
         {
+            var customrep = this._unitOfWork.RepositoryAsync<Customer>();
+            ViewBag.Customer = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
             return View();
         }
         // Get :Orders/PageList
@@ -70,6 +72,8 @@ namespace WebApp.Controllers
                 Requirements = n.Requirements,
                 PlanDeliveryDate = n.PlanDeliveryDate,
                 TimePeriod = n.TimePeriod,
+                Contact = n.Contact,
+                PhoneNumber = n.PhoneNumber,
                 VehicleId = n.VehicleId,
                 PlateNumber = n.PlateNumber,
                 Driver = n.Driver,
@@ -79,8 +83,6 @@ namespace WebApp.Controllers
                 PodNo = n.PodNo,
                 PodPhotographPath = n.PodPhotographPath,
                 CompanyId = n.CompanyId,
-                PhoneNumber = n.PhoneNumber,
-                Contact = n.Contact,
                 Packages = n.Packages,
                 Weight = n.Weight,
                 Volume = n.Volume,

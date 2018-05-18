@@ -141,7 +141,11 @@ namespace WebApp.Controllers
             var data = this._companyService.Queryable().Select(x=>new ListItem() { Value=x.Id.ToString(), Text=x.Name  });
             
             ViewBag.companylist = data;
-            return View(new AccountRegistrationModel());
+            var model = new AccountRegistrationModel();
+            model.CompanyCode = data.FirstOrDefault() != null ? data.FirstOrDefault().Value : "";
+            model.CompanyName = data.FirstOrDefault() != null ? data.FirstOrDefault().Text : "";
+
+            return View(model);
         }
 
         // POST: /account/register
@@ -150,7 +154,7 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(AccountRegistrationModel viewModel)
         {
-            var data = this._companyService.Queryable().Select(x => new ListItem() { Value = x.Id.ToString(), Text = x.Name });
+            var data = this._companyService.Queryable().Select(x => new ListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList();
             ViewBag.companylist = data;
 
             // Ensure we have a valid viewModel to work with
@@ -162,8 +166,8 @@ namespace WebApp.Controllers
                 UserName = viewModel.Username,
                 FullName = viewModel.Lastname + "." + viewModel.Firstname,
                 CompanyCode = viewModel.CompanyCode,
-                CompanyName= viewModel.CompanyName,
-                Email = viewModel.Email,
+                CompanyName= data.Where(x => x.Value == viewModel.CompanyCode).First().Text,
+                Email =  viewModel.Email,
                 AccountType = 0 };
 
             // Try to create a user with the given identity
@@ -210,9 +214,9 @@ namespace WebApp.Controllers
             // this clears the Request.IsAuthenticated flag since this triggers a new request
             return RedirectToLocal();
         }
-        public ActionResult Profile() {
-            return View();
-        }
+        //public ActionResult Profile() {
+        //    return View();
+        //}
         private ActionResult RedirectToLocal(string returnUrl = "")
         {
             // If the return url starts with a slash "/" we assume it belongs to our site

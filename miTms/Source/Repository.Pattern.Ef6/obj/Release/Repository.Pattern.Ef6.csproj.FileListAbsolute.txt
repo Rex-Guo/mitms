@@ -30,7 +30,6 @@ D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Release\EntityFram
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Release\EntityFramework.SqlServer.xml
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Release\LinqKit.xml
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Release\Z.EntityFramework.Extensions.xml
-D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Pattern.Ef6.csprojResolveAssemblyReference.cache
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Pattern.Ef6.csproj.CoreCompileInputs.cache
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Pattern.Ef6.csproj.CopyComplete
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Pattern.Ef6.dll
@@ -51,3 +50,4 @@ D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Patte
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Pattern.Ef6.csproj.CopyComplete
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Pattern.Ef6.dll
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Pattern.Ef6.pdb
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Release\Repository.Pattern.Ef6.csprojAssemblyReference.cache

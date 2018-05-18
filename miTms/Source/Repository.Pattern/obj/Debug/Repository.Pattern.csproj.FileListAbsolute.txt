@@ -20,7 +20,7 @@ D:\github\mitms\miTms\Source\Repository.Pattern\obj\Debug\Repository.Pattern.pdb
 D:\开源项目\mitms\miTms\Source\Repository.Pattern\bin\Debug\Repository.Pattern.dll.config
 D:\开源项目\mitms\miTms\Source\Repository.Pattern\bin\Debug\Repository.Pattern.dll
 D:\开源项目\mitms\miTms\Source\Repository.Pattern\bin\Debug\Repository.Pattern.pdb
-D:\开源项目\mitms\miTms\Source\Repository.Pattern\obj\Debug\Repository.Pattern.csprojResolveAssemblyReference.cache
 D:\开源项目\mitms\miTms\Source\Repository.Pattern\obj\Debug\Repository.Pattern.csproj.CoreCompileInputs.cache
 D:\开源项目\mitms\miTms\Source\Repository.Pattern\obj\Debug\Repository.Pattern.dll
 D:\开源项目\mitms\miTms\Source\Repository.Pattern\obj\Debug\Repository.Pattern.pdb
+D:\开源项目\mitms\miTms\Source\Repository.Pattern\obj\Debug\Repository.Pattern.csprojAssemblyReference.cache

@@ -62,16 +62,13 @@ namespace WebApp.SmartChatHub
         public string GetUserImage(string username)
         {
             string RetimgName = "/content/img/avatars/male.png";
-            try
-            {
+        
                 //string query = "select Photo from tbl_Users where UserName='" + username + "'";
                 string ImageName = Auth.GetAvatarsByName(username);
 
                 if (ImageName != "")
                     RetimgName = "images/DP/" + ImageName;
-            }
-            catch (Exception ex)
-            { }
+          
             return RetimgName;
         }
 
