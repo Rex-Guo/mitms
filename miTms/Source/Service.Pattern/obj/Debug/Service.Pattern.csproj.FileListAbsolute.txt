@@ -43,3 +43,5 @@ D:\开源项目\mitms\miTms\Source\Service.Pattern\obj\Debug\Service.Pattern.csp
 D:\开源项目\mitms\miTms\Source\Service.Pattern\obj\Debug\Service.Pattern.dll
 D:\开源项目\mitms\miTms\Source\Service.Pattern\obj\Debug\Service.Pattern.pdb
 D:\开源项目\mitms\miTms\Source\Service.Pattern\obj\Debug\Service.Pattern.csprojAssemblyReference.cache
+D:\github\mitms\miTms\Source\Service.Pattern\bin\Debug\TrackableEntities.Common.dll
+D:\github\mitms\miTms\Source\Service.Pattern\bin\Debug\TrackableEntities.Common.xml

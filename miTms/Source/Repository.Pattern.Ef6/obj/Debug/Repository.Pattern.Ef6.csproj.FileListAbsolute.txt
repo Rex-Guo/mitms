@@ -43,9 +43,6 @@ D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Repository.Pattern
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\System.Net.Http.dll
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Repository.Pattern.pdb
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Repository.Pattern.dll.config
-D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.xml
-D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.SqlServer.xml
-D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\LinqKit.xml
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Z.EntityFramework.Extensions.xml
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Debug\Repository.Pattern.Ef6.csprojAssemblyReference.cache
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Debug\Repository.Pattern.Ef6.csproj.CoreCompileInputs.cache
@@ -68,3 +65,16 @@ D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Debug\Repository.P
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Debug\Repository.Pattern.Ef6.dll
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Debug\Repository.Pattern.Ef6.pdb
 D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\obj\Debug\Repository.Pattern.Ef6.csprojAssemblyReference.cache
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Newtonsoft.Json.dll
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\TrackableEntities.Common.dll
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\TrackableEntities.EF.6.dll
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Z.EntityFramework.Extensions.dll
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Newtonsoft.Json.xml
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\TrackableEntities.Common.xml
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\CommonServiceLocator.dll
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.dll
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.SqlServer.dll
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\LinqKit.dll
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.xml
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.SqlServer.xml
+D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\LinqKit.xml

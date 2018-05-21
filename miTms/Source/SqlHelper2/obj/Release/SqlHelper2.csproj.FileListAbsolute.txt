@@ -13,10 +13,10 @@ D:\开源项目\mitms\miTms\Source\SqlHelper2\bin\Release\SqlHelper2.pdb
 D:\开源项目\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.csproj.CoreCompileInputs.cache
 D:\开源项目\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.dll
 D:\开源项目\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.pdb
+D:\开源项目\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.csprojAssemblyReference.cache
 D:\github\mitms\miTms\Source\SqlHelper2\bin\Release\SqlHelper2.dll
 D:\github\mitms\miTms\Source\SqlHelper2\bin\Release\SqlHelper2.pdb
 D:\github\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.csprojAssemblyReference.cache
 D:\github\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.csproj.CoreCompileInputs.cache
 D:\github\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.dll
 D:\github\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.pdb
-D:\开源项目\mitms\miTms\Source\SqlHelper2\obj\Release\SqlHelper2.csprojAssemblyReference.cache

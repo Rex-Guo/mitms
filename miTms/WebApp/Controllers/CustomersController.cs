@@ -26,6 +26,8 @@ using Z.EntityFramework.Plus;
 using WebApp.Models;
 using WebApp.Services;
 using WebApp.Repositories;
+using TrackableEntities;
+
 namespace WebApp.Controllers
 {
     //[Authorize]
@@ -249,7 +251,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                customer.ObjectState = ObjectState.Modified;
+                customer.TrackingState = TrackingState.Modified;
                 _customerService.Update(customer);
                 await _unitOfWork.SaveChangesAsync();
                 if (Request.IsAjaxRequest())
@@ -319,13 +321,6 @@ namespace WebApp.Controllers
         {
             TempData["ErrorMessage"] = msgText;
         }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _unitOfWork.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

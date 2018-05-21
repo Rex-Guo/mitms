@@ -26,6 +26,8 @@ using Z.EntityFramework.Plus;
 using WebApp.Models;
 using WebApp.Services;
 using WebApp.Repositories;
+using TrackableEntities;
+
 namespace WebApp.Controllers
 {
     //[Authorize]
@@ -127,16 +129,16 @@ namespace WebApp.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-			 				company.ObjectState = ObjectState.Added;   
+			 				company.TrackingState = TrackingState.Added;   
 								foreach (var item in company.Departments)
 				{
 					item.CompanyId = company.Id ;
-					item.ObjectState = ObjectState.Added;
+					item.TrackingState = TrackingState.Added;
 				}
 								foreach (var item in company.Employee)
 				{
 					item.CompanyId = company.Id ;
-					item.ObjectState = ObjectState.Added;
+					item.TrackingState = TrackingState.Added;
 				}
 								_companyService.InsertOrUpdateGraph(company);
 							await _unitOfWork.SaveChangesAsync();
@@ -188,24 +190,24 @@ namespace WebApp.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				company.ObjectState = ObjectState.Modified;
+				company.TrackingState = TrackingState.Modified;
 												foreach (var item in company.Departments)
 				{
 					item.CompanyId = company.Id ;
 					//set ObjectState with conditions
 					if(item.Id <= 0)
-						item.ObjectState = ObjectState.Added;
+						item.TrackingState = TrackingState.Added;
 					else
-						item.ObjectState = ObjectState.Modified;
+						item.TrackingState = TrackingState.Modified;
 				}
 								foreach (var item in company.Employee)
 				{
 					item.CompanyId = company.Id ;
 					//set ObjectState with conditions
 					if(item.Id <= 0)
-						item.ObjectState = ObjectState.Added;
+						item.TrackingState = TrackingState.Added;
 					else
-						item.ObjectState = ObjectState.Modified;
+						item.TrackingState = TrackingState.Modified;
 				}
 				      
 				_companyService.InsertOrUpdateGraph(company);
@@ -396,13 +398,6 @@ namespace WebApp.Controllers
 		{
 			TempData["ErrorMessage"] = msgText;
 		}
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				_unitOfWork.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+		 
 	}
 }
