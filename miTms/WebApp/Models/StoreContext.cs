@@ -24,6 +24,8 @@ namespace WebApp.Models
         public StoreContext()
             : base("Name=DefaultConnection")
         {
+            this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
      

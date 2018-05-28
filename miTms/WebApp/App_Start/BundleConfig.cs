@@ -13,6 +13,7 @@ namespace WebApp
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
+             
             //bundles.Add(new StyleBundle("~/content/smartadmin").IncludeDirectory("~/content/css", "*.min.css"));
 
             bundles.Add(new ProperStyleBundle("~/content/smartadmin").Include(

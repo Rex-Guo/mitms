@@ -13,6 +13,7 @@ using WebApp.Services;
 using Z.EntityFramework.Plus;
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IVehicleService _vehicleService;

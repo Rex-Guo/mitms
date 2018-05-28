@@ -78,3 +78,13 @@ D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\LinqKit.dll
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.xml
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\LinqKit.xml
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\CommonServiceLocator.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\EntityFramework.SqlServer.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\LinqKit.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Newtonsoft.Json.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\TrackableEntities.Common.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\TrackableEntities.EF.6.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Z.EntityFramework.Extensions.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\Newtonsoft.Json.xml
+D:\开源项目\mitms\miTms\Source\Repository.Pattern.Ef6\bin\Debug\TrackableEntities.Common.xml

@@ -2,6 +2,12 @@
 @{
 	ViewBag.Title = "订单信息";
 }
+<style lang="scss">
+
+  .tangram-suggestion {
+    z-index: 9999;
+  }
+</style>
 <!-- MAIN CONTENT -->
 <div id="content">
     <!-- quick navigation bar -->
@@ -135,7 +141,7 @@
     @Html.Partial("_ImportWindow", new ViewDataDictionary { { "EntityName", "Order" } })
     <!-- end file upload partial view -->
     <!-- detail popup window -->
-    @Html.Partial("_PopupDetailFormView", new WebApp.Models.Order())
+    @*@Html.Partial("_PopupDetailFormView", new WebApp.Models.Order())*@
     <!-- end detail popup window -->
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -811,6 +817,18 @@
   function append() {
       if (endEditing()) {
           $('#myModal').modal('toggle');
+          var ac1 = new BMap.Autocomplete(    //建立一个自动完成的对象
+              {
+                  "input": "Location1",
+                  "location": "中国"
+
+
+              });
+          var ac2 = new BMap.Autocomplete(    //建立一个自动完成的对象
+              {
+                  "input": "Location2",
+                  "location": "中国"
+              });
           
       }
   }
@@ -1182,6 +1200,8 @@
             $('#createorderbtn').click(function () {
                 $("#order-form").submit();
             });
+
+            
         });
 
 	 </script>

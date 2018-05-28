@@ -246,6 +246,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\EFMigrationsManagerConfig.cs" />
     <Compile Include="App_Start\Sequence.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ButtonAttribute.cs" />
     <Compile Include="Controllers\CodeItemsController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
@@ -335,6 +336,10 @@
     <Compile Include="Migrations\201805170420571_chorder.cs" />
     <Compile Include="Migrations\201805170420571_chorder.Designer.cs">
       <DependentUpon>201805170420571_chorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805280906511_addf11.cs" />
+    <Compile Include="Migrations\201805280906511_addf11.Designer.cs">
+      <DependentUpon>201805280906511_addf11.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerMetadata.cs" />
@@ -1714,8 +1719,63 @@
     <Content Include="Content\img\voicecommand\active-btn.gif" />
     <Content Include="Content\img\vt-menu.png" />
     <Content Include="Content\landing\avatar_all.png" />
+    <Content Include="Content\landing\css\animate.css" />
+    <Content Include="Content\landing\css\bootstrap.min.css" />
+    <Content Include="Content\landing\css\colors\blue.css" />
+    <Content Include="Content\landing\css\colors\brown.css" />
+    <Content Include="Content\landing\css\colors\cyan.css" />
+    <Content Include="Content\landing\css\colors\default.css" />
+    <Content Include="Content\landing\css\colors\green.css" />
+    <Content Include="Content\landing\css\colors\pink.css" />
+    <Content Include="Content\landing\css\colors\purple.css" />
+    <Content Include="Content\landing\css\colors\red.css" />
+    <Content Include="Content\landing\css\colors\teal.css" />
+    <Content Include="Content\landing\css\colors\view-source_coderthemes.com_starto_css_colors_blue.css" />
+    <Content Include="Content\landing\css\colors\yellow.css" />
+    <Content Include="Content\landing\css\material-design-iconic-font.css" />
+    <Content Include="Content\landing\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\landing\css\owl.carousel.css" />
+    <Content Include="Content\landing\css\owl.theme.css" />
+    <Content Include="Content\landing\css\style.css" />
+    <Content Include="Content\landing\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="Content\landing\header_one.jpg" />
     <Content Include="Content\landing\header_two.jpg" />
+    <Content Include="Content\landing\images\about.jpg" />
+    <Content Include="Content\landing\images\bg1.jpg" />
+    <Content Include="Content\landing\images\bg2.jpg" />
+    <Content Include="Content\landing\images\blog\1.jpg" />
+    <Content Include="Content\landing\images\blog\2.jpg" />
+    <Content Include="Content\landing\images\blog\3.jpg" />
+    <Content Include="Content\landing\images\blog\4.jpg" />
+    <Content Include="Content\landing\images\blog\5.jpg" />
+    <Content Include="Content\landing\images\blog\6.jpg" />
+    <Content Include="Content\landing\images\blog\7.jpg" />
+    <Content Include="Content\landing\images\blog\8.jpg" />
+    <Content Include="Content\landing\images\blog\9.jpg" />
+    <Content Include="Content\landing\images\blog\blog-detail.jpg" />
+    <Content Include="Content\landing\images\clients\01_brand.png" />
+    <Content Include="Content\landing\images\clients\02_brand.png" />
+    <Content Include="Content\landing\images\clients\03_brand.png" />
+    <Content Include="Content\landing\images\clients\04_brand.png" />
+    <Content Include="Content\landing\images\clients\05_brand.png" />
+    <Content Include="Content\landing\images\clients\06_brand.png" />
+    <Content Include="Content\landing\images\favicon.ico" />
+    <Content Include="Content\landing\images\icons\combo_chart.svg" />
+    <Content Include="Content\landing\images\icons\cup.svg" />
+    <Content Include="Content\landing\images\icons\diploma.svg" />
+    <Content Include="Content\landing\images\icons\macbook.png" />
+    <Content Include="Content\landing\images\icons\space-rocket.svg" />
+    <Content Include="Content\landing\images\icons\support.svg" />
+    <Content Include="Content\landing\images\icons\umbrella.svg" />
+    <Content Include="Content\landing\images\img_mian_1.png" />
+    <Content Include="Content\landing\images\img_mian_2.png" />
+    <Content Include="Content\landing\images\img_mian_3.png" />
+    <Content Include="Content\landing\images\img_mian_4.png" />
+    <Content Include="Content\landing\images\macbook %281%29.png" />
+    <Content Include="Content\landing\images\macbook.png" />
+    <Content Include="Content\landing\images\team\team-1.jpg" />
+    <Content Include="Content\landing\images\team\team-2.jpg" />
+    <Content Include="Content\landing\images\team\team-3.jpg" />
     <Content Include="Content\landing\word_map.png" />
     <Content Include="Content\patterns\1.png" />
     <Content Include="Content\patterns\2.png" />
@@ -2892,6 +2952,10 @@
     </Content>
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Scripts\easyui\themes\material-teal\images\Thumbs.db" />
+    <Content Include="Content\landing\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\landing\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\landing\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\landing\fonts\Material-Design-Iconic-Font.woff2" />
     <None Include="Properties\PublishProfiles\mitms - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mitms - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\smartadmin - FTP.pubxml" />
@@ -2906,6 +2970,18 @@
     <Content Include="Scripts\jquery.signalR-2.2.3.js" />
     <Content Include="Scripts\jquery.signalR-2.2.3.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\landing\js\bootstrap.min.js" />
+    <Content Include="Scripts\landing\js\imagesloaded.pkgd.min.js" />
+    <Content Include="Scripts\landing\js\isotope.pkgd.min.js" />
+    <Content Include="Scripts\landing\js\jquery.app.js" />
+    <Content Include="Scripts\landing\js\jquery.easing.1.3.min.js" />
+    <Content Include="Scripts\landing\js\jquery.js" />
+    <Content Include="Scripts\landing\js\jquery.sticky.js" />
+    <Content Include="Scripts\landing\js\masonry.pkgd.min.js" />
+    <Content Include="Scripts\landing\js\owl.carousel.min.js" />
+    <Content Include="Scripts\landing\js\scrollspy.min.js" />
+    <Content Include="Scripts\landing\js\switcher.js" />
+    <Content Include="Scripts\landing\js\wow.min.js" />
     <Content Include="Scripts\libs\jquery-2.1.1.min.js" />
     <Content Include="Scripts\libs\jquery-3.2.1.js" />
     <Content Include="Scripts\libs\jquery-3.2.1.min.js" />
@@ -3660,6 +3736,7 @@
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\EditForm.cshtml" />
     <Content Include="Views\Customers\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <None Include="Views\Notifications\_notifications.cshtml" />
     <None Include="Views\Messages\_notifications.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Int.cshtml">
@@ -3722,6 +3799,7 @@
     <Content Include="Views\TransactionHistories\Edit.cshtml" />
     <Content Include="Views\TransactionHistories\EditForm.cshtml" />
     <Content Include="Views\TransactionHistories\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\Shared\_LayoutLandingPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4023,6 +4101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805170420571_chorder.resx">
       <DependentUpon>201805170420571_chorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805280906511_addf11.resx">
+      <DependentUpon>201805280906511_addf11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

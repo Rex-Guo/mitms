@@ -31,9 +31,11 @@ namespace WebApp.Models
         public string PiceType { get; set; }
         [Display(Name = "单价", Description = "单价")]
         public decimal Price { get; set; }
-        [Display(Name = "详细备注", Description = "详细备注")]
+        [Display(Name = "备注", Description = "备注")]
         [MaxLength(520)]
         public string Remark { get; set; }
+        [Display(Name = "详细说明", Description = "详细说明")]
+        public string Description { get; set; }
         [MaxLength(20)]
         [Display(Name = "输入人员", Description = "输入人员")]
         public string InputUser { get; set; }
