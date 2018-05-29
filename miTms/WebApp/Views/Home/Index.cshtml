@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/Shared/_LayoutLandingPage.cshtml";
 }
+
 <!-- HOME -->
 <section class="home bg-img-3" id="home">
     
@@ -845,106 +846,199 @@
 <!-- END 流程说明 -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
-        <div class="loginmodal-container">
-            <h1>登录</h1><br>
-            <form>
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="pass" placeholder="Password">
-                <input type="submit" name="login" class="login loginmodal-submit" value="登录">
-            </form>
+        <div class="modal-content">
+            <div class="loginmodal-container">
+                <h1>登录</h1><br>
+                <form>
+                    <input type="text" name="user" placeholder="Username">
+                    <input type="password" name="pass" placeholder="Password">
+                    <input type="submit" name="login" class="login loginmodal-submit" value="登录">
+                </form>
 
-            <div class="login-help">
-                <a href="#">注册</a> - <a href="#">忘记密码</a>
+                <div class="login-help">
+                    <a href="#">注册</a> - <a href="#">忘记密码</a>
+                </div>
             </div>
         </div>
+        </div>
+    </div>
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form role="form" action="" method="post" class="f1">
+
+                <h3>Register To Our App</h3>
+                <p>Fill in the form to get instant access</p>
+                <div class="f1-steps">
+                    <div class="f1-progress">
+                        <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                    </div>
+                    <div class="f1-step active">
+                        <div class="f1-step-icon"><i class="fa fa-user"></i></div>
+                        <p>about</p>
+                    </div>
+                    <div class="f1-step">
+                        <div class="f1-step-icon"><i class="fa fa-key"></i></div>
+                        <p>account</p>
+                    </div>
+                    <div class="f1-step">
+                        <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
+                        <p>social</p>
+                    </div>
+                </div>
+
+                <fieldset>
+                    <h4>Tell us who you are:</h4>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-first-name">First name</label>
+                        <input type="text" name="f1-first-name" placeholder="First name..." class="f1-first-name form-control" id="f1-first-name">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-last-name">Last name</label>
+                        <input type="text" name="f1-last-name" placeholder="Last name..." class="f1-last-name form-control" id="f1-last-name">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-about-yourself">About yourself</label>
+                        <textarea name="f1-about-yourself" placeholder="About yourself..."
+                                  class="f1-about-yourself form-control" id="f1-about-yourself"></textarea>
+                    </div>
+                    <div class="f1-buttons">
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-next">Next</button>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <h4>Set up your account:</h4>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-email">Email</label>
+                        <input type="text" name="f1-email" placeholder="Email..." class="f1-email form-control" id="f1-email">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-password">Password</label>
+                        <input type="password" name="f1-password" placeholder="Password..." class="f1-password form-control" id="f1-password">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-repeat-password">Repeat password</label>
+                        <input type="password" name="f1-repeat-password" placeholder="Repeat password..."
+                               class="f1-repeat-password form-control" id="f1-repeat-password">
+                    </div>
+                    <div class="f1-buttons">
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-previous">Previous</button>
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-next">Next</button>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <h4>Social media profiles:</h4>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-facebook">Facebook</label>
+                        <input type="text" name="f1-facebook" placeholder="Facebook..." class="f1-facebook form-control" id="f1-facebook">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-twitter">Twitter</label>
+                        <input type="text" name="f1-twitter" placeholder="Twitter..." class="f1-twitter form-control" id="f1-twitter">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="f1-google-plus">Google plus</label>
+                        <input type="text" name="f1-google-plus" placeholder="Google plus..." class="f1-google-plus form-control" id="f1-google-plus">
+                    </div>
+                    <div class="f1-buttons">
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-previous">Previous</button>
+                        <button type="submit" class="btn btn-primary btn-shadow btn-rounded btn-submit">Submit</button>
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+        
+       
     </div>
 </div>
+        @section scripts{
+            <script type="text/javascript">
+                (function ($) {
+                    "use strict";
+                    $(document).ready(function () {
 
-@section scripts{
-    <script type="text/javascript">
-        (function ($) {
-            "use strict";
-            $(document).ready(function () {
+                        init_masonry();
 
-                init_masonry();
+                        //PORTFOLIO FILTER
+                        $(document).ready(function () {
+                            var $container = $('.blog-wrapper');
+                            var $filter = $('#filter');
+                            // Initialize isotope
+                            $container.isotope({
+                                filter: '*',
+                                layoutMode: 'masonry',
+                                animationOptions: {
+                                    duration: 750,
+                                    easing: 'linear'
+                                }
+                            });
+                            // Filter items when filter link is clicked
+                            $filter.find('a').click(function () {
+                                var selector = $(this).attr('data-filter');
+                                $filter.find('a').removeClass('current');
+                                $(this).addClass('current');
+                                $container.isotope({
+                                    filter: selector,
+                                    animationOptions: {
+                                        animationDuration: 750,
+                                        easing: 'linear',
+                                        queue: false,
+                                    }
+                                });
+                                return false;
+                            });
+                            /*END*/
+                        });
 
-                //PORTFOLIO FILTER
-                $(document).ready(function () {
-                    var $container = $('.blog-wrapper');
-                    var $filter = $('#filter');
-                    // Initialize isotope
-                    $container.isotope({
-                        filter: '*',
-                        layoutMode: 'masonry',
-                        animationOptions: {
-                            duration: 750,
-                            easing: 'linear'
-                        }
-                    });
-                    // Filter items when filter link is clicked
-                    $filter.find('a').click(function () {
-                        var selector = $(this).attr('data-filter');
-                        $filter.find('a').removeClass('current');
-                        $(this).addClass('current');
-                        $container.isotope({
-                            filter: selector,
-                            animationOptions: {
-                                animationDuration: 750,
-                                easing: 'linear',
-                                queue: false,
+
+
+
+                        $('#linetable').DataTable({
+                            searching: true,
+                            lengthChange: false,
+                            pageLength: 5,
+                            language: {
+                                "decimal": "",
+                                "emptyTable": "没有找到报价",
+                                "info": " _START_ / _END_ 共 _TOTAL_",
+                                "infoEmpty": " 0 / 0 共 0 ",
+                                "infoFiltered": "(filtered from _MAX_ total entries)",
+                                "infoPostFix": "",
+                                "thousands": ",",
+                                "lengthMenu": "Show _MENU_ entries",
+                                "loadingRecords": "Loading...",
+                                "processing": "Processing...",
+                                "search": "查询:",
+                                "zeroRecords": "没有找到报价",
+                                "paginate": {
+                                    "first": "第一条",
+                                    "last": "最后一条",
+                                    "next": "下一条",
+                                    "previous": "上一条"
+                                },
+                                "aria": {
+                                    "sortAscending": ": 升序",
+                                    "sortDescending": ": 降序"
+                                }
                             }
                         });
-                        return false;
+
                     });
-                    /*END*/
-                });
 
 
+                    function init_masonry() {
+                        (function ($) {
 
-               
-                $('#linetable').DataTable({
-                    searching: true,
-                    lengthChange: false,
-                    pageLength: 5,
-                    language:{
-                        "decimal": "",
-                        "emptyTable": "没有找到报价",
-                        "info": " _START_ / _END_ 共 _TOTAL_",
-                        "infoEmpty": " 0 / 0 共 0 ",
-                        "infoFiltered": "(filtered from _MAX_ total entries)",
-                        "infoPostFix": "",
-                        "thousands": ",",
-                        "lengthMenu": "Show _MENU_ entries",
-                        "loadingRecords": "Loading...",
-                        "processing": "Processing...",
-                        "search": "查询:",
-                        "zeroRecords": "没有找到报价",
-                        "paginate": {
-                            "first": "第一条",
-                            "last": "最后一条",
-                            "next": "下一条",
-                            "previous": "上一条"
-                        },
-                        "aria": {
-                            "sortAscending": ": 升序",
-                            "sortDescending": ": 降序"
-                        }
+                            $(".masonry").imagesLoaded(function () {
+                                $(".masonry").masonry();
+                            });
+
+                        })(jQuery);
                     }
-                });
-                
-            });
-
-
-            function init_masonry() {
-                (function ($) {
-
-                    $(".masonry").imagesLoaded(function () {
-                        $(".masonry").masonry();
-                    });
 
                 })(jQuery);
-            }
-
-        })(jQuery);
-    </script>
-}
+            </script>
+        }
