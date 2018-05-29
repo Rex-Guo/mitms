@@ -341,8 +341,10 @@
     <Compile Include="Migrations\201805280906511_addf11.Designer.cs">
       <DependentUpon>201805280906511_addf11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerMetadata.cs" />
+    <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\LineOffer.cs" />
     <Compile Include="Models\Order.cs" />
