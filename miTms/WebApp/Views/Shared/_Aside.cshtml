@@ -28,7 +28,13 @@
                         <a href="@Url.Action("index", "Departments")" title="部门信息"><span class="menu-item-parent">部门信息</span></a>
                     </li>
                     <li class="@Html.IsSelected(action: "Index", controller: "Employees")">
-                        <a href="@Url.Action("index", "Employees")" title="员工信息"><span class="menu-item-parent">员工信息</span></a>
+                        <a href="@Url.Action("index", "Employees")" title="司机信息"><span class="menu-item-parent">司机信息</span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index", controller: "carriers")">
+                        <a href="@Url.Action("index", "carriers")" title="承运人信息"><span class="menu-item-parent">承运人信息</span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index", controller: "shippers")">
+                        <a href="@Url.Action("index", "shippers")" title="托运人信息"><span class="menu-item-parent">托运人信息</span></a>
                     </li>
                 </ul>
             </li>
@@ -41,7 +47,40 @@
                     <li class="@Html.IsSelected(action: "Index", controller: "Orders")">
                         <a href="@Url.Action("index", "Orders")" title="订单信息"><span class="menu-item-parent">订单信息 </span></a>
                     </li>
-
+                    <li class="@Html.IsSelected(action: "bidding", controller: "Orders")">
+                        <a href="@Url.Action("bidding", "Orders")" title="竞价"><span class="menu-item-parent">竞价 </span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "pod", controller: "Orders")">
+                        <a href="@Url.Action("pod", "Orders")" title="回单管理"><span class="menu-item-parent">回单管理 </span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "Inventories")">
+                <a href="#" title="集散中心"><i class="fa fa-lg fa-fw fa-folder-o"></i> <span class="menu-item-parent">集散中心</span></a>
+                <ul>
+                    <li class="@Html.IsSelected(action: "in", controller: "Inventories")">
+                        <a href="@Url.Action("in", "Inventories")" title="入库作业"><span class="menu-item-parent">入库作业</span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "out", controller: "Inventories")">
+                        <a href="@Url.Action("out", "Inventories")" title="出库作业"><span class="menu-item-parent">出库作业 </span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "index", controller: "Inventories")">
+                        <a href="@Url.Action("index", "Inventories")" title="库存查询"><span class="menu-item-parent">库存查询 </span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "finance")">
+                <a href="#" title="结算中心"><i class="fa fa-lg fa-fw fa-folder-o"></i> <span class="menu-item-parent">结算中心</span></a>
+                <ul>
+                    <li class="@Html.IsSelected(action: "in", controller: "finance")">
+                        <a href="@Url.Action("in", "finance")" title="费用管理"><span class="menu-item-parent">费用管理</span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "out", controller: "finance")">
+                        <a href="@Url.Action("out", "finance")" title="开票操作"><span class="menu-item-parent">开票操作 </span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "index", controller: "Inventories")">
+                        <a href="@Url.Action("index", "finance")" title="支付操作"><span class="menu-item-parent">支付操作 </span></a>
+                    </li>
                 </ul>
             </li>
             <li class="@Html.IsSelected(controller: "Products,Categories")">
@@ -92,7 +131,7 @@
                     </li>
                 </ul>
             </li>
-             
+
 
         </ul>
     </nav>

@@ -13,14 +13,18 @@ Smooth Scroll To Anchor
 
 $('.nav-link').bind('click', function(event) {
     var $anchor = $(this);
-    console.log($($anchor.attr('href')));
-    if($($anchor.attr('href')).offset()){
-    $('html, body').stop().animate({
-      
-        scrollTop: $($anchor.attr('href')).offset().top - 50
-    }, 1500, 'easeInOutExpo');
-}
-    event.preventDefault();
+    console.log($anchor.attr('href'));
+    if ($anchor.attr('href') == "#admin") {
+        $(location).attr('href', '/admin');
+    } else {
+        if ($($anchor.attr('href')).offset()) {
+            $('html, body').stop().animate({
+
+                scrollTop: $($anchor.attr('href')).offset().top - 50
+            }, 1500, 'easeInOutExpo');
+        }
+        event.preventDefault();
+    }
 });
 
 

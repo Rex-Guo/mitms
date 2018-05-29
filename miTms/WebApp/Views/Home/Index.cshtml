@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <select id="inputState" class="form-control">
+                                        <select class="form-control">
                                             <option value="0" selected="" disabled="">货物类型</option>
                                             <option>...</option>
                                             <option>...</option>
@@ -63,9 +63,13 @@
                                         <input type="text" class="form-control" placeholder="总件数" required="required">
                                     </div>
                                 </div>
+                      
+                        </fieldset>
+                            <fieldset>
+                                <legend>货物信息</legend>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <select id="inputState" class="form-control">
+                                        <select class="form-control">
                                             <option value="0" selected="" disabled="">包装方式</option>
                                             <option>...</option>
                                             <option>...</option>
@@ -93,7 +97,7 @@
 
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <select id="inputState" class="form-control">
+                                        <select class="form-control">
                                             <option value="0" selected="" disabled="">单位</option>
                                             <option>吨</option>
                                             <option>千克</option>
@@ -105,7 +109,7 @@
 
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <select id="inputState" class="form-control">
+                                        <select class="form-control">
                                             <option value="0" selected="" disabled="">单位</option>
                                             <option>立方</option>
                                             <option>升</option>
@@ -114,15 +118,15 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            
 
 
-                        </div>
+
+                    </div>
                         <div class="col-lg-6"><fieldset>
     <legend>额外要求</legend>
     <div class="form-row">
         <div class="form-group col-md-4">
-            <select id="inputState" class="form-control">
+            <select class="form-control">
                 <option value="0" selected="" disabled="">时效</option>
                 <option>当日达</option>
                 <option>次日达</option>
@@ -198,7 +202,7 @@
 
         <div class="row" style="background-color:white">
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table id="linetable" class="table   table-bordered" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col">供方</th>
@@ -212,6 +216,56 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <th>聚力</th>
+                            <td>上海浦东</td>
+                            <td>昆山综保区</td>
+                            <td>当日达</td>
+                            <td>整车</td>
+                            <td>2吨/12尺</td>
+                            <td>1000</td>
+                            <td><button type="button" class="btn btn-primary btn-shadow btn-rounded w-sm btn-sm">详细报价</button></td>
+                        </tr>
+                        <tr>
+                            <th>聚力</th>
+                            <td>上海浦东</td>
+                            <td>昆山综保区</td>
+                            <td>当日达</td>
+                            <td>整车</td>
+                            <td>2吨/12尺</td>
+                            <td>1000</td>
+                            <td><button type="button" class="btn btn-primary btn-shadow btn-rounded w-sm btn-sm">详细报价</button></td>
+                        </tr>
+                        <tr>
+                            <th>聚力</th>
+                            <td>上海浦东</td>
+                            <td>昆山综保区</td>
+                            <td>当日达</td>
+                            <td>整车</td>
+                            <td>2吨/12尺</td>
+                            <td>1000</td>
+                            <td><button type="button" class="btn btn-primary btn-shadow btn-rounded w-sm btn-sm">详细报价</button></td>
+                        </tr>
+                        <tr>
+                            <th>聚力</th>
+                            <td>上海浦东</td>
+                            <td>昆山综保区</td>
+                            <td>当日达</td>
+                            <td>整车</td>
+                            <td>2吨/12尺</td>
+                            <td>1000</td>
+                            <td><button type="button" class="btn btn-primary btn-shadow btn-rounded w-sm btn-sm">详细报价</button></td>
+                        </tr>
+                        <tr>
+                            <th>聚力</th>
+                            <td>上海浦东</td>
+                            <td>昆山综保区</td>
+                            <td>当日达</td>
+                            <td>整车</td>
+                            <td>2吨/12尺</td>
+                            <td>1000</td>
+                            <td><button type="button" class="btn btn-primary btn-shadow btn-rounded w-sm btn-sm">详细报价</button></td>
+                        </tr>
                         <tr>
                             <th>聚力</th>
                             <td>上海浦东</td>
@@ -294,40 +348,23 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                    <p><img class=" img-fluid" src="~/Content/landing/images/truck-driver/1.jpg" alt="card image"></p>
+                                    <h4 class="card-title">聚力国际货运</h4>
+                                    <p class="card-text">承接干线，市内配送业务<br>联系电话：13999922299</p>
+                          
+                                    <span class="badge badge-pill badge-primary">集卡 52辆</span>
+                                    <span class="badge badge-pill badge-secondary">厢式车 100辆</span>
+                                    <span class="badge badge-pill badge-success">小型货车 30辆</span>
+                                    <span class="badge badge-pill badge-danger">冷链车 8辆</span>
                                 </div>
                             </div>
                         </div>
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <h4 class="card-title">聚力国际货运</h4>
+                                    <p class="card-text">公司成立于2009年，注册资本为人民币2000万元，是经国家交通部门批准，具有资格经营国内货物运输、仓储及配送服务的综合性物流企业。公司自成立以来，始终坚持‘诚信为本，客户至上，互惠互利，联合双赢’的经营方略，致力于打造聚力品牌物流的企业。</p>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -342,40 +379,23 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png" alt="card image"></p>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                    <p><img class=" img-fluid" src="~/Content/landing/images/truck-driver/2.jpg" alt="card image"></p>
+                                    <h4 class="card-title">昆山市天使运输有限公司</h4>
+                                    <p class="card-text">承接干线，市内配送业务<br>联系电话：13999922299</p>
+
+                                    <span class="badge badge-pill badge-primary">集卡 52辆</span>
+                                    <span class="badge badge-pill badge-secondary">厢式车 100辆</span>
+                                    <span class="badge badge-pill badge-success">小型货车 30辆</span>
+                                    <span class="badge badge-pill badge-danger">冷链车 8辆</span>
                                 </div>
                             </div>
                         </div>
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <h4 class="card-title">昆山市天使运输有限公司</h4>
+                                    <p class="card-text">公司成立于2009年，注册资本为人民币2000万元，是经国家交通部门批准，具有资格经营国内货物运输、仓储及配送服务的综合性物流企业。公司自成立以来，始终坚持‘诚信为本，客户至上，互惠互利，联合双赢’的经营方略，致力于打造聚力品牌物流的企业。</p>
+
                                 </div>
                             </div>
                         </div>
@@ -390,40 +410,24 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_03.png" alt="card image"></p>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                    <p><img class=" img-fluid" src="~/Content/landing/images/truck-driver/3.jpg" alt="card image"></p>
+                                    <h4 class="card-title">昆山万马物流有限公司</h4>
+                                    <p class="card-text">承接干线，市内配送业务<br>联系电话：13999922299</p>
+
+                                    <span class="badge badge-pill badge-primary">集卡 52辆</span>
+                                    <span class="badge badge-pill badge-secondary">厢式车 100辆</span>
+                                    <span class="badge badge-pill badge-success">小型货车 30辆</span>
+                                    <span class="badge badge-pill badge-danger">冷链车 8辆</span>
                                 </div>
                             </div>
                         </div>
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <h4 class="card-title">昆山万马物流有限公司</h4>
+                                    <p class="card-text">公司成立于2009年，注册资本为人民币2000万元，是经国家交通部门批准，具有资格经营国内货物运输、仓储及配送服务的综合性物流企业。公司自成立以来，始终坚持‘诚信为本，客户至上，互惠互利，联合双赢’的经营方略，致力于打造聚力品牌物流的企业。</p>
+
+
                                 </div>
                             </div>
                         </div>
@@ -438,40 +442,23 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_04.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                    <p><img class=" img-fluid" src="~/Content/landing/images/truck-driver/4.jpg" alt="card image"></p>
+                                    <h4 class="card-title">赛宇国际物流有限公司</h4>
+                                    <p class="card-text">承接干线，市内配送业务<br>联系电话：13999922299</p>
+
+                                    <span class="badge badge-pill badge-primary">集卡 52辆</span>
+                                    <span class="badge badge-pill badge-secondary">厢式车 100辆</span>
+                                    <span class="badge badge-pill badge-success">小型货车 30辆</span>
+                                    <span class="badge badge-pill badge-danger">冷链车 8辆</span>
                                 </div>
                             </div>
                         </div>
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <h4 class="card-title">赛宇国际物流有限公司</h4>
+                                    <p class="card-text">公司成立于2009年，注册资本为人民币2000万元，是经国家交通部门批准，具有资格经营国内货物运输、仓储及配送服务的综合性物流企业。公司自成立以来，始终坚持‘诚信为本，客户至上，互惠互利，联合双赢’的经营方略，致力于打造聚力品牌物流的企业。</p>
+
                                 </div>
                             </div>
                         </div>
@@ -486,40 +473,23 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_05.png" alt="card image"></p>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                    <p><img class=" img-fluid" src="~/Content/landing/images/truck-driver/5.jpg" alt="card image"></p>
+                                    <h4 class="card-title">昆山飞力集装箱运输有限公司</h4>
+                                    <p class="card-text">承接干线，市内配送业务<br>联系电话：13999922299</p>
+
+                                    <span class="badge badge-pill badge-primary">集卡 52辆</span>
+                                    <span class="badge badge-pill badge-secondary">厢式车 100辆</span>
+                                    <span class="badge badge-pill badge-success">小型货车 30辆</span>
+                                    <span class="badge badge-pill badge-danger">冷链车 8辆</span>
                                 </div>
                             </div>
                         </div>
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <h4 class="card-title">昆山飞力集装箱运输有限公司</h4>
+                                    <p class="card-text">公司成立于2009年，注册资本为人民币2000万元，是经国家交通部门批准，具有资格经营国内货物运输、仓储及配送服务的综合性物流企业。公司自成立以来，始终坚持‘诚信为本，客户至上，互惠互利，联合双赢’的经营方略，致力于打造聚力品牌物流的企业。</p>
+
                                 </div>
                             </div>
                         </div>
@@ -534,40 +504,23 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_06.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                    <p><img class=" img-fluid" src="~/Content/landing/images/truck-driver/6.jpg" alt="card image"></p>
+                                    <h4 class="card-title">好专线供应链管理有限公司</h4>
+                                    <p class="card-text">承接干线，市内配送业务<br>联系电话：13999922299</p>
+
+                                    <span class="badge badge-pill badge-primary">集卡 52辆</span>
+                                    <span class="badge badge-pill badge-secondary">厢式车 100辆</span>
+                                    <span class="badge badge-pill badge-success">小型货车 30辆</span>
+                                    <span class="badge badge-pill badge-danger">冷链车 8辆</span>
                                 </div>
                             </div>
                         </div>
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <h4 class="card-title">好专线供应链管理有限公司</h4>
+                                    <p class="card-text">公司成立于2009年，注册资本为人民币2000万元，是经国家交通部门批准，具有资格经营国内货物运输、仓储及配送服务的综合性物流企业。公司自成立以来，始终坚持‘诚信为本，客户至上，互惠互利，联合双赢’的经营方略，致力于打造聚力品牌物流的企业。</p>
+
                                 </div>
                             </div>
                         </div>
@@ -592,7 +545,7 @@
                         <div class="blog-post">
                             <div class="post-media">
                                 <a href="blog-post.html">
-                                    <img src="~/content/landing/images/blog/1.jpg" alt="blog post with image" class="img-fluid" />
+                                    <img src="~/content/landing/images/truck-driver/8.jpg" alt="blog post with image" class="img-fluid" />
                                 </a>
                             </div><!-- .post-media end -->
 
@@ -605,19 +558,18 @@
 
                                     <div class="meta-container">
                                         <a href="blog-post.html">
-                                            <h3>Beautiful Image Blog Post</h3>
+                                            <h3>无车承运人一周年试点成绩单出炉，开启智慧物流新时代</h3>
                                         </a>
                                         <ul class="meta">
                                             <li>
-                                                By : <a href="#">Coderthemes</a>
+                                                By : <a href="#">小冰</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
 
                                 <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                                    Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet voluptates.Sed dui lorem, adipiscing in adipiscing et.
+                                    交通运输部发布《无车承运人试点运行监测分析报告》，晒出一份亮眼“成绩单”。报告中指出：一年以来，无车承运人试点工作深入推进，相关政策逐步完善，试点企业不断探索创新，资源整合能力显著提高，综合效益加快释放，在促进物流降本增效，引领行业转型发展方面发挥了重要作用
                                 </p>
 
                                 <div class="text-right">
@@ -632,7 +584,7 @@
                         <div class="blog-post">
                             <div class="post-media">
                                 <a href="blog-post.html">
-                                    <img src="~/content/landing/images/blog/2.jpg" alt="blog post with image" class="img-fluid" />
+                                    <img src="~/content/landing/images/truck-driver/9.jpg" alt="blog post with image" class="img-fluid" />
                                 </a>
                             </div><!-- .post-media end -->
 
@@ -645,23 +597,19 @@
 
                                     <div class="meta-container">
                                         <a href="blog-post.html">
-                                            <h3>Beautiful Image Blog Post</h3>
+                                            <h3>新物流革命，革谁的命？</h3>
                                         </a>
                                         <ul class="meta">
                                             <li>
-                                                By : <a href="#">Coderthemes</a>
+                                                By : <a href="#">小冰</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
 
                                 <p>
-                                    Nunc nec dui vitae urna cursus lacinia. In
-                                    venenatis eget justo in dictum. Vestibulum
-                                    auctor raesent quis mi
-                                    tincidunt, egestas libero nec, ullamcorper
-                                    nisi. Etiam a dictum tellus, sed accumsan
-                                    quam.
+                                    毫无疑问，新物流在2018迎来爆发之年。
+                                    何为新物流？新物流要干什么？具体会带来什么样的影响？对于这些话题，老鬼今天就跟大家来理一理，聊一聊新物流。
                                 </p>
 
                                 <div class="text-right">
@@ -676,7 +624,7 @@
                         <div class="blog-post">
                             <div class="post-media">
                                 <a href="blog-post.html">
-                                    <img src="~/content/landing/images/blog/3.jpg" alt="blog post with image" class="img-fluid" />
+                                    <img src="~/content/landing/images/truck-driver/10.jpg" alt="blog post with image" class="img-fluid" />
                                 </a>
                             </div><!-- .post-media end -->
 
@@ -689,19 +637,18 @@
 
                                     <div class="meta-container">
                                         <a href="blog-post.html">
-                                            <h3>Beautiful Image Blog Post</h3>
+                                            <h3>物流成本高，货找车，车找货是最大成本来源，如何才能降低成本</h3>
                                         </a>
                                         <ul class="meta">
                                             <li>
-                                                By : <a href="#">Coderthemes</a>
+                                                By : <a href="#">小冰</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
 
                                 <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                                    Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet voluptates.
+                                    现在，听到不少司机和物流行业的抱怨，说现在的市场不好，生意难做，不止是物流行业，很多行业的经营压力越来越大。具体是什么一个情况呢？关于国内经济，GDP增速放缓，物流成本较高，为了降低成本企业和工厂各种压缩成本。物流运价越来越低，货源不断减少，很多货车司机已经无法生存，开货车倒成了赔本的买卖，许多物流中小型企业已经入不敷出，生存变得紧张。
                                 </p>
 
                                 <div class="text-right">
@@ -726,8 +673,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="title-box">
-                    <p class="title-alt">Services</p>
-                    <h3 class="fadeIn animated wow" data-wow-delay=".1s">Our Best Features</h3>
+                    <p class="title-alt">业务流程</p>
+                    <h3 class="fadeIn animated wow" data-wow-delay=".1s">平台运营说明</h3>
                     <div class="border"></div>
                 </div>
             </div>
@@ -739,8 +686,8 @@
                 <div class="service-item animated fadeInLeft wow" data-wow-delay=".1s">
                     <img src="~/content/landing/images/icons/cup.svg" width="48" alt="img">
                     <div class="service-detail">
-                        <h4>Strategy Solutions</h4>
-                        <p>We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste natus error sit.</p>
+                        <h4>运力注册</h4>
+                        <p>个人或公司在平台上注册承运人信息，经过后台工作人员对提交的信息进行审核</p>
                     </div>
                     <!-- /service-detail -->
                 </div>
@@ -752,8 +699,12 @@
                 <div class="service-item animated fadeInDown wow" data-wow-delay=".3s">
                     <img src="~/content/landing/images/icons/diploma.svg" width="48" alt="img">
                     <div class="service-detail">
-                        <h4>Digital Design</h4>
-                        <p>We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste.</p>
+                        <h4>下单/接单</h4>
+                        <p>
+                            托运人可以在平台上直接下单,填写必要的货源信息,
+                            承运人可以在平台上对货源信息进行竞价和接单生成运单作业
+                        </p>
+                       
                     </div>
                     <!-- /service-detail -->
                 </div>
@@ -765,8 +716,8 @@
                 <div class="service-item animated fadeInRight wow" data-wow-delay=".5s">
                     <img src="~/content/landing/images/icons/combo_chart.svg" width="48" alt="img">
                     <div class="service-detail">
-                        <h4>SEO</h4>
-                        <p>We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste.</p>
+                        <h4>轨迹跟踪</h4>
+                        <p>承运人需要通过平台即时反馈运单的状态和运输车辆的行驶轨迹</p>
                     </div>
                     <!-- /service-detail -->
                 </div>
@@ -781,8 +732,8 @@
                 <div class="service-item animated fadeInLeft wow" data-wow-delay=".1s">
                     <img src="~/content/landing/images/icons/space-rocket.svg" width="48" alt="img">
                     <div class="service-detail">
-                        <h4>Strategy Solutions</h4>
-                        <p>We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste.</p>
+                        <h4>回单上传</h4>
+                        <p>承运人完成运单后及时拍照上传回单</p>
                     </div>
                     <!-- /service-detail -->
                 </div>
@@ -794,8 +745,8 @@
                 <div class="service-item animated fadeInDown wow" data-wow-delay=".3s">
                     <img src="~/content/landing/images/icons/umbrella.svg" width="48" alt="img">
                     <div class="service-detail">
-                        <h4>Digital Design</h4>
-                        <p>We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste.</p>
+                        <h4>结算</h4>
+                        <p>根据运输任务的完成情况，也可在运输任务开始前及任务结束后分别实施线上结算/开票业务</p>
                     </div>
                     <!-- /service-detail -->
                 </div>
@@ -807,8 +758,8 @@
                 <div class="service-item animated fadeInRight wow" data-wow-delay=".5s">
                     <img src="~/content/landing/images/icons/support.svg" width="48" alt="img">
                     <div class="service-detail">
-                        <h4>Support</h4>
-                        <p>We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste.</p>
+                        <h4>客服支持</h4>
+                        <p>7*24小时对业务的电话在线支持，热线电话：400-8400800</p>
                     </div>
                     <!-- /service-detail -->
                 </div>
@@ -892,7 +843,22 @@
     </div>
 </section>
 <!-- END 流程说明 -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>登录</h1><br>
+            <form>
+                <input type="text" name="user" placeholder="Username">
+                <input type="password" name="pass" placeholder="Password">
+                <input type="submit" name="login" class="login loginmodal-submit" value="登录">
+            </form>
 
+            <div class="login-help">
+                <a href="#">注册</a> - <a href="#">忘记密码</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
     <script type="text/javascript">
@@ -933,6 +899,39 @@
                     /*END*/
                 });
 
+
+
+               
+                $('#linetable').DataTable({
+                    searching: true,
+                    lengthChange: false,
+                    pageLength: 5,
+                    language:{
+                        "decimal": "",
+                        "emptyTable": "没有找到报价",
+                        "info": " _START_ / _END_ 共 _TOTAL_",
+                        "infoEmpty": " 0 / 0 共 0 ",
+                        "infoFiltered": "(filtered from _MAX_ total entries)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Show _MENU_ entries",
+                        "loadingRecords": "Loading...",
+                        "processing": "Processing...",
+                        "search": "查询:",
+                        "zeroRecords": "没有找到报价",
+                        "paginate": {
+                            "first": "第一条",
+                            "last": "最后一条",
+                            "next": "下一条",
+                            "previous": "上一条"
+                        },
+                        "aria": {
+                            "sortAscending": ": 升序",
+                            "sortDescending": ": 降序"
+                        }
+                    }
+                });
+                
             });
 
 

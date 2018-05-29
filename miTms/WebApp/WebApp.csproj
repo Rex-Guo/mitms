@@ -1776,6 +1776,15 @@
     <Content Include="Content\landing\images\team\team-1.jpg" />
     <Content Include="Content\landing\images\team\team-2.jpg" />
     <Content Include="Content\landing\images\team\team-3.jpg" />
+    <Content Include="Content\landing\images\truck-driver\1.jpg" />
+    <Content Include="Content\landing\images\truck-driver\10.jpg" />
+    <Content Include="Content\landing\images\truck-driver\2.jpg" />
+    <Content Include="Content\landing\images\truck-driver\3.jpg" />
+    <Content Include="Content\landing\images\truck-driver\4.jpg" />
+    <Content Include="Content\landing\images\truck-driver\5.jpg" />
+    <Content Include="Content\landing\images\truck-driver\6.jpg" />
+    <Content Include="Content\landing\images\truck-driver\8.jpg" />
+    <Content Include="Content\landing\images\truck-driver\9.jpg" />
     <Content Include="Content\landing\word_map.png" />
     <Content Include="Content\patterns\1.png" />
     <Content Include="Content\patterns\2.png" />

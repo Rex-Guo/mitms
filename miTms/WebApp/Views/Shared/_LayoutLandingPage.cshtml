@@ -19,7 +19,8 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap core CSS -->
-    <link href="~/content/landing/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/content/landing/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
     <!-- Animate -->
     <link href="~/content/landing/css/animate.css" rel="stylesheet">
@@ -39,7 +40,7 @@
       <script src="js/respond.min.js"></script>
     <![endif]-->
 
-   
+
 </head>
 
 <body data-spy="scroll" data-target="#navbar-menu">
@@ -73,10 +74,10 @@
                         <a href="#news" class="nav-link">最新动态</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#howto" class="nav-link">流程说明</a>
+                        <a href="#howto" class="nav-link">业务流程</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#admin" class="nav-link">我的管理控制台</a>
+                        <a  href="#admin" class="nav-link">我的管理控制台</a>
                     </li>
 
 
@@ -85,7 +86,7 @@
 
                 <ul class="nav navbar-nav navbar-right ml-auto">
                     <li class="nav-item">
-                        <a href="" class="nav-link">Login</a>
+                        <a data-toggle="modal" data-target="#login-modal" class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
                         <a href="" class="btn btn-inverse btn-bordered navbar-btn nav-link">Signup</a>
@@ -214,6 +215,8 @@
     <script src="~/scripts/landing/js/jquery.js"></script>
     <script src="~/scripts/landing/js/bootstrap.min.js"></script>
     <script src="~/scripts/landing/js/scrollspy.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <!-- Jquery easing -->
     <script type="text/javascript" src="~/scripts/landing/js/jquery.easing.1.3.min.js"></script>
     <script src="~/scripts/landing/js/wow.min.js"></script>
