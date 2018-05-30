@@ -36,3 +36,5 @@ D:\github\mitms\miTms\Source\Service.Pattern\obj\Release\Service.Pattern.csproj.
 D:\github\mitms\miTms\Source\Service.Pattern\obj\Release\Service.Pattern.csproj.CopyComplete
 D:\github\mitms\miTms\Source\Service.Pattern\obj\Release\Service.Pattern.dll
 D:\github\mitms\miTms\Source\Service.Pattern\obj\Release\Service.Pattern.pdb
+D:\开源项目\mitms\miTms\Source\Service.Pattern\bin\Release\TrackableEntities.Common.dll
+D:\开源项目\mitms\miTms\Source\Service.Pattern\bin\Release\TrackableEntities.Common.xml

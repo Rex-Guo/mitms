@@ -25,44 +25,10 @@ namespace WebApp.Controllers
             this._vehicleService = _vehicleService;
             this._orderService = _orderService;
         }
-        
-        public async Task<ActionResult> Index()
+        [AllowAnonymous]
+        public ActionResult Index()
         {
-            ViewBag.Total = await this._vehicleService.Queryable().DeferredCount().ExecuteAsync();
-            ViewBag.Count1 = await this._vehicleService.Queryable().Where(x => x.Status == "空车").DeferredCount().ExecuteAsync() ;
-            ViewBag.Count2 = await this._vehicleService.Queryable().Where(x => x.Status == "接单").DeferredCount().ExecuteAsync();
-            ViewBag.Count3 = await this._vehicleService.Queryable().Where(x => x.Status == "在途" || x.Status== "提货" || x.Status=="发车").DeferredCount().ExecuteAsync();
-            ViewBag.Count4 = await this._vehicleService.Queryable().Where(x => x.Status == "异常").DeferredCount().ExecuteAsync();
-            ViewBag.Percent1 = Convert.ToInt32((Convert.ToDecimal(ViewBag.Count1) / Convert.ToDecimal(ViewBag.Total)) * 100);
-            ViewBag.Percent2 = Convert.ToInt32((Convert.ToDecimal(ViewBag.Count2) / Convert.ToDecimal(ViewBag.Total)) * 100);
-            ViewBag.Percent3 = Convert.ToInt32((Convert.ToDecimal(ViewBag.Count3) / Convert.ToDecimal(ViewBag.Total)) * 100);
-            ViewBag.Percent4 = Convert.ToInt32((Convert.ToDecimal(ViewBag.Count4) / Convert.ToDecimal(ViewBag.Total)) * 100);
-
-            ViewBag.UPercent1 = 100 - ViewBag.Percent1;
-
-            var sql = @"select distinct Status, 
- stuff((select distinct ',' + t.PlateNumber from dbo.vehicle t where t.Status = t1.Status  for xml path('')) , 1 , 1 , '')  PlateNumber from dbo.vehicle t1
- order by status  ";
-
-            ViewBag.Pools = SqlHelper2.DatabaseFactory.CreateDatabase().ExecuteDataReader<PoolsViewModel>(sql,null, (r) => {
-                return new PoolsViewModel {Status=r[0].ToString(),PlateNumbers=r[1].ToString().Split(',') };
-             });
-
-            var sql2 = @"select Status, COUNT(*) / CAST( SUM(count(*)) over () as float)
-  from dbo.orders
- group by Status";
-            var CompletePercent = 0.0;
-            SqlHelper2.DatabaseFactory.CreateDatabase().ExecuteDataReader(sql2, null, (r) => {
-                if (r[0].ToString() == "卸货" || r[0].ToString() == "入仓" ||
-               r[0].ToString() == "完成") {
-                    CompletePercent += Convert.ToDouble(r[1]);
-                }
-            });
-            ViewBag.CompletePercent = CompletePercent * 100;
-
-            var customrep = this._unitOfWork.RepositoryAsync<Shipper>();
-            ViewBag.Customer = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
-
+             
             return View();
         }
         public async Task<ActionResult> GetEvents() {

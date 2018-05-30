@@ -1826,6 +1826,8 @@
     <Content Include="Content\landing\images\truck-driver\8.jpg" />
     <Content Include="Content\landing\images\truck-driver\9.jpg" />
     <Content Include="Content\landing\img\apple-icon.png" />
+    <Content Include="Content\landing\img\backgrounds\1%402x.jpg" />
+    <Content Include="Content\landing\img\backgrounds\1.jpg" />
     <Content Include="Content\landing\img\default-avatar.png" />
     <Content Include="Content\landing\img\favicon.png" />
     <Content Include="Content\landing\img\new_logo.png" />
@@ -3017,6 +3019,7 @@
     <Content Include="Content\landing\fonts\Material-Design-Iconic-Font.woff" />
     <Content Include="Content\landing\fonts\Material-Design-Iconic-Font.woff2" />
     <Content Include="Content\landing\img\.DS_Store" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\mitms - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mitms - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\smartadmin - FTP.pubxml" />

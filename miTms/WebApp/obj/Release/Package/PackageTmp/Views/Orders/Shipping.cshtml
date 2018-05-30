@@ -1,0 +1,1250 @@
+﻿@model IEnumerable<WebApp.Models.Vehicle>
+@{
+    ViewBag.Title = "派车管理";
+}
+<!-- MAIN CONTENT -->
+<div id="content">
+    <!-- quick navigation bar -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-table fa-fw "></i>
+         
+                业务操作
+                <span>
+                    >
+                    派车管理
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+
+        </div>
+    </div>
+    <!-- end quick navigation bar -->
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2>派车管理</h2>
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+            
+                            <!--begin datagrid-content -->
+                            <div class="table-responsive">
+                                <table id="vehicles_datagrid"></table>
+                                <div id="vehicles_toolbar" style="height:auto">
+
+
+                                    
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-question-circle-o fa-fw',plain:true" onclick="dohelp()">帮助</a>
+                                </div>
+
+
+                            </div>
+                            <!--end datagrid-content -->
+
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">派车/跟踪</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="shippingform">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="PlateNumber"> 指派车辆 </label>
+                                    <input type="text" id="PlateNumber" name="PlateNumber" class="form-control" placeholder="车辆" required />
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ShipperId"> 客户 </label>
+                                    @Html.DropDownList("ShipperId", (IEnumerable
+<SelectListItem>)ViewBag.Shipper, new { @class = "form-control" })
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Location1"> 起点 </label>
+                                    <input type="text" id="Location1" name="Location1" class="form-control" placeholder="起点" required />
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Location2"> 终点 </label>
+                                    <input type="text" id="Location2" name="Location2" class="form-control" placeholder="终点" required />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ExternalNo"> 对账单号</label>
+                                    <input type="text" class="form-control" id="ExternalNo" name="ExternalNo" placeholder="对账单号" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TimePeriod"> 时效 </label>
+                                    @Html.DropDownList("TimePeriod", (IEnumerable
+<SelectListItem>)ViewBag.TimePeriod, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputloadnum"> 件数/板数/箱数 </label>
+                                    <input type="text" name="inputloadnum" id="inputloadnum" class="form-control" placeholder="件数/板数/箱数" />
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputloadsize"> 体积(立方)/重量(吨) </label>
+                                    <input type="text" name="inputloadsize" id="inputloadsize" class="form-control" placeholder="体积(立方)/重量(吨) " />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="Requirements" name="Requirements" placeholder="额外要求" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="well well-sm well-primary">
+
+                                    <div class="form-group">
+                                        <button type="button" id="state1" name="state" class="btn btn-success btn-sm">
+                                            <span class="fa fa-pencil-square-o"></span> 发车
+                                        </button>
+                                        <button type="button" id="state2" name="state" class="btn btn-default btn-sm">
+                                            <span class="fa fa-pencil-square-o"></span> 提货
+                                        </button>
+                                        <button type="button" id="state3" name="state" class="btn btn-default btn-sm">
+                                            <span class="fa fa-pencil-square-o"></span> 在途
+                                        </button>
+                                        <button type="button" id="state4" name="state" class="btn btn-default btn-sm">
+                                            <span class="fa fa-pencil-square-o"></span> 卸货
+                                        </button>
+                                        <button type="button" id="state5" name="state" class="btn btn-default btn-sm">
+                                            <span class="fa fa-pencil-square-o"></span> 入仓
+                                        </button>
+                                        <button type="button" id="state7" name="state" class="btn btn-danger btn-sm">
+                                            <span class="fa fa-pencil-square-o"></span> 异常
+                                        </button>
+                                        <button type="button" id="state0" name="state" class="btn btn-default btn-sm">
+                                            <span class="fa fa-pencil-square-o"></span> 完成
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="Driver" name="Driver" value="" />
+                        <input type="hidden" id="DriverPhone" name="DriverPhone" value="" />
+                        <input type="hidden" id="OrderNo" name="OrderNo" value="" />
+                        <input type="hidden" id="Id" name="Id" value="-1" />
+                        <input type="hidden" id="Packages" name="Packages" value="" />
+                        <input type="hidden" id="Weight" name="Weight" value="" />
+                        <input type="hidden" id="Volume" name="Volume" value="" />
+                        <input type="hidden" id="Cartons" name="Cartons" value="" />
+                        <input type="hidden" id="Pallets" name="Pallets" value="" />
+                        <input type="hidden" id="VehicleId" name="VehicleId" value="" />
+                        <input type="hidden" id="CompanyId" name="CompanyId" value="@Auth.CompanyId" />
+                        <input type="hidden" id="InputUser" name="InputUser" value="@Auth.UserName" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        取消
+                    </button>
+                    <button type="button" id="doshippingbtn" class="btn btn-primary">
+                        派车
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+<!-- END MAIN CONTENT -->
+
+<script src="/Scripts/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+@section Scripts {
+
+
+    <script type="text/javascript">
+        var $form = $('#shippingform');
+        $(document).ready(function () {
+
+            initdg();
+            $form = $form.bootstrapValidator({
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    inputloadnum: {
+                        validators: {
+                            callback: {
+                                message: '请输入件数[5位以内]/板数[5位以内]/箱数(或散箱数)[5位以内]',
+                                callback: function (value, validator, $field) {
+                                    
+                                    if (value === '') {
+                                        return true;
+                                    } else {
+                                       var patt = /^\d{1,5}\/\d{1,5}\/\d{1,5}$/;
+                                        if (patt.test(value)) {
+                                            var numbers = value.match(/\d+/g).map(Number);
+                                  
+                                            $('#Packages').val(numbers[0]);
+                                            $('#Pallets').val(numbers[1]);
+                                            $('#Cartons').val(numbers[2]);
+                                            return true;
+                                        } else {
+                                            $('#Packages').val("");
+                                            $('#Pallets').val("");
+                                            $('#Cartons').val("");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    inputloadsize: {
+                        validators: {
+                            callback: {
+                                message: '请输入体积(立方)[5位以内可带小数]/重量(吨)[5位以内可带小数]',
+                                callback: function (value, validator, $field) {
+
+                                    if (value === '') {
+                                        return true;
+                                    } else {
+                                        var patt = /^((\d{1,5}\.\d{0,2})|\d{1,5}$)\/(\d{1,5}\.\d{0,2})$|\d{1,5}$/;
+                                        if (patt.test(value)) {
+                                        
+                                            var numbers = value.match(/(\d+\.\d+)|\d+/g).map(Number);
+                                            $('#Volume').val(numbers[0]);
+                                            $('#Weight').val(numbers[1]);
+                                            return true;
+                                        } else {
+                                            $('#Volume').val("");
+                                            $('#Weight').val("");
+                                            return false;
+                                        }
+                                         
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    PlateNumber: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入指派的车牌号'
+                            }
+                        }
+                    },
+                    ExternalNo: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入对账单号(客户单号)'
+                            }
+                        }
+                    },
+                    Location1: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入起点'
+                            }
+                        }
+                    },
+                    Location2: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入终点'
+                            }
+                        }
+                    }
+                }
+            });
+
+            $('#doshippingbtn').click(function () {
+                $form.bootstrapValidator('validate');
+                if ($form.data('bootstrapValidator').isValid()) {
+                    doshippingorder();
+                } else {
+                    //console.log('noValid');
+                }
+            })
+        });
+
+        //执行Excel到处下载
+        function exportexcel() {
+            var filterRules = JSON.stringify($dg.datagrid("options").filterRules);
+            //console.log(filterRules);
+            $.messager.progress({
+                title: "正在执行导出！"
+            });
+            var formData = new FormData();
+            formData.append("filterRules", filterRules);
+            formData.append("sort", "Id");
+            formData.append("order", "asc");
+            $.postDownload("/Vehicles/OrderExportExcel", formData, function (fileName) {
+                $.messager.progress("close");
+                console.log(fileName);
+
+            })
+        }
+       var entityname = "Vehicle";
+
+//保存订单并更新车辆状态
+        function doshippingorder() {
+            var data = $('#shippingform').serializeJSON();
+            console.log(data);
+            $.post('/Orders/DoShippingOrder', data, function (data) {
+                if (data.success) {
+                    $('#myModal').modal('toggle');
+                    reload();
+                } else {
+                    $.messager.alert("异常", data.err);
+                }
+            })
+
+        }
+
+
+ //显示帮助信息
+ function dohelp() {
+
+        }
+
+        var $dg = $("#vehicles_datagrid");
+ //datagrid 增删改查操作
+        function initdg() {
+
+          $dg = $dg.datagrid({
+                rownumbers: true,
+                checkOnSelect: true,
+                selectOnCheck: true,
+                idField: 'Id',
+                sortName: 'Id',
+                sortOrder: 'desc',
+                remoteFilter: true,
+                singleSelect: true,
+                toolbar: '#vehicles_toolbar',
+                url: '/Vehicles/GetData',
+                method: 'get',
+                onClickCell: onClickCell,
+                pagination: true,
+                showFooter: true,
+              striped: true,
+              rowStyler: function (index, row) {
+
+                  if (row.UsingDate != null && moment().isAfter(moment(row.UsingDate).add(row.TimePeriod, 'hours'))) {
+                      return 'background-color:#efe1b3;color:#826430;font-weight:bold;';
+                  }
+              },
+                columns: [
+                    [
+                        /*{ field: 'ck', checkbox: true },*/
+                        {
+                            field: '_operate1',
+                            title: '操作',
+                            width: 120,
+                            sortable: false,
+                            resizable: true,
+                            formatter: showdetailsformatter
+                        },
+                        /*{field:'Id',width:80 ,sortable:true,resizable:true }*/
+
+                        {
+                            field: 'PlateNumber',
+                            title: '@Html.DisplayNameFor(model => model.PlateNumber)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '车牌号',
+                                    required: true,
+                                    validType: 'length[0,10]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'Status',
+                            title: '@Html.DisplayNameFor(model => model.Status)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '状态',
+                                    required: false,
+                                    validType: 'length[0,20]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'ExternalNo',
+                            title: '@Html.DisplayNameFor(model => model.ExternalNo)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '对账单号',
+                                    required: false,
+                                    validType: 'length[0,20]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+
+                        {
+                            field: 'UsingDate',
+                            title: '@Html.DisplayNameFor(model => model.UsingDate)',
+                            width: 160,
+                            align: 'right',
+                            editor: {
+                                type: 'datebox',
+                                options: {
+                                    prompt: '派车时间',
+                                    required: false
+                                }
+                            },
+                            sortable: true,
+                            resizable: true,
+                            formatter: datetimeformatter
+                        },
+                        {
+                            field: 'Location1',
+                            title: '@Html.DisplayNameFor(model => model.Location1)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '起点',
+                                    required: false,
+                                    validType: 'length[0,120]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'Location2',
+                            title: '@Html.DisplayNameFor(model => model.Location2)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '终点',
+                                    required: false,
+                                    validType: 'length[0,120]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'Requirements',
+                            title: '@Html.DisplayNameFor(model => model.Requirements)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '额外要求',
+                                    required: false,
+                                    validType: 'length[0,120]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'TimePeriod',
+                            title: '@Html.DisplayNameFor(model => model.TimePeriod)',
+                            width: 100,
+                            align: 'right',
+                            editor: {
+                                type: 'numberbox',
+                                options: {
+                                    prompt: '时效(小时)',
+                                    required: true
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'CarType',
+                            title: '@Html.DisplayNameFor(model => model.CarType)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '车辆类型',
+                                    required: true,
+                                    validType: 'length[0,20]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+
+                        {
+                            field: 'VehicleProperty',
+                            title: '@Html.DisplayNameFor(model => model.VehicleProperty)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '车辆性质',
+                                    required: true,
+                                    validType: 'length[0,20]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+
+
+                        {
+                            field: 'ECOMark',
+                            title: '@Html.DisplayNameFor(model => model.ECOMark)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '环保标志',
+                                    required: true
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'StrLoadWeight',
+                            title: '@Html.DisplayNameFor(model => model.StrLoadWeight)',
+                            width: 100,
+                            align: 'right',
+                            editor: {
+                                type: 'numberbox',
+                                options: {
+                                    prompt: '额定载重',
+                                    required: false
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+
+                        {
+                            field: 'LoadVolume',
+                            title: '@Html.DisplayNameFor(model => model.LoadVolume)',
+                            width: 100,
+                            align: 'right',
+                            editor: {
+                                type: 'numberbox',
+                                options: {
+                                    prompt: '额定体积',
+                                    required: false
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'CarriageSize',
+                            title: '@Html.DisplayNameFor(model => model.CarriageSize)',
+                            width: 100,
+                            align: 'right',
+                            editor: {
+                                type: 'numberbox',
+                                options: {
+                                    prompt: '车厢尺寸(尺)',
+                                    required: false
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'Driver',
+                            title: '@Html.DisplayNameFor(model => model.Driver)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '主驾司机',
+                                    required: true,
+                                    validType: 'length[0,20]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'DriverPhone',
+                            title: '@Html.DisplayNameFor(model => model.DriverPhone)',
+                            width: 140,
+                            editor: {
+                                type: 'textbox',
+                                options: {
+                                    prompt: '主驾司机电话',
+                                    required: true,
+                                    validType: 'length[0,50]'
+                                }
+                            },
+                            sortable: true,
+                            resizable: true
+                        },
+                        {
+                            field: 'CompanyId',
+                            title: '@Html.DisplayNameFor(model => model.CompanyId)',
+                            width: 160,
+                            sortable: true,
+                            resizable: true,
+                            formatter: function (value, row) {
+                                return row.CompanyName;
+                            },
+                            editor: {
+                                type: 'combobox',
+                                options: {
+                                    prompt: '所属公司',
+                                    mode: 'remote',
+                                    valueField: 'Id',
+                                    textField: 'Name',
+                                    method: 'get',
+                                    url: '/Vehicles/GetCompanies',
+                                    required: true
+                                }
+                            }
+                        },
+
+
+                    ]
+                ]
+
+            });
+
+            $dg.datagrid("enableFilter", [{
+                field: "Status",
+                type: "orderstatusfilter",
+                
+            },
+
+            {
+                field: "Id",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "CarType",
+                type: "cartypefilter"
+            },
+            {
+                field: "CarType",
+                type: "cartypefilter"
+            },
+            {
+                field: "VehicleProperty",
+                type: "vehiclepropertyfilter"
+            },
+            {
+                field: "ECOMark",
+                type: "ecomarkfilter"
+            },
+            {
+                field: "Axles",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "StrLoadWeight",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "LoadWeight",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "LoadVolume",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "CarriageSize",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "VehLongSize",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "AVGECON",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "AVGECONScale",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "RoadKM",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "RoadHours",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "RoadKMScale",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "RPM",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "PurchasedAmount",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "VehLong",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "VehWide",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "VehHigh",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "ServiceLife",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "MaintainKM",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "MaintainMonth",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "VehTailBoardLife",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "VehTailBoardAmount",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "DrLicenseRatedUsers",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "DrLicenseVehWeight",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "DrLicenseDevWeight",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "DrLicenseNetWeight",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "DrLicenseNetVolume",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "DrLicenseVehWide",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "DrLicenseVehHigh",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "DrLicenseVehLong",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "InsTrafficPolicyAmount",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "InsThirdPartyAmount",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+            {
+                field: "InsThirdPartyLogisticsAmount",
+                type: "numberbox",
+                op: ['equal', 'notequal', 'less', 'lessorequal', 'greater', 'greaterorequal']
+            },
+
+
+            {
+                field: "UsingDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "UsingDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "PurchasedDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "PurchasedDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "MaintainDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "MaintainDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "DrLicenseRegistrationDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "DrLicenseRegistrationDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "DrLicensePubDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "DrLicensePubDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "DrLicenseScrapedDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "DrLicenseScrapedDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "LoLicensePubDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "LoLicensePubDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "LoLicenseValidDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "LoLicenseValidDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "LoLicenseCheckDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "LoLicenseCheckDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "InsThirdPartyVaildateDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "InsThirdPartyVaildateDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+            {
+                field: "InsThirdPartyLogisticsVaildateDate",
+                type: "dateRange",
+                options: {
+                    onChange: function (value) {
+                        $dg.datagrid("addFilterRule", {
+                            field: "InsThirdPartyLogisticsVaildateDate",
+                            op: "between",
+                            value: value
+                        });
+
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+
+            {
+                field: "CompanyId",
+                type: "combobox",
+                options: {
+                    valueField: "Id",
+                    textField: "Name",
+                    method: "get",
+                    url: "/Vehicles/GetCompanies",
+                    onChange: function (value) {
+                        if (value == "") {
+                            $dg.datagrid("removeFilterRule", "CompanyId");
+                        } else {
+                            $dg.datagrid("addFilterRule", {
+                                field: "CompanyId",
+                                op: "equal",
+                                value: value
+                            });
+                        }
+                        $dg.datagrid("doFilter");
+                    }
+                }
+            },
+
+            ]);
+        }
+ var editIndex = undefined;
+
+ function reload() {
+      
+         $dg.datagrid("reload");
+     
+ }
+
+
+
+ function onClickCell(index, field) {
+     var _operates = ["_operate1", "_operate2", "_operate3", "ck"]
+     if ($.inArray(field, _operates) >= 0) {
+         return;
+     }
+
+ }
+
+
+
+
+
+
+
+ function reject() {
+     $dg.datagrid("rejectChanges");
+     editIndex = undefined;
+ }
+
+
+
+
+ //-----------------------------------------------------
+ //datagrid onSelect
+ //-----------------------------------------------------
+        function showdetailsformatter(value, row, index) {
+            if (!row.Footer) {
+                if (row.Status == "空车")
+                    return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ' )" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 接单 </a>';
+                if (row.Status == "接单" || row.Status == "发车" || row.Status == "提货" ||
+                    row.Status == "在途" || row.Status == "异常"
+                )
+                    return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ')" class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 跟踪 </a>';
+            }
+ }
+ //弹出明细信息
+        function showDetailsWindow(id, index) {
+            var row = $dg.datagrid('getRows')[index];
+     
+            $('#myModal').modal('toggle');
+            $('#PlateNumber').val(row.PlateNumber);
+            $('#PlateNumber').prop('readonly', 'readonly');
+            $('#VehicleId').val(row.Id.toString());
+            $('#Driver').val(row.Driver);
+            $('#DriverPhone').val(row.DriverPhone);
+            if (row.OrderNo != null && row.ExternalNo != null && row.OrderId != null) {
+                //console.log(row.ShipperId,row.OrderId);
+                $('#ShipperId').val(row.ShipperId);
+                $('#ShipperId').prop('readonly', 'readonly');
+                $('#Id').val(row.OrderId.toString());
+                $('#OrderNo').val(row.OrderNo);
+                $('#ExternalNo').val(row.ExternalNo);
+                $('#OrderDate').val(row.usingDate);
+                $('#Location1').val(row.Location1);
+                $('#Location2').val(row.Location2);
+                $('#Requirements').val(row.Requirements);
+                $('#TimePeriod').val(row.TimePeriod);
+               
+                if (row.Packages != null) {
+                    $('#Packages').val(row.Packages.toString());
+                    $('#Pallets').val(row.Pallets.toString());
+                    $('#Cartons').val(row.Cartons.toString());
+                   
+                    $('#inputloadnum').val(row.Packages + "/" + row.Pallets + "/" + row.Cartons);
+                } else {
+                    $('#Packages').val("");
+                    $('#Pallets').val("");
+                    $('#Cartons').val("");
+                    $('#Volume').val("");
+                    $('#Weight').val("");
+                    $('#inputloadnum').val("");
+                }
+                if (row.Volume != null) {
+                    $('#Volume').val(row.Volume.toString());
+                    $('#Weight').val(row.Weight.toString());
+                    $('#inputloadsize').val(row.Volume + "/" + row.Weight);
+                } else {
+                    $('#Volume').val("");
+                    $('#Weight').val("");
+                    $('#inputloadsize').val("");
+                }
+                $('#doshippingbtn').prop('disabled', true);
+
+                //console.log($('button[name="state"]'));
+                $('button[name="state"]').prop('disabled', false);
+                $.get('/TransactionHistories/GetByOrderNo?orderno=' + row.OrderNo, function (data) {
+                    //console.log(data);
+                    $.each(data, function (index, item) {
+                        $.each($('button[name="state"]'), function (i, elment) {
+                            
+                            var txt = $.trim($(elment).text());
+                            //console.log(txt, item.Status);
+                            if (txt == item.Status) {
+                                $(elment).text(item.Status + "(" + moment(item.TransactioDateTime).format('MM/DD HH:mm') + ")")
+                                if (txt != "异常") {
+                                    $(elment).addClass("btn-success");
+                                    $(elment).removeClass("btn-default");
+                                }
+                                $(elment).prop('disabled', true);
+                            }
+                        });
+                    });
+                    
+                });
+
+               
+
+            } else {
+                $('button[name="state"]').prop('disabled', true);
+                $('#Id').val("-1");
+                $('#OrderNo').val("");
+                $('#ExternalNo').val("");
+                $('#OrderDate').val("");
+                $('#Location1').val("");
+                $('#Location2').val("");
+                $('#Requirements').val("");
+                $('#TimePeriod').val(48);
+                $('#inputloadnum').val("");
+                $('#inputloadsize').val("");
+                $('#doshippingbtn').prop('disabled', false);
+            }
+
+            //$.getJSON('/Vehicles/PopupEdit/' + id, function(data, status, xhr) {
+            //    //console.log(data);
+            //    $('#detailswindow').window('open');
+            //    loadData(id, data);
+
+
+            //});
+
+        }
+
+
+
+        //更新订单状态
+        $('button[name="state"]').click(function () {
+            //do stuff
+            $form.bootstrapValidator('validate');
+            if ($form.data('bootstrapValidator').isValid()) {
+                var statetext = $.trim($(this).text())
+                //console.log(statetext);
+                var data = $('#shippingform').serializeJSON();
+                data.Status = statetext;
+                //console.log(data);
+                $.post('/Orders/UpdateStatus', data, function (data) {
+                    if (data.success) {
+                        $('#myModal').modal('toggle');
+                        reload();
+                    } else {
+                        $.messager.alert("异常", data.err);
+                    }
+                });
+            }
+        });
+
+    </script>
+    <script src="~/Scripts/jquery.filerupload.js"></script>
+}
+
+

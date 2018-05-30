@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="~/content/landing/images/favicon.ico">
 
     <!-- Site Title -->
-    <title>Starto - Responsive Landing Template</title>
+    <title>无车承运人平台-预览版上线</title>
 
     <!-- Google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
@@ -86,17 +86,27 @@
 
 
                 </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right ml-auto">
+                        <li class="nav-item">
+                            <a href="#user" class="nav-link"><b>@User.Identity.Name</b></a>
+                        </li>
+                    </ul>
+                        }
+                        else
+                        {
+                        <ul class="nav navbar-nav navbar-right ml-auto">
+                            <li class="nav-item">
+                                <a href="#" data-toggle="modal" data-target="#login-modal" class="nav-link">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" data-toggle="modal" data-target="#register-modal" class="btn btn-inverse btn-bordered navbar-btn nav-link">Signup</a>
+                            </li>
+                        </ul>
+                        }
 
-                <ul class="nav navbar-nav navbar-right ml-auto">
-                    <li class="nav-item">
-                        <a href="#" data-toggle="modal" data-target="#login-modal" class="nav-link">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" data-toggle="modal" data-target="#register-modal" class="btn btn-inverse btn-bordered navbar-btn nav-link">Signup</a>
-                    </li>
-                </ul>
-
-            </div>
+                </div>
         </div>
     </nav>
     <!-- END NAVBAR -->

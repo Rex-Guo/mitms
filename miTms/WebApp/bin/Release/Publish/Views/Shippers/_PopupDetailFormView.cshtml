@@ -1,0 +1,422 @@
+﻿﻿@model WebApp.Models.Shipper
+ <!-- 输出form表单界面 -->
+ <div id="detailswindow" hidden="hidden" class="easyui-window" 
+      title="明细数据" 
+      data-options="modal:true,
+                    closed:true,
+                    iconcls:'icon-menu'
+                    " style="width:960px;height:520px">
+    <form id="shipper_form" class="easyui-form form-horizontal" method="post" data-options="novalidate:true">
+  @Html.AntiForgeryToken()
+ <table class="table table-bordered">
+    <thead>
+                <tr>
+                    <td colspan="6">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" onclick="saveitem()">
+                                <i class="fa fa-floppy-o"></i>
+                                保存
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <i class="fa fa-pencil-square-o"></i>
+                                操作1
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <i class="fa fa-pencil-square-o"></i>
+                                操作2
+                            </button>
+                            <button type="button" class="btn btn-default" onclick="cancelitem()">
+                                <i class="fa fa-refresh"></i>
+                                取消
+                            </button>
+                            <button type="button" class="btn btn-default" onclick="refreshitem()">
+                                <i class="fa fa-refresh"></i>
+                                刷新
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+	    <tr>
+      	   <td class="control-label">   @Html.DisplayNameFor(model => model.Id)  </td>
+	   <td> 
+			   			   			<input id="@Html.IdFor(model => model.Id)" 
+                   name="@Html.NameFor(model => model.Id)" 
+                   value="@Html.ValueFor(model => model.Id)"
+                   tabindex="0"   
+                   class="easyui-numberbox" type="text" 
+                   data-options="prompt:'Id',
+                                 readonly:true,
+                                width:200,
+                                 label:'',required:true " />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.Name)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.Name)" 
+				   name="@Html.NameFor(model => model.Name)" 
+				   value="@Html.ValueFor(model => model.Name)"
+				   tabindex="1" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'托运人',
+								 label:'',
+                                width:200,
+								 required:true ,validType:'length[0,256]'" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.Type)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.Type)"
+				   name="@Html.NameFor(model => model.Type)" 
+				   value="@Html.ValueFor(model => model.Type)"
+				   tabindex="2" 
+				   class="easyui-numberbox" 
+				   type="text" 
+				   data-options="prompt:'托运人类别',
+								 label:'',
+                                width:200,
+								 required:true " />
+              				   </td>
+	   	   </tr>
+	   	    <tr>
+      	   <td class="control-label">   @Html.DisplayNameFor(model => model.ContactName)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.ContactName)" 
+				   name="@Html.NameFor(model => model.ContactName)" 
+				   value="@Html.ValueFor(model => model.ContactName)"
+				   tabindex="3" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'联系人',
+								 label:'',
+                                width:200,
+								 required:true ,validType:'length[0,50]'" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.ContactIdCard)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.ContactIdCard)" 
+				   name="@Html.NameFor(model => model.ContactIdCard)" 
+				   value="@Html.ValueFor(model => model.ContactIdCard)"
+				   tabindex="4" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'联系人身份证号',
+								 label:'',
+                                width:200,
+								 required:true ,validType:'length[0,18]'" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.ContactMobileTelephoneNumber)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.ContactMobileTelephoneNumber)" 
+				   name="@Html.NameFor(model => model.ContactMobileTelephoneNumber)" 
+				   value="@Html.ValueFor(model => model.ContactMobileTelephoneNumber)"
+				   tabindex="5" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'联系人电话',
+								 label:'',
+                                width:200,
+								 required:true ,validType:'length[0,18]'" />
+			  				   </td>
+	   	   </tr>
+	   	    <tr>
+      	   <td class="control-label">   @Html.DisplayNameFor(model => model.RegisteredAddress)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.RegisteredAddress)" 
+				   name="@Html.NameFor(model => model.RegisteredAddress)" 
+				   value="@Html.ValueFor(model => model.RegisteredAddress)"
+				   tabindex="6" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'注册地',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,256]'" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.RegisteredCapital)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.RegisteredCapital)"
+				   name="@Html.NameFor(model => model.RegisteredCapital)" 
+				   value="@Html.ValueFor(model => model.RegisteredCapital)"
+				   tabindex="7" 
+				   class="easyui-numberbox" 
+				   type="text" 
+				   data-options="prompt:'注册资金',
+								 label:'',
+                                width:200,
+								 required:true " />
+              				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.UnifiedSocialCreditldentifier)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.UnifiedSocialCreditldentifier)" 
+				   name="@Html.NameFor(model => model.UnifiedSocialCreditldentifier)" 
+				   value="@Html.ValueFor(model => model.UnifiedSocialCreditldentifier)"
+				   tabindex="8" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'统一社会信用代码 ',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,18]'" />
+			  				   </td>
+	   	   </tr>
+	   	    <tr>
+      	   <td class="control-label">   @Html.DisplayNameFor(model => model.UnifiedsocialDatetime)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.UnifiedsocialDatetime)" 
+			       name="@Html.NameFor(model => model.UnifiedsocialDatetime)" 
+				   tabindex="9" 
+				   class="easyui-datebox" 
+				   type="text" 
+				   value="@Html.ValueFor(model => model.UnifiedsocialDatetime)"
+				   data-options="prompt:'统一社会信用代码注册时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.Description)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.Description)" 
+				   name="@Html.NameFor(model => model.Description)" 
+				   value="@Html.ValueFor(model => model.Description)"
+				   tabindex="10" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'描述',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,512]'" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.LogoPicture)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.LogoPicture)" 
+				   name="@Html.NameFor(model => model.LogoPicture)" 
+				   value="@Html.ValueFor(model => model.LogoPicture)"
+				   tabindex="11" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'图片路径',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,256]'" />
+			  				   </td>
+	   	   </tr>
+	   	    <tr>
+      	   <td class="control-label">   @Html.DisplayNameFor(model => model.CompanyId)  </td>
+	   <td> 
+			   			<input id="@Html.IdFor(model => model.CompanyId)"
+			       name="@Html.NameFor(model => model.CompanyId)"
+				   value="@Html.ValueFor(model => model.CompanyId)"
+				   class="easyui-combobox" data-options="
+						prompt:'所属公司' ,
+						label:'' ,
+                       width:200,
+						required:true ,
+						valueField: 'Id',
+						textField: 'Name' ,
+						url: '/Shippers/GetCompanies' ,
+						onSelect: function(item){
+						//console.log(item);
+				}">
+				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.RegistrationDatetime)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.RegistrationDatetime)" 
+			       name="@Html.NameFor(model => model.RegistrationDatetime)" 
+				   tabindex="13" 
+				   class="easyui-datebox" 
+				   type="text" 
+				   value="@Html.ValueFor(model => model.RegistrationDatetime)"
+				   data-options="prompt:'注册日期',
+								 label:'',
+                                width:200,
+								 required:true,
+								 formatter:dateformatter" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.UpdateTimeDatetime)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.UpdateTimeDatetime)" 
+			       name="@Html.NameFor(model => model.UpdateTimeDatetime)" 
+				   tabindex="14" 
+				   class="easyui-datebox" 
+				   type="text" 
+				   value="@Html.ValueFor(model => model.UpdateTimeDatetime)"
+				   data-options="prompt:'注册日期',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+			  				   </td>
+	   	   </tr>
+	   	    <tr>
+      	   <td class="control-label">   @Html.DisplayNameFor(model => model.IsBlaclkList)  </td>
+	   <td> 
+			   			  			   <label class="checkbox">
+                 <input id="@Html.IdFor(model => model.IsBlaclkList)"
+                       name="@Html.NameFor(model => model.IsBlaclkList)"
+                       value="true" @(Model.IsBlaclkList ? "checked=\"checked\"" : "")
+                       tabindex="6"
+                       type="checkbox" />
+                <i></i>
+            </label>
+              				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.IsDeleteFlag)  </td>
+	   <td> 
+			   			  			   <label class="checkbox">
+                 <input id="@Html.IdFor(model => model.IsDeleteFlag)"
+                       name="@Html.NameFor(model => model.IsDeleteFlag)"
+                       value="true" @(Model.IsDeleteFlag ? "checked=\"checked\"" : "")
+                       tabindex="6"
+                       type="checkbox" />
+                <i></i>
+            </label>
+              				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.SynchronizationTime)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.SynchronizationTime)" 
+			       name="@Html.NameFor(model => model.SynchronizationTime)" 
+				   tabindex="17" 
+				   class="easyui-datebox" 
+				   type="text" 
+				   value="@Html.ValueFor(model => model.SynchronizationTime)"
+				   data-options="prompt:'同步时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+			  				   </td>
+	   	   </tr>
+	   	    <tr>
+      	   <td class="control-label">   @Html.DisplayNameFor(model => model.IsException)  </td>
+	   <td> 
+			   			  			   <label class="checkbox">
+                 <input id="@Html.IdFor(model => model.IsException)"
+                       name="@Html.NameFor(model => model.IsException)"
+                       value="true" @(Model.IsException ? "checked=\"checked\"" : "")
+                       tabindex="6"
+                       type="checkbox" />
+                <i></i>
+            </label>
+              				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.CreatedDate)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.CreatedDate)" 
+			       name="@Html.NameFor(model => model.CreatedDate)" 
+				   tabindex="19" 
+				   class="easyui-datebox" 
+				   type="text" 
+				   value="@Html.ValueFor(model => model.CreatedDate)"
+				   data-options="prompt:'创建时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.CreatedBy)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.CreatedBy)" 
+				   name="@Html.NameFor(model => model.CreatedBy)" 
+				   value="@Html.ValueFor(model => model.CreatedBy)"
+				   tabindex="20" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'创建用户',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,20]'" />
+			  				   </td>
+	   	   </tr>
+	   	    <tr>
+      	   <td class="control-label">   @Html.DisplayNameFor(model => model.LastModifiedDate)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.LastModifiedDate)" 
+			       name="@Html.NameFor(model => model.LastModifiedDate)" 
+				   tabindex="21" 
+				   class="easyui-datebox" 
+				   type="text" 
+				   value="@Html.ValueFor(model => model.LastModifiedDate)"
+				   data-options="prompt:'最后更新时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+			  				   </td>
+	   	   <td class="control-label">   @Html.DisplayNameFor(model => model.LastModifiedBy)  </td>
+	   <td> 
+			   			  			<input id="@Html.IdFor(model => model.LastModifiedBy)" 
+				   name="@Html.NameFor(model => model.LastModifiedBy)" 
+				   value="@Html.ValueFor(model => model.LastModifiedBy)"
+				   tabindex="22" 
+				   class="easyui-textbox" 
+				   type="text" 
+				   data-options="prompt:'最后更新用户',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,20]'" />
+			  				   </td>
+	   	    		<td></td> <td></td>
+		     </tr>
+	    <tfoot>
+        <tr>
+        <tr>
+    </tfoot>
+</table>
+
+
+<!--输出form表单界面-->
+<!--========================================================================================-->
+ </form>
+</div>
+
+
+<script type="text/javascript">
+    //load data by foreign key
+    function loadData(id,data){
+         $('#shipper_form').form('load', data);
+             }
+    var $editform = $('#shipper_form');
+    //save item
+    function saveitem() {
+         
+        if ($editform.form('enableValidation').form('validate')) {
+            var shipper = $editform.serializeJSON();
+            var token = $('input[name="__RequestVerificationToken"]', $editform).val();
+
+            $.ajax({
+                    type: "POST",
+                    url: "/Shippers/Edit",
+                    data: {
+                        __RequestVerificationToken: token,
+                        shipper:shipper
+                    },
+                    dataType: 'json',
+                    contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                })
+                .done(function (response) {
+                    if (response.success) {
+                        $.messager.alert("提示", "保存成功！");
+                    } else {
+                        $.messager.alert("错误", "保存失败！" + response.err, "error");
+                    }
+                    })
+                .fail(function (response) {
+                        $.messager.alert("错误", "保存失败！", "error");
+                    });
+        }
+    }
+    // cancel
+    function cancelitem() {
+        $('#detailswindow').window('close');
+    }
+    // reload
+    function refreshitem() {
+        $('#detailswindow').window('close');
+    }
+    
+
+
+    
+
+</script>
+
+

@@ -22,3 +22,6 @@ D:\github\mitms\miTms\Source\Repository.Pattern\obj\Release\Repository.Pattern.c
 D:\github\mitms\miTms\Source\Repository.Pattern\obj\Release\Repository.Pattern.csproj.CopyComplete
 D:\github\mitms\miTms\Source\Repository.Pattern\obj\Release\Repository.Pattern.dll
 D:\github\mitms\miTms\Source\Repository.Pattern\obj\Release\Repository.Pattern.pdb
+D:\开源项目\mitms\miTms\Source\Repository.Pattern\bin\Release\TrackableEntities.Common.dll
+D:\开源项目\mitms\miTms\Source\Repository.Pattern\bin\Release\TrackableEntities.Common.xml
+D:\开源项目\mitms\miTms\Source\Repository.Pattern\obj\Release\Repository.Pattern.csproj.CopyComplete
