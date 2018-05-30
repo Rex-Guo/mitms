@@ -16,7 +16,7 @@ namespace WebApp.Models
         public string Name { get; set; }
         [Display(Name = "性别")]
         public int Gender { get; set; }
-        [Display(Name = "性别")]
+        [Display(Name = "身份证号")]
         [MaxLength(18)]
         public string IdentityDocumentNumber { get; set; }
         [Display(Name = "移动电话")]

@@ -9,10 +9,8 @@
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
             <h1 class="page-title txt-color-blueDark">
                 <i class="fa fa-table fa-fw "></i>
-                @{ 
-                  //TODO:fix quick navigation path
-                 }
-                路径
+              
+                组织架构
                 <span>
                     >
                   承运人信息
@@ -59,15 +57,13 @@
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body no-padding">
-                             @{ 
-                                //TODO:fix datagrid view alert-warning messages
-                              }
+                  
                             <div class="alert alert-warning no-margin fade in">
                                 <button class="close" data-dismiss="alert">
                                     ×
                                 </button>
                                 <i class="fa-fw fa fa-info"></i>
-                                A combined table effect with all classes mentioned above added to  
+                                 所有注册的实际承运人都需要经过征信认证才可以接单
                             </div>
 	 <!--begin datagrid-content -->
 	 <div class="table-responsive">
@@ -342,9 +338,10 @@
               field:'Type', 
               title:'@Html.DisplayNameFor(model => model.Type)', 
               width:100, 
-              align:'right',
+                                                                     align: 'right',
+                                                                     formatter: ptypeformatter,
               editor:{
-                      type:'numberbox',
+                      type:'ptypeeditor',
                       options:{prompt:'承运人类别', required:true   } 
                      },
               sortable:true,
@@ -510,7 +507,8 @@
               formatter:dateformatter 
              },
 				                    							 {
-               field:'IsBlaclkList', 
+                                                                     field: 'IsBlaclkList', 
+                                                                     formatter: booleanformatter,
                title:'@Html.DisplayNameFor(model => model.IsBlaclkList)', 
                width:120, 
                align:'center',
@@ -526,7 +524,8 @@
                 resizable:true 
               },
 				                    							 {
-               field:'IsDeleteFlag', 
+                                                                     field: 'IsDeleteFlag', 
+                                                                     formatter: booleanformatter,
                title:'@Html.DisplayNameFor(model => model.IsDeleteFlag)', 
                width:120, 
                align:'center',
@@ -555,7 +554,8 @@
               formatter:dateformatter 
              },
 				                    							 {
-               field:'IsException', 
+                                                                     field: 'IsException', 
+                                                                     formatter: booleanformatter,
                title:'@Html.DisplayNameFor(model => model.IsException)', 
                width:120, 
                align:'center',
@@ -582,8 +582,8 @@
 				  },
 		   				{
 					  field: "Type",
-					  type: "numberbox",
-					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+					  type: "ptypefilter",
+					  
 				  },
 		   				{
 					  field: "RegisteredCapital",

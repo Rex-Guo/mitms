@@ -2434,6 +2434,84 @@ freighttypeeditor: {
         }
   }  
 });
+//-------性别---------//
+var genderfiltersource = [{ value: '', text: 'All'}];
+var genderdatasource = [];
+genderfiltersource.push({ value: '1',text:'男'  });
+genderdatasource.push({ value: '1',text:'男'  });
+genderfiltersource.push({ value: '2',text:'女'  });
+genderdatasource.push({ value: '2',text:'女'  });
+//for datagrid Gender field  formatter
+function genderformatter(value, row, index) { 
+     if (value === null || value === '' || value === undefined) 
+     { 
+         return "";
+     } 
+     for (var i = 0; i < genderdatasource.length; i++) {
+      var item = genderdatasource[i];
+     if (item.value === value.toString())
+     {
+         return item.text;
+     }
+     };
+ return value;
+ } 
+//for datagrid   Gender  field filter 
+$.extend($.fn.datagrid.defaults.filters, {
+genderfilter: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+             panelHeight: "auto",
+             data: genderfiltersource
+         }
+         $.extend(options, myoptions);
+         input.combobox(options);
+         return input;
+      },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+     },
+     getValue: function(target) {
+         return $(target).combobox('getValue');
+     },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+     },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+     }
+   }
+});
+//for datagrid   Gender   field  editor 
+$.extend($.fn.datagrid.defaults.editors, {
+gendereditor: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+         panelHeight: "auto",
+         data: genderdatasource,
+         valueField: 'value',
+         textField: 'text'
+     }
+    $.extend(options, myoptions);
+           input.combobox(options);
+           return input;
+       },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+        },
+     getValue: function(target) {
+        return $(target).combobox('getValue');
+        },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+         },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+        }
+  }  
+});
 //-------货物类型---------//
 var goodstypefiltersource = [{ value: '', text: 'All'}];
 var goodstypedatasource = [];
@@ -3569,6 +3647,8 @@ var orderstatusfiltersource = [{ value: '', text: 'All'}];
 var orderstatusdatasource = [];
 orderstatusfiltersource.push({ value: '入仓',text:'入仓'  });
 orderstatusdatasource.push({ value: '入仓',text:'入仓'  });
+orderstatusfiltersource.push({ value: '关闭',text:'关闭'  });
+orderstatusdatasource.push({ value: '关闭',text:'关闭'  });
 orderstatusfiltersource.push({ value: '卸货',text:'卸货'  });
 orderstatusdatasource.push({ value: '卸货',text:'卸货'  });
 orderstatusfiltersource.push({ value: '发车',text:'发车'  });
@@ -4197,6 +4277,84 @@ pricetypeeditor: {
         var myoptions = {
          panelHeight: "auto",
          data: pricetypedatasource,
+         valueField: 'value',
+         textField: 'text'
+     }
+    $.extend(options, myoptions);
+           input.combobox(options);
+           return input;
+       },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+        },
+     getValue: function(target) {
+        return $(target).combobox('getValue');
+        },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+         },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+        }
+  }  
+});
+//-------个人/企业---------//
+var ptypefiltersource = [{ value: '', text: 'All'}];
+var ptypedatasource = [];
+ptypefiltersource.push({ value: '1',text:'个人'  });
+ptypedatasource.push({ value: '1',text:'个人'  });
+ptypefiltersource.push({ value: '2',text:'企业'  });
+ptypedatasource.push({ value: '2',text:'企业'  });
+//for datagrid PType field  formatter
+function ptypeformatter(value, row, index) { 
+     if (value === null || value === '' || value === undefined) 
+     { 
+         return "";
+     } 
+     for (var i = 0; i < ptypedatasource.length; i++) {
+      var item = ptypedatasource[i];
+     if (item.value === value.toString())
+     {
+         return item.text;
+     }
+     };
+ return value;
+ } 
+//for datagrid   PType  field filter 
+$.extend($.fn.datagrid.defaults.filters, {
+ptypefilter: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+             panelHeight: "auto",
+             data: ptypefiltersource
+         }
+         $.extend(options, myoptions);
+         input.combobox(options);
+         return input;
+      },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+     },
+     getValue: function(target) {
+         return $(target).combobox('getValue');
+     },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+     },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+     }
+   }
+});
+//for datagrid   PType   field  editor 
+$.extend($.fn.datagrid.defaults.editors, {
+ptypeeditor: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+         panelHeight: "auto",
+         data: ptypedatasource,
          valueField: 'value',
          textField: 'text'
      }

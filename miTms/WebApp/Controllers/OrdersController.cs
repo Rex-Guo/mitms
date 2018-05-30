@@ -420,6 +420,8 @@ namespace WebApp.Controllers
             ViewBag.TimePeriod = new SelectList(coderep.Queryable().Where(x=>x.CodeType== "TimePeriod").OrderBy(n => n.Code).ToList(), "Code", "Text");
             return View();
         }
+
+        
         //生存派车单
         public async Task<ActionResult> DoShippingOrder(Order order) {
 
@@ -465,6 +467,35 @@ namespace WebApp.Controllers
                 return Json(new { success = false, err = modelStateErrors }, JsonRequestBehavior.AllowGet);
 
             }
+        }
+        //POD查询
+        public ActionResult Pod()
+        {
+            var customrep = this._unitOfWork.RepositoryAsync<Shipper>();
+            ViewBag.Shipper = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
+            var coderep = this._unitOfWork.RepositoryAsync<CodeItem>();
+            ViewBag.TimePeriod = new SelectList(coderep.Queryable().Where(x => x.CodeType == "TimePeriod").OrderBy(n => n.Code).ToList(), "Code", "Text");
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> DoPod(int[] id) {
+
+            this._orderService.DoPod(id);
+            await this._unitOfWork.SaveChangesAsync();
+            return Json(new { success = true}, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Bidding() {
+            var customrep = this._unitOfWork.RepositoryAsync<Shipper>();
+            ViewBag.Shipper = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
+            var coderep = this._unitOfWork.RepositoryAsync<CodeItem>();
+            ViewBag.TimePeriod = new SelectList(coderep.Queryable().Where(x => x.CodeType == "TimePeriod").OrderBy(n => n.Code).ToList(), "Code", "Text");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DoBidding(int[] id)
+        {
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
         //导出Excel
         [HttpPost]

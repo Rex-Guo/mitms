@@ -297,6 +297,23 @@ namespace WebApp.Services
             item.TransactioDateTime = DateTime.Now;
             this.historyService.Insert(item);
         }
+
+        public void DoPod(int[] id)
+        {
+            var orders = this.Queryable().Where(x => id.Contains(x.Id)).ToList();
+            foreach (var order in orders) {
+                order.Status = "关闭";
+                order.CloseDate = DateTime.Now;
+                this.Update(order);
+                TransactionHistory item = new TransactionHistory();
+                item.InputUser = order.InputUser;
+                item.OrderNo = order.OrderNo;
+                item.PlateNumber = order.PlateNumber;
+                item.Status = order.Status;
+                item.TransactioDateTime = order.CloseDate.Value;
+                this.historyService.Insert(item);
+            }
+        }
     }
 }
 
