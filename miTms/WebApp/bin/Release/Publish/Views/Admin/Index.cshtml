@@ -350,8 +350,8 @@ else
                                         <section class="col col-6">
                                             <label class="select">
 
-                                                @Html.DropDownList("CustomerId", (IEnumerable
-<SelectListItem>)ViewBag.Customer, new { @class = "form-control" })
+                                                @Html.DropDownList("ShipperId", (IEnumerable
+<SelectListItem>)ViewBag.Shipper, new { @class = "form-control" })
                                                 <i></i>
                                             </label>
                                         </section>
@@ -870,7 +870,7 @@ else
                         required: true,
                         maxlength: 30
                     },
-                    CustomerId: {
+                    ShipperId: {
                         required: true
                     },
                     Location1: {
