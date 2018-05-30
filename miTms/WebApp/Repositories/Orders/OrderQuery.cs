@@ -29,7 +29,7 @@ namespace WebApp.Repositories
         public OrderQuery WithAnySearch(string search)
         {
             if (!string.IsNullOrEmpty(search))
-                And( x =>  x.Id.ToString().Contains(search) || x.OrderNo.Contains(search) || x.ExternalNo.Contains(search) || x.OrderDate.ToString().Contains(search) || x.Location1.Contains(search) || x.Location2.Contains(search) || x.Requirements.Contains(search) || x.PlanDeliveryDate.ToString().Contains(search) || x.TimePeriod.ToString().Contains(search) || x.VehicleId.ToString().Contains(search) || x.PlateNumber.Contains(search) || x.Driver.Contains(search) || x.DriverPhone.Contains(search) || x.Packages.ToString().Contains(search) || x.Weight.ToString().Contains(search) || x.Volume.ToString().Contains(search) || x.Cartons.ToString().Contains(search) || x.Pallets.ToString().Contains(search) || x.Status.Contains(search) || x.DeliveryDate.ToString().Contains(search) || x.CloseDate.ToString().Contains(search) || x.CustomerId.ToString().Contains(search) );
+                And( x =>  x.Id.ToString().Contains(search) || x.OrderNo.Contains(search) || x.ExternalNo.Contains(search) || x.OrderDate.ToString().Contains(search) || x.Location1.Contains(search) || x.Location2.Contains(search) || x.Requirements.Contains(search) || x.PlanDeliveryDate.ToString().Contains(search) || x.TimePeriod.ToString().Contains(search) || x.VehicleId.ToString().Contains(search) || x.PlateNumber.Contains(search) || x.Driver.Contains(search) || x.DriverPhone.Contains(search) || x.Packages.ToString().Contains(search) || x.Weight.ToString().Contains(search) || x.Volume.ToString().Contains(search) || x.Cartons.ToString().Contains(search) || x.Pallets.ToString().Contains(search) || x.Status.Contains(search) || x.DeliveryDate.ToString().Contains(search) || x.CloseDate.ToString().Contains(search) || x.ShipperId.ToString().Contains(search) );
             return this;
         }
 
@@ -447,30 +447,30 @@ namespace WebApp.Repositories
 				   
 				    				
 					
-				    						if (rule.field == "CustomerId" && !string.IsNullOrEmpty(rule.value) && rule.value.IsInt())
+				    						if (rule.field == "ShipperId" && !string.IsNullOrEmpty(rule.value) && rule.value.IsInt())
 						{
 							int val = Convert.ToInt32(rule.value);
 							switch (rule.op) {
                             case "equal":
-                                And(x => x.CustomerId == val);
+                                And(x => x.ShipperId == val);
                                 break;
                             case "notequal":
-                                And(x => x.CustomerId != val);
+                                And(x => x.ShipperId != val);
                                 break;
                             case "less":
-                                And(x => x.CustomerId < val);
+                                And(x => x.ShipperId < val);
                                 break;
                             case "lessorequal":
-                                And(x => x.CustomerId <= val);
+                                And(x => x.ShipperId <= val);
                                 break;
                             case "greater":
-                                And(x => x.CustomerId > val);
+                                And(x => x.ShipperId > val);
                                 break;
                             case "greaterorequal" :
-                                And(x => x.CustomerId >= val);
+                                And(x => x.ShipperId >= val);
                                 break;
                             default:
-                                And(x => x.CustomerId == val);
+                                And(x => x.ShipperId == val);
                                 break;
                         }
 						}
@@ -954,30 +954,30 @@ namespace WebApp.Repositories
 				   
 				    				
 					
-				    						if (rule.field == "CustomerId" && !string.IsNullOrEmpty(rule.value) && rule.value.IsInt())
+				    						if (rule.field == "ShipperId" && !string.IsNullOrEmpty(rule.value) && rule.value.IsInt())
 						{
 							int val = Convert.ToInt32(rule.value);
 							switch (rule.op) {
                             case "equal":
-                                And(x => x.CustomerId == val);
+                                And(x => x.ShipperId == val);
                                 break;
                             case "notequal":
-                                And(x => x.CustomerId != val);
+                                And(x => x.ShipperId != val);
                                 break;
                             case "less":
-                                And(x => x.CustomerId < val);
+                                And(x => x.ShipperId < val);
                                 break;
                             case "lessorequal":
-                                And(x => x.CustomerId <= val);
+                                And(x => x.ShipperId <= val);
                                 break;
                             case "greater":
-                                And(x => x.CustomerId > val);
+                                And(x => x.ShipperId > val);
                                 break;
                             case "greaterorequal" :
-                                And(x => x.CustomerId >= val);
+                                And(x => x.ShipperId >= val);
                                 break;
                             default:
-                                And(x => x.CustomerId == val);
+                                And(x => x.ShipperId == val);
                                 break;
                         }
 						}
@@ -990,9 +990,9 @@ namespace WebApp.Repositories
             return this;
          }
              
-                 public  OrderQuery ByCustomerIdWithfilter(int customerid, IEnumerable<filterRule> filters)
+                 public  OrderQuery ByShipperIdWithfilter(int Shipperid, IEnumerable<filterRule> filters)
          {
-            And(x => x.CustomerId == customerid);
+            And(x => x.ShipperId == Shipperid);
             
             if (filters != null)
            {
@@ -1406,30 +1406,30 @@ namespace WebApp.Repositories
 				   
 				    				
 					
-				    						if (rule.field == "CustomerId" && !string.IsNullOrEmpty(rule.value) && rule.value.IsInt())
+				    						if (rule.field == "ShipperId" && !string.IsNullOrEmpty(rule.value) && rule.value.IsInt())
 						{
 							int val = Convert.ToInt32(rule.value);
 							switch (rule.op) {
                             case "equal":
-                                And(x => x.CustomerId == val);
+                                And(x => x.ShipperId == val);
                                 break;
                             case "notequal":
-                                And(x => x.CustomerId != val);
+                                And(x => x.ShipperId != val);
                                 break;
                             case "less":
-                                And(x => x.CustomerId < val);
+                                And(x => x.ShipperId < val);
                                 break;
                             case "lessorequal":
-                                And(x => x.CustomerId <= val);
+                                And(x => x.ShipperId <= val);
                                 break;
                             case "greater":
-                                And(x => x.CustomerId > val);
+                                And(x => x.ShipperId > val);
                                 break;
                             case "greaterorequal" :
-                                And(x => x.CustomerId >= val);
+                                And(x => x.ShipperId >= val);
                                 break;
                             default:
-                                And(x => x.CustomerId == val);
+                                And(x => x.ShipperId == val);
                                 break;
                         }
 						}

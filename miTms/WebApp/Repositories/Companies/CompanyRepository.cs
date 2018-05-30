@@ -2,9 +2,9 @@
 // Copyright (c) 2018 All Rights Reserved
 // </copyright>
 // <author>neo.zhu</author>
-// <date>2/8/2018 2:19:12 PM </date>
+// <date>5/30/2018 8:46:42 AM </date>
 // <summary>
-//  Repository封装了对业务模型数据查询和存储逻辑(CRUD数据操作)
+//  Repository封装了对业务实体数据的查询和存储逻辑(CRUD数据操作)
 //   
 //  
 //  
@@ -24,16 +24,6 @@ namespace WebApp.Repositories
     {
  
         
-                public static IEnumerable<Department>   GetDepartmentsByCompanyId (this IRepositoryAsync<Company> repository,int companyid)
-        {
-			var departmentRepository = repository.GetRepository<Department>(); 
-            return departmentRepository.Queryable().Include(x => x.Company).Where(n => n.CompanyId == companyid);
-        }
-                public static IEnumerable<Employee>   GetEmployeeByCompanyId (this IRepositoryAsync<Company> repository,int companyid)
-        {
-			var employeeRepository = repository.GetRepository<Employee>(); 
-            return employeeRepository.Queryable().Include(x => x.Company).Where(n => n.CompanyId == companyid);
-        }
          
 	}
 }

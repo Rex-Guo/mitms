@@ -31,6 +31,13 @@ namespace WebApp.Models
         [Display(Name = "从业资格信息证号")]
         [MaxLength(512)]
         public string Remark { get; set; }
+        [Display(Name = "描述", Description = "描述")]
+        [MaxLength(512)]
+        public string Description { get; set; }
+        [Display(Name = "图片路径", Description = "图片路径")]
+        [MaxLength(256)]
+        public string LogoPicture { get; set; }
+
         [Display(Name = "承运人")]
         public int Carrierid { get; set; }
         [ForeignKey("Carrierid")]
@@ -48,7 +55,11 @@ namespace WebApp.Models
         [Display(Name = "同步异常")]
         public bool IsException { get; set; }
 
+        [Display(Name = "所属公司", Description = "所属公司")]
         public int CompanyId { get; set; }
-        
+        [ForeignKey("CompanyId")]
+        [Display(Name = "所属公司", Description = "所属公司")]
+        public virtual Company Company { get; set; }
+
     }
 }

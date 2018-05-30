@@ -46,9 +46,9 @@ namespace WebApp.Services
         {
             return _repository.GetByVehicleId(vehicleid);
         }
-        public IEnumerable<Order> GetByCustomerId(int customerid)
+        public IEnumerable<Order> GetByShipperId(int Shipperid)
         {
-            return _repository.GetByCustomerId(customerid);
+            return _repository.GetByShipperId(Shipperid);
         }
 
 
@@ -97,11 +97,11 @@ namespace WebApp.Services
         {
             var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
 
-            var orders = this.Query(new OrderQuery().Withfilter(filters)).Include(p => p.Customer).Include(p => p.Vehicle).OrderBy(n => n.OrderBy(sort, order)).Select().ToList();
+            var orders = this.Query(new OrderQuery().Withfilter(filters)).Include(p => p.Shipper).Include(p => p.Vehicle).OrderBy(n => n.OrderBy(sort, order)).Select().ToList();
 
             var datarows = orders.Select(n => new
             {
-                CustomerName = (n.Customer == null ? "" : n.Customer.Name),
+                ShipperName = (n.Shipper == null ? "" : n.Shipper.Name),
                 VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
                 OrderNo = n.OrderNo,
@@ -124,7 +124,7 @@ namespace WebApp.Services
                 Status = n.Status,
                 DeliveryDate = n.DeliveryDate,
                 CloseDate = n.CloseDate,
-                CustomerId = n.CustomerId,
+                ShipperId = n.ShipperId,
                 CreatedDate = n.CreatedDate,
                 CreatedBy = n.CreatedBy,
                 LastModifiedDate = n.LastModifiedDate,
@@ -148,7 +148,7 @@ namespace WebApp.Services
             veh.OrderNo = order.OrderNo;
             veh.Status = "接单";
             veh.Location1 = order.Location1;
-            veh.CustomerId = order.CustomerId;
+            veh.ShipperId = order.ShipperId;
             veh.Location2 = order.Location2;
             veh.UsingDate = order.OrderDate;
             veh.ExternalNo = order.ExternalNo;
@@ -196,7 +196,7 @@ namespace WebApp.Services
             this.Update(item);
             var veh = this._vehicleService.Find(order.VehicleId);
             veh.OrderId = item.Id;
-            veh.CustomerId = order.CustomerId;
+            veh.ShipperId = order.ShipperId;
             veh.OrderNo = order.OrderNo;
             veh.Status = order.Status;
             veh.Location1 = order.Location1;
@@ -276,7 +276,7 @@ namespace WebApp.Services
             veh.OrderNo = orderitem.OrderNo;
             veh.Status = "接单";
             veh.Location1 = orderitem.Location1;
-            veh.CustomerId = orderitem.CustomerId;
+            veh.ShipperId = orderitem.ShipperId;
             veh.Location2 = orderitem.Location2;
             veh.UsingDate = orderitem.OrderDate;
             veh.ExternalNo = orderitem.ExternalNo;

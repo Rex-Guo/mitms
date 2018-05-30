@@ -45,8 +45,8 @@ namespace WebApp.Controllers
         //[OutputCache(Duration = 360, VaryByParam = "none")]
         public ActionResult Index()
         {
-            var customrep = this._unitOfWork.RepositoryAsync<Customer>();
-            ViewBag.Customer = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
+            var customrep = this._unitOfWork.RepositoryAsync<Shipper>();
+            ViewBag.Shipper = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
             return View();
         }
         // Get :Orders/PageList
@@ -58,12 +58,12 @@ namespace WebApp.Controllers
             var totalCount = 0;
             //int pagenum = offset / limit +1;
             var orders = await _orderService
-       .Query(new OrderQuery().Withfilter(filters)).Include(o => o.Customer).Include(o => o.Vehicle)
+       .Query(new OrderQuery().Withfilter(filters)).Include(o => o.Shipper).Include(o => o.Vehicle)
        .OrderBy(n => n.OrderBy(sort, order))
        .SelectPageAsync(page, rows, out totalCount);
             var datarows = orders.Select(n => new
             {
-                CustomerName = (n.Customer == null ? "" : n.Customer.Name),
+                ShipperName = (n.Shipper == null ? "" : n.Shipper.Name),
                 VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
                 OrderNo = n.OrderNo,
@@ -93,7 +93,7 @@ namespace WebApp.Controllers
                 Status = n.Status,
                 DeliveryDate = n.DeliveryDate,
                 CloseDate = n.CloseDate,
-                CustomerId = n.CustomerId,
+                ShipperId = n.ShipperId,
                 CreatedDate = n.CreatedDate,
                 CreatedBy = n.CreatedBy,
                 LastModifiedDate = n.LastModifiedDate,
@@ -109,12 +109,12 @@ namespace WebApp.Controllers
             var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
             var totalCount = 0;
             var orders = await _orderService
-                       .Query(new OrderQuery().ByVehicleIdWithfilter(vehicleid, filters)).Include(o => o.Customer).Include(o => o.Vehicle)
+                       .Query(new OrderQuery().ByVehicleIdWithfilter(vehicleid, filters)).Include(o => o.Shipper).Include(o => o.Vehicle)
                        .OrderBy(n => n.OrderBy(sort, order))
                        .SelectPageAsync(page, rows, out totalCount);
             var datarows = orders.Select(n => new
             {
-                CustomerName = (n.Customer == null ? "" : n.Customer.Name),
+                ShipperName = (n.Shipper == null ? "" : n.Shipper.Name),
                 VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
                 OrderNo = n.OrderNo,
@@ -144,7 +144,7 @@ namespace WebApp.Controllers
                 Status = n.Status,
                 DeliveryDate = n.DeliveryDate,
                 CloseDate = n.CloseDate,
-                CustomerId = n.CustomerId,
+                ShipperId = n.ShipperId,
                 CreatedDate = n.CreatedDate,
                 CreatedBy = n.CreatedBy,
                 LastModifiedDate = n.LastModifiedDate,
@@ -154,17 +154,17 @@ namespace WebApp.Controllers
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public async Task<ActionResult> GetDataByCustomerId(int customerid, int page = 1, int rows = 10, string sort = "Id", string order = "asc", string filterRules = "")
+        public async Task<ActionResult> GetDataByShipperId(int Shipperid, int page = 1, int rows = 10, string sort = "Id", string order = "asc", string filterRules = "")
         {
             var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
             var totalCount = 0;
             var orders = await _orderService
-                       .Query(new OrderQuery().ByCustomerIdWithfilter(customerid, filters)).Include(o => o.Customer).Include(o => o.Vehicle)
+                       .Query(new OrderQuery().ByShipperIdWithfilter(Shipperid, filters)).Include(o => o.Shipper).Include(o => o.Vehicle)
                        .OrderBy(n => n.OrderBy(sort, order))
                        .SelectPageAsync(page, rows, out totalCount);
             var datarows = orders.Select(n => new
             {
-                CustomerName = (n.Customer == null ? "" : n.Customer.Name),
+                ShipperName = (n.Shipper == null ? "" : n.Shipper.Name),
                 VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
                 OrderNo = n.OrderNo,
@@ -187,7 +187,7 @@ namespace WebApp.Controllers
                 Status = n.Status,
                 DeliveryDate = n.DeliveryDate,
                 CloseDate = n.CloseDate,
-                CustomerId = n.CustomerId,
+                ShipperId = n.ShipperId,
                 CreatedDate = n.CreatedDate,
                 CreatedBy = n.CreatedBy,
                 LastModifiedDate = n.LastModifiedDate,
@@ -232,10 +232,10 @@ namespace WebApp.Controllers
             }
         }
         //[OutputCache(Duration = 360, VaryByParam = "none")]
-        public async Task<JsonResult> GetCustomers(string q = "")
+        public async Task<JsonResult> GetShippers(string q = "")
         {
-            var customerRepository = _unitOfWork.RepositoryAsync<Customer>();
-            var data = await customerRepository.Queryable().Where(n => n.Name.Contains(q)).ToListAsync();
+            var ShipperRepository = _unitOfWork.RepositoryAsync<Shipper>();
+            var data = await ShipperRepository.Queryable().Where(n => n.Name.Contains(q)).ToListAsync();
             var rows = data.Select(n => new { Id = n.Id, Name = n.Name });
             return Json(rows, JsonRequestBehavior.AllowGet);
         }
@@ -284,8 +284,8 @@ namespace WebApp.Controllers
         {
             var order = new Order();
             //set default value
-            var customerRepository = _unitOfWork.RepositoryAsync<Customer>();
-            ViewBag.CustomerId = new SelectList(customerRepository.Queryable(), "Id", "Name");
+            var ShipperRepository = _unitOfWork.RepositoryAsync<Shipper>();
+            ViewBag.ShipperId = new SelectList(ShipperRepository.Queryable(), "Id", "Name");
             var vehicleRepository = _unitOfWork.RepositoryAsync<Vehicle>();
             ViewBag.VehicleId = new SelectList(vehicleRepository.Queryable(), "Id", "OrderNo");
             return View(order);
@@ -317,8 +317,8 @@ namespace WebApp.Controllers
                 }
                 DisplayErrorMessage(modelStateErrors);
             }
-            var customerRepository = _unitOfWork.RepositoryAsync<Customer>();
-            ViewBag.CustomerId = new SelectList(await customerRepository.Queryable().ToListAsync(), "Id", "Name", order.CustomerId);
+            var ShipperRepository = _unitOfWork.RepositoryAsync<Shipper>();
+            ViewBag.ShipperId = new SelectList(await ShipperRepository.Queryable().ToListAsync(), "Id", "Name", order.ShipperId);
             var vehicleRepository = _unitOfWork.RepositoryAsync<Vehicle>();
             ViewBag.VehicleId = new SelectList(await vehicleRepository.Queryable().ToListAsync(), "Id", "OrderNo", order.VehicleId);
             return View(order);
@@ -344,8 +344,8 @@ namespace WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            var customerRepository = _unitOfWork.RepositoryAsync<Customer>();
-            ViewBag.CustomerId = new SelectList(customerRepository.Queryable(), "Id", "Name", order.CustomerId);
+            var ShipperRepository = _unitOfWork.RepositoryAsync<Shipper>();
+            ViewBag.ShipperId = new SelectList(ShipperRepository.Queryable(), "Id", "Name", order.ShipperId);
             var vehicleRepository = _unitOfWork.RepositoryAsync<Vehicle>();
             ViewBag.VehicleId = new SelectList(vehicleRepository.Queryable(), "Id", "OrderNo", order.VehicleId);
             return View(order);
@@ -354,7 +354,7 @@ namespace WebApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Customer,Vehicle,Id,OrderNo,ExternalNo,OrderDate,Location1,Location2,Requirements,PlanDeliveryDate,TimePeriod,VehicleId,PlateNumber,Driver,DriverPhone,Packages,Weight,Volume,Cartons,Pallets,Status,DeliveryDate,CloseDate,CustomerId,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] Order order)
+        public async Task<ActionResult> Edit([Bind(Include = "Shipper,Vehicle,Id,OrderNo,ExternalNo,OrderDate,Location1,Location2,Requirements,PlanDeliveryDate,TimePeriod,VehicleId,PlateNumber,Driver,DriverPhone,Packages,Weight,Volume,Cartons,Pallets,Status,DeliveryDate,CloseDate,ShipperId,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -377,8 +377,8 @@ namespace WebApp.Controllers
                 }
                 DisplayErrorMessage(modelStateErrors);
             }
-            var customerRepository = _unitOfWork.RepositoryAsync<Customer>();
-            ViewBag.CustomerId = new SelectList(await customerRepository.Queryable().ToListAsync(), "Id", "Name", order.CustomerId);
+            var ShipperRepository = _unitOfWork.RepositoryAsync<Shipper>();
+            ViewBag.ShipperId = new SelectList(await ShipperRepository.Queryable().ToListAsync(), "Id", "Name", order.ShipperId);
             var vehicleRepository = _unitOfWork.RepositoryAsync<Vehicle>();
             ViewBag.VehicleId = new SelectList(await vehicleRepository.Queryable().ToListAsync(), "Id", "OrderNo", order.VehicleId);
             return View(order);
@@ -414,8 +414,8 @@ namespace WebApp.Controllers
         }
         public ActionResult Shipping() {
 
-            var customrep = this._unitOfWork.RepositoryAsync<Customer>();
-            ViewBag.Customer = new SelectList(customrep.Queryable().OrderBy(n=>n.Name).ToList(), "Id", "Name");
+            var customrep = this._unitOfWork.RepositoryAsync<Shipper>();
+            ViewBag.Shipper = new SelectList(customrep.Queryable().OrderBy(n=>n.Name).ToList(), "Id", "Name");
             var coderep = this._unitOfWork.RepositoryAsync<CodeItem>();
             ViewBag.TimePeriod = new SelectList(coderep.Queryable().Where(x=>x.CodeType== "TimePeriod").OrderBy(n => n.Code).ToList(), "Code", "Text");
             return View();

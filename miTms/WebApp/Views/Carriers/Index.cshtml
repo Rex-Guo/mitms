@@ -1,0 +1,678 @@
+﻿@model IEnumerable<WebApp.Models.Carrier>
+@{
+	ViewBag.Title = "承运人信息";
+}
+<!-- MAIN CONTENT -->
+<div id="content">
+    <!-- quick navigation bar -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-table fa-fw "></i>
+                @{ 
+                  //TODO:fix quick navigation path
+                 }
+                路径
+                <span>
+                    >
+                  承运人信息
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            
+        </div>
+    </div>
+    <!-- end quick navigation bar -->
+
+
+     <!-- widget grid -->
+     <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2>承运人信息</h2>
+                    </header>
+
+                     <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                             @{ 
+                                //TODO:fix datagrid view alert-warning messages
+                              }
+                            <div class="alert alert-warning no-margin fade in">
+                                <button class="close" data-dismiss="alert">
+                                    ×
+                                </button>
+                                <i class="fa-fw fa fa-info"></i>
+                                A combined table effect with all classes mentioned above added to  
+                            </div>
+	 <!--begin datagrid-content -->
+	 <div class="table-responsive">
+		<table id="carriers_datagrid">  
+		</table>
+				<div id="carriers_toolbar" style="height:auto">
+                            @{
+                            //TODO: enable authorization 
+                            }
+							@*@if (Html.IsAuthorize("Create"))
+							{
+								<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
+							}
+							@if (Html.IsAuthorize("Delete"))
+							{
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
+							}
+							@if (Html.IsAuthorize("Edit"))
+							{
+								<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="accept()">保存</a>
+								<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="reject()">取消</a>
+							}
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
+							@if (Html.IsAuthorize("Import"))
+							{
+								 <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
+                                       <div id="importmenu" style="width:150px;">
+                                                <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
+                                                <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()" >下载用于导入的模板</div>
+                                        </div>
+                                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
+							}*@
+						    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="accept()">保存</a>
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="reject()">取消</a>
+							<a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
+                                       <div id="importmenu" style="width:150px;">
+                                                <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
+                                                <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()" >下载用于导入的模板</div>
+                                        </div>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
+				            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-question-circle-o fa-fw',plain:true" onclick="dohelp()">帮助</a>
+                </div>
+		
+		
+		</div>
+		<!--end datagrid-content -->
+                        
+                         </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+
+	<!-- file upload partial view -->
+	@Html.Partial("_ImportWindow",new  ViewDataDictionary { { "EntityName","Carrier" }})		 
+	<!-- end file upload partial view -->
+        
+    <!-- detail popup window -->
+    @Html.Partial("_PopupDetailFormView",new WebApp.Models.Carrier() )
+    <!-- end detail popup window -->
+            
+</div>
+<!-- END MAIN CONTENT -->
+
+@section Scripts {
+	<script type="text/javascript">
+        var entityname = "Carrier";
+
+
+			        //下载Excel导入模板
+                    function downloadtemplate() {
+                            //TODO: 修改下载模板的路径
+                            var url = "/ExcelTemplate/Carrier.xlsx";
+                            $.fileDownload(url)
+                             .fail(function () { $.messager.alert("错误","没有找到模板文件! {" + url + "}"); });
+                                                
+                    }
+					//打开Excel上传导入
+					function importexcel() {
+						$("#importwindow").window("open");
+					}
+					 //执行Excel到处下载
+					function exportexcel() {
+						var filterRules = JSON.stringify($dg.datagrid("options").filterRules);
+						//console.log(filterRules);
+						$.messager.progress({ title: "正在执行导出！" });
+						var formData = new FormData();
+						formData.append("filterRules", filterRules);
+						formData.append("sort", "Id");
+						formData.append("order", "asc");
+						$.postDownload("/Carriers/ExportExcel", formData, function (fileName) {
+							$.messager.progress("close");
+							console.log(fileName);
+
+						})
+					}
+        //显示帮助信息
+        function dohelp() {
+
+        }
+        var editIndex = undefined;
+    //重新加载数据
+	function reload() {
+				 if (endEditing()) {
+						$dg.datagrid("reload");
+				 }
+			}
+    //关闭编辑状态
+	function endEditing() {
+			if (editIndex == undefined) { return true }
+			if ($dg.datagrid("validateRow", editIndex)) {
+
+								var ed = $dg.datagrid("getEditor", { index: editIndex, field: "CompanyId" });
+				var companyname = $(ed.target).combobox("getText");
+				var companyid = $(ed.target).combobox("getValue");
+				$dg.datagrid("getRows")[editIndex]["CompanyName"] =  companyname;
+				$dg.datagrid("getRows")[editIndex]["CompanyId"] = companyid;
+								$dg.datagrid("endEdit", editIndex);
+				editIndex = undefined;
+                return true;
+			} else {
+				return false;
+			}
+		}
+    //单击列开启编辑功能
+	function onClickCell(index, field) {
+			var _operates = ["_operate1", "_operate2", "_operate3", "ck"]
+			if ($.inArray(field, _operates) >= 0) {
+				return;
+			}
+			if (editIndex != index) {
+				if (endEditing()) {
+					$dg.datagrid("selectRow", index)
+							.datagrid("beginEdit", index);
+                    editIndex = index;
+					var ed = $dg.datagrid("getEditor", { index: index, field: field });
+					if (ed) {
+						($(ed.target).data("textbox") ? $(ed.target).textbox("textbox") : $(ed.target)).focus();
+					}
+				} else {
+					$dg.datagrid("selectRow", editIndex);
+				}
+			}
+		}
+    //新增记录
+	function append() {
+			if (endEditing()) {
+				//$dg.datagrid("appendRow", { Status: 0 });
+				//editIndex = $dg.datagrid("getRows").length - 1;
+				$dg.datagrid("insertRow", { index: 0, row: {  } });
+				editIndex = 0 ;
+				$dg.datagrid("selectRow", editIndex)
+						.datagrid("beginEdit", editIndex);
+			}
+		}
+    //删除编辑的行
+	function removeit() {
+			if (editIndex == undefined) { return }
+			$dg.datagrid("cancelEdit", editIndex)
+					.datagrid("deleteRow", editIndex);
+			editIndex = undefined;
+	}
+    //提交保存后台数据库
+	function accept() {
+			if (endEditing()) {
+				if ($dg.datagrid("getChanges").length) {
+					var inserted = $dg.datagrid("getChanges", "inserted");
+					var deleted = $dg.datagrid("getChanges", "deleted");
+					var updated = $dg.datagrid("getChanges", "updated");
+					var effectRow = new Object();
+					if (inserted.length) {
+						effectRow.inserted = inserted;
+					}
+					if (deleted.length) {
+						effectRow.deleted = deleted;
+					}
+					if (updated.length) {
+						effectRow.updated = updated;
+					}
+					//console.log(JSON.stringify(effectRow));
+					$.post("/Carriers/SaveData", effectRow, function (response) {
+						//console.log(response);
+						if (response.Success) {
+							$.messager.alert("提示", "提交成功！");
+							$dg.datagrid("acceptChanges");
+							$dg.datagrid("reload");
+						}
+					}, "json").fail(function (response) {
+						//console.log(response);
+						$.messager.alert("错误", "提交错误了！","error");
+						//$dg.datagrid("reload");
+					});
+				}
+			}
+		}
+		function reject() {
+			$dg.datagrid("rejectChanges");
+			editIndex = undefined;
+		}
+		function getChanges() {
+			var rows = $dg.datagrid("getChanges");
+			alert(rows.length + " rows are changed!");
+		}
+        //弹出明细信息
+		function showDetailsWindow(id) {
+			//console.log(index, row);
+            $.getJSON('/Carriers/PopupEdit/' + id, function (data, status, xhr) {
+                //console.log(data);
+                $('#detailswindow').window('open');
+                loadData(id,data);
+            });
+		}
+
+        //初始化定义datagrid
+        var $dg = $("#carriers_datagrid");
+        $(function () {
+		 //定义datagrid结构
+         $dg.datagrid({
+                        rownumbers:true,
+				        checkOnSelect:true,
+				        selectOnCheck:true,
+				        idField:'Id',
+				        sortName:'Id',
+				        sortOrder:'desc',
+				        remoteFilter: true,
+				        singleSelect: true,
+				        toolbar: '#carriers_toolbar',
+				        url: '/Carriers/GetData',
+				        method: 'get',
+				        onClickCell: onClickCell,
+				        pagination: true,
+                        striped:true,   
+                        columns: [[
+                         /*{ field: 'ck', checkbox: true },*/
+                         { 
+                            field: '_operate1',
+                            title:'操作',
+                            width: 120,
+                            sortable: false,
+                            resizable: true,
+                            formatter: function showdetailsformatter(value, row, index) {
+                                        return '<a onclick="showDetailsWindow(' + row.Id + ')" class="btn btn-default btn-sm" href="javascript:void(0)"><i class="fa fa-list"></i> 查看明细</a>';
+                                    }
+                          },
+                        					/*{field:'Id',width:80 ,sortable:true,resizable:true }*/
+		                    							 {
+              field:'Name', 
+              title:'@Html.DisplayNameFor(model => model.Name)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'承运人',required:true ,validType:'length[0,256]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'Type', 
+              title:'@Html.DisplayNameFor(model => model.Type)', 
+              width:100, 
+              align:'right',
+              editor:{
+                      type:'numberbox',
+                      options:{prompt:'承运人类别', required:true   } 
+                     },
+              sortable:true,
+              resizable:true 
+             },
+				                    							 {
+              field:'ContactName', 
+              title:'@Html.DisplayNameFor(model => model.ContactName)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'联系人',required:true ,validType:'length[0,50]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'ContactMobileTelephoneNumber', 
+              title:'@Html.DisplayNameFor(model => model.ContactMobileTelephoneNumber)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'联系人电话',required:true ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'RegisteredAddress', 
+              title:'@Html.DisplayNameFor(model => model.RegisteredAddress)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'注册地',required:false ,validType:'length[0,256]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'PermitNumber', 
+              title:'@Html.DisplayNameFor(model => model.PermitNumber)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'道路运输许可证号 ',required:true ,validType:'length[0,50]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'CountrySubdivisionCode', 
+              title:'@Html.DisplayNameFor(model => model.CountrySubdivisionCode)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'所属辖区',required:true ,validType:'length[0,12]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'RegisteredCapital', 
+              title:'@Html.DisplayNameFor(model => model.RegisteredCapital)', 
+              width:100, 
+              align:'right',
+              editor:{
+                      type:'numberbox',
+                      options:{prompt:'注册资金', required:true   } 
+                     },
+              sortable:true,
+              resizable:true 
+             },
+				                    							 {
+              field:'UnifiedSocialCreditldentifier', 
+              title:'@Html.DisplayNameFor(model => model.UnifiedSocialCreditldentifier)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'统一社会信用代码 ',required:false ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'BusinessScope', 
+              title:'@Html.DisplayNameFor(model => model.BusinessScope)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'经营范围',required:false ,validType:'length[0,256]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'Description', 
+              title:'@Html.DisplayNameFor(model => model.Description)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'描述',required:false ,validType:'length[0,512]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'LogoPicture', 
+              title:'@Html.DisplayNameFor(model => model.LogoPicture)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'图片路径',required:false ,validType:'length[0,256]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    					{
+             field:'CompanyId',
+             title:'@Html.DisplayNameFor(model => model.CompanyId)',
+             width:160, 
+             sortable:true, 
+             resizable:true,
+             formatter:function(value,row) {
+							return row.CompanyName;
+						},
+			 editor:{
+					 type:'combobox',
+					 options:{
+								prompt:'所属公司' ,
+                                mode: 'remote',
+								valueField:'Id',
+								textField:'Name',
+								method:'get',
+								url:'/Carriers/GetCompanies',
+								required:true
+							}
+						}
+             },
+		                    						    {
+              field:'RegistrationDatetime', 
+              title:'@Html.DisplayNameFor(model => model.RegistrationDatetime)', 
+              width:160, 
+              align:'right', 
+              editor:{
+                      type:'datebox',
+                      options:{prompt:'注册日期',required:true}  
+                      },
+              sortable:true, 
+              resizable:true, 
+              formatter:dateformatter 
+             },
+				                    						    {
+              field:'UpdateTimeDatetime', 
+              title:'@Html.DisplayNameFor(model => model.UpdateTimeDatetime)', 
+              width:160, 
+              align:'right', 
+              editor:{
+                      type:'datebox',
+                      options:{prompt:'注册日期',required:false}  
+                      },
+              sortable:true, 
+              resizable:true, 
+              formatter:dateformatter 
+             },
+				                    							 {
+               field:'IsBlaclkList', 
+               title:'@Html.DisplayNameFor(model => model.IsBlaclkList)', 
+               width:120, 
+               align:'center',
+               editor:{
+                      type:'checkbox',
+                      options:{prompt:'黑名单', 
+                                     on:'true',
+                                     off:'false',
+                                     required:false
+                               } 
+                      },
+                sortable:true, 
+                resizable:true 
+              },
+				                    							 {
+               field:'IsDeleteFlag', 
+               title:'@Html.DisplayNameFor(model => model.IsDeleteFlag)', 
+               width:120, 
+               align:'center',
+               editor:{
+                      type:'checkbox',
+                      options:{prompt:'删除标志', 
+                                     on:'true',
+                                     off:'false',
+                                     required:false
+                               } 
+                      },
+                sortable:true, 
+                resizable:true 
+              },
+				                    						    {
+              field:'SynchronizationTime', 
+              title:'@Html.DisplayNameFor(model => model.SynchronizationTime)', 
+              width:160, 
+              align:'right', 
+              editor:{
+                      type:'datebox',
+                      options:{prompt:'同步时间',required:false}  
+                      },
+              sortable:true, 
+              resizable:true, 
+              formatter:dateformatter 
+             },
+				                    							 {
+               field:'IsException', 
+               title:'@Html.DisplayNameFor(model => model.IsException)', 
+               width:120, 
+               align:'center',
+               editor:{
+                      type:'checkbox',
+                      options:{prompt:'同步异常', 
+                                     on:'true',
+                                     off:'false',
+                                     required:false
+                               } 
+                      },
+                sortable:true, 
+                resizable:true 
+              },
+				                                             ]]
+          
+          });
+
+           $dg.datagrid("enableFilter",[
+		              				{
+					  field: "Id",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Type",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "RegisteredCapital",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   		   				{
+					  field: "RegistrationDatetime",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "RegistrationDatetime",
+									  op: "between",
+									  value: value
+								  });
+							   
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   				{
+					  field: "UpdateTimeDatetime",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "UpdateTimeDatetime",
+									  op: "between",
+									  value: value
+								  });
+							   
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   				{
+					  field: "SynchronizationTime",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "SynchronizationTime",
+									  op: "between",
+									  value: value
+								  });
+							   
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   		   		   {
+				 field: "CompanyId",
+				 type:"combobox",
+				 options:{
+								valueField:"Id",
+								textField:"Name",
+								method:"get",
+								url:"/Carriers/GetCompanies",
+								onChange: function (value) {
+								if (value == "") {
+									$dg.datagrid("removeFilterRule", "CompanyId");
+								} else {
+									$dg.datagrid("addFilterRule", {
+										field: "CompanyId",
+										op: "equal",
+										value: value
+								});
+							}
+							$dg.datagrid("doFilter");
+						}
+					}
+		   },
+		   		   ]);
+	 });
+
+	
+		
+		  
+		  
+				
+        
+ 
+		
+		
+		 
+
+	 </script>
+     <script src="~/Scripts/jquery.filerupload.js"></script>
+}
+
+ 

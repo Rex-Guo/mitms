@@ -57,8 +57,11 @@ namespace WebApp.Models
         [MaxLength(20)]
     
         public string InputUser { get; set; }
-        [Display(Name = "客户编号", Description = "客户编号")]
-        public int? CustomerId { get; set; }
+         
+
+        [Display(Name = "托运人", Description = "托运人")]
+        public int? ShipperId { get; set; }
+
         #endregion
 
         #region 车辆基本信息
@@ -94,15 +97,20 @@ namespace WebApp.Models
         public string VehicleProperty { get; set; }
 
         [Required]
-        [Display(Name = "所属公司", Description = "所属公司")]
+        [Display(Name = "所属平台", Description = "所属平台")]
         public int CompanyId { get; set; }
 
         [ForeignKey("CompanyId")]
-        [Display(Name = "所属公司", Description = "所属公司")]
+        [Display(Name = "所属平台", Description = "所属平台")]
         public virtual Company Company { get; set; }
 
 
+        [Display(Name = "所属承运人", Description = "所属承运人")]
+        public int? CarrierId { get; set; }
 
+        [ForeignKey("CarrierId")]
+        [Display(Name = "所属承运人", Description = "所属承运人")]
+        public virtual Carrier Carrier { get; set; }
 
         [Display(Name = "轴数", Description = "轴数(2/3)")]
         public int? Axles { get; set; }

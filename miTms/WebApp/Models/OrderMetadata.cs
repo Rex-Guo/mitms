@@ -18,16 +18,7 @@ namespace WebApp.Models
 
     public partial class OrderMetadata
     {
-        [Display(Name = "客户")]
-        [MaxLength(50)]
-        public Customer Customer { get; set; }
-
-        [Required(ErrorMessage = "Please enter : Id")]
-        [Display(Name = "Id")]
-        public int Id { get; set; }
-
-        [Display(Name = "订单日期")]
-        public DateTime OrderDate { get; set; }
+        
 
     }
 

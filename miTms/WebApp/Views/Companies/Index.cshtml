@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<WebApp.Models.Company>
 @{
-	ViewBag.Title = "公司信息";
+	ViewBag.Title = "平台信息";
 }
 <!-- MAIN CONTENT -->
 <div id="content">
@@ -15,7 +15,7 @@
                 路径
                 <span>
                     >
-                  公司信息
+                  平台信息
                 </span>
             </h1>
         </div>
@@ -47,7 +47,7 @@
                     -->
                     <header>
                         <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                        <h2>公司信息</h2>
+                        <h2>平台信息</h2>
                     </header>
 
                      <!-- widget div-->
@@ -182,107 +182,27 @@
         function dohelp() {
 
         }
-		 //datagrid 增删改查操作
-          var $dg = $("#companies_datagrid").datagrid({
-                        rownumbers:true,
-				        checkOnSelect:true,
-				        selectOnCheck:true,
-				        idField:'Id',
-				        sortName:'Id',
-				        sortOrder:'desc',
-				        remoteFilter: true,
-				        singleSelect: true,
-				        toolbar: '#companies_toolbar',
-				        url: '/Companies/GetData',
-				        method: 'get',
-				        onClickCell: onClickCell,
-				        pagination: true,
-                        striped:true,   
-                         columns: [[
-                         /*{ field: 'ck', checkbox: true },*/
-                         { field: '_operate1', title:'操作', width: 120, sortable: false, resizable: true, formatter: showdetailsformatter},
-                        					/*{field:'Id',width:80 ,sortable:true,resizable:true }*/
-									 {field:'Name', 
-              title:'@Html.DisplayNameFor(model => model.Name)', 
-              width:140,
-              editor:{
-                      type:'textbox',
-                      options:{ prompt:'名称',required:false ,validType:'length[0,50]'  }  
-                     },
-              sortable:true,
-              resizable:true },
-											 {field:'Address', 
-              title:'@Html.DisplayNameFor(model => model.Address)', 
-              width:140,
-              editor:{
-                      type:'textbox',
-                      options:{ prompt:'地址',required:false ,validType:'length[0,60]'  }  
-                     },
-              sortable:true,
-              resizable:true },
-											 {field:'City', 
-              title:'@Html.DisplayNameFor(model => model.City)', 
-              width:140,
-              editor:{
-                      type:'textbox',
-                      options:{ prompt:'城市',required:false ,validType:'length[0,50]'  }  
-                     },
-              sortable:true,
-              resizable:true },
-											 {field:'Province', 
-              title:'@Html.DisplayNameFor(model => model.Province)', 
-              width:140,
-              editor:{
-                      type:'textbox',
-                      options:{ prompt:'省份',required:false ,validType:'length[0,50]'  }  
-                     },
-              sortable:true,
-              resizable:true },
-											 {field:'RegisterDate', 
-              title:'@Html.DisplayNameFor(model => model.RegisterDate)', 
-              width:160, 
-              align:'right', 
-              editor:{
-                      type:'datebox',
-                      options:{prompt:'注册日期',required:true}  
-                      },
-              sortable:true, 
-              resizable:true, 
-              formatter:dateformatter },
-											 {field:'Employees', 
-              title:'@Html.DisplayNameFor(model => model.Employees)', 
-              width:100, 
-              align:'right',
-              editor:{
-                      type:'numberbox',
-                      options:{prompt:'员工数', required:true  ,precision:0 } 
-                     },
-              sortable:true,
-              resizable:true },
-				
-                         ]]
-          
-          });
-		 var editIndex = undefined;
-		 function reload() {
+        var editIndex = undefined;
+    //重新加载数据
+	function reload() {
 				 if (endEditing()) {
 						$dg.datagrid("reload");
 				 }
 			}
-		function endEditing() {
+    //关闭编辑状态
+	function endEditing() {
 			if (editIndex == undefined) { return true }
 			if ($dg.datagrid("validateRow", editIndex)) {
 
 								$dg.datagrid("endEdit", editIndex);
 				editIndex = undefined;
-
-				
-				return true;
+                return true;
 			} else {
 				return false;
 			}
 		}
-		function onClickCell(index, field) {
+    //单击列开启编辑功能
+	function onClickCell(index, field) {
 			var _operates = ["_operate1", "_operate2", "_operate3", "ck"]
 			if ($.inArray(field, _operates) >= 0) {
 				return;
@@ -296,13 +216,13 @@
 					if (ed) {
 						($(ed.target).data("textbox") ? $(ed.target).textbox("textbox") : $(ed.target)).focus();
 					}
-					
 				} else {
 					$dg.datagrid("selectRow", editIndex);
 				}
 			}
 		}
-		function append() {
+    //新增记录
+	function append() {
 			if (endEditing()) {
 				//$dg.datagrid("appendRow", { Status: 0 });
 				//editIndex = $dg.datagrid("getRows").length - 1;
@@ -312,13 +232,15 @@
 						.datagrid("beginEdit", editIndex);
 			}
 		}
-		function removeit() {
+    //删除编辑的行
+	function removeit() {
 			if (editIndex == undefined) { return }
 			$dg.datagrid("cancelEdit", editIndex)
 					.datagrid("deleteRow", editIndex);
 			editIndex = undefined;
-		}
-		function accept() {
+	}
+    //提交保存后台数据库
+	function accept() {
 			if (endEditing()) {
 				if ($dg.datagrid("getChanges").length) {
 					var inserted = $dg.datagrid("getChanges", "inserted");
@@ -347,10 +269,7 @@
 						$.messager.alert("错误", "提交错误了！","error");
 						//$dg.datagrid("reload");
 					});
-			  
 				}
-
-				//$dg.datagrid("acceptChanges");
 			}
 		}
 		function reject() {
@@ -361,31 +280,298 @@
 			var rows = $dg.datagrid("getChanges");
 			alert(rows.length + " rows are changed!");
 		}
+        //弹出明细信息
+		function showDetailsWindow(id) {
+			//console.log(index, row);
+            $.getJSON('/Companies/PopupEdit/' + id, function (data, status, xhr) {
+                //console.log(data);
+                $('#detailswindow').window('open');
+                loadData(id,data);
+            });
+		}
 
-		//datagrid 开启筛选功能
-		 $(function () {
-		  
-		   $dg.datagrid("enableFilter",[
-		   
-           				{
+        //初始化定义datagrid
+        var $dg = $("#companies_datagrid");
+        $(function () {
+		 //定义datagrid结构
+         $dg.datagrid({
+                        rownumbers:true,
+				        checkOnSelect:true,
+				        selectOnCheck:true,
+				        idField:'Id',
+				        sortName:'Id',
+				        sortOrder:'desc',
+				        remoteFilter: true,
+				        singleSelect: true,
+				        toolbar: '#companies_toolbar',
+				        url: '/Companies/GetData',
+				        method: 'get',
+				        onClickCell: onClickCell,
+				        pagination: true,
+                        striped:true,   
+                        columns: [[
+                         /*{ field: 'ck', checkbox: true },*/
+                         { 
+                            field: '_operate1',
+                            title:'操作',
+                            width: 120,
+                            sortable: false,
+                            resizable: true,
+                            formatter: function showdetailsformatter(value, row, index) {
+                                        return '<a onclick="showDetailsWindow(' + row.Id + ')" class="btn btn-default btn-sm" href="javascript:void(0)"><i class="fa fa-list"></i> 查看明细</a>';
+                                    }
+                          },
+                        					/*{field:'Id',width:80 ,sortable:true,resizable:true }*/
+		                    							 {
+              field:'Name', 
+              title:'@Html.DisplayNameFor(model => model.Name)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'企业名称',required:true ,validType:'length[0,256]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'Address', 
+              title:'@Html.DisplayNameFor(model => model.Address)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'企业注册地址',required:true ,validType:'length[0,256]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'RegisteredCapital', 
+              title:'@Html.DisplayNameFor(model => model.RegisteredCapital)', 
+              width:100, 
+              align:'right',
+              editor:{
+                      type:'numberbox',
+                      options:{prompt:'注册资金', required:true   } 
+                     },
+              sortable:true,
+              resizable:true 
+             },
+				                    							 {
+              field:'UnifiedSocialCreditldentifier', 
+              title:'@Html.DisplayNameFor(model => model.UnifiedSocialCreditldentifier)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'统一社会信用代码',required:true ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    						    {
+              field:'UnifiedSocialDatetime', 
+              title:'@Html.DisplayNameFor(model => model.UnifiedSocialDatetime)', 
+              width:160, 
+              align:'right', 
+              editor:{
+                      type:'datebox',
+                      options:{prompt:'统一社会信用代码注册时间',required:true}  
+                      },
+              sortable:true, 
+              resizable:true, 
+              formatter:dateformatter 
+             },
+				                    							 {
+              field:'BusinessScope', 
+              title:'@Html.DisplayNameFor(model => model.BusinessScope)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'经营范围',required:true ,validType:'length[0,512]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    						    {
+              field:'BusinessLicenseStartDatetime', 
+              title:'@Html.DisplayNameFor(model => model.BusinessLicenseStartDatetime)', 
+              width:160, 
+              align:'right', 
+              editor:{
+                      type:'datebox',
+                      options:{prompt:'营业执照期限开始日期',required:true}  
+                      },
+              sortable:true, 
+              resizable:true, 
+              formatter:dateformatter 
+             },
+				                    						    {
+              field:'BusinessLicenseendDatetime', 
+              title:'@Html.DisplayNameFor(model => model.BusinessLicenseendDatetime)', 
+              width:160, 
+              align:'right', 
+              editor:{
+                      type:'datebox',
+                      options:{prompt:'营业执照期限结束日期',required:true}  
+                      },
+              sortable:true, 
+              resizable:true, 
+              formatter:dateformatter 
+             },
+				                    							 {
+              field:'CountrySubdivisionCode', 
+              title:'@Html.DisplayNameFor(model => model.CountrySubdivisionCode)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'所属辖区',required:true ,validType:'length[0,12]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'PermitNumber', 
+              title:'@Html.DisplayNameFor(model => model.PermitNumber)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'道路运输经营许可证号码',required:true ,validType:'length[0,50]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'LegalPersonName', 
+              title:'@Html.DisplayNameFor(model => model.LegalPersonName)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'法人',required:true ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'LegalPersonTelehoneNumber', 
+              title:'@Html.DisplayNameFor(model => model.LegalPersonTelehoneNumber)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'法人联系电话',required:true ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'ContactName', 
+              title:'@Html.DisplayNameFor(model => model.ContactName)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'联系人',required:true ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'ContactMobileTelephoneNumber', 
+              title:'@Html.DisplayNameFor(model => model.ContactMobileTelephoneNumber)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'联系人移动电话',required:true ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'FaxNumber', 
+              title:'@Html.DisplayNameFor(model => model.FaxNumber)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'传真',required:false ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+              field:'InternetPlusProperty', 
+              title:'@Html.DisplayNameFor(model => model.InternetPlusProperty)', 
+              width:140,
+              editor:{
+                      type:'textbox',
+                      options:{ prompt:'互联网识别代码',required:false ,validType:'length[0,18]'  }  
+                     },
+              sortable:true,
+              resizable:true 
+              },
+				                    							 {
+               field:'IsDeleteFlag', 
+               title:'@Html.DisplayNameFor(model => model.IsDeleteFlag)', 
+               width:120, 
+               align:'center',
+               editor:{
+                      type:'checkbox',
+                      options:{prompt:'删除标志', 
+                                     on:'true',
+                                     off:'false',
+                                     required:false
+                               } 
+                      },
+                sortable:true, 
+                resizable:true 
+              },
+				                    						    {
+              field:'SynchronizationTime', 
+              title:'@Html.DisplayNameFor(model => model.SynchronizationTime)', 
+              width:160, 
+              align:'right', 
+              editor:{
+                      type:'datebox',
+                      options:{prompt:'同步时间',required:false}  
+                      },
+              sortable:true, 
+              resizable:true, 
+              formatter:dateformatter 
+             },
+				                    							 {
+               field:'IsException', 
+               title:'@Html.DisplayNameFor(model => model.IsException)', 
+               width:120, 
+               align:'center',
+               editor:{
+                      type:'checkbox',
+                      options:{prompt:'同步异常', 
+                                     on:'true',
+                                     off:'false',
+                                     required:false
+                               } 
+                      },
+                sortable:true, 
+                resizable:true 
+              },
+				                                             ]]
+          
+          });
+
+           $dg.datagrid("enableFilter",[
+		              				{
 					  field: "Id",
 					  type: "numberbox",
 					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
 				  },
 		   				{
-					  field: "Employees",
+					  field: "RegisteredCapital",
 					  type: "numberbox",
 					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
 				  },
-		   
-
-		   				{
-					  field: "RegisterDate",
+		   		   				{
+					  field: "UnifiedSocialDatetime",
 					  type: "dateRange",
 					  options: {
 						  onChange: function (value) {
 							    $dg.datagrid("addFilterRule", {
-									  field: "RegisterDate",
+									  field: "UnifiedSocialDatetime",
 									  op: "between",
 									  value: value
 								  });
@@ -394,30 +580,60 @@
 						  }
 					  }
 				  },
-		   		   
-		   		   
-		   ]);
-		})
-				//-----------------------------------------------------
-		//datagrid onSelect
-		//-----------------------------------------------------
-        function showdetailsformatter(value, row, index) {
+		   				{
+					  field: "BusinessLicenseStartDatetime",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "BusinessLicenseStartDatetime",
+									  op: "between",
+									  value: value
+								  });
+							   
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   				{
+					  field: "BusinessLicenseendDatetime",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "BusinessLicenseendDatetime",
+									  op: "between",
+									  value: value
+								  });
+							   
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   				{
+					  field: "SynchronizationTime",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "SynchronizationTime",
+									  op: "between",
+									  value: value
+								  });
+							   
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   		   		   ]);
+	 });
 
-            return '<a onclick="showDetailsWindow(' + row.Id + ')" class="btn btn-default btn-sm" href="javascript:void(0)"><i class="fa fa-list"></i> 查看明细</a>';
-
-        }
-        //弹出明细信息
-		function showDetailsWindow(id) {
-			//console.log(index, row);
-            $.getJSON('/Companies/PopupEdit/' + id, function (data, status, xhr) {
-                //console.log(data);
-                $('#detailswindow').window('open');
-                loadData(id,data);
-                
-
-            });
-          
-		}
+	
+		
+		  
+		  
+				
+        
  
 		
 		

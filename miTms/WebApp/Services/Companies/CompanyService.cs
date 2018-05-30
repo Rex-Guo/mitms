@@ -1,21 +1,21 @@
-﻿// <copyright file="CompanyService.cs" company="neozhu/MVC5-Scaffolder">
+﻿// <copyright file="CompanyService.cs" company="neozhu/SmartCode-Scaffolder">
 // Copyright (c) 2018 All Rights Reserved
 // </copyright>
 // <author>neo.zhu</author>
-// <date>2/8/2018 2:19:13 PM </date>
+// <date>5/30/2018 8:46:45 AM </date>
 // <summary>
-//  实现定义的业务逻辑,通过依赖注入降低模块之间的耦合度
+//  根据需求定义实现具体的业务逻辑,通过依赖注入降低模块之间的耦合度
 //   
 //  
 //  
 // </summary>
-
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Repository.Pattern.Repositories;
+using Repository.Pattern.Infrastructure;
 using Service.Pattern;
 using WebApp.Models;
 using WebApp.Repositories;
@@ -38,15 +38,7 @@ namespace WebApp.Services
 			_mappingservice = mappingservice;
         }
         
-                         public IEnumerable<Department>   GetDepartmentsByCompanyId (int companyid)
-        {
-            return _repository.GetDepartmentsByCompanyId(companyid);
-        }
-                public IEnumerable<Employee>   GetEmployeeByCompanyId (int companyid)
-        {
-            return _repository.GetEmployeeByCompanyId(companyid);
-        }
-         
+                  
         
 
 		public void ImportDataTable(System.Data.DataTable datatable)
@@ -93,7 +85,33 @@ namespace WebApp.Services
         {
             var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
                                    var companies  = this.Query(new CompanyQuery().Withfilter(filters)).OrderBy(n=>n.OrderBy(sort,order)).Select().ToList();
-                        var datarows = companies .Select(  n => new {  Id = n.Id , Name = n.Name , Address = n.Address , City = n.City , Province = n.Province , RegisterDate = n.RegisterDate , Employees = n.Employees }).ToList();
+                        var datarows = companies .Select(  n => new { 
+
+    Id = n.Id,
+    Name = n.Name,
+    Address = n.Address,
+    RegisteredCapital = n.RegisteredCapital,
+    UnifiedSocialCreditldentifier = n.UnifiedSocialCreditldentifier,
+    UnifiedSocialDatetime = n.UnifiedSocialDatetime,
+    BusinessScope = n.BusinessScope,
+    BusinessLicenseStartDatetime = n.BusinessLicenseStartDatetime,
+    BusinessLicenseendDatetime = n.BusinessLicenseendDatetime,
+    CountrySubdivisionCode = n.CountrySubdivisionCode,
+    PermitNumber = n.PermitNumber,
+    LegalPersonName = n.LegalPersonName,
+    LegalPersonTelehoneNumber = n.LegalPersonTelehoneNumber,
+    ContactName = n.ContactName,
+    ContactMobileTelephoneNumber = n.ContactMobileTelephoneNumber,
+    FaxNumber = n.FaxNumber,
+    InternetPlusProperty = n.InternetPlusProperty,
+    IsDeleteFlag = n.IsDeleteFlag,
+    SynchronizationTime = n.SynchronizationTime,
+    IsException = n.IsException,
+    CreatedDate = n.CreatedDate,
+    CreatedBy = n.CreatedBy,
+    LastModifiedDate = n.LastModifiedDate,
+    LastModifiedBy = n.LastModifiedBy
+}).ToList();
            
             return ExcelHelper.ExportExcel(typeof(Company), datarows);
 

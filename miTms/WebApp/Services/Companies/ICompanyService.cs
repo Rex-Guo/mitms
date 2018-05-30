@@ -2,9 +2,9 @@
 // Copyright (c) 2018 All Rights Reserved
 // </copyright>
 // <author>neo.zhu</author>
-// <date>2/8/2018 2:19:13 PM </date>
+// <date>5/30/2018 8:46:44 AM </date>
 // <summary>
-//  定义具体的业务逻辑接口
+//  根据业务需求定义具体的业务逻辑接口
 //   
 //  
 //  
@@ -27,10 +27,6 @@ namespace WebApp.Services
     public interface ICompanyService:IService<Company>
     {
 
-         
-                 IEnumerable<Department>   GetDepartmentsByCompanyId (int companyid);
-         
-                 IEnumerable<Employee>   GetEmployeeByCompanyId (int companyid);
          
          
  

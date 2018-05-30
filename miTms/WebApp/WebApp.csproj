@@ -248,13 +248,15 @@
     <Compile Include="App_Start\Sequence.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ButtonAttribute.cs" />
+    <Compile Include="Controllers\CarriersController.cs" />
     <Compile Include="Controllers\CodeItemsController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\EFMigrationsManagerController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ShippersController.cs" />
     <Compile Include="Controllers\TransactionHistoriesController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Migrations\201803120846216_addtitle.cs" />
@@ -341,31 +343,69 @@
     <Compile Include="Migrations\201805280906511_addf11.Designer.cs">
       <DependentUpon>201805280906511_addf11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805300047412_cp.cs" />
+    <Compile Include="Migrations\201805300047412_cp.Designer.cs">
+      <DependentUpon>201805300047412_cp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300131416_addtables.cs" />
+    <Compile Include="Migrations\201805300131416_addtables.Designer.cs">
+      <DependentUpon>201805300131416_addtables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300139263_chd.cs" />
+    <Compile Include="Migrations\201805300139263_chd.Designer.cs">
+      <DependentUpon>201805300139263_chd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300232430_ccs.cs" />
+    <Compile Include="Migrations\201805300232430_ccs.Designer.cs">
+      <DependentUpon>201805300232430_ccs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300244586_dc.cs" />
+    <Compile Include="Migrations\201805300244586_dc.Designer.cs">
+      <DependentUpon>201805300244586_dc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300248051_dcd.cs" />
+    <Compile Include="Migrations\201805300248051_dcd.Designer.cs">
+      <DependentUpon>201805300248051_dcd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carrier.cs" />
-    <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\CustomerMetadata.cs" />
+    <Compile Include="Models\CarrierMetadata.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\DriverMetadata.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\LineOffer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderMetadata.cs" />
     <Compile Include="Models\PoolsViewModel.cs" />
+    <Compile Include="Models\Shipper.cs" />
+    <Compile Include="Models\ShipperMetadata.cs" />
     <Compile Include="Models\TransactionHistory.cs" />
     <Compile Include="Models\TransactionHistoryMetadata.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleMetadata.cs" />
-    <Compile Include="Repositories\Customers\CustomerQuery.cs" />
-    <Compile Include="Repositories\Customers\CustomerRepository.cs" />
+    <Compile Include="Repositories\Carriers\CarrierQuery.cs" />
+    <Compile Include="Repositories\Carriers\CarrierRepository.cs" />
+    <Compile Include="Repositories\Companies\CompanyQuery.cs" />
+    <Compile Include="Repositories\Companies\CompanyRepository.cs" />
+    <Compile Include="Repositories\Drivers\DriverQuery.cs" />
+    <Compile Include="Repositories\Drivers\DriverRepository.cs" />
     <Compile Include="Repositories\Orders\OrderQuery.cs" />
     <Compile Include="Repositories\Orders\OrderRepository.cs" />
+    <Compile Include="Repositories\Shippers\ShipperQuery.cs" />
+    <Compile Include="Repositories\Shippers\ShipperRepository.cs" />
     <Compile Include="Repositories\TransactionHistories\TransactionHistoryQuery.cs" />
     <Compile Include="Repositories\TransactionHistories\TransactionHistoryRepository.cs" />
     <Compile Include="Repositories\Vehicles\VehicleQuery.cs" />
     <Compile Include="Repositories\Vehicles\VehicleRepository.cs" />
-    <Compile Include="Services\Customers\CustomerService.cs" />
-    <Compile Include="Services\Customers\ICustomerService.cs" />
+    <Compile Include="Services\Carriers\CarrierService.cs" />
+    <Compile Include="Services\Carriers\ICarrierService.cs" />
+    <Compile Include="Services\Companies\CompanyService.cs" />
+    <Compile Include="Services\Companies\ICompanyService.cs" />
+    <Compile Include="Services\Drivers\DriverService.cs" />
+    <Compile Include="Services\Drivers\IDriverService.cs" />
     <Compile Include="Services\Orders\IOrderService.cs" />
     <Compile Include="Services\Orders\OrderService.cs" />
+    <Compile Include="Services\Shippers\IShipperService.cs" />
+    <Compile Include="Services\Shippers\ShipperService.cs" />
     <Compile Include="Services\TransactionHistories\ITransactionHistoryService.cs" />
     <Compile Include="Services\TransactionHistories\TransactionHistoryService.cs" />
     <Compile Include="Services\Vehicles\IVehicleService.cs" />
@@ -493,8 +533,6 @@
     <Compile Include="Repositories\BaseCodes\BaseCodeRepository.cs" />
     <Compile Include="Repositories\CodeItems\CodeItemQuery.cs" />
     <Compile Include="Repositories\CodeItems\CodeItemRepository.cs" />
-    <Compile Include="Repositories\Companies\CompanyQuery.cs" />
-    <Compile Include="Repositories\Companies\CompanyRepository.cs" />
     <Compile Include="Repositories\DataTableImportMappings\MappingQuery.cs" />
     <Compile Include="Repositories\DataTableImportMappings\MappingRepository.cs" />
     <Compile Include="Repositories\Departments\DepartmentQuery.cs" />
@@ -513,8 +551,6 @@
     <Compile Include="Services\BaseCodes\IBaseCodeService.cs" />
     <Compile Include="Services\CodeItems\CodeItemService.cs" />
     <Compile Include="Services\CodeItems\ICodeItemService.cs" />
-    <Compile Include="Services\Companies\CompanyService.cs" />
-    <Compile Include="Services\Companies\ICompanyService.cs" />
     <Compile Include="Services\DataTableImportMappings\IMappingService.cs" />
     <Compile Include="Services\DataTableImportMappings\MappingService.cs" />
     <Compile Include="Services\Departments\DepartmentService.cs" />
@@ -3752,19 +3788,22 @@
     <Content Include="Views\Departments\EditForm.cshtml" />
     <Content Include="Views\Departments\_PopupDetailFormView.cshtml" />
     <Content Include="Views\AccountManage\_ResetPasswordPartial.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Companies\Index.cshtml" />
     <Content Include="Views\Companies\Create.cshtml" />
     <Content Include="Views\Companies\Edit.cshtml" />
     <Content Include="Views\Companies\EditForm.cshtml" />
     <Content Include="Views\Companies\_PopupDetailFormView.cshtml" />
-    <Content Include="Views\Companies\_DepartmentEditForm.cshtml" />
-    <Content Include="Views\Companies\_EmployeeEditForm.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Customers\Create.cshtml" />
-    <Content Include="Views\Customers\Edit.cshtml" />
-    <Content Include="Views\Customers\EditForm.cshtml" />
-    <Content Include="Views\Customers\_PopupDetailFormView.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Drivers\Index.cshtml" />
+    <Content Include="Views\Drivers\Create.cshtml" />
+    <Content Include="Views\Drivers\Edit.cshtml" />
+    <Content Include="Views\Drivers\EditForm.cshtml" />
+    <Content Include="Views\Drivers\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\Carriers\Index.cshtml" />
+    <Content Include="Views\Carriers\Create.cshtml" />
+    <Content Include="Views\Carriers\Edit.cshtml" />
+    <Content Include="Views\Carriers\EditForm.cshtml" />
+    <Content Include="Views\Carriers\_PopupDetailFormView.cshtml" />
     <None Include="Views\Notifications\_notifications.cshtml" />
     <None Include="Views\Messages\_notifications.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Int.cshtml">
@@ -3828,6 +3867,11 @@
     <Content Include="Views\TransactionHistories\EditForm.cshtml" />
     <Content Include="Views\TransactionHistories\_PopupDetailFormView.cshtml" />
     <Content Include="Views\Shared\_LayoutLandingPage.cshtml" />
+    <Content Include="Views\Shippers\Index.cshtml" />
+    <Content Include="Views\Shippers\Create.cshtml" />
+    <Content Include="Views\Shippers\Edit.cshtml" />
+    <Content Include="Views\Shippers\EditForm.cshtml" />
+    <Content Include="Views\Shippers\_PopupDetailFormView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4132,6 +4176,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805280906511_addf11.resx">
       <DependentUpon>201805280906511_addf11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300047412_cp.resx">
+      <DependentUpon>201805300047412_cp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300131416_addtables.resx">
+      <DependentUpon>201805300131416_addtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300139263_chd.resx">
+      <DependentUpon>201805300139263_chd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300232430_ccs.resx">
+      <DependentUpon>201805300232430_ccs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300244586_dc.resx">
+      <DependentUpon>201805300244586_dc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300248051_dcd.resx">
+      <DependentUpon>201805300248051_dcd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

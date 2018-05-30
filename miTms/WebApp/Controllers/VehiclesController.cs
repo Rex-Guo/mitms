@@ -77,7 +77,7 @@ namespace WebApp.Controllers
                 Cartons = n.Cartons,
                 Pallets = n.Pallets,
                 InputUser = n.InputUser,
-                CustomerId = n.CustomerId,
+                ShipperId = n.ShipperId,
                 PlateNumber = n.PlateNumber,
                 PlateNumberPosition = n.PlateNumberPosition,
                 VehStatus = n.VehStatus,

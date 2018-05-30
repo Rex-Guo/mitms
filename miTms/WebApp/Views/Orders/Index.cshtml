@@ -167,8 +167,8 @@
                                 <section class="col col-6">
                                     <label class="select">
 
-                                        @Html.DropDownList("CustomerId", (IEnumerable
-<SelectListItem>)ViewBag.Customer, new { @class = "form-control" })
+                                        @Html.DropDownList("ShipperId", (IEnumerable
+<SelectListItem>)ViewBag.Shipper, new { @class = "form-control" })
                                         <i></i>
                                     </label>
                                 </section>
@@ -330,14 +330,14 @@
       columns: [
           [
               /*{ field: 'ck', checkbox: true },*/
-              {
-                  field: '_operate1',
-                  title: '操作',
-                  width: 120,
-                  sortable: false,
-                  resizable: true,
-                  formatter: showdetailsformatter
-              },
+              //{
+              //    field: '_operate1',
+              //    title: '操作',
+              //    width: 120,
+              //    sortable: false,
+              //    resizable: true,
+              //    formatter: showdetailsformatter
+              //},
               /*{field:'Id',width:80 ,sortable:true,resizable:true }*/
               {
                   field: 'OrderNo',
@@ -368,6 +368,28 @@
                   },
                   sortable: true,
                   resizable: true
+              },
+              {
+                  field: 'ShipperId',
+                  title: '@Html.DisplayNameFor(model => model.ShipperId)',
+                  width: 210,
+                  sortable: true,
+                  resizable: true,
+                  formatter: function(value, row) {
+                      return row.ShipperName;
+                  },
+                  editor: {
+                      type: 'combobox',
+                      options: {
+                          prompt: '客户',
+                          mode: 'remote',
+                          valueField: 'Id',
+                          textField: 'Name',
+                          method: 'get',
+                          url: '/Orders/GetShippers',
+                          required: true
+                      }
+                  }
               },
               {
                   field: 'Status',
@@ -713,29 +735,7 @@
                   sortable: true,
                   resizable: true,
                   formatter: datetimeformatter
-              },
-              {
-                  field: 'CustomerId',
-                  title: '@Html.DisplayNameFor(model => model.CustomerId)',
-                  width: 160,
-                  sortable: true,
-                  resizable: true,
-                  formatter: function(value, row) {
-                      return row.CustomerName;
-                  },
-                  editor: {
-                      type: 'combobox',
-                      options: {
-                          prompt: '客户',
-                          mode: 'remote',
-                          valueField: 'Id',
-                          textField: 'Name',
-                          method: 'get',
-                          url: '/Orders/GetCustomers',
-                          required: true
-                      }
-                  }
-              },
+              }
 
           ]
       ]
@@ -757,13 +757,13 @@
 
           var ed = $dg.datagrid("getEditor", {
               index: editIndex,
-              field: "CustomerId"
+              field: "ShipperId"
           });
           var customername = $(ed.target).combobox("getText");
-          var customerid = $(ed.target).combobox("getValue");
+          var ShipperId = $(ed.target).combobox("getValue");
 
           $dg.datagrid("getRows")[editIndex]["CustomerName"] = customername;
-          $dg.datagrid("getRows")[editIndex]["CustomerId"] = customerid;
+          $dg.datagrid("getRows")[editIndex]["ShipperId"] = ShipperId;
 
 
           var ed = $dg.datagrid("getEditor", {
@@ -1020,19 +1020,19 @@
               }
           },
           {
-              field: "CustomerId",
+              field: "ShipperId",
               type: "combobox",
               options: {
                   valueField: "Id",
                   textField: "Name",
                   method: "get",
-                  url: "/Orders/GetCustomers",
+                  url: "/Orders/GetShippers",
                   onChange: function(value) {
                       if (value == "") {
-                          $dg.datagrid("removeFilterRule", "CustomerId");
+                          $dg.datagrid("removeFilterRule", "ShipperId");
                       } else {
                           $dg.datagrid("addFilterRule", {
-                              field: "CustomerId",
+                              field: "ShipperId",
                               op: "equal",
                               value: value
                           });
@@ -1121,7 +1121,7 @@
                         required: true,
                         maxlength: 30
                     },
-                    CustomerId: {
+                    ShipperId: {
                         required: true
                     },
                     Location1: {

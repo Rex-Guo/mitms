@@ -28,7 +28,7 @@ namespace WebApp.Services
     {
 
                   IEnumerable<Order> GetByVehicleId(int  vehicleid);
-                 IEnumerable<Order> GetByCustomerId(int  customerid);
+                 IEnumerable<Order> GetByShipperId(int  customerid);
         
          
  

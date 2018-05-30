@@ -60,7 +60,7 @@ namespace WebApp.Controllers
             });
             ViewBag.CompletePercent = CompletePercent * 100;
 
-            var customrep = this._unitOfWork.RepositoryAsync<Customer>();
+            var customrep = this._unitOfWork.RepositoryAsync<Shipper>();
             ViewBag.Customer = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
 
             return View();

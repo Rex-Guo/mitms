@@ -1,11 +1,11 @@
 ﻿/// <summary>
 /// Provides functionality to the /Company/ route.
-/// <date> 4/20/2018 1:22:04 PM </date>
+/// <date> 5/30/2018 8:46:46 AM </date>
 /// Create By SmartCode MVC5 Scaffolder for Visual Studio
 /// TODO: RegisterType UnityConfig.cs
 /// container.RegisterType<IRepositoryAsync<Company>, Repository<Company>>();
 /// container.RegisterType<ICompanyService, CompanyService>();
-///
+/// 
 /// Copyright (c) 2012-2018 neo.zhu
 /// Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
 /// and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
@@ -23,11 +23,10 @@ using System.Web.Mvc;
 using Repository.Pattern.UnitOfWork;
 using Repository.Pattern.Infrastructure;
 using Z.EntityFramework.Plus;
+using TrackableEntities;
 using WebApp.Models;
 using WebApp.Services;
 using WebApp.Repositories;
-using TrackableEntities;
-
 namespace WebApp.Controllers
 {
     //[Authorize]
@@ -59,7 +58,33 @@ namespace WebApp.Controllers
 						               .Query(new CompanyQuery().Withfilter(filters))
 							           .OrderBy(n=>n.OrderBy(sort,order))
 							           .SelectPageAsync(page, rows, out totalCount);
-      									var datarows = companies .Select(  n => new {  Id = n.Id , Name = n.Name , Address = n.Address , City = n.City , Province = n.Province , RegisterDate = n.RegisterDate , Employees = n.Employees }).ToList();
+      									var datarows = companies .Select(  n => new { 
+
+    Id = n.Id,
+    Name = n.Name,
+    Address = n.Address,
+    RegisteredCapital = n.RegisteredCapital,
+    UnifiedSocialCreditldentifier = n.UnifiedSocialCreditldentifier,
+    UnifiedSocialDatetime = n.UnifiedSocialDatetime,
+    BusinessScope = n.BusinessScope,
+    BusinessLicenseStartDatetime = n.BusinessLicenseStartDatetime,
+    BusinessLicenseendDatetime = n.BusinessLicenseendDatetime,
+    CountrySubdivisionCode = n.CountrySubdivisionCode,
+    PermitNumber = n.PermitNumber,
+    LegalPersonName = n.LegalPersonName,
+    LegalPersonTelehoneNumber = n.LegalPersonTelehoneNumber,
+    ContactName = n.ContactName,
+    ContactMobileTelephoneNumber = n.ContactMobileTelephoneNumber,
+    FaxNumber = n.FaxNumber,
+    InternetPlusProperty = n.InternetPlusProperty,
+    IsDeleteFlag = n.IsDeleteFlag,
+    SynchronizationTime = n.SynchronizationTime,
+    IsException = n.IsException,
+    CreatedDate = n.CreatedDate,
+    CreatedBy = n.CreatedBy,
+    LastModifiedDate = n.LastModifiedDate,
+    LastModifiedBy = n.LastModifiedBy
+}).ToList();
 			var pagelist = new { total = totalCount, rows = datarows };
 			return Json(pagelist, JsonRequestBehavior.AllowGet);
 		}
@@ -90,17 +115,7 @@ namespace WebApp.Controllers
 			await _unitOfWork.SaveChangesAsync();
 			return Json(new {Success=true}, JsonRequestBehavior.AllowGet);
 		}
-								        //[OutputCache(Duration = 360, VaryByParam = "none")]
-		public async Task<JsonResult> GetCompanies(string q="")
-		{
-			var companyRepository = _unitOfWork.RepositoryAsync<Company>();
-			var data = await companyRepository.Queryable().Where(n=>n.Name.Contains(q)).ToListAsync();
-			var rows = data.Select(n => new { Id = n.Id, Name = n.Name });
-			return Json(rows, JsonRequestBehavior.AllowGet);
-		}
-						        //[OutputCache(Duration = 360, VaryByParam = "none")]
-		 
-						// GET: Companies/Details/5
+								// GET: Companies/Details/5
 		public async Task<ActionResult> Details(int? id)
 		{
 			if (id == null)
@@ -125,23 +140,12 @@ namespace WebApp.Controllers
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "Departments,Employee,Id,Name,Address,City,Province,RegisterDate,Employees,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] Company company)
+		public async Task<ActionResult> Create([Bind(Include = "Id,Name,Address,RegisteredCapital,UnifiedSocialCreditldentifier,UnifiedSocialDatetime,BusinessScope,BusinessLicenseStartDatetime,BusinessLicenseendDatetime,CountrySubdivisionCode,PermitNumber,LegalPersonName,LegalPersonTelehoneNumber,ContactName,ContactMobileTelephoneNumber,FaxNumber,InternetPlusProperty,IsDeleteFlag,SynchronizationTime,IsException,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] Company company)
 		{
 			if (ModelState.IsValid)
 			{
-			 				company.TrackingState = TrackingState.Added;   
-								foreach (var item in company.Departments)
-				{
-					item.CompanyId = company.Id ;
-					item.TrackingState = TrackingState.Added;
-				}
-								foreach (var item in company.Employee)
-				{
-					item.CompanyId = company.Id ;
-					item.TrackingState = TrackingState.Added;
-				}
-								_companyService.InsertOrUpdateGraph(company);
-							await _unitOfWork.SaveChangesAsync();
+			 				_companyService.Insert(company);
+		   				await _unitOfWork.SaveChangesAsync();
 				if (Request.IsAjaxRequest())
 				{
 					return Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -186,31 +190,12 @@ namespace WebApp.Controllers
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Edit([Bind(Include = "Departments,Employee,Id,Name,Address,City,Province,RegisterDate,Employees,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] Company company)
+		public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Address,RegisteredCapital,UnifiedSocialCreditldentifier,UnifiedSocialDatetime,BusinessScope,BusinessLicenseStartDatetime,BusinessLicenseendDatetime,CountrySubdivisionCode,PermitNumber,LegalPersonName,LegalPersonTelehoneNumber,ContactName,ContactMobileTelephoneNumber,FaxNumber,InternetPlusProperty,IsDeleteFlag,SynchronizationTime,IsException,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] Company company)
 		{
 			if (ModelState.IsValid)
 			{
 				company.TrackingState = TrackingState.Modified;
-												foreach (var item in company.Departments)
-				{
-					item.CompanyId = company.Id ;
-					//set ObjectState with conditions
-					if(item.Id <= 0)
-						item.TrackingState = TrackingState.Added;
-					else
-						item.TrackingState = TrackingState.Modified;
-				}
-								foreach (var item in company.Employee)
-				{
-					item.CompanyId = company.Id ;
-					//set ObjectState with conditions
-					if(item.Id <= 0)
-						item.TrackingState = TrackingState.Added;
-					else
-						item.TrackingState = TrackingState.Modified;
-				}
-				      
-				_companyService.InsertOrUpdateGraph(company);
+								_companyService.Update(company);
 								await   _unitOfWork.SaveChangesAsync();
 				if (Request.IsAjaxRequest())
 				{
@@ -258,129 +243,7 @@ namespace WebApp.Controllers
 			DisplaySuccessMessage("Has delete a Company record");
 			return RedirectToAction("Index");
 		}
-		// Get Detail Row By Id For Edit
-		// Get : Companies/EditDepartment/:id
-		[HttpGet]
-				public async Task<ActionResult> EditDepartment(int? id)
-				{
-			if (id == null)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			var departmentRepository = _unitOfWork.RepositoryAsync<Department>();
-						var department = await departmentRepository.FindAsync(id);
-									var companyRepository = _unitOfWork.RepositoryAsync<Company>();             
-						if (department == null)
-			{
-											ViewBag.CompanyId = new SelectList(await companyRepository.Queryable().ToListAsync(), "Id", "Name" );
-											//return HttpNotFound();
-				return PartialView("_DepartmentEditForm", new Department());
-			}
-			else
-			{
-											 ViewBag.CompanyId = new SelectList(await companyRepository.Queryable().ToListAsync(), "Id", "Name" , department.CompanyId );  
-										}
-			return PartialView("_DepartmentEditForm",  department);
-		}
-		// Get Create Row By Id For Edit
-		// Get : Companies/CreateDepartment
-		[HttpGet]
-				public async Task<ActionResult> CreateDepartment()
-				{
-		  			  var companyRepository = _unitOfWork.RepositoryAsync<Company>();    
-			  			  ViewBag.CompanyId = new SelectList(await companyRepository.Queryable().ToListAsync(), "Id", "Name" );
-			  		  			return PartialView("_DepartmentEditForm");
-		}
-		// Post Delete Detail Row By Id
-		// Get : Companies/DeleteDepartment/:id
-		[HttpPost,ActionName("DeleteDepartment")]
-				public async Task<ActionResult> DeleteDepartmentConfirmed(int  id)
-				{
-			var departmentRepository = _unitOfWork.RepositoryAsync<Department>();
-			departmentRepository.Delete(id);
-						await _unitOfWork.SaveChangesAsync();
-						if (Request.IsAjaxRequest())
-			{
-				return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-			}
-			DisplaySuccessMessage("Has delete a Order record");
-			return RedirectToAction("Index");
-		}
-		// Get Detail Row By Id For Edit
-		// Get : Companies/EditEmployee/:id
-		[HttpGet]
-				public async Task<ActionResult> EditEmployee(int? id)
-				{
-			if (id == null)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			var employeeRepository = _unitOfWork.RepositoryAsync<Employee>();
-						var employee = await employeeRepository.FindAsync(id);
-									var companyRepository = _unitOfWork.RepositoryAsync<Company>();             
-						if (employee == null)
-			{
-											ViewBag.CompanyId = new SelectList(await companyRepository.Queryable().ToListAsync(), "Id", "Name" );
-											//return HttpNotFound();
-				return PartialView("_EmployeeEditForm", new Employee());
-			}
-			else
-			{
-											 ViewBag.CompanyId = new SelectList(await companyRepository.Queryable().ToListAsync(), "Id", "Name" , employee.CompanyId );  
-										}
-			return PartialView("_EmployeeEditForm",  employee);
-		}
-		// Get Create Row By Id For Edit
-		// Get : Companies/CreateEmployee
-		[HttpGet]
-				public async Task<ActionResult> CreateEmployee()
-				{
-		  			  var companyRepository = _unitOfWork.RepositoryAsync<Company>();    
-			  			  ViewBag.CompanyId = new SelectList(await companyRepository.Queryable().ToListAsync(), "Id", "Name" );
-			  		  			return PartialView("_EmployeeEditForm");
-		}
-		// Post Delete Detail Row By Id
-		// Get : Companies/DeleteEmployee/:id
-		[HttpPost,ActionName("DeleteEmployee")]
-				public async Task<ActionResult> DeleteEmployeeConfirmed(int  id)
-				{
-			var employeeRepository = _unitOfWork.RepositoryAsync<Employee>();
-			employeeRepository.Delete(id);
-						await _unitOfWork.SaveChangesAsync();
-						if (Request.IsAjaxRequest())
-			{
-				return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-			}
-			DisplaySuccessMessage("Has delete a Order record");
-			return RedirectToAction("Index");
-		}
        
-		// Get : Companies/GetDepartmentsByCompanyId/:id
-		[HttpGet]
-				public async Task<ActionResult> GetDepartmentsByCompanyId(int id)
-				{
-			var departments = _companyService.GetDepartmentsByCompanyId(id);
-			if (Request.IsAjaxRequest())
-			{
-								var data = await departments.AsQueryable().ToListAsync();
-								var rows = data.Select( n => new { CompanyName = (n.Company==null?"": n.Company.Name) , Id = n.Id , Name = n.Name , Manager = n.Manager , CompanyId = n.CompanyId });
-				return Json(rows, JsonRequestBehavior.AllowGet);
-			}  
-			return View(departments); 
-		}
-		// Get : Companies/GetEmployeeByCompanyId/:id
-		[HttpGet]
-				public async Task<ActionResult> GetEmployeeByCompanyId(int id)
-				{
-			var employee = _companyService.GetEmployeeByCompanyId(id);
-			if (Request.IsAjaxRequest())
-			{
-								var data = await employee.AsQueryable().ToListAsync();
-								var rows = data.Select( n => new { CompanyName = (n.Company==null?"": n.Company.Name) , Id = n.Id , Name = n.Name , Title = n.Title , Sex = n.Sex , Age = n.Age , Brithday = n.Brithday , IsDeleted = n.IsDeleted , CompanyId = n.CompanyId });
-				return Json(rows, JsonRequestBehavior.AllowGet);
-			}  
-			return View(employee); 
-		}
  
 		//导出Excel
 		[HttpPost]

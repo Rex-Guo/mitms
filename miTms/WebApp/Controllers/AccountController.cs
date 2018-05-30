@@ -137,8 +137,8 @@ namespace WebApp.Controllers
         {
             // We do not want to use any existing identity information
             EnsureLoggedOut();
-            var data = this._companyService.Queryable().Select(x=>new ListItem() { Value=x.Id.ToString(), Text=x.Name  });
-            
+            var data =  this._companyService.Queryable().Select(x=>new ListItem() { Value=x.Id.ToString(), Text=x.Name  });
+
             ViewBag.companylist = data;
             var model = new AccountRegistrationModel();
             model.CompanyCode = data.FirstOrDefault() != null ? data.FirstOrDefault().Value : "";

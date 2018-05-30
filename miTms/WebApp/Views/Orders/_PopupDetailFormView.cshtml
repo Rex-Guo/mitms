@@ -386,11 +386,11 @@
                 </td>
             </tr>
             <tr>
-                <td class="control-label">   @Html.DisplayNameFor(model => model.CustomerId)  </td>
+                <td class="control-label">   @Html.DisplayNameFor(model => model.ShipperId)  </td>
                 <td>
-                    <input id="@Html.IdFor(model => model.CustomerId)"
-                           name="@Html.NameFor(model => model.CustomerId)"
-                           value="@Html.ValueFor(model => model.CustomerId)"
+                    <input id="@Html.IdFor(model => model.ShipperId)"
+                           name="@Html.NameFor(model => model.ShipperId)"
+                           value="@Html.ValueFor(model => model.ShipperId)"
                            class="easyui-combobox" data-options="
 						prompt:'客户' ,
 						label:'' ,
@@ -398,7 +398,7 @@
 						required:true ,
 						valueField: 'Id',
 						textField: 'Name' ,
-						url: '/Orders/GetCustomers' ,
+						url: '/Orders/GetShippers' ,
 						onSelect: function(item){
 						//console.log(item);
 				}">

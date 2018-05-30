@@ -33,7 +33,7 @@ namespace WebApp.Controllers
         public AccountManageController(ApplicationUserManager userManager,
                                    ApplicationSignInManager signInManager,
                                    ICompanyService companyService
-                               
+
                                    )
         {
             //UserManager = userManager;
@@ -122,10 +122,10 @@ namespace WebApp.Controllers
         public ActionResult GetCompanyData()
         {
             var data = new List<CompanyViewModel>();
-            var query1 = _companyService.Queryable().Select(x => new CompanyViewModel() { CompanyCode = x.Id.ToString(), CompanyName = x.Name, Type = 0 });
-             
-            data.AddRange(query1);
-           
+            var query = _companyService.Queryable().Select(x => new CompanyViewModel() { CompanyCode = x.Id.ToString(), CompanyName = x.Name, Type = 0 });
+
+            data.AddRange(query);
+
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]

@@ -97,11 +97,11 @@ namespace WebApp.Models
 
         #endregion
         #region 客户信息
-        [Display(Name = "客户", Description = "客户")]
-        public int CustomerId { get; set; }
-        [ForeignKey("CustomerId")]
-        [Display(Name = "客户", Description = "客户")]
-        public virtual Customer Customer { get; set; }
+        [Display(Name = "托运人", Description = "托运人")]
+        public int ShipperId { get; set; }
+        [ForeignKey("ShipperId")]
+        [Display(Name = "托运人", Description = "托运人")]
+        public virtual Shipper Shipper { get; set; }
         [Display(Name = "联系电话", Description = "联系电话")]
         [MaxLength(20)]
         public string PhoneNumber { get; set; }

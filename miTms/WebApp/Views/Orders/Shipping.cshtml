@@ -115,9 +115,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="CustomerId"> 客户 </label>
-                                    @Html.DropDownList("CustomerId", (IEnumerable
-<SelectListItem>)ViewBag.Customer, new { @class = "form-control" })
+                                    <label for="ShipperId"> 客户 </label>
+                                    @Html.DropDownList("ShipperId", (IEnumerable
+<SelectListItem>)ViewBag.Shipper, new { @class = "form-control" })
 
                                 </div>
 
@@ -1139,9 +1139,9 @@
             $('#Driver').val(row.Driver);
             $('#DriverPhone').val(row.DriverPhone);
             if (row.OrderNo != null && row.ExternalNo != null && row.OrderId != null) {
-                //console.log(row.CustomerId,row.OrderId);
-                $('#CustomerId').val(row.CustomerId);
-                $('#CustomerId').prop('readonly', 'readonly');
+                //console.log(row.ShipperId,row.OrderId);
+                $('#ShipperId').val(row.ShipperId);
+                $('#ShipperId').prop('readonly', 'readonly');
                 $('#Id').val(row.OrderId.toString());
                 $('#OrderNo').val(row.OrderNo);
                 $('#ExternalNo').val(row.ExternalNo);

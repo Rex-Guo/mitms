@@ -32,11 +32,11 @@ namespace WebApp.Repositories
 
          }
              
-                 public static IEnumerable<Order> GetByCustomerId(this IRepositoryAsync<Order> repository, int customerid)
+                 public static IEnumerable<Order> GetByShipperId(this IRepositoryAsync<Order> repository, int customerid)
          {
              var query= repository
                 .Queryable()
-                .Where(x => x.CustomerId==customerid);
+                .Where(x => x.ShipperId==customerid);
              return query;
 
          }

@@ -124,10 +124,18 @@ namespace WebApp
             container.RegisterType<IOrderService, OrderService>();
             container.RegisterType<IRepositoryAsync<Vehicle>, Repository<Vehicle>>();
             container.RegisterType<IVehicleService, VehicleService>();
-            container.RegisterType<IRepositoryAsync<Customer>, Repository<Customer>>();
-            container.RegisterType<ICustomerService, CustomerService>();
+           
             container.RegisterType<IRepositoryAsync<TransactionHistory>, Repository<TransactionHistory>>();
             container.RegisterType<ITransactionHistoryService, TransactionHistoryService>();
+
+
+            container.RegisterType<IRepositoryAsync<Shipper>, Repository<Shipper>>();
+            container.RegisterType<IShipperService, ShipperService>();
+            container.RegisterType<IRepositoryAsync<Driver>, Repository<Driver>>();
+            container.RegisterType<IDriverService, DriverService>();
+            container.RegisterType<IRepositoryAsync<Carrier>, Repository<Carrier>>();
+            container.RegisterType<ICarrierService, CarrierService>();
+
         }
     }
 }
