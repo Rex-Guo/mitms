@@ -1,8 +1,8 @@
 ﻿@model WebApp.Models.AccountLoginModel
 @{
-    Layout = "~/Views/Shared/_LayoutLandingPage.cshtml";
+    Layout ="~/Views/Shared/_LayoutLandingPage.cshtml";
 }
-
+ 
 <!-- HOME -->
 <section class="home bg-img-3" id="home">
 
@@ -27,7 +27,7 @@
 </section>
 <!-- END HOME -->
 <!-- FEATURES-ALT -->
-<section class="section " id="orderform">
+<section class="section" id="orderform">
     <div class="container">
 
         <div class="row">
@@ -330,7 +330,7 @@
 <!-- END 线路报价 -->
 <!-- 承运商 -->
 <section id="carrier" class="section">
-    <div class="container ">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="title-box">
@@ -850,7 +850,7 @@
         <div class="modal-content">
             <div class="loginmodal-container">
                 <h1>登录</h1><br>
-                           <form action="@Url.Action("login", "account")" method="POST">
+                           <form action="@Url.Action("login","account")" method="POST">
                                @Html.HiddenFor(m => m.ReturnUrl)
                                @Html.AntiForgeryToken()
                                <input type="text" name="email" value="demo@email.com" required placeholder="E-mail">
@@ -870,87 +870,213 @@
         <div class="modal-content">
             <form role="form" action="" method="post" class="f1">
 
-                <h3>Register To Our App</h3>
-                <p>Fill in the form to get instant access</p>
+                <h3>承运人注册</h3>
+                <p>所有数据需要通过征信系统认证后才能正常使用</p>
                 <div class="f1-steps">
                     <div class="f1-progress">
                         <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
                     </div>
                     <div class="f1-step active">
                         <div class="f1-step-icon"><i class="fa fa-user"></i></div>
-                        <p>about</p>
+                        <p>登录信息</p>
                     </div>
                     <div class="f1-step">
-                        <div class="f1-step-icon"><i class="fa fa-key"></i></div>
-                        <p>account</p>
+                        <div class="f1-step-icon"><i class="fa fa-windows"></i></div>
+                        <p>承运人信息</p>
                     </div>
                     <div class="f1-step">
-                        <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
-                        <p>social</p>
+                        <div class="f1-step-icon"><i class="fa fa-truck"></i></div>
+                        <p>承运车辆登记</p>
+                    </div>
+                    <div class="f1-step">
+                        <div class="f1-step-icon"><i class="fa fa-id-card"></i></div>
+                        <p>驾驶员登记</p>
                     </div>
                 </div>
 
                 <fieldset>
-                    <h4>Tell us who you are:</h4>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-first-name">First name</label>
-                        <input type="text" name="f1-first-name" placeholder="First name..." class="f1-first-name form-control" id="f1-first-name">
+                    <h4>注册登录信息</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="UserName" id="cuserName" placeholder="用户名" class="f1-first-name form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="Gender" id="cgender">
+                                <option value="0" selected="" disabled="">性别</option>
+                                <option value="1">男</option>
+                                <option value="2">女</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-last-name">Last name</label>
-                        <input type="text" name="f1-last-name" placeholder="Last name..." class="f1-last-name form-control" id="f1-last-name">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="PhoneNumber" id="cPhoneNumber" placeholder="移动手机号" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="email" name="Email" id="cEmail" placeholder="电子邮件" class="form-control">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-about-yourself">About yourself</label>
-                        <textarea name="f1-about-yourself" placeholder="About yourself..."
-                                  class="f1-about-yourself form-control" id="f1-about-yourself"></textarea>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="password" name="Password" placeholder="登录密码" class="form-control" id="cPassword">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="password" name="PasswordConfirm" placeholder="重复登录密码" class="form-control" id="cPasswordConfirm">
+                        </div>
                     </div>
                     <div class="f1-buttons">
-                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-next">Next</button>
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-next">下一步</button>
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <h4>Set up your account:</h4>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-email">Email</label>
-                        <input type="text" name="f1-email" placeholder="Email..." class="f1-email form-control" id="f1-email">
+                    <h4>注册承运人信息</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="CarrierName" placeholder="承运人名称" class="form-control" id="cCarrierName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="CarrierType" id="cCarrierType">
+                                <option value="0" selected="" disabled="">承运人类型</option>
+                                <option value="1">个人</option>
+                                <option value="2">企业</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-password">Password</label>
-                        <input type="password" name="f1-password" placeholder="Password..." class="f1-password form-control" id="f1-password">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="ContactName" placeholder="联系人" class="form-control" id="cContactName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="ContactMobileTelephoneNumber" placeholder="联系人电话" class="form-control" id="cContactMobileTelephoneNumber">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-repeat-password">Repeat password</label>
-                        <input type="password" name="f1-repeat-password" placeholder="Repeat password..."
-                               class="f1-repeat-password form-control" id="f1-repeat-password">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="CountrySubdivisionCode" id="cCountrySubdivisionCode">
+                                <option value="0" selected="" disabled="">所属辖区</option>
+                                <option value="1">-</option>
+                                <option value="2">-</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="RegisteredAddress" placeholder="注册地址" class="form-control" id="cRegisteredAddress">
+                        </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="PermitNumber" placeholder="道路运输许可证号" class="form-control" id="cPermitNumber">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="UnifiedSocialCreditldentifier" placeholder="统一社会信用代码" class="form-control" id="cUnifiedSocialCreditldentifier">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="BusinessScope" placeholder="经营范围" class="form-control" id="cBusinessScope">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="Description" placeholder="备注" class="form-control" id="cDescription">
+                        </div>
+                    </div>
+
                     <div class="f1-buttons">
-                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-previous">Previous</button>
-                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-next">Next</button>
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-previous">上一步</button>
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-next">下一步</button>
                     </div>
+
                 </fieldset>
 
                 <fieldset>
-                    <h4>Social media profiles:</h4>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-facebook">Facebook</label>
-                        <input type="text" name="f1-facebook" placeholder="Facebook..." class="f1-facebook form-control" id="f1-facebook">
+                    <h4>注册运输车辆</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="VehicleClassificationCode" id="cVehicleClassificationCode">
+                                <option value="0" selected="" disabled="">车辆分类</option>
+                                <option value="1">-</option>
+                                <option value="2">-</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="LicenseplateTypeCode" id="cLicenseplateTypeCode">
+                                <option value="0" selected="" disabled="">牌照类型</option>
+                                <option value="1">-</option>
+                                <option value="2">-</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-twitter">Twitter</label>
-                        <input type="text" name="f1-twitter" placeholder="Twitter..." class="f1-twitter form-control" id="f1-twitter">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="VehicleNumber" placeholder="车辆牌照号" class="form-control" id="cVehicleNumber">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="VehicleLicensePlateColor" id="cVehicleLicensePlateColor">
+                                <option value="0" selected="" disabled="">车牌颜色</option>
+                                <option value="1">-</option>
+                                <option value="2">-</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="f1-google-plus">Google plus</label>
-                        <input type="text" name="f1-google-plus" placeholder="Google plus..." class="f1-google-plus form-control" id="f1-google-plus">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="RoadTransportCertificateNumber" placeholder="道路运输证字号" class="form-control" id="cRoadTransportCertificateNumber">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" name="VehicleLadenWeight" placeholder="满载车辆质量(吨)" class="form-control" id="cVehicleLadenWeight">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" name="VehicleTonnage" placeholder="车辆载质量(吨)" class="form-control" id="cVehicleTonnage">
+                        </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="VehicleLength" placeholder="车辆长度(米)" class="form-control" id="cVehicleLength">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" name="VehicleWidth" placeholder="车辆宽度(米)" class="form-control" id="cVehicleWidth">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" name="VehicleHeight" placeholder="车辆高度(米)" class="form-control" id="cVehicleHeight">
+                        </div>
+                    </div>
+
                     <div class="f1-buttons">
-                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-previous">Previous</button>
-                        <button type="submit" class="btn btn-primary btn-shadow btn-rounded btn-submit">Submit</button>
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-previous">上一步</button>
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-next">下一步</button>
                     </div>
                 </fieldset>
+                <fieldset>
+                    <h4>注册司机信息</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="NameOfPerson" placeholder="司机姓名" class="form-control" id="cNameOfPerson">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="DriverGender" id="cDriverGender">
+                                <option value="0" selected="" disabled="">性别</option>
+                                <option value="1">男</option>
+                                <option value="2">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <input type="text" name="IdentityDocumentNumber" placeholder="司机身份证号" class="form-control" id="cIdentityDocumentNumber">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" name="MobileTelephoneNumber" placeholder="司机手机号码" class="form-control" id="cMobileTelephoneNumber">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" name="QualificationCertificateNumber" placeholder="从业资格信息证号" class="form-control" id="cQualificationCertificateNumber">
+                        </div>
+                    </div>
+                    
 
+                    <div class="f1-buttons">
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-previous">上一步</button>
+                        <button type="submit" class="btn btn-primary btn-shadow btn-rounded btn-submit">保存</button>
+                    </div>
+                </fieldset>
             </form>
         </div>
 
@@ -959,8 +1085,23 @@
 </div>
 @section scripts{
     <script type="text/javascript">
+        //设置动画效果
+        function addAnim(x) {
+           
+            $('#login-modal .modal-dialog').attr('class', 'modal-dialog  ' + x + '  animated');
+        };
+        $('#login-modal').on('show.bs.modal', function (e) {
+            var anim = 'fadeInDown';
+            addAnim(anim);
+        });
+        $('#login-modal').on('hide.bs.modal', function (e) {
+  
+            var anim = 'fadeOutRight';
+            addAnim(anim);
+        });
+
         (function ($) {
-            "use strict";
+           "use strict";
             $(document).ready(function () {
 
                 init_masonry();
@@ -1004,27 +1145,27 @@
                     lengthChange: false,
                     pageLength: 5,
                     language: {
-                        "decimal": "",
-                        "emptyTable": "没有找到报价",
-                        "info": " _START_ / _END_ 共 _TOTAL_",
-                        "infoEmpty": " 0 / 0 共 0 ",
-                        "infoFiltered": "(filtered from _MAX_ total entries)",
-                        "infoPostFix": "",
-                        "thousands": ",",
-                        "lengthMenu": "Show _MENU_ entries",
-                        "loadingRecords": "Loading...",
-                        "processing": "Processing...",
-                        "search": "查询:",
-                        "zeroRecords": "没有找到报价",
-                        "paginate": {
-                            "first": "第一条",
-                            "last": "最后一条",
-                            "next": "下一条",
-                            "previous": "上一条"
+                       "decimal":"",
+                       "emptyTable":"没有找到报价",
+                       "info":" _START_ / _END_ 共 _TOTAL_",
+                       "infoEmpty":" 0 / 0 共 0",
+                       "infoFiltered":"(filtered from _MAX_ total entries)",
+                       "infoPostFix":"",
+                       "thousands":",",
+                       "lengthMenu":"Show _MENU_ entries",
+                       "loadingRecords":"Loading...",
+                       "processing":"Processing...",
+                       "search":"查询:",
+                       "zeroRecords":"没有找到报价",
+                       "paginate": {
+                           "first":"第一条",
+                           "last":"最后一条",
+                           "next":"下一条",
+                           "previous":"上一条"
                         },
-                        "aria": {
-                            "sortAscending": ": 升序",
-                            "sortDescending": ": 降序"
+                       "aria": {
+                           "sortAscending":": 升序",
+                           "sortDescending":": 降序"
                         }
                     }
                 });
@@ -1041,6 +1182,9 @@
 
                 })(jQuery);
             }
+
+
+           
 
         })(jQuery);
     </script>

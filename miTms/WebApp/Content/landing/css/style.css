@@ -1689,7 +1689,7 @@ legend {
 .f1-step {
     position: relative;
     float: left;
-    width: 33.333333%;
+    width: 25.0%;
     padding: 0 5px;
 }
 
@@ -1749,3 +1749,13 @@ legend {
     border-color: #f35b3f;
 }
 
+/*###############*/
+.modal.fade {
+    opacity: 1;
+}
+
+.modal.fade .modal-dialog {
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    transform: translate(0);
+}
