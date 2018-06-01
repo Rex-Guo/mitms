@@ -258,6 +258,7 @@
     <Compile Include="Controllers\FinancesController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\ShippersController.cs" />
     <Compile Include="Controllers\TransactionHistoriesController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
@@ -369,6 +370,10 @@
     <Compile Include="Migrations\201805300248051_dcd.Designer.cs">
       <DependentUpon>201805300248051_dcd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806010724372_addtable.cs" />
+    <Compile Include="Migrations\201806010724372_addtable.Designer.cs">
+      <DependentUpon>201806010724372_addtable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\CarrierMetadata.cs" />
     <Compile Include="Models\Driver.cs" />
@@ -378,6 +383,9 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderMetadata.cs" />
     <Compile Include="Models\PoolsViewModel.cs" />
+    <Compile Include="Models\RegCarrierViewModel.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\RegionMetadata.cs" />
     <Compile Include="Models\Shipper.cs" />
     <Compile Include="Models\ShipperMetadata.cs" />
     <Compile Include="Models\TransactionHistory.cs" />
@@ -392,6 +400,8 @@
     <Compile Include="Repositories\Drivers\DriverRepository.cs" />
     <Compile Include="Repositories\Orders\OrderQuery.cs" />
     <Compile Include="Repositories\Orders\OrderRepository.cs" />
+    <Compile Include="Repositories\Regions\RegionQuery.cs" />
+    <Compile Include="Repositories\Regions\RegionRepository.cs" />
     <Compile Include="Repositories\Shippers\ShipperQuery.cs" />
     <Compile Include="Repositories\Shippers\ShipperRepository.cs" />
     <Compile Include="Repositories\TransactionHistories\TransactionHistoryQuery.cs" />
@@ -406,6 +416,8 @@
     <Compile Include="Services\Drivers\IDriverService.cs" />
     <Compile Include="Services\Orders\IOrderService.cs" />
     <Compile Include="Services\Orders\OrderService.cs" />
+    <Compile Include="Services\Regions\IRegionService.cs" />
+    <Compile Include="Services\Regions\RegionService.cs" />
     <Compile Include="Services\Shippers\IShipperService.cs" />
     <Compile Include="Services\Shippers\ShipperService.cs" />
     <Compile Include="Services\TransactionHistories\ITransactionHistoryService.cs" />
@@ -3885,6 +3897,11 @@
     <Content Include="Views\Shippers\_PopupDetailFormView.cshtml" />
     <Content Include="Views\Orders\POD.cshtml" />
     <Content Include="Views\Orders\Bidding.cshtml" />
+    <Content Include="Views\Regions\Index.cshtml" />
+    <Content Include="Views\Regions\Create.cshtml" />
+    <Content Include="Views\Regions\Edit.cshtml" />
+    <Content Include="Views\Regions\EditForm.cshtml" />
+    <Content Include="Views\Regions\_PopupDetailFormView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4207,6 +4224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805300248051_dcd.resx">
       <DependentUpon>201805300248051_dcd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806010724372_addtable.resx">
+      <DependentUpon>201806010724372_addtable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

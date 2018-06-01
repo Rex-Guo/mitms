@@ -82,13 +82,13 @@ namespace WebApp.Models
 
         [Required]
         [MaxLength(20)]
-        [Display(Name = "车辆类型", Description = "车辆类型(监管/非监管)")]
+        [Display(Name = "车辆类型", Description = "车辆类型(厢式车（默认）/平板车/轿车/面包车/高栏车/飞翼车等)")]
         public string CarType { get; set; }
 
 
         //[Required]
         [MaxLength(20)]
-        [Display(Name = "车辆种类", Description = "车辆种类(厢式车（默认）/平板车/轿车/面包车/高栏车/飞翼车等)")]
+        [Display(Name = "车牌种类", Description = "车牌种类(大型汽车号牌/小型汽车号牌/其他号牌)")]
         public string VehicleType { get; set; }
 
         [Required]

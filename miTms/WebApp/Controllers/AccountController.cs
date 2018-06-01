@@ -14,7 +14,7 @@ using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-
+using Repository.Pattern.UnitOfWork;
 using WebApp.Models;
 using WebApp.Services;
 
@@ -28,6 +28,18 @@ namespace WebApp.Controllers
         // TODO: This should be moved to the constructor of the controller in combination with a DependencyResolver setup
         // NOTE: You can use NuGet to find a strategy for the various IoC packages out there (i.e. StructureMap.MVC5)
         //private readonly UserManager _manager = UserManager.Create();
+        private ApplicationRoleManager _roleManager;
+        public ApplicationRoleManager RoleManager {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
+
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
         {
@@ -51,9 +63,25 @@ namespace WebApp.Controllers
             private set { _signInManager = value; }
         }
         private readonly ICompanyService _companyService;
-        public AccountController(ICompanyService companyService,ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+
+        private readonly ICarrierService carrierService;
+        private readonly IShipperService shipperService;
+        private readonly IDriverService driverService;
+        private readonly IVehicleService vehicleService;
+        private readonly IUnitOfWorkAsync unitOfWork;
+        public AccountController(
+            IUnitOfWorkAsync unitOfWork,
+            ICarrierService carrierService,
+        IShipperService shipperService,
+        IDriverService driverService,
+        IVehicleService vehicleService,
+        ICompanyService companyService,ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            
+            this.unitOfWork = unitOfWork;
+            this.carrierService = carrierService;
+            this.shipperService = shipperService;
+            this.driverService = driverService;
+            this.vehicleService = vehicleService;
             _companyService = companyService;
         }
 
@@ -279,6 +307,128 @@ namespace WebApp.Controllers
         public ActionResult Lock()
         {
             return View();
+        }
+
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterCarrier(RegisterCarrierViewModel viewModel) {
+
+
+            if (ModelState.IsValid)
+            {
+                var isexist = await this.UserManager.FindByNameAsync(viewModel.UserName);
+                var isexist1 = this.carrierService.Queryable().Where(x => x.Name == viewModel.CarrierName).Any();
+                var isexist2 = this.vehicleService.Queryable().Where(x => x.PlateNumber == viewModel.VehicleNumber).Any();
+                var isexist3 = this.driverService.Queryable().Where(x => x.Name == viewModel.DriverName && x.MobileTelephoneNumber == viewModel.MobileTelephoneNumber).Any();
+                if (isexist==null && isexist1 == false && isexist2==false && isexist3==false)
+                {
+                    var carrier = new Carrier();
+                    carrier.Name = viewModel.CarrierName;
+                    carrier.Type = viewModel.CarrierType;
+                    carrier.BusinessScope = viewModel.BusinessScope;
+                    carrier.CompanyId = 2;
+                    carrier.ContactMobileTelephoneNumber = viewModel.ContactMobileTelephoneNumber;
+                    carrier.ContactName = viewModel.ContactName;
+                    carrier.CountrySubdivisionCode = viewModel.CountrySubdivisionCode;
+                    carrier.PermitNumber = viewModel.PermitNumber;
+                    carrier.RegisteredAddress = viewModel.RegisteredAddress;
+                    carrier.RegisteredCapital = viewModel.RegisteredCapital;
+                    carrier.RegistrationDatetime = DateTime.Now;
+                    carrier.UnifiedSocialCreditldentifier = viewModel.UnifiedSocialCreditldentifier;
+                    carrier.TrackingState = TrackableEntities.TrackingState.Added;
+                    var driver = new Driver();
+                    driver.Name = viewModel.DriverName;
+                    driver.Carrierid = carrier.Id;
+                    driver.Carrier = carrier;
+                    driver.CompanyId = 2;
+                    driver.Gender = viewModel.DriverGender;
+                    driver.MobileTelephoneNumber = viewModel.MobileTelephoneNumber;
+                    driver.RegistrationDatetime = DateTime.Now;
+                    driver.IdentityDocumentNumber = viewModel.IdentityDocumentNumber;
+                    driver.QualificationCertificateNumber = viewModel.QualificationCertificateNumber;
+                    driver.TrackingState = TrackableEntities.TrackingState.Added;
+                    var vehical = new Vehicle();
+                    vehical.PlateNumber = viewModel.VehicleNumber;
+                    vehical.Driver = driver.Name;
+                    vehical.DriverPhone = driver.MobileTelephoneNumber;
+                    vehical.CompanyId = 2;
+                    vehical.CarType = viewModel.VehicleClassificationCode;
+                    vehical.VehicleType = viewModel.LicenseplateTypeCode;
+                    vehical.LoLicenseId = viewModel.RoadTransportCertificateNumber;
+                    vehical.DrLicenseVehWeight = viewModel.VehicleLadenWeight;
+                    vehical.DrLicenseDevWeight = viewModel.VehicleTonnage;
+                    vehical.VehLong = viewModel.VehicleLength;
+                    vehical.VehWide = viewModel.VehicleWidth;
+                    vehical.VehHigh = viewModel.VehicleHeight;
+                    vehical.PlateNumberPosition = "车头";
+                    vehical.VehStatus = "0";
+                    vehical.VehicleProperty = "公车";
+                    vehical.ECOMark = "绿标";
+                    vehical.CarrierId = carrier.Id;
+                    vehical.Carrier = carrier;
+                    vehical.TrackingState = TrackableEntities.TrackingState.Added;
+                    this.carrierService.Insert(carrier);
+                    this.vehicleService.Insert(vehical);
+                    this.driverService.Insert(driver);
+                    try
+                    {
+                        await this.unitOfWork.SaveChangesAsync();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                }
+
+                var user = new ApplicationUser
+                {
+                    UserName = viewModel.UserName,
+                    FullName = viewModel.UserName,
+                    CompanyCode = viewModel.CarrierName,
+                    CompanyName = viewModel.CarrierName,
+                    Email = viewModel.Email,
+                    AccountType = 1
+                };
+                var result1 = await UserManager.CreateAsync(user, viewModel.Password);
+                var result2 = await this.UserManager.AddToRoleAsync(user.Id, "Carrier");
+                return RedirectToAction("Index", "Home");
+            }else
+                return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> ValidUserName(string UserName) {
+            var result = await this.UserManager.FindByNameAsync(UserName);
+            var istrue = (result == null);
+            return Json(istrue , JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> ValidEmail(string Email)
+        {
+            var result = await this.UserManager.FindByEmailAsync(Email);
+            var istrue = (result == null);
+            return Json(istrue, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ValidVehicleNumber(string VehicleNumber)
+        {
+            var result = this.vehicleService.Queryable().Where(x=>x.PlateNumber== VehicleNumber).Any();
+           
+            return Json(!result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ValidCarrierName(string CarrierName)
+        {
+            var result = this.carrierService.Queryable().Where(x => x.Name == CarrierName).Any();
+            return Json(!result, JsonRequestBehavior.AllowGet);
         }
     }
 }

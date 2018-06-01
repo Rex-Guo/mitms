@@ -136,6 +136,10 @@ namespace WebApp
             container.RegisterType<IRepositoryAsync<Carrier>, Repository<Carrier>>();
             container.RegisterType<ICarrierService, CarrierService>();
 
+
+             container.RegisterType<IRepositoryAsync<Region>, Repository<Region>>();
+            container.RegisterType<IRegionService, RegionService>();
+
         }
     }
 }

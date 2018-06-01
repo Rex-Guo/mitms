@@ -26,9 +26,18 @@ namespace WebApp.Controllers
             this._orderService = _orderService;
         }
         [AllowAnonymous]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-             
+            var codep = this._unitOfWork.RepositoryAsync<Models.CodeItem>();
+            var color = await codep.Queryable().Where(x => x.CodeType == "VehicleColor").Select(n => new SelectListItem() { Value = n.Code, Text = n.Text }).ToArrayAsync();
+            var vtype = await codep.Queryable().Where(x => x.CodeType == "VehicleType").Select(n => new SelectListItem() { Value = n.Code, Text = n.Text }).ToArrayAsync();
+            var ctype = await codep.Queryable().Where(x => x.CodeType == "CarType").Select(n => new SelectListItem() { Value = n.Code, Text = n.Text }).ToArrayAsync();
+            var regionp = this._unitOfWork.RepositoryAsync<Region>();
+            var region = await regionp.Queryable().Select(n => new SelectListItem() { Value = n.Code, Text = n.Name }).ToArrayAsync();
+            ViewBag.CountrySubdivisionCode = region;
+            ViewBag.VehicleClassificationCode = ctype;
+            ViewBag.LicenseplateTypeCode = vtype;
+            ViewBag.VehicleLicensePlateColor = color;
             return View();
         }
         public async Task<ActionResult> GetEvents() {

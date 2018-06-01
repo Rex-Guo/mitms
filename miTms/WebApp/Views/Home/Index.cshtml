@@ -50,7 +50,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <select class="form-control">
-                                            <option value="0" selected="" disabled="">货物类型</option>
+                                            <option value="" selected="" disabled="">货物类型</option>
                                             <option>...</option>
                                             <option>...</option>
                                             <option>...</option>
@@ -71,7 +71,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <select class="form-control">
-                                            <option value="0" selected="" disabled="">包装方式</option>
+                                            <option value="" selected="" disabled="">包装方式</option>
                                             <option>...</option>
                                             <option>...</option>
                                             <option>...</option>
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <select class="form-control">
-                                            <option value="0" selected="" disabled="">单位</option>
+                                            <option value="" selected="" disabled="">单位</option>
                                             <option>吨</option>
                                             <option>千克</option>
 
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <select class="form-control">
-                                            <option value="0" selected="" disabled="">单位</option>
+                                            <option value="" selected="" disabled="">单位</option>
                                             <option>立方</option>
                                             <option>升</option>
 
@@ -129,7 +129,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <select class="form-control">
-                                            <option value="0" selected="" disabled="">时效</option>
+                                            <option value="" selected="" disabled="">时效</option>
                                             <option>当日达</option>
                                             <option>次日达</option>
                                             <option>隔天达</option>
@@ -865,16 +865,16 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="register-modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form role="form" action="" method="post" class="f1">
-
+            <form role="form" action="/Account/RegisterCarrier" method="post" id="carrier_form" class="f1">
+                @Html.AntiForgeryToken()
                 <h3>承运人注册</h3>
                 <p>所有数据需要通过征信系统认证后才能正常使用</p>
                 <div class="f1-steps">
                     <div class="f1-progress">
-                        <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                        <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="4" style="width: 16.66%;"></div>
                     </div>
                     <div class="f1-step active">
                         <div class="f1-step-icon"><i class="fa fa-user"></i></div>
@@ -902,7 +902,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <select class="form-control" name="Gender" id="cgender">
-                                <option value="0" selected="" disabled="">性别</option>
+                                <option value="" selected="" disabled="">性别</option>
                                 <option value="1">男</option>
                                 <option value="2">女</option>
                             </select>
@@ -937,7 +937,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <select class="form-control" name="CarrierType" id="cCarrierType">
-                                <option value="0" selected="" disabled="">承运人类型</option>
+                                <option value="" selected="" disabled="">承运人类型</option>
                                 <option value="1">个人</option>
                                 <option value="2">企业</option>
                             </select>
@@ -954,9 +954,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <select class="form-control" name="CountrySubdivisionCode" id="cCountrySubdivisionCode">
-                                <option value="0" selected="" disabled="">所属辖区</option>
-                                <option value="1">-</option>
-                                <option value="2">-</option>
+                                <option value="" selected="" disabled="">所属辖区</option>
+                                @foreach (var item in ViewBag.CountrySubdivisionCode)
+                                {
+                                <option value="@item.Value">@item.Text</option>
+                                }
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -976,7 +978,7 @@
                             <input type="text" name="BusinessScope" placeholder="经营范围" class="form-control" id="cBusinessScope">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="Description" placeholder="备注" class="form-control" id="cDescription">
+                            <input type="text" name="RegisteredCapital" placeholder="注册资金" class="form-control" id="cRegisteredCapital">
                         </div>
                     </div>
 
@@ -992,16 +994,22 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <select class="form-control" name="VehicleClassificationCode" id="cVehicleClassificationCode">
-                                <option value="0" selected="" disabled="">车辆分类</option>
-                                <option value="1">-</option>
-                                <option value="2">-</option>
+                                <option value="" selected="" disabled="">车辆分类</option>
+                                @foreach (var item in ViewBag.VehicleClassificationCode)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+
+                                 
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <select class="form-control" name="LicenseplateTypeCode" id="cLicenseplateTypeCode">
-                                <option value="0" selected="" disabled="">牌照类型</option>
-                                <option value="1">-</option>
-                                <option value="2">-</option>
+                                <option value="" selected="" disabled="">牌照类型</option>
+                                @foreach (var item in ViewBag.LicenseplateTypeCode)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -1011,9 +1019,11 @@
                         </div>
                         <div class="form-group col-md-6">
                             <select class="form-control" name="VehicleLicensePlateColor" id="cVehicleLicensePlateColor">
-                                <option value="0" selected="" disabled="">车牌颜色</option>
-                                <option value="1">-</option>
-                                <option value="2">-</option>
+                                <option value="" selected="" disabled="">车牌颜色</option>
+                                @foreach (var item in ViewBag.VehicleLicensePlateColor)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -1049,11 +1059,11 @@
                     <h4>注册司机信息</h4>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="text" name="NameOfPerson" placeholder="司机姓名" class="form-control" id="cNameOfPerson">
+                            <input type="text" name="DriverName" placeholder="司机姓名" class="form-control" id="cDriverName">
                         </div>
                         <div class="form-group col-md-6">
                             <select class="form-control" name="DriverGender" id="cDriverGender">
-                                <option value="0" selected="" disabled="">性别</option>
+                                <option value="" selected="" disabled="">性别</option>
                                 <option value="1">男</option>
                                 <option value="2">女</option>
                             </select>
@@ -1081,6 +1091,119 @@
         </div>
 
 
+    </div>
+</div>
+<div class="modal fade" id="register-modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form role="form" action="" method="post" id="shipper_form" class="f2">
+
+                <h3>托运人注册</h3>
+                <p>所有数据需要通过征信系统认证后才能正常使用</p>
+                <div class="f2-steps">
+                    <div class="f2-progress">
+                        <div class="f2-progress-line" data-now-value="20.66" data-number-of-steps="2" style="width: 25.0%;"></div>
+                    </div>
+                    <div class="f2-step active">
+                        <div class="f2-step-icon"><i class="fa fa-user"></i></div>
+                        <p>登录信息</p>
+                    </div>
+                    <div class="f2-step">
+                        <div class="f2-step-icon"><i class="fa fa-windows"></i></div>
+                        <p>托运人信息</p>
+                    </div>
+
+                </div>
+
+                <fieldset>
+                    <h4>注册登录信息</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="UserName" id="suserName" placeholder="用户名" class="f2-first-name form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="Gender" id="sgender">
+                                <option value="" selected="" disabled="">性别</option>
+                                <option value="1">男</option>
+                                <option value="2">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="PhoneNumber" id="sPhoneNumber" placeholder="移动手机号" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="email" name="Email" id="sEmail" placeholder="电子邮件" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="password" name="Password" placeholder="登录密码" class="form-control" id="sPassword">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="password" name="PasswordConfirm" placeholder="重复登录密码" class="form-control" id="sPasswordConfirm">
+                        </div>
+                    </div>
+                    <div class="f2-buttons">
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-next">下一步</button>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <h4>注册承运人信息</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="ShipperName" placeholder="托运人名称" class="form-control" id="sShipperName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="ShipperType" id="sShipperType">
+                                <option value="" selected="" disabled="">托运人类型</option>
+                                <option value="1">个人</option>
+                                <option value="2">企业</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="ContactName" placeholder="联系人" class="form-control" id="sContactName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="ContactMobileTelephoneNumber" placeholder="联系人电话" class="form-control" id="sContactMobileTelephoneNumber">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="CountrySubdivisionCode" id="sCountrySubdivisionCode">
+                                <option value="" selected="" disabled="">所属辖区</option>
+                                @foreach (var item in ViewBag.CountrySubdivisionCode)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="RegisteredAddress" placeholder="注册地址" class="form-control" id="sRegisteredAddress">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="RegisteredCapital" placeholder="注册资金" class="form-control" id="sRegisteredCapital">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="UnifiedSocialCreditldentifier" placeholder="统一社会信用代码" class="form-control" id="sUnifiedSocialCreditldentifier">
+                        </div>
+                    </div>
+                    
+
+                    <div class="f2-buttons">
+                        <button type="button" class="btn btn-primary btn-shadow btn-rounded btn-previous">上一步</button>
+                        <button type="submit" class="btn btn-primary btn-shadow btn-rounded btn-submit">保存</button>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>
 @section scripts{
