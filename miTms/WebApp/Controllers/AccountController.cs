@@ -224,6 +224,18 @@ namespace WebApp.Controllers
                 return View(viewModel);
             }
         }
+        [HttpGet]
+        public ActionResult Logout(string returnUrl = ""){
+            FormsAuthentication.SignOut();
+            this.SignInManager.SignOut();
+
+            // Second we clear the principal to ensure the user does not retain any authentication
+            HttpContext.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
+
+            // Last we redirect to a controller/action that requires authentication to ensure a redirect takes place
+            // this clears the Request.IsAuthenticated flag since this triggers a new request
+            return RedirectToLocal(returnUrl);
+        }
 
         // POST: /account/Logout
         [HttpPost]
@@ -433,7 +445,7 @@ namespace WebApp.Controllers
                     shipper.RegistrationDatetime = DateTime.Now;
                     shipper.Type = viewModel.ShipperType;
                     shipper.Name = viewModel.ShipperName;
-                   
+                    shipper.ContactMobileTelephoneNumber = viewModel.ContactMobileTelephoneNumber;
 
                     this.shipperService.Insert(shipper);
                  
@@ -461,7 +473,7 @@ namespace WebApp.Controllers
                     if (result1.Succeeded)
                     {
                         var appuser = await this.UserManager.FindByEmailAsync(user.Email);
-                        var result2 = await this.UserManager.AddToRoleAsync(appuser.Id, "Carrier");
+                        var result2 = await this.UserManager.AddToRoleAsync(appuser.Id, "Shipper");
                         var signuser = await UserManager.FindByEmailAsync(user.Email);
                         await this.SignInManager.SignInAsync(signuser, true, true);
                     }

@@ -25,8 +25,8 @@ namespace WebApp
 
         private static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new VerifyIsEFMigrationUpToDateAttribute());
-            filters.Add(new AjaxHandleErrorAttribute());
+            filters.Add(new VerifyIsEFMigrationUpToDateAttribute());
+            //filters.Add(new AjaxHandleErrorAttribute());
         }
 
          internal static bool HandleEFMigrationException(Exception ex, HttpServerUtility server, HttpResponse response, HttpContext context)

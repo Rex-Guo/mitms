@@ -18,7 +18,7 @@ namespace WebApp.Models
         [MaxLength(20)]
         public string OrderNo { get; set; }
         [Display(Name = "对账单号", Description = "对账单号")]
-        [MaxLength(20)]
+        [MaxLength(30)]
         public string ExternalNo { get; set; }
         [Display(Name = "派车时间", Description = "派车时间")]
         public DateTime OrderDate { get; set; }

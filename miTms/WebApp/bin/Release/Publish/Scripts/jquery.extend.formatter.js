@@ -1,372 +1,14 @@
-//----------------//
-var filtersource = [{ value: '', text: 'All'}];
-var datasource = [];
-filtersource.push({ value: '10',text:'10'  });
-datasource.push({ value: '10',text:'10'  });
-filtersource.push({ value: '2',text:'2'  });
-datasource.push({ value: '2',text:'2'  });
-filtersource.push({ value: '20尺',text:'20尺'  });
-datasource.push({ value: '20尺',text:'20尺'  });
-filtersource.push({ value: '24',text:'24'  });
-datasource.push({ value: '24',text:'24'  });
-filtersource.push({ value: '28',text:'28'  });
-datasource.push({ value: '28',text:'28'  });
-filtersource.push({ value: '3',text:'3'  });
-datasource.push({ value: '3',text:'3'  });
-filtersource.push({ value: '32',text:'32'  });
-datasource.push({ value: '32',text:'32'  });
-filtersource.push({ value: '40尺',text:'40尺'  });
-datasource.push({ value: '40尺',text:'40尺'  });
-filtersource.push({ value: '45尺',text:'45尺'  });
-datasource.push({ value: '45尺',text:'45尺'  });
-filtersource.push({ value: '48',text:'48'  });
-datasource.push({ value: '48',text:'48'  });
-filtersource.push({ value: '5',text:'5'  });
-datasource.push({ value: '5',text:'5'  });
-filtersource.push({ value: '53尺',text:'53尺'  });
-datasource.push({ value: '53尺',text:'53尺'  });
-filtersource.push({ value: '58尺',text:'58尺'  });
-datasource.push({ value: '58尺',text:'58尺'  });
-filtersource.push({ value: '63尺',text:'63尺'  });
-datasource.push({ value: '63尺',text:'63尺'  });
-filtersource.push({ value: '72',text:'72'  });
-datasource.push({ value: '72',text:'72'  });
-filtersource.push({ value: '8',text:'8'  });
-datasource.push({ value: '8',text:'8'  });
-filtersource.push({ value: '96',text:'96'  });
-datasource.push({ value: '96',text:'96'  });
-filtersource.push({ value: 'A01',text:'A01'  });
-datasource.push({ value: 'A01',text:'A01'  });
-filtersource.push({ value: 'A02',text:'A02'  });
-datasource.push({ value: 'A02',text:'A02'  });
-filtersource.push({ value: 'A03',text:'A03'  });
-datasource.push({ value: 'A03',text:'A03'  });
-filtersource.push({ value: 'BLC',text:'BLC'  });
-datasource.push({ value: 'BLC',text:'BLC'  });
-filtersource.push({ value: '上海安吉配套',text:'上海安吉配套'  });
-datasource.push({ value: '上海安吉配套',text:'上海安吉配套'  });
-filtersource.push({ value: '专线业务',text:'专线业务'  });
-datasource.push({ value: '专线业务',text:'专线业务'  });
-filtersource.push({ value: '中专',text:'中专'  });
-datasource.push({ value: '中专',text:'中专'  });
-filtersource.push({ value: '主责',text:'主责'  });
-datasource.push({ value: '主责',text:'主责'  });
-filtersource.push({ value: '交强险',text:'交强险'  });
-datasource.push({ value: '交强险',text:'交强险'  });
-filtersource.push({ value: '仁宝VMI',text:'仁宝VMI'  });
-datasource.push({ value: '仁宝VMI',text:'仁宝VMI'  });
-filtersource.push({ value: '仁宝外租仓-DELL',text:'仁宝外租仓-DELL'  });
-datasource.push({ value: '仁宝外租仓-DELL',text:'仁宝外租仓-DELL'  });
-filtersource.push({ value: '仓储费',text:'仓储费'  });
-datasource.push({ value: '仓储费',text:'仓储费'  });
-filtersource.push({ value: '仓到仓',text:'仓到仓'  });
-datasource.push({ value: '仓到仓',text:'仓到仓'  });
-filtersource.push({ value: '仓到门',text:'仓到门'  });
-datasource.push({ value: '仓到门',text:'仓到门'  });
-filtersource.push({ value: '体积',text:'体积'  });
-datasource.push({ value: '体积',text:'体积'  });
-filtersource.push({ value: '停用',text:'停用'  });
-datasource.push({ value: '停用',text:'停用'  });
-filtersource.push({ value: '全责',text:'全责'  });
-datasource.push({ value: '全责',text:'全责'  });
-filtersource.push({ value: '公路转关运输',text:'公路转关运输'  });
-datasource.push({ value: '公路转关运输',text:'公路转关运输'  });
-filtersource.push({ value: '公路运输',text:'公路运输'  });
-datasource.push({ value: '公路运输',text:'公路运输'  });
-filtersource.push({ value: '公路通关运输',text:'公路通关运输'  });
-datasource.push({ value: '公路通关运输',text:'公路通关运输'  });
-filtersource.push({ value: '公车',text:'公车'  });
-datasource.push({ value: '公车',text:'公车'  });
-filtersource.push({ value: '关联费',text:'关联费'  });
-datasource.push({ value: '关联费',text:'关联费'  });
-filtersource.push({ value: '其他费用',text:'其他费用'  });
-datasource.push({ value: '其他费用',text:'其他费用'  });
-filtersource.push({ value: '出车补贴',text:'出车补贴'  });
-datasource.push({ value: '出车补贴',text:'出车补贴'  });
-filtersource.push({ value: '分送',text:'分送'  });
-datasource.push({ value: '分送',text:'分送'  });
-filtersource.push({ value: '初中',text:'初中'  });
-datasource.push({ value: '初中',text:'初中'  });
-filtersource.push({ value: '制单费',text:'制单费'  });
-datasource.push({ value: '制单费',text:'制单费'  });
-filtersource.push({ value: '加封费',text:'加封费'  });
-datasource.push({ value: '加封费',text:'加封费'  });
-filtersource.push({ value: '升',text:'升'  });
-datasource.push({ value: '升',text:'升'  });
-filtersource.push({ value: '博士',text:'博士'  });
-datasource.push({ value: '博士',text:'博士'  });
-filtersource.push({ value: '压车费',text:'压车费'  });
-datasource.push({ value: '压车费',text:'压车费'  });
-filtersource.push({ value: '厢式车',text:'厢式车'  });
-datasource.push({ value: '厢式车',text:'厢式车'  });
-filtersource.push({ value: '同责',text:'同责'  });
-datasource.push({ value: '同责',text:'同责'  });
-filtersource.push({ value: '吨位',text:'吨位'  });
-datasource.push({ value: '吨位',text:'吨位'  });
-filtersource.push({ value: '启佳启新',text:'启佳启新'  });
-datasource.push({ value: '启佳启新',text:'启佳启新'  });
-filtersource.push({ value: '启用',text:'启用'  });
-datasource.push({ value: '启用',text:'启用'  });
-filtersource.push({ value: '商业险',text:'商业险'  });
-datasource.push({ value: '商业险',text:'商业险'  });
-filtersource.push({ value: '外省',text:'外省'  });
-datasource.push({ value: '外省',text:'外省'  });
-filtersource.push({ value: '大专',text:'大专'  });
-datasource.push({ value: '大专',text:'大专'  });
-filtersource.push({ value: '女',text:'女'  });
-datasource.push({ value: '女',text:'女'  });
-filtersource.push({ value: '委托方',text:'委托方'  });
-datasource.push({ value: '委托方',text:'委托方'  });
-filtersource.push({ value: '季度结',text:'季度结'  });
-datasource.push({ value: '季度结',text:'季度结'  });
-filtersource.push({ value: '实报实销',text:'实报实销'  });
-datasource.push({ value: '实报实销',text:'实报实销'  });
-filtersource.push({ value: '客运、货运、出租汽车驾驶员',text:'客运、货运、出租汽车驾驶员'  });
-datasource.push({ value: '客运、货运、出租汽车驾驶员',text:'客运、货运、出租汽车驾驶员'  });
-filtersource.push({ value: '客运、货运、危货驾驶员',text:'客运、货运、危货驾驶员'  });
-datasource.push({ value: '客运、货运、危货驾驶员',text:'客运、货运、危货驾驶员'  });
-filtersource.push({ value: '小学',text:'小学'  });
-datasource.push({ value: '小学',text:'小学'  });
-filtersource.push({ value: '市区',text:'市区'  });
-datasource.push({ value: '市区',text:'市区'  });
-filtersource.push({ value: '平板车',text:'平板车'  });
-datasource.push({ value: '平板车',text:'平板车'  });
-filtersource.push({ value: '应付',text:'应付'  });
-datasource.push({ value: '应付',text:'应付'  });
-filtersource.push({ value: '应收',text:'应收'  });
-datasource.push({ value: '应收',text:'应收'  });
-filtersource.push({ value: '异常费用',text:'异常费用'  });
-datasource.push({ value: '异常费用',text:'异常费用'  });
-filtersource.push({ value: '打单费',text:'打单费'  });
-datasource.push({ value: '打单费',text:'打单费'  });
-filtersource.push({ value: '提货费',text:'提货费'  });
-datasource.push({ value: '提货费',text:'提货费'  });
-filtersource.push({ value: '摆渡',text:'摆渡'  });
-datasource.push({ value: '摆渡',text:'摆渡'  });
-filtersource.push({ value: '放空费',text:'放空费'  });
-datasource.push({ value: '放空费',text:'放空费'  });
-filtersource.push({ value: '整车',text:'整车'  });
-datasource.push({ value: '整车',text:'整车'  });
-filtersource.push({ value: '料架',text:'料架'  });
-datasource.push({ value: '料架',text:'料架'  });
-filtersource.push({ value: '施封费',text:'施封费'  });
-datasource.push({ value: '施封费',text:'施封费'  });
-filtersource.push({ value: '无签收单返回',text:'无签收单返回'  });
-datasource.push({ value: '无签收单返回',text:'无签收单返回'  });
-filtersource.push({ value: '无责',text:'无责'  });
-datasource.push({ value: '无责',text:'无责'  });
-filtersource.push({ value: '月结',text:'月结'  });
-datasource.push({ value: '月结',text:'月结'  });
-filtersource.push({ value: '本一',text:'本一'  });
-datasource.push({ value: '本一',text:'本一'  });
-filtersource.push({ value: '本三',text:'本三'  });
-datasource.push({ value: '本三',text:'本三'  });
-filtersource.push({ value: '本二',text:'本二'  });
-datasource.push({ value: '本二',text:'本二'  });
-filtersource.push({ value: '本省',text:'本省'  });
-datasource.push({ value: '本省',text:'本省'  });
-filtersource.push({ value: '栈板',text:'栈板'  });
-datasource.push({ value: '栈板',text:'栈板'  });
-filtersource.push({ value: '桶',text:'桶'  });
-datasource.push({ value: '桶',text:'桶'  });
-filtersource.push({ value: '次责',text:'次责'  });
-datasource.push({ value: '次责',text:'次责'  });
-filtersource.push({ value: '泡货',text:'泡货'  });
-datasource.push({ value: '泡货',text:'泡货'  });
-filtersource.push({ value: '派送费',text:'派送费'  });
-datasource.push({ value: '派送费',text:'派送费'  });
-filtersource.push({ value: '海运整柜运输',text:'海运整柜运输'  });
-datasource.push({ value: '海运整柜运输',text:'海运整柜运输'  });
-filtersource.push({ value: '海运通关运输',text:'海运通关运输'  });
-datasource.push({ value: '海运通关运输',text:'海运通关运输'  });
-filtersource.push({ value: '清关',text:'清关'  });
-datasource.push({ value: '清关',text:'清关'  });
-filtersource.push({ value: '滁州安吉零担',text:'滁州安吉零担'  });
-datasource.push({ value: '滁州安吉零担',text:'滁州安吉零担'  });
-filtersource.push({ value: '燃油附加费',text:'燃油附加费'  });
-datasource.push({ value: '燃油附加费',text:'燃油附加费'  });
-filtersource.push({ value: '牧田',text:'牧田'  });
-datasource.push({ value: '牧田',text:'牧田'  });
-filtersource.push({ value: '物流补贴',text:'物流补贴'  });
-datasource.push({ value: '物流补贴',text:'物流补贴'  });
-filtersource.push({ value: '现结',text:'现结'  });
-datasource.push({ value: '现结',text:'现结'  });
-filtersource.push({ value: '理货费',text:'理货费'  });
-datasource.push({ value: '理货费',text:'理货费'  });
-filtersource.push({ value: '男',text:'男'  });
-datasource.push({ value: '男',text:'男'  });
-filtersource.push({ value: '硕士',text:'硕士'  });
-datasource.push({ value: '硕士',text:'硕士'  });
-filtersource.push({ value: '空放费',text:'空放费'  });
-datasource.push({ value: '空放费',text:'空放费'  });
-filtersource.push({ value: '站点',text:'站点'  });
-datasource.push({ value: '站点',text:'站点'  });
-filtersource.push({ value: '签收单原件返回',text:'签收单原件返回'  });
-datasource.push({ value: '签收单原件返回',text:'签收单原件返回'  });
-filtersource.push({ value: '签收单复印件返回',text:'签收单复印件返回'  });
-datasource.push({ value: '签收单复印件返回',text:'签收单复印件返回'  });
-filtersource.push({ value: '箱',text:'箱'  });
-datasource.push({ value: '箱',text:'箱'  });
-filtersource.push({ value: '纬创VMI',text:'纬创VMI'  });
-datasource.push({ value: '纬创VMI',text:'纬创VMI'  });
-filtersource.push({ value: '纬创外租仓',text:'纬创外租仓'  });
-datasource.push({ value: '纬创外租仓',text:'纬创外租仓'  });
-filtersource.push({ value: '纬视晶',text:'纬视晶'  });
-datasource.push({ value: '纬视晶',text:'纬视晶'  });
-filtersource.push({ value: '维修中',text:'维修中'  });
-datasource.push({ value: '维修中',text:'维修中'  });
-filtersource.push({ value: '绿标',text:'绿标'  });
-datasource.push({ value: '绿标',text:'绿标'  });
-filtersource.push({ value: '装卸费',text:'装卸费'  });
-datasource.push({ value: '装卸费',text:'装卸费'  });
-filtersource.push({ value: '订单',text:'订单'  });
-datasource.push({ value: '订单',text:'订单'  });
-filtersource.push({ value: '调拨',text:'调拨'  });
-datasource.push({ value: '调拨',text:'调拨'  });
-filtersource.push({ value: '货物类型1',text:'货物类型1'  });
-datasource.push({ value: '货物类型1',text:'货物类型1'  });
-filtersource.push({ value: '货物类型2',text:'货物类型2'  });
-datasource.push({ value: '货物类型2',text:'货物类型2'  });
-filtersource.push({ value: '货物类型3',text:'货物类型3'  });
-datasource.push({ value: '货物类型3',text:'货物类型3'  });
-filtersource.push({ value: '车挂',text:'车挂'  });
-datasource.push({ value: '车挂',text:'车挂'  });
-filtersource.push({ value: '转关',text:'转关'  });
-datasource.push({ value: '转关',text:'转关'  });
-filtersource.push({ value: '轿车',text:'轿车'  });
-datasource.push({ value: '轿车',text:'轿车'  });
-filtersource.push({ value: '过夜费',text:'过夜费'  });
-datasource.push({ value: '过夜费',text:'过夜费'  });
-filtersource.push({ value: '过磅费',text:'过磅费'  });
-datasource.push({ value: '过磅费',text:'过磅费'  });
-filtersource.push({ value: '过路过桥费',text:'过路过桥费'  });
-datasource.push({ value: '过路过桥费',text:'过路过桥费'  });
-filtersource.push({ value: '运价类型1',text:'运价类型1'  });
-datasource.push({ value: '运价类型1',text:'运价类型1'  });
-filtersource.push({ value: '运价类型2',text:'运价类型2'  });
-datasource.push({ value: '运价类型2',text:'运价类型2'  });
-filtersource.push({ value: '运价类型3',text:'运价类型3'  });
-datasource.push({ value: '运价类型3',text:'运价类型3'  });
-filtersource.push({ value: '运输费',text:'运输费'  });
-datasource.push({ value: '运输费',text:'运输费'  });
-filtersource.push({ value: '进仓费',text:'进仓费'  });
-datasource.push({ value: '进仓费',text:'进仓费'  });
-filtersource.push({ value: '郑州专线运输',text:'郑州专线运输'  });
-datasource.push({ value: '郑州专线运输',text:'郑州专线运输'  });
-filtersource.push({ value: '郑州安吉整车',text:'郑州安吉整车'  });
-datasource.push({ value: '郑州安吉整车',text:'郑州安吉整车'  });
-filtersource.push({ value: '配送',text:'配送'  });
-datasource.push({ value: '配送',text:'配送'  });
-filtersource.push({ value: '重货',text:'重货'  });
-datasource.push({ value: '重货',text:'重货'  });
-filtersource.push({ value: '重量',text:'重量'  });
-datasource.push({ value: '重量',text:'重量'  });
-filtersource.push({ value: '门到仓',text:'门到仓'  });
-datasource.push({ value: '门到仓',text:'门到仓'  });
-filtersource.push({ value: '门到门',text:'门到门'  });
-datasource.push({ value: '门到门',text:'门到门'  });
-filtersource.push({ value: '陆运业务',text:'陆运业务'  });
-datasource.push({ value: '陆运业务',text:'陆运业务'  });
-filtersource.push({ value: '陆运出口',text:'陆运出口'  });
-datasource.push({ value: '陆运出口',text:'陆运出口'  });
-filtersource.push({ value: '陆运进口',text:'陆运进口'  });
-datasource.push({ value: '陆运进口',text:'陆运进口'  });
-filtersource.push({ value: '零担',text:'零担'  });
-datasource.push({ value: '零担',text:'零担'  });
-filtersource.push({ value: '非物流补贴',text:'非物流补贴'  });
-datasource.push({ value: '非物流补贴',text:'非物流补贴'  });
-filtersource.push({ value: '面包车',text:'面包车'  });
-datasource.push({ value: '面包车',text:'面包车'  });
-filtersource.push({ value: '飞翼车',text:'飞翼车'  });
-datasource.push({ value: '飞翼车',text:'飞翼车'  });
-filtersource.push({ value: '高中',text:'高中'  });
-datasource.push({ value: '高中',text:'高中'  });
-filtersource.push({ value: '高栏车',text:'高栏车'  });
-datasource.push({ value: '高栏车',text:'高栏车'  });
-filtersource.push({ value: '黄标',text:'黄标'  });
-datasource.push({ value: '黄标',text:'黄标'  });
-//for datagrid  field  formatter
-function formatter(value, row, index) { 
-     if (value === null || value === '' || value === undefined) 
-     { 
-         return "";
-     } 
-     for (var i = 0; i < datasource.length; i++) {
-      var item = datasource[i];
-     if (item.value === value.toString())
-     {
-         return item.text;
-     }
-     };
- return value;
- } 
-//for datagrid     field filter 
-$.extend($.fn.datagrid.defaults.filters, {
-filter: {
-     init: function(container, options) {
-        var input = $('<input type="text">').appendTo(container);
-        var myoptions = {
-             panelHeight: "auto",
-             data: filtersource
-         }
-         $.extend(options, myoptions);
-         input.combobox(options);
-         return input;
-      },
-     destroy: function(target) {
-         $(target).combobox('destroy');
-     },
-     getValue: function(target) {
-         return $(target).combobox('getValue');
-     },
-     setValue: function(target, value) {
-         $(target).combobox('setValue', value);
-     },
-     resize: function(target, width) {
-         $(target).combobox('resize', width);
-     }
-   }
-});
-//for datagrid      field  editor 
-$.extend($.fn.datagrid.defaults.editors, {
-editor: {
-     init: function(container, options) {
-        var input = $('<input type="text">').appendTo(container);
-        var myoptions = {
-         panelHeight: "auto",
-         data: datasource,
-         valueField: 'value',
-         textField: 'text'
-     }
-    $.extend(options, myoptions);
-           input.combobox(options);
-           return input;
-       },
-     destroy: function(target) {
-         $(target).combobox('destroy');
-        },
-     getValue: function(target) {
-        return $(target).combobox('getValue');
-        },
-     setValue: function(target, value) {
-         $(target).combobox('setValue', value);
-         },
-     resize: function(target, width) {
-         $(target).combobox('resize', width);
-        }
-  }  
-});
 //-------账号类型---------//
 var accounttypefiltersource = [{ value: '', text: 'All'}];
 var accounttypedatasource = [];
-accounttypefiltersource.push({ value: '0',text:'公司'  });
-accounttypedatasource.push({ value: '0',text:'公司'  });
-accounttypefiltersource.push({ value: '1',text:'供应商'  });
-accounttypedatasource.push({ value: '1',text:'供应商'  });
-accounttypefiltersource.push({ value: '2',text:'客户'  });
-accounttypedatasource.push({ value: '2',text:'客户'  });
-accounttypefiltersource.push({ value: '3',text:'外协单位'  });
-accounttypedatasource.push({ value: '3',text:'外协单位'  });
+accounttypefiltersource.push({ value: '0',text:'平台'  });
+accounttypedatasource.push({ value: '0',text:'平台'  });
+accounttypefiltersource.push({ value: '1',text:'承运人'  });
+accounttypedatasource.push({ value: '1',text:'承运人'  });
+accounttypefiltersource.push({ value: '2',text:'托运人'  });
+accounttypedatasource.push({ value: '2',text:'托运人'  });
+accounttypefiltersource.push({ value: '3',text:'访客'  });
+accounttypedatasource.push({ value: '3',text:'访客'  });
 //for datagrid AccountType field  formatter
 function accounttypeformatter(value, row, index) { 
      if (value === null || value === '' || value === undefined) 
@@ -937,10 +579,48 @@ carriagesizeeditor: {
 //-------车辆类型---------//
 var cartypefiltersource = [{ value: '', text: 'All'}];
 var cartypedatasource = [];
-cartypefiltersource.push({ value: '监管',text:'监管'  });
-cartypedatasource.push({ value: '监管',text:'监管'  });
-cartypefiltersource.push({ value: '非监管',text:'非监管'  });
-cartypedatasource.push({ value: '非监管',text:'非监管'  });
+cartypefiltersource.push({ value: 'G01',text:'普通挂车'  });
+cartypedatasource.push({ value: 'G01',text:'普通挂车'  });
+cartypefiltersource.push({ value: 'G02',text:'厢式挂车'  });
+cartypedatasource.push({ value: 'G02',text:'厢式挂车'  });
+cartypefiltersource.push({ value: 'G03',text:'罐式挂车'  });
+cartypedatasource.push({ value: 'G03',text:'罐式挂车'  });
+cartypefiltersource.push({ value: 'G04',text:'平板挂车'  });
+cartypedatasource.push({ value: 'G04',text:'平板挂车'  });
+cartypefiltersource.push({ value: 'G05',text:'集装箱挂车'  });
+cartypedatasource.push({ value: 'G05',text:'集装箱挂车'  });
+cartypefiltersource.push({ value: 'G06',text:'自卸挂车'  });
+cartypedatasource.push({ value: 'G06',text:'自卸挂车'  });
+cartypefiltersource.push({ value: 'G07',text:'仓栅式挂车'  });
+cartypedatasource.push({ value: 'G07',text:'仓栅式挂车'  });
+cartypefiltersource.push({ value: 'G09',text:'专项作业挂车'  });
+cartypedatasource.push({ value: 'G09',text:'专项作业挂车'  });
+cartypefiltersource.push({ value: 'H01',text:'普通货车'  });
+cartypedatasource.push({ value: 'H01',text:'普通货车'  });
+cartypefiltersource.push({ value: 'H02',text:'厢式货车'  });
+cartypedatasource.push({ value: 'H02',text:'厢式货车'  });
+cartypefiltersource.push({ value: 'H03',text:'封闭货车'  });
+cartypedatasource.push({ value: 'H03',text:'封闭货车'  });
+cartypefiltersource.push({ value: 'H04',text:'罐式货车'  });
+cartypedatasource.push({ value: 'H04',text:'罐式货车'  });
+cartypefiltersource.push({ value: 'H05',text:'平板货车'  });
+cartypedatasource.push({ value: 'H05',text:'平板货车'  });
+cartypefiltersource.push({ value: 'H06',text:'集装箱车'  });
+cartypedatasource.push({ value: 'H06',text:'集装箱车'  });
+cartypefiltersource.push({ value: 'H07',text:'自卸货车'  });
+cartypedatasource.push({ value: 'H07',text:'自卸货车'  });
+cartypefiltersource.push({ value: 'H08',text:'特殊结构货车'  });
+cartypedatasource.push({ value: 'H08',text:'特殊结构货车'  });
+cartypefiltersource.push({ value: 'H09',text:'仓栅式货车'  });
+cartypedatasource.push({ value: 'H09',text:'仓栅式货车'  });
+cartypefiltersource.push({ value: 'Q00',text:'牵引车'  });
+cartypedatasource.push({ value: 'Q00',text:'牵引车'  });
+cartypefiltersource.push({ value: 'X91',text:'车辆运输车'  });
+cartypedatasource.push({ value: 'X91',text:'车辆运输车'  });
+cartypefiltersource.push({ value: 'X92',text:'车辆运输车(单排)'  });
+cartypedatasource.push({ value: 'X92',text:'车辆运输车(单排)'  });
+cartypefiltersource.push({ value: 'Z00',text:'专项作业车'  });
+cartypedatasource.push({ value: 'Z00',text:'专项作业车'  });
 //for datagrid CarType field  formatter
 function cartypeformatter(value, row, index) { 
      if (value === null || value === '' || value === undefined) 
@@ -5598,6 +5278,90 @@ transporttypeeditor: {
         }
   }  
 });
+//-------车辆颜色---------//
+var vehiclecolorfiltersource = [{ value: '', text: 'All'}];
+var vehiclecolordatasource = [];
+vehiclecolorfiltersource.push({ value: '1',text:'蓝色 '  });
+vehiclecolordatasource.push({ value: '1',text:'蓝色 '  });
+vehiclecolorfiltersource.push({ value: '2',text:'黄色'  });
+vehiclecolordatasource.push({ value: '2',text:'黄色'  });
+vehiclecolorfiltersource.push({ value: '3',text:'黑色 '  });
+vehiclecolordatasource.push({ value: '3',text:'黑色 '  });
+vehiclecolorfiltersource.push({ value: '4',text:'白色 '  });
+vehiclecolordatasource.push({ value: '4',text:'白色 '  });
+vehiclecolorfiltersource.push({ value: '9',text:'其他 '  });
+vehiclecolordatasource.push({ value: '9',text:'其他 '  });
+//for datagrid VehicleColor field  formatter
+function vehiclecolorformatter(value, row, index) { 
+     if (value === null || value === '' || value === undefined) 
+     { 
+         return "";
+     } 
+     for (var i = 0; i < vehiclecolordatasource.length; i++) {
+      var item = vehiclecolordatasource[i];
+     if (item.value === value.toString())
+     {
+         return item.text;
+     }
+     };
+ return value;
+ } 
+//for datagrid   VehicleColor  field filter 
+$.extend($.fn.datagrid.defaults.filters, {
+vehiclecolorfilter: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+             panelHeight: "auto",
+             data: vehiclecolorfiltersource
+         }
+         $.extend(options, myoptions);
+         input.combobox(options);
+         return input;
+      },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+     },
+     getValue: function(target) {
+         return $(target).combobox('getValue');
+     },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+     },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+     }
+   }
+});
+//for datagrid   VehicleColor   field  editor 
+$.extend($.fn.datagrid.defaults.editors, {
+vehiclecoloreditor: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+         panelHeight: "auto",
+         data: vehiclecolordatasource,
+         valueField: 'value',
+         textField: 'text'
+     }
+    $.extend(options, myoptions);
+           input.combobox(options);
+           return input;
+       },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+        },
+     getValue: function(target) {
+        return $(target).combobox('getValue');
+        },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+         },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+        }
+  }  
+});
 //-------车辆性质---------//
 var vehiclepropertyfiltersource = [{ value: '', text: 'All'}];
 var vehiclepropertydatasource = [];
@@ -5676,21 +5440,15 @@ vehiclepropertyeditor: {
         }
   }  
 });
-//-------车辆种类---------//
+//-------车牌类型---------//
 var vehicletypefiltersource = [{ value: '', text: 'All'}];
 var vehicletypedatasource = [];
-vehicletypefiltersource.push({ value: '厢式车',text:'厢式车'  });
-vehicletypedatasource.push({ value: '厢式车',text:'厢式车'  });
-vehicletypefiltersource.push({ value: '平板车',text:'平板车'  });
-vehicletypedatasource.push({ value: '平板车',text:'平板车'  });
-vehicletypefiltersource.push({ value: '轿车',text:'轿车'  });
-vehicletypedatasource.push({ value: '轿车',text:'轿车'  });
-vehicletypefiltersource.push({ value: '面包车',text:'面包车'  });
-vehicletypedatasource.push({ value: '面包车',text:'面包车'  });
-vehicletypefiltersource.push({ value: '飞翼车',text:'飞翼车'  });
-vehicletypedatasource.push({ value: '飞翼车',text:'飞翼车'  });
-vehicletypefiltersource.push({ value: '高栏车',text:'高栏车'  });
-vehicletypedatasource.push({ value: '高栏车',text:'高栏车'  });
+vehicletypefiltersource.push({ value: '1',text:'大型汽车号牌'  });
+vehicletypedatasource.push({ value: '1',text:'大型汽车号牌'  });
+vehicletypefiltersource.push({ value: '2',text:'小型汽车号牌'  });
+vehicletypedatasource.push({ value: '2',text:'小型汽车号牌'  });
+vehicletypefiltersource.push({ value: '99',text:'其他号牌'  });
+vehicletypedatasource.push({ value: '99',text:'其他号牌'  });
 //for datagrid VehicleType field  formatter
 function vehicletypeformatter(value, row, index) { 
      if (value === null || value === '' || value === undefined) 

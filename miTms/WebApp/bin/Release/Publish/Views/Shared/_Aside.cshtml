@@ -81,13 +81,16 @@
                     </li>
                 </ul>
             </li>
-            <li class="@Html.IsSelected(controller: "Vehicles")">
+            <li class="@Html.IsSelected(controller: "Vehicles,Regions")">
                 <a href="#" title="主数据管理"><i class="fa fa-lg fa-fw fa-folder-o"></i> <span class="menu-item-parent">主数据管理</span></a>
                 <ul>
                     <li class="@Html.IsSelected(action: "Index", controller: "Vehicles")">
                         <a href="@Url.Action("Index", "Vehicles")" title="车辆档案"><span class="menu-item-parent">车辆档案</span></a>
                     </li>
-                 
+                    <li class="@Html.IsSelected(action: "Index", controller: "Regions")">
+                        <a href="@Url.Action("Index", "Regions")" title="全国行政区代码表"><span class="menu-item-parent">全国行政区代码表</span></a>
+                    </li>
+                    
 
                 </ul>
             </li>

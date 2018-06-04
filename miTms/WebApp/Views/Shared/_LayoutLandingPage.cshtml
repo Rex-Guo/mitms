@@ -90,7 +90,7 @@
                 {
                     <ul class="nav navbar-nav navbar-right ml-auto">
                         <li class="nav-item">
-                            <a href="#user" class="nav-link"><b>@User.Identity.Name</b></a>
+                            <a href="#user" class="nav-link"><b>@User.Identity.Name</b>[@Auth.GetRoleDescription(User.Identity.Name)]</a>
                         </li>
                     </ul>
                         }

@@ -115,7 +115,16 @@ $.extend($.fn.datagrid.defaults.filters, {
     }
 });
 
- 
+// extend validatebox regex
+$.extend($.fn.validatebox.defaults.rules, {
+    regex: {
+        validator: function (value, param) {
+            var re = new RegExp(param[0]);
+            return re.test(value);
+        },
+        message: '{1}'
+    }
+});
 
 //datebox editor
 $.extend($.fn.datagrid.defaults.editors, {

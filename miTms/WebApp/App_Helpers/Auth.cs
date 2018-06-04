@@ -26,14 +26,36 @@ namespace WebApp
                 return fullName;
             }
         }
-        public static string CompanyId {
+        public static string PlatformId {
             get {
                 var username = HttpContext.Current.User.Identity.Name;
                 var db = SqlHelper2.DatabaseFactory.CreateDatabase();
-                var companyid = db.ExecuteScalar<string>("select [CompanyCode] from [dbo].[AspNetUsers] where [username]=@username", new { username });
-                return companyid;
+                var companyid = db.ExecuteScalar<int>("select top 1 [Id] from [dbo].[Companies] ",null);
+                return companyid.ToString();
             }
 
+        }
+        public static string GetRole(string userName) {
+            string sql = @"select t1.[Name]  from dbo.[AspNetRoles] t1 ,dbo.[AspNetUserRoles] t2,dbo.[AspNetUsers] t3
+                            where t1.Id = t2.RoleId and t2.UserId = t3.Id and t3.UserName = @userName";
+            var db = SqlHelper2.DatabaseFactory.CreateDatabase();
+            var role = db.ExecuteScalar<string>(sql, new { userName });
+            return role;
+        }
+        public static string GetRoleDescription(string userName)
+        {
+
+            var role = GetRole(userName);
+            switch (role)
+            {
+                case "Shipper":
+                    return "托运人";
+                case "Carrier":
+                    return "承运人";
+                default:
+                    return "平台";
+            }
+         
         }
 
         public static string GetUserIdByName(string username) {
