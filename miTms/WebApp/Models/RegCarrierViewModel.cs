@@ -49,7 +49,7 @@ namespace WebApp.Models
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }
         public string ShipperName { get; set; }
-        public string ShipperType { get; set; }
+        public int ShipperType { get; set; }
         public string ContactName { get; set; }
         public string ContactMobileTelephoneNumber { get; set; }
         public string CountrySubdivisionCode { get; set; }

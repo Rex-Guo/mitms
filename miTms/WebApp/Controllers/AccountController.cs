@@ -319,7 +319,7 @@ namespace WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                var isexist = await this.UserManager.FindByNameAsync(viewModel.UserName);
+                var isexist = await this.UserManager.FindByEmailAsync(viewModel.Email);
                 var isexist1 = this.carrierService.Queryable().Where(x => x.Name == viewModel.CarrierName).Any();
                 var isexist2 = this.vehicleService.Queryable().Where(x => x.PlateNumber == viewModel.VehicleNumber).Any();
                 var isexist3 = this.driverService.Queryable().Where(x => x.Name == viewModel.DriverName && x.MobileTelephoneNumber == viewModel.MobileTelephoneNumber).Any();
@@ -381,25 +381,98 @@ namespace WebApp.Controllers
                     {
                         Console.WriteLine(e.Message);
                     }
-
+                    var username = viewModel.Email.Split('@')[0];
+                    var user = new ApplicationUser
+                    {
+                        UserName = username,
+                        FullName = username,
+                        CompanyCode = carrier.Id.ToString(),
+                        CompanyName = carrier.Name,
+                        Email = viewModel.Email,
+                        PhoneNumber=carrier.ContactMobileTelephoneNumber,
+                        Gender=1,
+                        AccountType = 1,
+                    };
+                    var result1 = await UserManager.CreateAsync(user, viewModel.Password);
+                    if (result1.Succeeded) {
+                        var appuser = await this.UserManager.FindByEmailAsync(user.Email);
+                        var result2 = await this.UserManager.AddToRoleAsync(appuser.Id, "Carrier");
+                        var signuser = await UserManager.FindByEmailAsync(user.Email);
+                        await this.SignInManager.SignInAsync(signuser, true, true);
+                    }
+                   
                 }
 
-                var user = new ApplicationUser
-                {
-                    UserName = viewModel.UserName,
-                    FullName = viewModel.UserName,
-                    CompanyCode = viewModel.CarrierName,
-                    CompanyName = viewModel.CarrierName,
-                    Email = viewModel.Email,
-                    AccountType = 1
-                };
-                var result1 = await UserManager.CreateAsync(user, viewModel.Password);
-                var result2 = await this.UserManager.AddToRoleAsync(user.Id, "Carrier");
+                
                 return RedirectToAction("Index", "Home");
             }else
                 return RedirectToAction("Index", "Home");
         }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterShipper(RegisterShipperViewModel viewModel)
+        {
 
+
+            if (ModelState.IsValid)
+            {
+                var isexist = await this.UserManager.FindByEmailAsync(viewModel.Email);
+                var isexist1 = this.shipperService.Queryable().Where(x => x.Name == viewModel.ShipperName).Any();
+               
+                if (isexist == null && isexist1 == false )
+                {
+                    var shipper = new Shipper();
+                    shipper.CompanyId = 2;
+                    shipper.ContactName = viewModel.ContactName;
+                    shipper.ContactIdCard = viewModel.UnifiedSocialCreditldentifier;
+                    shipper.UnifiedSocialCreditldentifier = viewModel.UnifiedSocialCreditldentifier;
+                    shipper.UnifiedsocialDatetime = DateTime.Now;
+                    shipper.RegisteredAddress = viewModel.RegisteredAddress;
+                    shipper.RegisteredCapital = viewModel.RegisteredCapital;
+                    shipper.RegistrationDatetime = DateTime.Now;
+                    shipper.Type = viewModel.ShipperType;
+                    shipper.Name = viewModel.ShipperName;
+                   
+
+                    this.shipperService.Insert(shipper);
+                 
+                    try
+                    {
+                        await this.unitOfWork.SaveChangesAsync();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    var username = viewModel.Email.Split('@')[0];
+                    var user = new ApplicationUser
+                    {
+                        UserName = username,
+                        FullName = username,
+                        CompanyCode = shipper.Id.ToString(),
+                        CompanyName = shipper.Name,
+                        Email = viewModel.Email,
+                        PhoneNumber = shipper.ContactMobileTelephoneNumber,
+                        Gender = 1,
+                        AccountType = 2,
+                    };
+                    var result1 = await UserManager.CreateAsync(user, viewModel.Password);
+                    if (result1.Succeeded)
+                    {
+                        var appuser = await this.UserManager.FindByEmailAsync(user.Email);
+                        var result2 = await this.UserManager.AddToRoleAsync(appuser.Id, "Carrier");
+                        var signuser = await UserManager.FindByEmailAsync(user.Email);
+                        await this.SignInManager.SignInAsync(signuser, true, true);
+                    }
+                }
+
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+                return RedirectToAction("Index", "Home");
+        }
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> ValidUserName(string UserName) {
@@ -411,10 +484,20 @@ namespace WebApp.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ValidEmail(string Email)
         {
-            var result = await this.UserManager.FindByEmailAsync(Email);
-            var istrue = (result == null);
-            return Json(istrue, JsonRequestBehavior.AllowGet);
+            if (Email.IndexOf("@")>=0)
+            {
+                var username = Email.Split('@')[0];
+                var result1 = await this.UserManager.FindByNameAsync(username);
+                var istrue1 = (result1 == null);
+                var result = await this.UserManager.FindByEmailAsync(Email);
+                var istrue = (result == null);
+                return Json(istrue1 && istrue, JsonRequestBehavior.AllowGet);
+            }
+            else {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
+       
         [HttpPost]
         [AllowAnonymous]
         public ActionResult ValidVehicleNumber(string VehicleNumber)
@@ -428,6 +511,13 @@ namespace WebApp.Controllers
         public ActionResult ValidCarrierName(string CarrierName)
         {
             var result = this.carrierService.Queryable().Where(x => x.Name == CarrierName).Any();
+            return Json(!result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ValidShipperName(string ShipperName)
+        {
+            var result = this.shipperService.Queryable().Where(x => x.Name == ShipperName).Any();
             return Json(!result, JsonRequestBehavior.AllowGet);
         }
     }

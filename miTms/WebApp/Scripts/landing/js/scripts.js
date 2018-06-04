@@ -53,24 +53,7 @@ jQuery(document).ready(function() {
             error.insertAfter(element);
         },
         rules: {
-            UserName: {
-                required: true,
-                maxlength: 20,
-                remote: {
-                    url: "/Account/ValidUserName",
-                    type: "post",
-                    dataType: 'json'
-                     
-                }
-            },
-            Gender: {
-                required: true
-            },
-            PhoneNumber: {
-                required: true,
-                maxlength: 18,
-                digits: true,
-            },
+            
             Email: {
                 required: true,
                 maxlength: 50,
@@ -79,7 +62,6 @@ jQuery(document).ready(function() {
                     url: "/Account/ValidEmail",
                     type: "post",
                     dataType: 'json'
-
                 }
             },
             Password: {
@@ -211,9 +193,6 @@ jQuery(document).ready(function() {
             },
         },
         messages: {
-            UserName: {
-                remote: "UserName already in use"
-            },
             Email: {
                 remote: "Email already in use"
             },
@@ -289,17 +268,12 @@ jQuery(document).ready(function() {
     
     // submit
     $('.f1').on('submit', function(e) {
-    	
-    	// fields validation
         if ($f1.valid() == false) {
             e.preventDefault();
-            //$(this).addClass('input-error');
         }
         else {
-            //$(this).removeClass('input-error');
-        }
-    	// fields validation
-    	
+         }
+
     });
 
     /*
@@ -322,23 +296,15 @@ jQuery(document).ready(function() {
             error.insertAfter(element);
         },
         rules: {
-            UserName: {
-                required: true,
-                maxlength: 20
-            },
-            Gender: {
-                required: true  
-            },
-            PhoneNumber: {
-                required: true,
-                maxlength: 18,
-                minlength: 7,
-                digits: true
-            },
             Email: {
                 required: true,
                 maxlength: 50,
-                email: true
+                email: true,
+                remote: {
+                    url: "/Account/ValidEmail",
+                    type: "post",
+                    dataType: 'json'
+                }
             },
             Password: {
                 required: true,
@@ -349,11 +315,16 @@ jQuery(document).ready(function() {
                 required: true,
                 maxlength: 16,
                 minlength: 3,
-                equalTo:'#sPassword'
+                equalTo: '#sPassword'
             },
             ShipperName: {
                 required: true,
-                maxlength: 20
+                maxlength: 20,
+                remote: {
+                    url: "/Account/ValidShipperName",
+                    type: "post",
+                    dataType: 'json'
+                }
             },
             ShipperType: {
                 required: true,
@@ -371,7 +342,7 @@ jQuery(document).ready(function() {
             },
             CountrySubdivisionCode: {
                 required: true,
-                 
+
             },
             RegisteredAddress: {
                 required: true,
@@ -384,16 +355,21 @@ jQuery(document).ready(function() {
             UnifiedSocialCreditldentifier: {
                 required: false,
                 maxlength: 18
-            },
+            }
+            
         },
-        //messages: {
-        //    UserName: "",
-        //    Gender: "",
-        //    PhoneNumber: "",
-        //    Email: "",
-        //    Password: "",
-        //    PasswordConfirm: "",
-        //}
+
+        messages: {
+            Email: {
+                remote: "Email already in use"
+            },
+            ShipperName: {
+                remote: "ShipperName already in use"
+            }
+
+
+        }
+
 
     });
 
@@ -413,14 +389,13 @@ jQuery(document).ready(function() {
         var progress_line = $(this).parents('.f2').find('.f2-progress-line');
 
         // fields validation
-        parent_fieldset.find('input[type="text"], input[type="password"],input[type="email"],select.form-control').each(function () {
+        parent_fieldset.find('input[type="text"], input[type="password"],input[type="email"],select').each(function () {
             //console.log($(this).valid());
             if ($(this).valid()==false) {
-                //$(this).addClass('input-error');
                 next_step = false;
             }
             else {
-                //$(this).removeClass('input-error');
+             
             }
         });
         // fields validation
@@ -461,17 +436,13 @@ jQuery(document).ready(function() {
     // submit
     $('.f2').on('submit', function (e) {
         
-        // fields validation
-        //console.log($f2.valid());
-        if ($f2.valid()==false) {
+        if ($f2.valid() == false) {
                 e.preventDefault();
-                //$(this).addClass('input-error');
             }
-            else {
-                //$(this).removeClass('input-error');
+        else {
+            
             }
-        
-        // fields validation
+
 
     });
     
