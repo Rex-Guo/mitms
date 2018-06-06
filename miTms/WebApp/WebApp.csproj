@@ -382,6 +382,14 @@
     <Compile Include="Migrations\201806040837404_test112.Designer.cs">
       <DependentUpon>201806040837404_test112.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806050542218_updatetb.cs" />
+    <Compile Include="Migrations\201806050542218_updatetb.Designer.cs">
+      <DependentUpon>201806050542218_updatetb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806050718397_morders.cs" />
+    <Compile Include="Migrations\201806050718397_morders.Designer.cs">
+      <DependentUpon>201806050718397_morders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\CarrierMetadata.cs" />
     <Compile Include="Models\Driver.cs" />
@@ -4241,6 +4249,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806040837404_test112.resx">
       <DependentUpon>201806040837404_test112.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806050542218_updatetb.resx">
+      <DependentUpon>201806050542218_updatetb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806050718397_morders.resx">
+      <DependentUpon>201806050718397_morders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

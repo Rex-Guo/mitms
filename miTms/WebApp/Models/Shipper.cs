@@ -28,10 +28,17 @@ namespace WebApp.Models
         [MaxLength(18)]
         [Required]
         public string ContactIdCard { get; set; }
-        [Display(Name = "联系人电话", Description = "联系人移动电话")]
+        [Display(Name = "联系人移动电话", Description = "联系人移动电话")]
         [MaxLength(18)]
         [Required]
         public string ContactMobileTelephoneNumber { get; set; }
+        [Display(Name = "联系人电话", Description = "联系人移动电话")]
+        [MaxLength(18)]
+    
+        public string ContactTelephoneNumber { get; set; }
+        [Display(Name = "证件号", Description = "证件号")]
+        [MaxLength(35)]
+        public string PersonalIdentityDocument { get; set; }
         [Display(Name = "注册地", Description = "注册地")]
         [MaxLength(256)]
         public string RegisteredAddress { get; set; }
@@ -51,10 +58,10 @@ namespace WebApp.Models
         [MaxLength(256)]
         public string LogoPicture { get; set; }
 
-        [Display(Name = "所属公司", Description = "所属公司")]
+        [Display(Name = "所在平台", Description = "所在平台")]
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
-        [Display(Name = "所属公司", Description = "所属公司")]
+        [Display(Name = "所在平台", Description = "所在平台")]
         public virtual Company Company { get; set; }
 
 

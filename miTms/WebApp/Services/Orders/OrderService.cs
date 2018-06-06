@@ -33,9 +33,11 @@ namespace WebApp.Services
         private readonly IDataTableImportMappingService _mappingservice;
         private readonly IVehicleService _vehicleService;
         private readonly ITransactionHistoryService historyService;
-        public OrderService(ITransactionHistoryService historyService,IVehicleService _vehicleService,IRepositoryAsync<Order> repository, IDataTableImportMappingService mappingservice)
+        private readonly IShipperService shipperService;
+        public OrderService(IShipperService shipperService,ITransactionHistoryService historyService,IVehicleService _vehicleService,IRepositoryAsync<Order> repository, IDataTableImportMappingService mappingservice)
             : base(repository)
         {
+            this.shipperService = shipperService;
             _repository = repository;
             _mappingservice = mappingservice;
             this._vehicleService = _vehicleService;
@@ -313,6 +315,31 @@ namespace WebApp.Services
                 item.TransactioDateTime = order.CloseDate.Value;
                 this.historyService.Insert(item);
             }
+        }
+
+        public void CreateByShipper(Order order)
+        {
+            var shipper = this.shipperService.Find(order.ShipperId);
+            if (shipper != null) {
+                order.PhoneNumber = shipper.ContactTelephoneNumber;
+                order.MobileTelephoneNumber = shipper.ContactMobileTelephoneNumber;
+                order.Contact = shipper.ContactName;
+                order.PersonalIdentityDocument = shipper.PersonalIdentityDocument;
+                order.PersonalIdentityTypeCode = "001";
+            }
+            order.OrderNo = DbSequence.GetNextOrderNo();
+            order.ExternalNo = "-";
+            order.OrderDate = DateTime.Now;
+            order.PlanDeliveryDate = order.OrderDate.AddHours(order.TimePeriod);
+            order.Status = "新增";
+            TransactionHistory tran = new TransactionHistory();
+            tran.InputUser = order.InputUser;
+            tran.OrderNo = order.OrderNo;
+            tran.PlateNumber = order.PlateNumber;
+            tran.Status = order.Status;
+            tran.TransactioDateTime = order.OrderDate;
+            this.historyService.Insert(tran);
+            this.Insert(order);
         }
     }
 }

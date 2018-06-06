@@ -340,17 +340,20 @@ jQuery(document).ready(function() {
                 minlength: 11,
                 digits: true
             },
-            CountrySubdivisionCode: {
+            ContactTelephoneNumber: {
+                required: false,
+                maxlength: 18,
+                minlength: 6,
+                digits: true
+            },
+            PersonalIdentityDocument: {
                 required: true,
-
+                maxlength: 18,
+                minlength: 17
             },
             RegisteredAddress: {
                 required: true,
                 maxlength: 255
-            },
-            RegisteredCapital: {
-                required: true,
-                digits: true
             },
             UnifiedSocialCreditldentifier: {
                 required: false,

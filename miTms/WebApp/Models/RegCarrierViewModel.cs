@@ -44,7 +44,6 @@ namespace WebApp.Models
     public class RegisterShipperViewModel {
         public string UserName { get; set; }
         public int Gender { get; set; }
-        public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }
@@ -52,9 +51,10 @@ namespace WebApp.Models
         public int ShipperType { get; set; }
         public string ContactName { get; set; }
         public string ContactMobileTelephoneNumber { get; set; }
-        public string CountrySubdivisionCode { get; set; }
+        public string ContactTelephoneNumber { get; set; }
+        public string PersonalIdentityDocument { get; set; }
         public string RegisteredAddress { get; set; }
-        public decimal RegisteredCapital { get; set; }
+    
         public string UnifiedSocialCreditldentifier { get; set; }
 
     }

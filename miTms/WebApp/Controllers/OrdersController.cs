@@ -497,6 +497,27 @@ namespace WebApp.Controllers
         {
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
+
+        //首页托运人新建订单
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOrderByShipper(Order order) {
+            if (ModelState.IsValid)
+            {
+                this._orderService.CreateByShipper(order);
+                this._unitOfWork.SaveChanges();
+            }
+            else {
+                var modelStateErrors = String.Join("", this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors.Select(n => n.ErrorMessage)));
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { success = false, err = modelStateErrors }, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            return Json(new { success = true,orderno=order.OrderNo }, JsonRequestBehavior.AllowGet);
+        }
+
         //导出Excel
         [HttpPost]
         public ActionResult ExportExcel(string filterRules = "", string sort = "Id", string order = "asc")

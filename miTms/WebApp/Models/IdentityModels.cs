@@ -30,7 +30,7 @@ namespace WebApp.Models
         [Display(Name = "性别")]
         public int Gender { get; set; }
         public int AccountType { get; set; }
-        [Display(Name = "所属公司")]
+        [Display(Name = "所在平台")]
         public string CompanyCode { get; set; }
         [Display(Name = "公司名称")]
         public string CompanyName { get; set; }

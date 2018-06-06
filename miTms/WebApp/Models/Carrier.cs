@@ -51,10 +51,10 @@ namespace WebApp.Models
         [MaxLength(256)]
         public string LogoPicture { get; set; }
 
-        [Display(Name = "所属公司", Description = "所属公司")]
+        [Display(Name = "所在平台", Description = "所在平台")]
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
-        [Display(Name = "所属公司", Description = "所属公司")]
+        [Display(Name = "所在平台", Description = "所在平台")]
         public virtual Company Company { get; set; }
 
 

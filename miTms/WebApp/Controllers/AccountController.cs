@@ -341,7 +341,7 @@ namespace WebApp.Controllers
                     carrier.Name = viewModel.CarrierName;
                     carrier.Type = viewModel.CarrierType;
                     carrier.BusinessScope = viewModel.BusinessScope;
-                    carrier.CompanyId = 2;
+                    carrier.CompanyId = Auth.PlatformId;
                     carrier.ContactMobileTelephoneNumber = viewModel.ContactMobileTelephoneNumber;
                     carrier.ContactName = viewModel.ContactName;
                     carrier.CountrySubdivisionCode = viewModel.CountrySubdivisionCode;
@@ -355,7 +355,7 @@ namespace WebApp.Controllers
                     driver.Name = viewModel.DriverName;
                     driver.Carrierid = carrier.Id;
                     driver.Carrier = carrier;
-                    driver.CompanyId = 2;
+                    driver.CompanyId = Auth.PlatformId;
                     driver.Gender = viewModel.DriverGender;
                     driver.MobileTelephoneNumber = viewModel.MobileTelephoneNumber;
                     driver.RegistrationDatetime = DateTime.Now;
@@ -366,7 +366,7 @@ namespace WebApp.Controllers
                     vehical.PlateNumber = viewModel.VehicleNumber;
                     vehical.Driver = driver.Name;
                     vehical.DriverPhone = driver.MobileTelephoneNumber;
-                    vehical.CompanyId = 2;
+                    vehical.CompanyId = Auth.PlatformId;
                     vehical.CarType = viewModel.VehicleClassificationCode;
                     vehical.VehicleType = viewModel.LicenseplateTypeCode;
                     vehical.LoLicenseId = viewModel.RoadTransportCertificateNumber;
@@ -435,14 +435,16 @@ namespace WebApp.Controllers
                 if (isexist == null && isexist1 == false )
                 {
                     var shipper = new Shipper();
-                    shipper.CompanyId = 2;
+                    shipper.CompanyId = Auth.PlatformId;
                     shipper.ContactName = viewModel.ContactName;
-                    shipper.ContactIdCard = viewModel.UnifiedSocialCreditldentifier;
+                    shipper.ContactIdCard = viewModel.PersonalIdentityDocument;
                     shipper.UnifiedSocialCreditldentifier = viewModel.UnifiedSocialCreditldentifier;
                     shipper.UnifiedsocialDatetime = DateTime.Now;
                     shipper.RegisteredAddress = viewModel.RegisteredAddress;
-                    shipper.RegisteredCapital = viewModel.RegisteredCapital;
+                    shipper.RegisteredCapital = 0.00M;
                     shipper.RegistrationDatetime = DateTime.Now;
+                    shipper.ContactTelephoneNumber = viewModel.ContactTelephoneNumber;
+                    shipper.PersonalIdentityDocument = viewModel.PersonalIdentityDocument;
                     shipper.Type = viewModel.ShipperType;
                     shipper.Name = viewModel.ShipperName;
                     shipper.ContactMobileTelephoneNumber = viewModel.ContactMobileTelephoneNumber;
@@ -456,6 +458,7 @@ namespace WebApp.Controllers
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
+                        throw e;
                     }
                     var username = viewModel.Email.Split('@')[0];
                     var user = new ApplicationUser

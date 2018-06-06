@@ -38,6 +38,9 @@ namespace WebApp.Controllers
             ViewBag.VehicleClassificationCode = ctype;
             ViewBag.LicenseplateTypeCode = vtype;
             ViewBag.VehicleLicensePlateColor = color;
+
+            ViewBag.PackageType= await codep.Queryable().Where(x => x.CodeType == "PackageType").Select(n => new SelectListItem() { Value = n.Code, Text = n.Text }).ToArrayAsync();
+            ViewBag.Cargotype = await codep.Queryable().Where(x => x.CodeType == "Cargotype").Select(n => new SelectListItem() { Value = n.Code, Text = n.Text }).ToArrayAsync();
             return View();
         }
         public async Task<ActionResult> GetEvents() {

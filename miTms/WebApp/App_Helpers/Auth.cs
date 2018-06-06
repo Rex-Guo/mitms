@@ -26,14 +26,38 @@ namespace WebApp
                 return fullName;
             }
         }
-        public static string PlatformId {
+        public static int PlatformId {
             get {
                 var username = HttpContext.Current.User.Identity.Name;
                 var db = SqlHelper2.DatabaseFactory.CreateDatabase();
                 var companyid = db.ExecuteScalar<int>("select top 1 [Id] from [dbo].[Companies] ",null);
-                return companyid.ToString();
+                return companyid;
             }
 
+        }
+        public static int ShipperId {
+
+            get {
+                var username = HttpContext.Current.User.Identity.Name;
+                var db = SqlHelper2.DatabaseFactory.CreateDatabase();
+                var companyid = db.ExecuteScalar<string>("select CompanyCode from[dbo].[AspNetUsers] where UserName = @username and AccountType = 2",new { username});
+                return Convert.ToInt32( companyid);
+                
+               
+            }
+        }
+        public static int CarrierId
+        {
+
+            get
+            {
+                var username = HttpContext.Current.User.Identity.Name;
+                var db = SqlHelper2.DatabaseFactory.CreateDatabase();
+                var companyid = db.ExecuteScalar<string>("select CompanyCode from[dbo].[AspNetUsers] where UserName = @username and AccountType = 1", new { username });
+                return Convert.ToInt32(companyid);
+
+
+            }
         }
         public static string GetRole(string userName) {
             string sql = @"select t1.[Name]  from dbo.[AspNetRoles] t1 ,dbo.[AspNetUserRoles] t2,dbo.[AspNetUsers] t3

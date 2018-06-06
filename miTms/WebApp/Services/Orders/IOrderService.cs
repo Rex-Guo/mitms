@@ -39,5 +39,6 @@ namespace WebApp.Services
         void Create(Order order);
         void ShippingOrder(Order item);
         void DoPod(int[] id);
+        void CreateByShipper(Order order);
     }
 }

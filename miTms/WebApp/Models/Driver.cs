@@ -55,10 +55,10 @@ namespace WebApp.Models
         [Display(Name = "同步异常")]
         public bool IsException { get; set; }
 
-        [Display(Name = "所属公司", Description = "所属公司")]
+        [Display(Name = "所在平台", Description = "所在平台")]
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
-        [Display(Name = "所属公司", Description = "所属公司")]
+        [Display(Name = "所在平台", Description = "所在平台")]
         public virtual Company Company { get; set; }
 
     }
