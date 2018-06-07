@@ -93,9 +93,9 @@
                             <a href="#user" class="nav-link"><b>@User.Identity.Name</b>[@Auth.GetRoleDescription(User.Identity.Name)]</a>
                         </li>
                     </ul>
-                        }
-                        else
-                        {
+                }
+                else
+                {
                     <ul class="nav navbar-nav navbar-right ml-auto">
                         <li class="nav-item">
                             <a href="#" data-toggle="modal" data-target="#login-modal" class="nav-link">登录</a>
@@ -104,18 +104,18 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 注册 </a>
 
                             <ul class="dropdown-menu arrow" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#register-modal1" ><i class="fa fa-truck"></i> 承运人</a></li>
-                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#register-modal2" ><i class="fa fa-cubes"></i> 托运人</a></li>
-                              
+                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#register-modal1"><i class="fa fa-truck"></i> 承运人</a></li>
+                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#register-modal2"><i class="fa fa-cubes"></i> 托运人</a></li>
+
 
                             </ul>
                         </li>
-                         
+
 
                     </ul>
-                        }
+                }
 
-                </div>
+            </div>
         </div>
     </nav>
     <!-- END NAVBAR -->
@@ -261,6 +261,8 @@
 
     <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
     <script src="~/scripts/landing/js/jquery.validate.min.js"></script>
+    <script src="~/Scripts/plugin/jquery.serializejson/jquery.serializejson.js"></script>
+    
 
     @RenderSection("scripts", required: false)
 </body>

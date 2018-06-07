@@ -215,7 +215,7 @@
                         <input type="hidden" id="Cartons" name="Cartons" value="" />
                         <input type="hidden" id="Pallets" name="Pallets" value="" />
                         <input type="hidden" id="VehicleId" name="VehicleId" value="" />
-                        <input type="hidden" id="CompanyId" name="CompanyId" value="@Auth.CompanyId" />
+                        <input type="hidden" id="CompanyId" name="CompanyId" value="@Auth.PlatformId.ToString()" />
                         <input type="hidden" id="InputUser" name="InputUser" value="@Auth.UserName" />
                     </form>
                 </div>
@@ -681,7 +681,7 @@
                             editor: {
                                 type: 'combobox',
                                 options: {
-                                    prompt: '所属公司',
+                                    prompt: '所在平台',
                                     mode: 'remote',
                                     valueField: 'Id',
                                     textField: 'Name',

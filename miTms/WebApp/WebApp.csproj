@@ -390,12 +390,16 @@
     <Compile Include="Migrations\201806050718397_morders.Designer.cs">
       <DependentUpon>201806050718397_morders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806070039133_linequotes.cs" />
+    <Compile Include="Migrations\201806070039133_linequotes.Designer.cs">
+      <DependentUpon>201806070039133_linequotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\CarrierMetadata.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\DriverMetadata.cs" />
     <Compile Include="Models\EventViewModel.cs" />
-    <Compile Include="Models\LineOffer.cs" />
+    <Compile Include="Models\LineQuotes.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderMetadata.cs" />
     <Compile Include="Models\PoolsViewModel.cs" />
@@ -4255,6 +4259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806050718397_morders.resx">
       <DependentUpon>201806050718397_morders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070039133_linequotes.resx">
+      <DependentUpon>201806070039133_linequotes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

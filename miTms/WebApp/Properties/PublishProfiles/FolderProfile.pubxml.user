@@ -571,10 +571,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2018 16:49:17</publishTime>
     </File>
     <File Include="bin/WebApp.dll">
-      <publishTime>06/04/2018 16:57:20</publishTime>
+      <publishTime>06/06/2018 13:59:45</publishTime>
     </File>
     <File Include="bin/WebApp.pdb">
-      <publishTime>06/04/2018 16:57:20</publishTime>
+      <publishTime>06/06/2018 13:59:45</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/08/2018 16:49:17</publishTime>
@@ -7936,7 +7936,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2018 08:01:03</publishTime>
     </File>
     <File Include="Scripts/landing/js/scripts.js">
-      <publishTime>06/04/2018 11:58:51</publishTime>
+      <publishTime>06/05/2018 10:48:28</publishTime>
     </File>
     <File Include="Scripts/landing/js/scrollspy.min.js">
       <publishTime>05/28/2018 13:35:36</publishTime>
@@ -10207,7 +10207,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/20/2018 12:52:10</publishTime>
     </File>
     <File Include="Views/Admin/Index.cshtml">
-      <publishTime>06/04/2018 14:40:25</publishTime>
+      <publishTime>06/05/2018 13:59:22</publishTime>
     </File>
     <File Include="Views/BaseCodes/Create.cshtml">
       <publishTime>04/08/2018 16:49:12</publishTime>
@@ -10231,13 +10231,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2018 09:43:53</publishTime>
     </File>
     <File Include="Views/Carriers/EditForm.cshtml">
-      <publishTime>05/30/2018 09:43:54</publishTime>
+      <publishTime>06/05/2018 14:04:27</publishTime>
     </File>
     <File Include="Views/Carriers/Index.cshtml">
-      <publishTime>05/30/2018 14:20:18</publishTime>
+      <publishTime>06/05/2018 14:04:28</publishTime>
     </File>
     <File Include="Views/Carriers/_PopupDetailFormView.cshtml">
-      <publishTime>05/30/2018 09:43:54</publishTime>
+      <publishTime>06/05/2018 14:04:27</publishTime>
     </File>
     <File Include="Views/CodeItems/Create.cshtml">
       <publishTime>04/08/2018 16:49:12</publishTime>
@@ -10300,13 +10300,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2018 09:36:01</publishTime>
     </File>
     <File Include="Views/Drivers/EditForm.cshtml">
-      <publishTime>05/30/2018 09:36:02</publishTime>
+      <publishTime>06/05/2018 14:04:28</publishTime>
     </File>
     <File Include="Views/Drivers/Index.cshtml">
-      <publishTime>05/30/2018 14:18:45</publishTime>
+      <publishTime>06/05/2018 14:04:28</publishTime>
     </File>
     <File Include="Views/Drivers/_PopupDetailFormView.cshtml">
-      <publishTime>05/30/2018 09:36:03</publishTime>
+      <publishTime>06/05/2018 14:04:28</publishTime>
     </File>
     <File Include="Views/EFMigrationsManager/DbMaintenance.cshtml">
       <publishTime>04/08/2018 16:49:12</publishTime>
@@ -10351,7 +10351,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/28/2015 08:31:18</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/04/2018 14:06:10</publishTime>
+      <publishTime>06/06/2018 11:23:42</publishTime>
     </File>
     <File Include="Views/Inventories/Index.cshtml">
       <publishTime>05/30/2018 13:50:37</publishTime>
@@ -10447,7 +10447,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2018 16:49:12</publishTime>
     </File>
     <File Include="Views/Orders/Bidding.cshtml">
-      <publishTime>05/30/2018 13:39:49</publishTime>
+      <publishTime>06/05/2018 14:20:46</publishTime>
     </File>
     <File Include="Views/Orders/Create.cshtml">
       <publishTime>05/10/2018 13:01:19</publishTime>
@@ -10459,13 +10459,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2018 13:01:21</publishTime>
     </File>
     <File Include="Views/Orders/Index.cshtml">
-      <publishTime>05/30/2018 17:03:37</publishTime>
+      <publishTime>06/05/2018 14:20:46</publishTime>
     </File>
     <File Include="Views/Orders/POD.cshtml">
-      <publishTime>05/30/2018 13:59:06</publishTime>
+      <publishTime>06/05/2018 14:20:46</publishTime>
     </File>
     <File Include="Views/Orders/Shipping.cshtml">
-      <publishTime>05/30/2018 13:59:06</publishTime>
+      <publishTime>06/05/2018 14:20:46</publishTime>
     </File>
     <File Include="Views/Orders/_PopupDetailFormView.cshtml">
       <publishTime>05/30/2018 11:04:31</publishTime>
@@ -10540,7 +10540,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2018 17:01:28</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutLandingPage.cshtml">
-      <publishTime>06/04/2018 14:47:49</publishTime>
+      <publishTime>06/05/2018 16:59:00</publishTime>
     </File>
     <File Include="Views/Shared/_Navigation.cshtml">
       <publishTime>05/15/2018 15:39:50</publishTime>
@@ -10567,13 +10567,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2018 09:44:45</publishTime>
     </File>
     <File Include="Views/Shippers/EditForm.cshtml">
-      <publishTime>05/30/2018 09:44:46</publishTime>
+      <publishTime>06/05/2018 14:04:30</publishTime>
     </File>
     <File Include="Views/Shippers/Index.cshtml">
-      <publishTime>05/30/2018 14:21:42</publishTime>
+      <publishTime>06/05/2018 14:04:30</publishTime>
     </File>
     <File Include="Views/Shippers/_PopupDetailFormView.cshtml">
-      <publishTime>05/30/2018 09:44:47</publishTime>
+      <publishTime>06/05/2018 14:04:30</publishTime>
     </File>
     <File Include="Views/TransactionHistories/Create.cshtml">
       <publishTime>05/14/2018 08:58:25</publishTime>
@@ -10597,13 +10597,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2018 15:27:10</publishTime>
     </File>
     <File Include="Views/Vehicles/EditForm.cshtml">
-      <publishTime>05/10/2018 15:27:10</publishTime>
+      <publishTime>06/05/2018 14:04:30</publishTime>
     </File>
     <File Include="Views/Vehicles/Index.cshtml">
-      <publishTime>05/30/2018 13:59:11</publishTime>
+      <publishTime>06/05/2018 14:04:30</publishTime>
     </File>
     <File Include="Views/Vehicles/_PopupDetailFormView.cshtml">
-      <publishTime>05/10/2018 15:27:10</publishTime>
+      <publishTime>06/05/2018 14:04:30</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>12/28/2015 08:31:18</publishTime>

@@ -53,7 +53,7 @@ namespace WebApp.Models
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        public DbSet<LineOffer> LineOffers { get; set; }
+        public DbSet<LineQuotes> LineQuotes { get; set; }
         public DbSet<TransactionHistory> TransactionHistories { get; set; }
         public DbSet<Shipper> Shippers { get; set; }
         public DbSet<Carrier> Carriers { get; set; }
