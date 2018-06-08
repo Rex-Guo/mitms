@@ -257,6 +257,7 @@
     <Compile Include="Controllers\EFMigrationsManagerController.cs" />
     <Compile Include="Controllers\FinancesController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
+    <Compile Include="Controllers\LineQuotesesController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\ShippersController.cs" />
@@ -394,12 +395,17 @@
     <Compile Include="Migrations\201806070039133_linequotes.Designer.cs">
       <DependentUpon>201806070039133_linequotes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806072348072_cfk.cs" />
+    <Compile Include="Migrations\201806072348072_cfk.Designer.cs">
+      <DependentUpon>201806072348072_cfk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\CarrierMetadata.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\DriverMetadata.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\LineQuotes.cs" />
+    <Compile Include="Models\LineQuotesMetadata.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderMetadata.cs" />
     <Compile Include="Models\PoolsViewModel.cs" />
@@ -418,6 +424,8 @@
     <Compile Include="Repositories\Companies\CompanyRepository.cs" />
     <Compile Include="Repositories\Drivers\DriverQuery.cs" />
     <Compile Include="Repositories\Drivers\DriverRepository.cs" />
+    <Compile Include="Repositories\LineQuotes\LineQuotesQuery.cs" />
+    <Compile Include="Repositories\LineQuotes\LineQuotesRepository.cs" />
     <Compile Include="Repositories\Orders\OrderQuery.cs" />
     <Compile Include="Repositories\Orders\OrderRepository.cs" />
     <Compile Include="Repositories\Regions\RegionQuery.cs" />
@@ -434,6 +442,8 @@
     <Compile Include="Services\Companies\ICompanyService.cs" />
     <Compile Include="Services\Drivers\DriverService.cs" />
     <Compile Include="Services\Drivers\IDriverService.cs" />
+    <Compile Include="Services\LineQuotes\ILineQuotesService.cs" />
+    <Compile Include="Services\LineQuotes\LineQuotesService.cs" />
     <Compile Include="Services\Orders\IOrderService.cs" />
     <Compile Include="Services\Orders\OrderService.cs" />
     <Compile Include="Services\Regions\IRegionService.cs" />
@@ -3847,6 +3857,11 @@
     <Content Include="Views\Finances\Index.cshtml" />
     <Content Include="Views\Finances\Billing.cshtml" />
     <Content Include="Views\Finances\Payment.cshtml" />
+    <Content Include="Views\LineQuoteses\Index.cshtml" />
+    <Content Include="Views\LineQuoteses\Create.cshtml" />
+    <Content Include="Views\LineQuoteses\Edit.cshtml" />
+    <Content Include="Views\LineQuoteses\EditForm.cshtml" />
+    <Content Include="Views\LineQuoteses\_PopupDetailFormView.cshtml" />
     <None Include="Views\Notifications\_notifications.cshtml" />
     <None Include="Views\Messages\_notifications.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Int.cshtml">
@@ -4262,6 +4277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806070039133_linequotes.resx">
       <DependentUpon>201806070039133_linequotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806072348072_cfk.resx">
+      <DependentUpon>201806072348072_cfk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

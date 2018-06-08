@@ -201,7 +201,14 @@
                             <input type="hidden" value="@Auth.UserName" name="InputUser" id="InputUser">
                             <input type="hidden" value="@Auth.ShipperId.ToString()" name="ShipperId" id="ShipperId">
                             <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary btn-shadow btn-rounded w-lg">在线下单</button>
+                                @if (Auth.GetRole(User.Identity.Name) != "Shipper")
+                                {
+                                    <button type="submit" class="btn btn-primary btn-shadow btn-rounded w-lg" disabled>在线下单</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary btn-shadow btn-rounded w-lg">在线下单</button>
+                                }
                             </div>
                         </div>
                     </div>

@@ -54,7 +54,7 @@ namespace WebApp.Models
 
         [Display(Name = "平台", Description = "平台")]
         public int CompanyId { get; set; }
-        [ForeignKey("CarrierId")]
+        [ForeignKey("CompanyId")]
         [Display(Name = "平台", Description = "平台")]
         public virtual Company Company { get; set; }
 

@@ -13,7 +13,6 @@ using System.Web;
 using Unity;
 using Unity.Lifetime;
 using Unity.Injection;
- 
 using Unity.AspNet.Mvc;
 
 namespace WebApp
@@ -136,8 +135,9 @@ namespace WebApp
             container.RegisterType<IRepositoryAsync<Carrier>, Repository<Carrier>>();
             container.RegisterType<ICarrierService, CarrierService>();
 
-
-             container.RegisterType<IRepositoryAsync<Region>, Repository<Region>>();
+            container.RegisterType<IRepositoryAsync<LineQuotes>, Repository<LineQuotes>>();
+            container.RegisterType<ILineQuotesService, LineQuotesService>();
+            container.RegisterType<IRepositoryAsync<Region>, Repository<Region>>();
             container.RegisterType<IRegionService, RegionService>();
 
         }

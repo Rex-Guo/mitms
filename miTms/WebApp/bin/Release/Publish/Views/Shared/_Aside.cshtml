@@ -62,14 +62,19 @@
                     <li class="@Html.IsSelected(action: "Output", controller: "Inventories")">
                         <a href="@Url.Action("Output", "Inventories")" title="出库作业"><span class="menu-item-parent">出库作业 </span></a>
                     </li>
+
                     <li class="@Html.IsSelected(action: "Index", controller: "Inventories")">
                         <a href="@Url.Action("Index", "Inventories")" title="库存查询"><span class="menu-item-parent">库存查询 </span></a>
                     </li>
                 </ul>
             </li>
-            <li class="@Html.IsSelected(controller: "Finances")">
+            <li class="@Html.IsSelected(controller: "Finances,LineQuoteses")">
                 <a href="#" title="结算中心"><i class="fa fa-lg fa-fw fa-folder-o"></i> <span class="menu-item-parent">结算中心</span></a>
                 <ul>
+                    <li class="@Html.IsSelected(action: "Index", controller: "LineQuoteses")">
+                        <a href="@Url.Action("Index", "LineQuoteses")" title="线路报价"><span class="menu-item-parent">线路报价</span></a>
+                    </li>
+                    
                     <li class="@Html.IsSelected(action: "Index", controller: "Finances")">
                         <a href="@Url.Action("Index", "Finances")" title="费用管理"><span class="menu-item-parent">费用管理</span></a>
                     </li>
