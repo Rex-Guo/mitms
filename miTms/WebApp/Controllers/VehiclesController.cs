@@ -56,13 +56,15 @@ namespace WebApp.Controllers
             var totalCount = 0;
             //int pagenum = offset / limit +1;
             var vehicles = await _vehicleService
-       .Query(new VehicleQuery().Withfilter(filters)).Include(v => v.Company)
+       .Query(new VehicleQuery().Withfilter(filters)).Include(v => v.Company).Include(x=>x.Carrier)
        .OrderBy(n => n.OrderBy(sort, order))
        .SelectPageAsync(page, rows, out totalCount);
             var datarows = vehicles.Select(n => new
             {
                 CompanyName = (n.Company == null ? "" : n.Company.Name),
+                CarrierName = (n.Carrier == null ? "" : n.Carrier.Name),
                 Id = n.Id,
+                CarrierId = n.CarrierId,
                 OrderId = n.OrderId,
                 OrderNo = n.OrderNo,
                 ExternalNo = n.ExternalNo,
@@ -181,7 +183,9 @@ namespace WebApp.Controllers
             var datarows = vehicles.Select(n => new
             {
                 CompanyName = (n.Company == null ? "" : n.Company.Name),
+                CarrierName = (n.Carrier == null ? "" : n.Carrier.Name),
                 Id = n.Id,
+                CarrierId=n.CarrierId,
                 OrderId = n.OrderId,
                 OrderNo = n.OrderNo,
                 ExternalNo = n.ExternalNo,
@@ -313,13 +317,20 @@ namespace WebApp.Controllers
                 }
             }
             await _unitOfWork.SaveChangesAsync();
-            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
         //[OutputCache(Duration = 360, VaryByParam = "none")]
         public async Task<JsonResult> GetCompanies(string q = "")
         {
             var companyRepository = _unitOfWork.RepositoryAsync<Company>();
             var data = await companyRepository.Queryable().Where(n => n.Name.Contains(q)).ToListAsync();
+            var rows = data.Select(n => new { Id = n.Id, Name = n.Name });
+            return Json(rows, JsonRequestBehavior.AllowGet);
+        }
+        public async Task<JsonResult> GetCarriers(string q = "")
+        {
+            var carrierrepository = _unitOfWork.RepositoryAsync<Carrier>();
+            var data = await carrierrepository.Queryable().Where(n => n.Name.Contains(q)).ToListAsync();
             var rows = data.Select(n => new { Id = n.Id, Name = n.Name });
             return Json(rows, JsonRequestBehavior.AllowGet);
         }

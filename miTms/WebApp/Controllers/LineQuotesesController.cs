@@ -174,14 +174,20 @@ namespace WebApp.Controllers
 					this.lineQuotesService.Insert(item);
 				}
 			}
-			await this.unitOfWork.SaveChangesAsync();
-			return Json(new {Success=true}, JsonRequestBehavior.AllowGet);
+            try
+            {
+                await this.unitOfWork.SaveChangesAsync();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e) {
+                return Json(new { success = false,err=e.Message }, JsonRequestBehavior.AllowGet);
+            }
 		}
 						        //[OutputCache(Duration = 360, VaryByParam = "none")]
 		public async Task<JsonResult> GetCarriers(string q="")
 		{
 			var carrierRepository = this.unitOfWork.RepositoryAsync<Carrier>();
-			var data = await carrierRepository.Queryable().Where(n=>n.Name.Contains(q)).ToListAsync();
+			var data = await carrierRepository.Queryable().Where(n=>n.Name.Contains(q)).OrderBy(n=>n.Name).ToListAsync();
 			var rows = data.Select(n => new { Id = n.Id, Name = n.Name });
 			return Json(rows, JsonRequestBehavior.AllowGet);
 		}
@@ -189,7 +195,7 @@ namespace WebApp.Controllers
 		public async Task<JsonResult> GetCompanies(string q="")
 		{
 			var companyRepository = this.unitOfWork.RepositoryAsync<Company>();
-			var data = await companyRepository.Queryable().Where(n=>n.Name.Contains(q)).ToListAsync();
+			var data = await companyRepository.Queryable().Where(n=>n.Name.Contains(q)).OrderBy(n => n.Name).ToListAsync();
 			var rows = data.Select(n => new { Id = n.Id, Name = n.Name });
 			return Json(rows, JsonRequestBehavior.AllowGet);
 		}

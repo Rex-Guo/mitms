@@ -108,7 +108,7 @@ namespace WebApp.Controllers
                 }
             }
             await _unitOfWork.SaveChangesAsync();
-            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
         // GET: TransactionHistories/Details/5
         public async Task<ActionResult> Details(int? id)

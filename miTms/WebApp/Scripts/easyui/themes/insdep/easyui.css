@@ -563,7 +563,7 @@
   white-space: pre-wrap;
 }
 .textbox .textbox-prompt {
-  color: #aaa;
+  color: #aaa !important;
 }
 .textbox .textbox-bgicon {
   background-position: 3px center;
