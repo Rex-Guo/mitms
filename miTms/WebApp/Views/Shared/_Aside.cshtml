@@ -36,14 +36,18 @@
                     </li>
                 </ul>
             </li>
-            <li class="@Html.IsSelected(controller: "Orders")">
+            <li class="@Html.IsSelected(controller: "Orders,ShipOrders")">
                 <a href="#" title="业务操作"><i class="fa fa-lg fa-fw fa-folder-o"></i> <span class="menu-item-parent">业务操作</span></a>
                 <ul>
-                    <li class="@Html.IsSelected(action: "Shipping", controller: "Orders")">
-                        <a href="@Url.Action("Shipping", "Orders")" title="派车管理"><span class="menu-item-parent">派车管理</span></a>
-                    </li>
+
                     <li class="@Html.IsSelected(action: "Index", controller: "Orders")">
                         <a href="@Url.Action("index", "Orders")" title="订单信息"><span class="menu-item-parent">订单信息 </span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index", controller: "ShipOrders")">
+                        <a href="@Url.Action("index", "ShipOrders")" title="发运单信息"><span class="menu-item-parent">发运单信息 </span></a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Shipping", controller: "Orders")">
+                        <a href="@Url.Action("Shipping", "Orders")" title="车辆跟踪"><span class="menu-item-parent">车辆跟踪</span></a>
                     </li>
                     <li class="@Html.IsSelected(action: "Bidding", controller: "Orders")">
                         <a href="@Url.Action("Bidding", "Orders")" title="竞价"><span class="menu-item-parent">竞价 </span></a>

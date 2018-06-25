@@ -10,18 +10,28 @@ namespace WebApp.Models
 {
     public partial class ShipOrder:Entity
     {
+        public ShipOrder()
+        {
+            ShipOrderDetails = new HashSet<ShipOrderDetail>();
+        }
         [Key]
         public int Id { get; set; }
 
         [Display(Name = "派车单号", Description = "派车单号")]
         [MaxLength(20)]
         [Required]
-        public string OrderNo { get; set; }
+        public string ShipOrderNo { get; set; }
         [Display(Name = "对账单号", Description = "对账单号")]
         [MaxLength(30)]
         public string ExternalNo { get; set; }
         [Display(Name = "派车时间", Description = "派车时间")]
         public DateTime OrderDate { get; set; }
+        [Display(Name = "业务类型", Description = "业务类型")]
+        [MaxLength(8)]
+        public string BusinessType { get; set; }
+        [Display(Name = "运单状态", Description = "运单状态")]
+        public int Status { get; set; }
+
         #region 承运人信息
         [Display(Name = "承运人", Description = "承运人")]
         public int CarrierId { get; set; }
@@ -34,7 +44,22 @@ namespace WebApp.Models
         [Display(Name = "承运车", Description = "承运车")]
         public virtual Vehicle Vehicle { get; set; }
         [Display(Name = "车辆类型", Description = "车辆类型")]
+        [MaxLength(20)]
         public string CarType { get; set; }
+        [Display(Name = "司机", Description = "司机")]
+        [MaxLength(30)]
+        public string Driver { get; set; }
+        [Display(Name = "司机电话", Description = "司机电话")]
+        [MaxLength(18)]
+        public string DriverPhone { get; set; }
+        [Display(Name = "合同编号", Description = "合同编号")]
+        [MaxLength(35)]
+        public string ContractNumber { get; set; }
+        [Display(Name = "总运价", Description = "总运价(RMB)")]
+        public decimal? TotalMonetaryAmount { get; set; }
+        [Display(Name = "备注", Description = "备注")]
+        [MaxLength(255)]
+        public string Remark { get; set; }
         #endregion
         #region 可选跟踪信息
         [Display(Name = "起点", Description = "起点")]
@@ -80,6 +105,9 @@ namespace WebApp.Models
         [MaxLength(20)]
         [Required]
         public string InputUser { get; set; }
+
+        public virtual ICollection<ShipOrderDetail> ShipOrderDetails { get; set; }
+
         [Required]
         [Display(Name = "所属平台", Description = "所属平台")]
         public int CompanyId { get; set; }

@@ -260,6 +260,8 @@
     <Compile Include="Controllers\LineQuotesesController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\ShipOrderDetailsController.cs" />
+    <Compile Include="Controllers\ShipOrdersController.cs" />
     <Compile Include="Controllers\ShippersController.cs" />
     <Compile Include="Controllers\TransactionHistoriesController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
@@ -399,6 +401,14 @@
     <Compile Include="Migrations\201806072348072_cfk.Designer.cs">
       <DependentUpon>201806072348072_cfk.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806250657060_addshiporder.cs" />
+    <Compile Include="Migrations\201806250657060_addshiporder.Designer.cs">
+      <DependentUpon>201806250657060_addshiporder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806250758436_mdshiporder.cs" />
+    <Compile Include="Migrations\201806250758436_mdshiporder.Designer.cs">
+      <DependentUpon>201806250758436_mdshiporder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\CarrierMetadata.cs" />
     <Compile Include="Models\Driver.cs" />
@@ -414,6 +424,8 @@
     <Compile Include="Models\RegionMetadata.cs" />
     <Compile Include="Models\ShipOrder.cs" />
     <Compile Include="Models\ShipOrderDetail.cs" />
+    <Compile Include="Models\ShipOrderDetailMetadata.cs" />
+    <Compile Include="Models\ShipOrderMetadata.cs" />
     <Compile Include="Models\Shipper.cs" />
     <Compile Include="Models\ShipperMetadata.cs" />
     <Compile Include="Models\TransactionHistory.cs" />
@@ -432,6 +444,10 @@
     <Compile Include="Repositories\Orders\OrderRepository.cs" />
     <Compile Include="Repositories\Regions\RegionQuery.cs" />
     <Compile Include="Repositories\Regions\RegionRepository.cs" />
+    <Compile Include="Repositories\ShipOrderDetails\ShipOrderDetailQuery.cs" />
+    <Compile Include="Repositories\ShipOrderDetails\ShipOrderDetailRepository.cs" />
+    <Compile Include="Repositories\ShipOrders\ShipOrderQuery.cs" />
+    <Compile Include="Repositories\ShipOrders\ShipOrderRepository.cs" />
     <Compile Include="Repositories\Shippers\ShipperQuery.cs" />
     <Compile Include="Repositories\Shippers\ShipperRepository.cs" />
     <Compile Include="Repositories\TransactionHistories\TransactionHistoryQuery.cs" />
@@ -450,6 +466,10 @@
     <Compile Include="Services\Orders\OrderService.cs" />
     <Compile Include="Services\Regions\IRegionService.cs" />
     <Compile Include="Services\Regions\RegionService.cs" />
+    <Compile Include="Services\ShipOrderDetails\IShipOrderDetailService.cs" />
+    <Compile Include="Services\ShipOrderDetails\ShipOrderDetailService.cs" />
+    <Compile Include="Services\ShipOrders\IShipOrderService.cs" />
+    <Compile Include="Services\ShipOrders\ShipOrderService.cs" />
     <Compile Include="Services\Shippers\IShipperService.cs" />
     <Compile Include="Services\Shippers\ShipperService.cs" />
     <Compile Include="Services\TransactionHistories\ITransactionHistoryService.cs" />
@@ -3939,6 +3959,17 @@
     <Content Include="Views\Regions\Edit.cshtml" />
     <Content Include="Views\Regions\EditForm.cshtml" />
     <Content Include="Views\Regions\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\ShipOrderDetails\Index.cshtml" />
+    <Content Include="Views\ShipOrderDetails\Create.cshtml" />
+    <Content Include="Views\ShipOrderDetails\Edit.cshtml" />
+    <Content Include="Views\ShipOrderDetails\EditForm.cshtml" />
+    <Content Include="Views\ShipOrderDetails\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\ShipOrders\Index.cshtml" />
+    <Content Include="Views\ShipOrders\Create.cshtml" />
+    <Content Include="Views\ShipOrders\Edit.cshtml" />
+    <Content Include="Views\ShipOrders\EditForm.cshtml" />
+    <Content Include="Views\ShipOrders\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\ShipOrders\_ShipOrderDetailEditForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4282,6 +4313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806072348072_cfk.resx">
       <DependentUpon>201806072348072_cfk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250657060_addshiporder.resx">
+      <DependentUpon>201806250657060_addshiporder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250758436_mdshiporder.resx">
+      <DependentUpon>201806250758436_mdshiporder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

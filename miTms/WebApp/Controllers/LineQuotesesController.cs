@@ -219,42 +219,43 @@ namespace WebApp.Controllers
 			var lineQuotes = new LineQuotes();
 			//set default value
 			var carrierRepository = this.unitOfWork.RepositoryAsync<Carrier>();
-		   			ViewBag.CarrierId = new SelectList(carrierRepository.Queryable(), "Id", "Name");
+		   			ViewBag.CarrierId = new SelectList(carrierRepository.Queryable().OrderBy(n=>n.Name), "Id", "Name");
 		   			var companyRepository = this.unitOfWork.RepositoryAsync<Company>();
-		   			ViewBag.CompanyId = new SelectList(companyRepository.Queryable(), "Id", "Name");
+		   			ViewBag.CompanyId = new SelectList(companyRepository.Queryable().OrderBy(n => n.Name), "Id", "Name");
 		   			return View(lineQuotes);
 		}
-		// POST: LineQuoteses/Create
-		// To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "Carrier,Company,Id,Name,Location1,Location2,TimePeriod,PiceVehicleType,PiceType,Price,Remark,Description,InputUser,CarrierId,CompanyId,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] LineQuotes lineQuotes)
-		{
-			if (ModelState.IsValid)
-			{
-			 				lineQuotesService.Insert(lineQuotes);
-		   				await this.unitOfWork.SaveChangesAsync();
-				if (Request.IsAjaxRequest())
-				{
-					return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-				}
-				DisplaySuccessMessage("Has append a LineQuotes record");
-				return RedirectToAction("Index");
-			}
-			else {
-			 var modelStateErrors =String.Join("", this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors.Select(n=>n.ErrorMessage)));
-			 if (Request.IsAjaxRequest())
-			 {
-			   return Json(new { success = false, err = modelStateErrors }, JsonRequestBehavior.AllowGet);
-			 }
-			 DisplayErrorMessage(modelStateErrors);
-			}
-						var carrierRepository = this.unitOfWork.RepositoryAsync<Carrier>();
-						ViewBag.CarrierId = new SelectList(await carrierRepository.Queryable().ToListAsync(), "Id", "Name", lineQuotes.CarrierId);
-									var companyRepository = this.unitOfWork.RepositoryAsync<Company>();
-						ViewBag.CompanyId = new SelectList(await companyRepository.Queryable().ToListAsync(), "Id", "Name", lineQuotes.CompanyId);
-									return View(lineQuotes);
-		}
+        // POST: LineQuoteses/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind(Include = "Carrier,Company,Id,Name,Location1,Location2,TimePeriod,PiceVehicleType,PiceType,Price,Remark,Description,InputUser,CarrierId,CompanyId,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] LineQuotes lineQuotes)
+        {
+            if (ModelState.IsValid)
+            {
+                lineQuotesService.Insert(lineQuotes);
+                await this.unitOfWork.SaveChangesAsync();
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                }
+                DisplaySuccessMessage("Has append a LineQuotes record");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var modelStateErrors = String.Join("", this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors.Select(n => n.ErrorMessage)));
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new { success = false, err = modelStateErrors }, JsonRequestBehavior.AllowGet);
+                }
+                DisplayErrorMessage(modelStateErrors);
+            }
+            var carrierRepository = this.unitOfWork.RepositoryAsync<Carrier>();
+            ViewBag.CarrierId = new SelectList(await carrierRepository.Queryable().OrderBy(n=>n.Name).ToListAsync(), "Id", "Name", lineQuotes.CarrierId);
+            var companyRepository = this.unitOfWork.RepositoryAsync<Company>();
+            ViewBag.CompanyId = new SelectList(await companyRepository.Queryable().OrderBy(n => n.Name).ToListAsync(), "Id", "Name", lineQuotes.CompanyId);
+            return View(lineQuotes);
+        }
         // GET: LineQuoteses/PopupEdit/5
         //[OutputCache(Duration = 360, VaryByParam = "id")]
 		public async Task<JsonResult> PopupEdit(int? id)

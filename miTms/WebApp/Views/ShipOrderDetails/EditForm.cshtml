@@ -1,0 +1,332 @@
+﻿﻿@model WebApp.Models.ShipOrderDetail
+ <!-- 输出form表单界面 -->
+<fieldset>
+    <div class="row">
+        	    			<section class="col col-4">
+           <label class="label">@Html.DisplayNameFor(model => model.Id) </label>
+           <label class="input">
+            <input id="@Html.IdFor(model => model.Id)" 
+                   name="@Html.NameFor(model => model.Id)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Id)" 
+                   value="@Html.ValueFor(model => model.Id)"
+                   tabindex="0"   
+                   type="text" 
+                   />
+                 <b class="tooltip tooltip-bottom-right">Id</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.OrderNo) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.OrderNo)" 
+				   name="@Html.NameFor(model => model.OrderNo)" 
+                   placeholder="@Html.DisplayNameFor(model => model.OrderNo)" 
+				   value="@Html.ValueFor(model => model.OrderNo)"
+				   tabindex="1" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">订单号</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	                     <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.OrderId) </label>
+            <label class="input">
+			      @Html.DropDownListFor(model => model.OrderId, ViewBag.OrderId as List<SelectListItem>, htmlAttributes: new { @class = "select2" }) 
+                 <b class="tooltip tooltip-bottom-right">订单</b>
+			    </label>
+            </section>
+				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Location1) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.Location1)" 
+				   name="@Html.NameFor(model => model.Location1)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Location1)" 
+				   value="@Html.ValueFor(model => model.Location1)"
+				   tabindex="3" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">起点</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.LoadTransportStation) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.LoadTransportStation)" 
+				   name="@Html.NameFor(model => model.LoadTransportStation)" 
+                   placeholder="@Html.DisplayNameFor(model => model.LoadTransportStation)" 
+				   value="@Html.ValueFor(model => model.LoadTransportStation)"
+				   tabindex="4" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">装货点</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Location2) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.Location2)" 
+				   name="@Html.NameFor(model => model.Location2)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Location2)" 
+				   value="@Html.ValueFor(model => model.Location2)"
+				   tabindex="5" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">终点</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.ReceiptTransportStation) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.ReceiptTransportStation)" 
+				   name="@Html.NameFor(model => model.ReceiptTransportStation)" 
+                   placeholder="@Html.DisplayNameFor(model => model.ReceiptTransportStation)" 
+				   value="@Html.ValueFor(model => model.ReceiptTransportStation)"
+				   tabindex="6" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">卸货点</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Status) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Status)"
+				   name="@Html.NameFor(model => model.Status)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Status)" 
+				   value="@Html.ValueFor(model => model.Status)"
+				   tabindex="7" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">订单状态</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Packages) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Packages)"
+				   name="@Html.NameFor(model => model.Packages)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Packages)" 
+				   value="@Html.ValueFor(model => model.Packages)"
+				   tabindex="8" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">总件数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Weight) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Weight)"
+				   name="@Html.NameFor(model => model.Weight)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Weight)" 
+				   value="@Html.ValueFor(model => model.Weight)"
+				   tabindex="9" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">重量(千克)</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Volume) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Volume)"
+				   name="@Html.NameFor(model => model.Volume)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Volume)" 
+				   value="@Html.ValueFor(model => model.Volume)"
+				   tabindex="10" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">体积(立方)</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Pallets) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Pallets)"
+				   name="@Html.NameFor(model => model.Pallets)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Pallets)" 
+				   value="@Html.ValueFor(model => model.Pallets)"
+				   tabindex="11" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">栈板数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Cartons) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Cartons)"
+				   name="@Html.NameFor(model => model.Cartons)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Cartons)" 
+				   value="@Html.ValueFor(model => model.Cartons)"
+				   tabindex="12" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">箱数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.BreakCartons) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.BreakCartons)"
+				   name="@Html.NameFor(model => model.BreakCartons)" 
+                   placeholder="@Html.DisplayNameFor(model => model.BreakCartons)" 
+				   value="@Html.ValueFor(model => model.BreakCartons)"
+				   tabindex="13" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">散箱数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	                     <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.ShipOrderId) </label>
+            <label class="input">
+			      @Html.DropDownListFor(model => model.ShipOrderId, ViewBag.ShipOrderId as List<SelectListItem>, htmlAttributes: new { @class = "select2" }) 
+                 <b class="tooltip tooltip-bottom-right">发运单</b>
+			    </label>
+            </section>
+				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.ShipOrderNo) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.ShipOrderNo)" 
+				   name="@Html.NameFor(model => model.ShipOrderNo)" 
+                   placeholder="@Html.DisplayNameFor(model => model.ShipOrderNo)" 
+				   value="@Html.ValueFor(model => model.ShipOrderNo)"
+				   tabindex="15" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">发运单号</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.CreatedDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.CreatedDate)" 
+			       name="@Html.NameFor(model => model.CreatedDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.CreatedDate)" 
+				   tabindex="16" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.CreatedDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">创建时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.CreatedBy) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.CreatedBy)" 
+				   name="@Html.NameFor(model => model.CreatedBy)" 
+                   placeholder="@Html.DisplayNameFor(model => model.CreatedBy)" 
+				   value="@Html.ValueFor(model => model.CreatedBy)"
+				   tabindex="17" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">创建用户</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.LastModifiedDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.LastModifiedDate)" 
+			       name="@Html.NameFor(model => model.LastModifiedDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.LastModifiedDate)" 
+				   tabindex="18" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.LastModifiedDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">最后更新时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.LastModifiedBy) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.LastModifiedBy)" 
+				   name="@Html.NameFor(model => model.LastModifiedBy)" 
+                   placeholder="@Html.DisplayNameFor(model => model.LastModifiedBy)" 
+				   value="@Html.ValueFor(model => model.LastModifiedBy)"
+				   tabindex="19" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">最后更新用户</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	    </div>
+</fieldset>
+
+<!--========================================================================================-->
+ 
+
+
+ <script type="text/javascript">
+   var id=@Model.Id;
+   
+
+      
+  
+
+ </script>
+

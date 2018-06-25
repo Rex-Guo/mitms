@@ -140,6 +140,12 @@ namespace WebApp
             container.RegisterType<IRepositoryAsync<Region>, Repository<Region>>();
             container.RegisterType<IRegionService, RegionService>();
 
+
+            container.RegisterType<IRepositoryAsync<ShipOrderDetail>, Repository<ShipOrderDetail>>();
+            container.RegisterType<IShipOrderDetailService, ShipOrderDetailService>();
+            container.RegisterType<IRepositoryAsync<ShipOrder>, Repository<ShipOrder>>();
+            container.RegisterType<IShipOrderService, ShipOrderService>();
+
         }
     }
 }

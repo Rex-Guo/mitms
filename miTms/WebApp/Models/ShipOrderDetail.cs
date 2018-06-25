@@ -34,7 +34,8 @@ namespace WebApp.Models
         [Display(Name = "卸货点", Description = "卸货点")]
         [MaxLength(50)]
         public string ReceiptTransportStation { get; set; }
-
+        [Display(Name = "订单状态", Description = "订单状态")]
+        public int Status { get; set; }
         [Display(Name = "总件数", Description = "总件数")]
         public int? Packages { get; set; }
         [Display(Name = "重量(千克)", Description = "重量(千克)")]
@@ -49,8 +50,13 @@ namespace WebApp.Models
         public int? BreakCartons { get; set; }
 
         #endregion
+        [Display(Name = "发运单", Description = "发运单")]
         public int ShipOrderId { get; set; }
+        [Display(Name = "发运单号", Description = "发运单号")]
+        [MaxLength(20)]
+        public string ShipOrderNo { get; set; }
         [ForeignKey("ShipOrderId")]
+        [Display(Name = "发运单", Description = "发运单")]
         public virtual ShipOrder ShipOrder { get; set; }
     }
 }

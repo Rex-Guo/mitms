@@ -1,0 +1,344 @@
+﻿
+@model WebApp.Models.ShipOrderDetail
+
+
+<div class="ibox-content">
+ <!--输出form表单界面-->
+ <table class="table table-bordered">
+     <caption>
+     </caption>
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Id)  </td>
+	   <td> 
+			   											<input  disabled  id="@Html.IdFor(model => model.Id)" name="@Html.NameFor(model => model.Id)" tabindex="0" style="width:100%" class="easyui-numberbox" type="text" data-options="prompt:'Id',label:'Id:',required:true " />
+								  
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.OrderNo)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.OrderNo)" 
+							name="@Html.NameFor(model => model.OrderNo)" 
+							value="@Html.ValueFor(model => model.OrderNo)"
+							tabindex="1" 
+							style="width:100%" 
+							class="easyui-textbox" 
+							type="text" 
+							data-options="prompt:'订单号',
+								 label:'订单号:',
+								 required:false ,validType:'length[0,20]'" />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.OrderId)  </td>
+	   <td> 
+			   
+			<input id="@Html.IdFor(model => model.OrderId)"
+			       name="@Html.NameFor(model => model.OrderId)"
+				   value="@Html.ValueFor(model => model.OrderId)"
+				   class="easyui-combobox" data-options="
+						prompt:'订单' ,
+						label:'订单:' ,
+						required:true ,
+						valueField: 'Id',
+						textField: 'OrderNo' ,
+						url: '/ShipOrders/GetOrders' ,
+						onSelect: function(item){
+						//console.log(item);
+				}">
+
+				
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Location1)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.Location1)" 
+							name="@Html.NameFor(model => model.Location1)" 
+							value="@Html.ValueFor(model => model.Location1)"
+							tabindex="3" 
+							style="width:100%" 
+							class="easyui-textbox" 
+							type="text" 
+							data-options="prompt:'起点',
+								 label:'起点:',
+								 required:false ,validType:'length[0,120]'" />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.LoadTransportStation)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.LoadTransportStation)" 
+							name="@Html.NameFor(model => model.LoadTransportStation)" 
+							value="@Html.ValueFor(model => model.LoadTransportStation)"
+							tabindex="4" 
+							style="width:100%" 
+							class="easyui-textbox" 
+							type="text" 
+							data-options="prompt:'装货点',
+								 label:'装货点:',
+								 required:false ,validType:'length[0,50]'" />
+					             
+			 
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Location2)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.Location2)" 
+							name="@Html.NameFor(model => model.Location2)" 
+							value="@Html.ValueFor(model => model.Location2)"
+							tabindex="5" 
+							style="width:100%" 
+							class="easyui-textbox" 
+							type="text" 
+							data-options="prompt:'终点',
+								 label:'终点:',
+								 required:false ,validType:'length[0,120]'" />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.ReceiptTransportStation)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.ReceiptTransportStation)" 
+							name="@Html.NameFor(model => model.ReceiptTransportStation)" 
+							value="@Html.ValueFor(model => model.ReceiptTransportStation)"
+							tabindex="6" 
+							style="width:100%" 
+							class="easyui-textbox" 
+							type="text" 
+							data-options="prompt:'卸货点',
+								 label:'卸货点:',
+								 required:false ,validType:'length[0,50]'" />
+					             
+			 
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Status)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.Status)"
+							name="@Html.NameFor(model => model.Status)" 
+							value="@Html.ValueFor(model => model.Status)"
+							tabindex="7" 
+							style="width:100%" 
+							class="easyui-numberbox" 
+							type="text" 
+							 data-options="prompt:'订单状态',
+								 label:'订单状态:',
+								 required:true " />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Packages)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.Packages)"
+							name="@Html.NameFor(model => model.Packages)" 
+							value="@Html.ValueFor(model => model.Packages)"
+							tabindex="8" 
+							style="width:100%" 
+							class="easyui-numberbox" 
+							type="text" 
+							 data-options="prompt:'总件数',
+								 label:'总件数:',
+								 required:false " />
+					             
+			 
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Weight)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.Weight)"
+							name="@Html.NameFor(model => model.Weight)" 
+							value="@Html.ValueFor(model => model.Weight)"
+							tabindex="9" 
+							style="width:100%" 
+							class="easyui-numberbox" 
+							type="text" 
+							 data-options="prompt:'重量(千克)',
+								 label:'重量(千克):',
+								 required:false " />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Volume)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.Volume)"
+							name="@Html.NameFor(model => model.Volume)" 
+							value="@Html.ValueFor(model => model.Volume)"
+							tabindex="10" 
+							style="width:100%" 
+							class="easyui-numberbox" 
+							type="text" 
+							 data-options="prompt:'体积(立方)',
+								 label:'体积(立方):',
+								 required:false " />
+					             
+			 
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Pallets)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.Pallets)"
+							name="@Html.NameFor(model => model.Pallets)" 
+							value="@Html.ValueFor(model => model.Pallets)"
+							tabindex="11" 
+							style="width:100%" 
+							class="easyui-numberbox" 
+							type="text" 
+							 data-options="prompt:'栈板数',
+								 label:'栈板数:',
+								 required:false " />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.Cartons)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.Cartons)"
+							name="@Html.NameFor(model => model.Cartons)" 
+							value="@Html.ValueFor(model => model.Cartons)"
+							tabindex="12" 
+							style="width:100%" 
+							class="easyui-numberbox" 
+							type="text" 
+							 data-options="prompt:'箱数',
+								 label:'箱数:',
+								 required:false " />
+					             
+			 
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.BreakCartons)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.BreakCartons)"
+							name="@Html.NameFor(model => model.BreakCartons)" 
+							value="@Html.ValueFor(model => model.BreakCartons)"
+							tabindex="13" 
+							style="width:100%" 
+							class="easyui-numberbox" 
+							type="text" 
+							 data-options="prompt:'散箱数',
+								 label:'散箱数:',
+								 required:false " />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.ShipOrderId)  </td>
+	   <td> 
+			   
+			<input id="@Html.IdFor(model => model.ShipOrderId)"
+			       name="@Html.NameFor(model => model.ShipOrderId)"
+				   value="@Html.ValueFor(model => model.ShipOrderId)"
+				   class="easyui-combobox" data-options="
+						prompt:'发运单' ,
+						label:'发运单:' ,
+						required:true ,
+						valueField: 'Id',
+						textField: 'ShipOrderNo' ,
+						url: '/ShipOrders/GetShipOrders' ,
+						onSelect: function(item){
+						//console.log(item);
+				}">
+
+				
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.ShipOrderNo)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.ShipOrderNo)" 
+							name="@Html.NameFor(model => model.ShipOrderNo)" 
+							value="@Html.ValueFor(model => model.ShipOrderNo)"
+							tabindex="15" 
+							style="width:100%" 
+							class="easyui-textbox" 
+							type="text" 
+							data-options="prompt:'发运单号',
+								 label:'发运单号:',
+								 required:true ,validType:'length[0,20]'" />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.CreatedDate)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.CreatedDate)" 
+							name="@Html.NameFor(model => model.CreatedDate)" 
+							tabindex="16" 
+							style="width:100%" class="easyui-datebox" 
+							type="text" 
+							value="@Html.ValueFor(model => model.CreatedDate)"
+							data-options="prompt:'创建时间',
+								 label:'创建时间:',
+								 required:false,
+								 formatter:dateformatter" />
+					             
+			 
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.CreatedBy)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.CreatedBy)" 
+							name="@Html.NameFor(model => model.CreatedBy)" 
+							value="@Html.ValueFor(model => model.CreatedBy)"
+							tabindex="17" 
+							style="width:100%" 
+							class="easyui-textbox" 
+							type="text" 
+							data-options="prompt:'创建用户',
+								 label:'创建用户:',
+								 required:false ,validType:'length[0,20]'" />
+					             
+			 
+     <tr>
+     	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.LastModifiedDate)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.LastModifiedDate)" 
+							name="@Html.NameFor(model => model.LastModifiedDate)" 
+							tabindex="18" 
+							style="width:100%" class="easyui-datebox" 
+							type="text" 
+							value="@Html.ValueFor(model => model.LastModifiedDate)"
+							data-options="prompt:'最后更新时间',
+								 label:'最后更新时间:',
+								 required:false,
+								 formatter:dateformatter" />
+					             
+			 
+	  
+  <td class="control-label">   @Html.DisplayNameFor(model => model.LastModifiedBy)  </td>
+	   <td> 
+			   
+											<input id="@Html.IdFor(model => model.LastModifiedBy)" 
+							name="@Html.NameFor(model => model.LastModifiedBy)" 
+							value="@Html.ValueFor(model => model.LastModifiedBy)"
+							tabindex="19" 
+							style="width:100%" 
+							class="easyui-textbox" 
+							type="text" 
+							data-options="prompt:'最后更新用户',
+								 label:'最后更新用户:',
+								 required:false ,validType:'length[0,20]'" />
+					             
+			 
+	        @*<tfoot>
+        <tr>
+           
+        <tr>
+    </tfoot>*@
+</table>
+</div>
+
+
+ 

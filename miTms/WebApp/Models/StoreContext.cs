@@ -60,6 +60,9 @@ namespace WebApp.Models
         public DbSet<Driver> Drivers { get; set; }
 
         public DbSet<Region> Regions { get; set; }
+
+        public DbSet<ShipOrder> ShipOrders { get; set; }
+        public DbSet<ShipOrderDetail> ShipOrderDetails { get; set; }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             var currentDateTime = DateTime.Now;

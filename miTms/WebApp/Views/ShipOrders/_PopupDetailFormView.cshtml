@@ -1,0 +1,1064 @@
+﻿﻿@model WebApp.Models.ShipOrder
+ <!-- 输出form表单界面 -->
+ <div id="detailswindow" hidden="hidden" class="easyui-window" 
+      title="明细数据" 
+      data-options="modal:true,
+                    closed:true,
+                    iconcls:'icon-menu'
+                    " style="width:960px;height:520px">
+    <!--begin form表单界面-->
+     <form id="shiporder_form" class="easyui-form form-horizontal" method="post" data-options="novalidate:true">
+         @Html.AntiForgeryToken()
+         <table class="table table-bordered">
+             <thead>
+                 <tr>
+                     <td colspan="6">
+                         <div class="btn-group">
+                             <button type="button" class="btn btn-default" onclick="saveitem()">
+                                 <i class="fa fa-floppy-o"></i>
+                                 保存
+                             </button>
+                             <button type="button" class="btn btn-default">
+                                 <i class="fa fa-pencil-square-o"></i>
+                                 操作1
+                             </button>
+                             <button type="button" class="btn btn-default">
+                                 <i class="fa fa-pencil-square-o"></i>
+                                 操作2
+                             </button>
+                             <button type="button" class="btn btn-default" onclick="cancelitem()">
+                                 <i class="fa fa-refresh"></i>
+                                 取消
+                             </button>
+                             <button type="button" class="btn btn-default" onclick="refreshitem()">
+                                 <i class="fa fa-refresh"></i>
+                                 刷新
+                             </button>
+                         </div>
+                     </td>
+                 </tr>
+             </thead>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Id)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Id)"
+                            name="@Html.NameFor(model => model.Id)"
+                            value="@Html.ValueFor(model => model.Id)"
+                            tabindex="0"
+                            class="easyui-numberbox" type="text"
+                            data-options="prompt:'Id',
+                                 readonly:true,
+                                width:200,
+                                 label:'',required:true " />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.ShipOrderNo)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.ShipOrderNo)"
+                            name="@Html.NameFor(model => model.ShipOrderNo)"
+                            value="@Html.ValueFor(model => model.ShipOrderNo)"
+                            tabindex="1"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'派车单号',
+								 label:'',
+                                width:200,
+								 required:true ,validType:'length[0,20]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.ExternalNo)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.ExternalNo)"
+                            name="@Html.NameFor(model => model.ExternalNo)"
+                            value="@Html.ValueFor(model => model.ExternalNo)"
+                            tabindex="2"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'对账单号',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,30]'" />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.OrderDate)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.OrderDate)"
+                            name="@Html.NameFor(model => model.OrderDate)"
+                            tabindex="3"
+                            class="easyui-datebox"
+                            type="text"
+                            value="@Html.ValueFor(model => model.OrderDate)"
+                            data-options="prompt:'派车时间',
+								 label:'',
+                                width:200,
+								 required:true,
+								 formatter:dateformatter" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.BusinessType)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.BusinessType)"
+                            name="@Html.NameFor(model => model.BusinessType)"
+                            value="@Html.ValueFor(model => model.BusinessType)"
+                            tabindex="4"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'业务类型',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,8]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Status)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Status)"
+                            name="@Html.NameFor(model => model.Status)"
+                            value="@Html.ValueFor(model => model.Status)"
+                            tabindex="5"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'运单状态',
+								 label:'',
+                                width:200,
+								 required:true " />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.CarrierId)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.CarrierId)"
+                            name="@Html.NameFor(model => model.CarrierId)"
+                            value="@Html.ValueFor(model => model.CarrierId)"
+                            class="easyui-combobox" data-options="
+						prompt:'承运人' ,
+						label:'' ,
+                       width:200,
+						required:true ,
+						valueField: 'Id',
+						textField: 'Name' ,
+						url: '/ShipOrders/GetCarriers' ,
+						onSelect: function(item){
+						//console.log(item);
+				}">
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.VehicleId)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.VehicleId)"
+                            name="@Html.NameFor(model => model.VehicleId)"
+                            value="@Html.ValueFor(model => model.VehicleId)"
+                            class="easyui-combobox" data-options="
+						prompt:'承运车' ,
+						label:'' ,
+                       width:200,
+						required:true ,
+						valueField: 'Id',
+						textField: 'PlateNumber' ,
+						url: '/ShipOrders/GetVehicles' ,
+						onSelect: function(item){
+						//console.log(item);
+				}">
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.CarType)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.CarType)"
+                            name="@Html.NameFor(model => model.CarType)"
+                            value="@Html.ValueFor(model => model.CarType)"
+                            tabindex="8"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'车辆类型',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,20]'" />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Driver)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Driver)"
+                            name="@Html.NameFor(model => model.Driver)"
+                            value="@Html.ValueFor(model => model.Driver)"
+                            tabindex="9"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'司机',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,30]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.DriverPhone)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.DriverPhone)"
+                            name="@Html.NameFor(model => model.DriverPhone)"
+                            value="@Html.ValueFor(model => model.DriverPhone)"
+                            tabindex="10"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'司机电话',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,18]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.ContractNumber)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.ContractNumber)"
+                            name="@Html.NameFor(model => model.ContractNumber)"
+                            value="@Html.ValueFor(model => model.ContractNumber)"
+                            tabindex="11"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'合同编号',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,35]'" />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.TotalMonetaryAmount)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.TotalMonetaryAmount)"
+                            name="@Html.NameFor(model => model.TotalMonetaryAmount)"
+                            value="@Html.ValueFor(model => model.TotalMonetaryAmount)"
+                            tabindex="12"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'总运价',
+								 label:'',
+                                width:200,
+								 required:false " />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Remark)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Remark)"
+                            name="@Html.NameFor(model => model.Remark)"
+                            value="@Html.ValueFor(model => model.Remark)"
+                            tabindex="13"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'备注',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,255]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Location1)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Location1)"
+                            name="@Html.NameFor(model => model.Location1)"
+                            value="@Html.ValueFor(model => model.Location1)"
+                            tabindex="14"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'起点',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,120]'" />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Location2)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Location2)"
+                            name="@Html.NameFor(model => model.Location2)"
+                            value="@Html.ValueFor(model => model.Location2)"
+                            tabindex="15"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'终点',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,120]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Requirements)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Requirements)"
+                            name="@Html.NameFor(model => model.Requirements)"
+                            value="@Html.ValueFor(model => model.Requirements)"
+                            tabindex="16"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'额外要求',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,120]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.TimePeriod)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.TimePeriod)"
+                            name="@Html.NameFor(model => model.TimePeriod)"
+                            value="@Html.ValueFor(model => model.TimePeriod)"
+                            tabindex="17"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'时效(小时)',
+								 label:'',
+                                width:200,
+								 required:true " />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.PlanDepartDate)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.PlanDepartDate)"
+                            name="@Html.NameFor(model => model.PlanDepartDate)"
+                            tabindex="18"
+                            class="easyui-datebox"
+                            type="text"
+                            value="@Html.ValueFor(model => model.PlanDepartDate)"
+                            data-options="prompt:'计划发车时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.PlanDeliveryDate)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.PlanDeliveryDate)"
+                            name="@Html.NameFor(model => model.PlanDeliveryDate)"
+                            tabindex="19"
+                            class="easyui-datebox"
+                            type="text"
+                            value="@Html.ValueFor(model => model.PlanDeliveryDate)"
+                            data-options="prompt:'计划送达时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.DepartDate)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.DepartDate)"
+                            name="@Html.NameFor(model => model.DepartDate)"
+                            tabindex="20"
+                            class="easyui-datebox"
+                            type="text"
+                            value="@Html.ValueFor(model => model.DepartDate)"
+                            data-options="prompt:'实际发车时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.DeliveryDate)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.DeliveryDate)"
+                            name="@Html.NameFor(model => model.DeliveryDate)"
+                            tabindex="21"
+                            class="easyui-datebox"
+                            type="text"
+                            value="@Html.ValueFor(model => model.DeliveryDate)"
+                            data-options="prompt:'实际送达时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.ClosedDate)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.ClosedDate)"
+                            name="@Html.NameFor(model => model.ClosedDate)"
+                            tabindex="22"
+                            class="easyui-datebox"
+                            type="text"
+                            value="@Html.ValueFor(model => model.ClosedDate)"
+                            data-options="prompt:'回单时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.ItemCount)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.ItemCount)"
+                            name="@Html.NameFor(model => model.ItemCount)"
+                            value="@Html.ValueFor(model => model.ItemCount)"
+                            tabindex="23"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'订单数',
+								 label:'',
+                                width:200,
+								 required:true " />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Packages)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Packages)"
+                            name="@Html.NameFor(model => model.Packages)"
+                            value="@Html.ValueFor(model => model.Packages)"
+                            tabindex="24"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'总件数',
+								 label:'',
+                                width:200,
+								 required:false " />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Weight)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Weight)"
+                            name="@Html.NameFor(model => model.Weight)"
+                            value="@Html.ValueFor(model => model.Weight)"
+                            tabindex="25"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'重量(千克)',
+								 label:'',
+                                width:200,
+								 required:false " />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Volume)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Volume)"
+                            name="@Html.NameFor(model => model.Volume)"
+                            value="@Html.ValueFor(model => model.Volume)"
+                            tabindex="26"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'体积(立方)',
+								 label:'',
+                                width:200,
+								 required:false " />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Pallets)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Pallets)"
+                            name="@Html.NameFor(model => model.Pallets)"
+                            value="@Html.ValueFor(model => model.Pallets)"
+                            tabindex="27"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'栈板数',
+								 label:'',
+                                width:200,
+								 required:false " />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.Cartons)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.Cartons)"
+                            name="@Html.NameFor(model => model.Cartons)"
+                            value="@Html.ValueFor(model => model.Cartons)"
+                            tabindex="28"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'箱数',
+								 label:'',
+                                width:200,
+								 required:false " />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.BreakCartons)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.BreakCartons)"
+                            name="@Html.NameFor(model => model.BreakCartons)"
+                            value="@Html.ValueFor(model => model.BreakCartons)"
+                            tabindex="29"
+                            class="easyui-numberbox"
+                            type="text"
+                            data-options="prompt:'散箱数',
+								 label:'',
+                                width:200,
+								 required:false " />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.InputUser)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.InputUser)"
+                            name="@Html.NameFor(model => model.InputUser)"
+                            value="@Html.ValueFor(model => model.InputUser)"
+                            tabindex="30"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'调度人员',
+								 label:'',
+                                width:200,
+								 required:true ,validType:'length[0,20]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.CompanyId)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.CompanyId)"
+                            name="@Html.NameFor(model => model.CompanyId)"
+                            value="@Html.ValueFor(model => model.CompanyId)"
+                            class="easyui-combobox" data-options="
+						prompt:'所属平台' ,
+						label:'' ,
+                       width:200,
+						required:true ,
+						valueField: 'Id',
+						textField: 'Name' ,
+						url: '/ShipOrders/GetCompanies' ,
+						onSelect: function(item){
+						//console.log(item);
+				}">
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.CreatedDate)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.CreatedDate)"
+                            name="@Html.NameFor(model => model.CreatedDate)"
+                            tabindex="32"
+                            class="easyui-datebox"
+                            type="text"
+                            value="@Html.ValueFor(model => model.CreatedDate)"
+                            data-options="prompt:'创建时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+                 </td>
+             </tr>
+             <tr>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.CreatedBy)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.CreatedBy)"
+                            name="@Html.NameFor(model => model.CreatedBy)"
+                            value="@Html.ValueFor(model => model.CreatedBy)"
+                            tabindex="33"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'创建用户',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,20]'" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.LastModifiedDate)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.LastModifiedDate)"
+                            name="@Html.NameFor(model => model.LastModifiedDate)"
+                            tabindex="34"
+                            class="easyui-datebox"
+                            type="text"
+                            value="@Html.ValueFor(model => model.LastModifiedDate)"
+                            data-options="prompt:'最后更新时间',
+								 label:'',
+                                width:200,
+								 required:false,
+								 formatter:dateformatter" />
+                 </td>
+                 <td class="control-label">   @Html.DisplayNameFor(model => model.LastModifiedBy)  </td>
+                 <td>
+                     <input id="@Html.IdFor(model => model.LastModifiedBy)"
+                            name="@Html.NameFor(model => model.LastModifiedBy)"
+                            value="@Html.ValueFor(model => model.LastModifiedBy)"
+                            tabindex="35"
+                            class="easyui-textbox"
+                            type="text"
+                            data-options="prompt:'最后更新用户',
+								 label:'',
+                                width:200,
+								 required:false ,validType:'length[0,20]'" />
+                 </td>
+             </tr>
+             <tfoot>
+                 <tr>
+                 <tr>
+             </tfoot>
+         </table>
+
+
+         <!--end form表单界面-->
+         <!--========================================================================================-->
+         <!-- details tabs -->
+         <div class="tabs-container">
+             <!-- Nav tabs -->
+             <ul class="nav nav-tabs bordered">
+                 <li class="active"><a data-toggle="tab" href="#tab-shiporderdetails"> ShipOrderDetails</a></li>
+
+             </ul>
+             <!-- Tab panes -->
+             <div class="tab-content padding-10">
+                 <div id="tab-shiporderdetails" class="tab-pane active">
+                     <div class="panel-body">
+                         <div class="table-responsive">
+                             <table id="shiporderdetails_datagrid"></table>
+                             <div id="shiporderdetails_toolbar" style="height:auto">
+                                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="shiporderdetails_createitem()">新增</a>
+                                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="shiporderdetails_removeitem()">删除</a>
+                                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="shiporderdetails_saveitem()">保存</a>
+                                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="shiporderdetails_reject()">取消</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </form> 
+
+</div>
+
+
+<script type="text/javascript">
+    //load data by foreign key
+    function loadData(id,data){
+         $('#shiporder_form').form('load', data);
+         
+          $shiporderdetailsdg.datagrid({
+                    rownumbers: true,
+                    iconCls: 'fa fa-list',
+                    idField: 'Id',
+                    sortName: 'Id',
+                    sortOrder: 'asc',
+                    remoteFilter: true,
+                    singleSelect: true,
+                    toolbar: '#shiporderdetails_toolbar',
+                    method: 'get',
+                    onClickCell: shiporderdetails_onClickCell,
+                    pagination: 'true',
+                    url: '/ShipOrderDetails/GetDataByShipOrderId?shiporderid='+ id,
+                    striped: true,
+                    columns: [[
+                    														@*{field:'Id',
+                                   title:'Id',
+                                   width:80 },*@
+																															{ field:'OrderNo',
+                                  title:'订单号',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'订单号',
+                                                required:false ,validType:'length[0,20]'
+                                                 }
+                                           } },
+																															    {field:'OrderId',
+                                 title:'订单',
+                                 width:100,
+								 formatter:function(value,row){
+												return row.OrderOrderNo;
+											},
+								 editor:{
+                                         type:'combobox',
+										 options:{
+                                                prompt:'订单',
+												mode: 'remote',
+                                                valueField:'Id',
+											    textField:'OrderNo',
+												method:'get',
+												url:'/ShipOrders/GetOrders',
+												required:true 
+												}
+								 }},
+																															{ field:'Location1',
+                                  title:'起点',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'起点',
+                                                required:false ,validType:'length[0,120]'
+                                                 }
+                                           } },
+																																						{ field:'LoadTransportStation',
+                                  title:'装货点',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'装货点',
+                                                required:false ,validType:'length[0,50]'
+                                                 }
+                                           } },
+																																						{ field:'Location2',
+                                  title:'终点',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'终点',
+                                                required:false ,validType:'length[0,120]'
+                                                 }
+                                           } },
+																																						{ field:'ReceiptTransportStation',
+                                  title:'卸货点',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'卸货点',
+                                                required:false ,validType:'length[0,50]'
+                                                 }
+                                           } },
+																																					{ field:'Status',
+                                  title:'订单状态',
+                                  width:100,
+                                  align:'right',
+                                  editor:{ 
+                                        type:'combobox',
+                                            options:{
+                                                    prompt:'订单状态',
+                                                    panelHeight: 'auto',
+                                                    data: [ { value: '0', text: '启用' },{ value: '1', text: '禁用' } ],
+                                                    required:true 
+                                                    } 
+                                            }  ,formatter:statusformatter
+                                  },
+																																				     { field:'Packages',
+                                   title:'总件数',
+                                   width:100,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'总件数',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'Weight',
+                                   title:'重量(千克)',
+                                   width:100,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'重量(千克)',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'Volume',
+                                   title:'体积(立方)',
+                                   width:100,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'体积(立方)',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'Pallets',
+                                   title:'栈板数',
+                                   width:100,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'栈板数',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'Cartons',
+                                   title:'箱数',
+                                   width:100,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'箱数',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'BreakCartons',
+                                   title:'散箱数',
+                                   width:100,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'散箱数',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																																	{ field:'ShipOrderNo',
+                                  title:'发运单号',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'发运单号',
+                                                required:true ,validType:'length[0,20]'
+                                                 }
+                                           } },
+																		                    
+                    
+                    
+                    ]]
+          });
+                
+                $shiporderdetailsdg.datagrid("enableFilter", [
+                				{
+					  field: "Status",
+					  type: "combobox",
+					  options: {
+						   panelHeight: "auto",
+						   data: [{ value: "", text: "All" }, { value: 0, text: "启用" }, { value: 1, text: "禁用" }],
+						   onChange: function (value) {
+							  if (value == "") {
+								  $shiporderdetailsdg.datagrid("removeFilterRule", "Status");
+							  } else {
+								  $shiporderdetailsdg.datagrid("addFilterRule", {
+									  field: "Status",
+									  op: "equal",
+									  value: value
+								  });
+							  }
+							  $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   
+           				{
+					  field: "Id",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Status",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Packages",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Weight",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Volume",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Pallets",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Cartons",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "BreakCartons",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   
+
+		   		   
+		   		   {
+				 field: "OrderId",
+				 type:"combobox",
+				 options:{
+								valueField:"Id",
+								textField:"OrderNo",
+								method:"get",
+								url:"/ShipOrders/GetOrders",
+								onChange: function (value) {
+								if (value == "") {
+									$shiporderdetailsdg.datagrid("removeFilterRule", "OrderId");
+								} else {
+									$shiporderdetailsdg.datagrid("addFilterRule", {
+										field: "OrderId",
+										op: "equal",
+										value: value
+								});
+							}
+							$shiporderdetailsdg.datagrid("doFilter");
+						}
+					}
+		   },
+		   		   {
+				 field: "ShipOrderId",
+				 type:"combobox",
+				 options:{
+								valueField:"Id",
+								textField:"ShipOrderNo",
+								method:"get",
+								url:"/ShipOrders/GetShipOrders",
+								onChange: function (value) {
+								if (value == "") {
+									$shiporderdetailsdg.datagrid("removeFilterRule", "ShipOrderId");
+								} else {
+									$shiporderdetailsdg.datagrid("addFilterRule", {
+										field: "ShipOrderId",
+										op: "equal",
+										value: value
+								});
+							}
+							$shiporderdetailsdg.datagrid("doFilter");
+						}
+					}
+		   },
+		   									]);
+             }
+    var $editform = $('#shiporder_form');
+    //save item
+    function saveitem() {
+         
+        if ($editform.form('enableValidation').form('validate')) {
+            var shiporder = $editform.serializeJSON();
+            var token = $('input[name="__RequestVerificationToken"]', $editform).val();
+
+            $.ajax({
+                    type: "POST",
+                    url: "/ShipOrders/Edit",
+                    data: {
+                        __RequestVerificationToken: token,
+                        shiporder:shiporder
+                    },
+                    dataType: 'json',
+                    contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                })
+                .done(function (response) {
+                    if (response.success) {
+                        $.messager.alert("提示", "保存成功！");
+                        $('#detailswindow').window("close");
+                    } else {
+                        $.messager.alert("错误", "保存失败！" + response.err, "error");
+                    }
+                    })
+                .fail(function (response) {
+                        $.messager.alert("错误", "保存失败！", "error");
+                    });
+        }
+    }
+    // cancel
+    function cancelitem() {
+        $('#detailswindow').window('close');
+    }
+    // reload
+    function refreshitem() {
+        $('#detailswindow').window('close');
+    }
+    
+
+
+          $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href") // activated tab
+                if(target=="#tab-shiporderdetails")
+             $shiporderdetailsdg.datagrid("resize");
+            });
+		 
+								//--------------------------------------------------------------------
+				// #shiporderdetails_datagrid functions
+				//--------------------------------------------------------------------
+				var $shiporderdetailsdg = $("#shiporderdetails_datagrid");
+
+				var shiporderdetails_editIndex = undefined;
+		function shiporderdetails_reload() {
+				$shiporderdetailsdg.datagrid("reload");
+			}
+	function shiporderdetails_endEditing() {
+		if ( shiporderdetails_editIndex == undefined) { return true }
+		if ($shiporderdetailsdg.datagrid("validateRow", shiporderdetails_editIndex)) {
+						var ed = $shiporderdetailsdg.datagrid("getEditor", { index: shiporderdetails_editIndex, field: "OrderId" });
+			var OrderOrderNo = $(ed.target).combobox("getText");
+			var OrderId = $(ed.target).combobox("getValue");
+		  
+			$shiporderdetailsdg.datagrid("getRows")[shiporderdetails_editIndex]["OrderOrderNo"] = OrderOrderNo;
+			$shiporderdetailsdg.datagrid("getRows")[shiporderdetails_editIndex]["OrderId"] = OrderId;
+			
+			
+						$shiporderdetailsdg.datagrid("endEdit", shiporderdetails_editIndex);
+			shiporderdetails_editIndex = undefined;
+
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function shiporderdetails_onClickCell(index, field) {
+		if (shiporderdetails_editIndex != index) {
+			if (shiporderdetails_endEditing()) {
+				$shiporderdetailsdg.datagrid("selectRow", index)
+						.datagrid("beginEdit", index);
+                shiporderdetails_editIndex  = index;
+				var ed = $shiporderdetailsdg.datagrid("getEditor", { index: index, field: field });
+				if (ed) {
+					($(ed.target).data("textbox") ? $(ed.target).textbox("textbox") : $(ed.target)).focus();
+				}
+				
+			} else {
+				$shiporderdetailsdg.datagrid("selectRow", shiporderdetails_editIndex);
+			}
+		}
+	}
+	function shiporderdetails_createitem() {
+		if (shiporderdetails_endEditing()) {
+			 var shiporder = $editform.serializeJSON();
+
+			$shiporderdetailsdg.datagrid("appendRow", { ShipOrderId:shiporder.Id   });
+			shiporderdetailseditIndex = $shiporderdetailsdg.datagrid("getRows").length - 1;
+			$shiporderdetailsdg.datagrid("selectRow", shiporderdetails_editIndex )
+					.datagrid("beginEdit", shiporderdetails_editIndex);
+		}
+	}
+	function shiporderdetails_removeitem() {
+		if (shiporderdetails_editIndex  == undefined) { return }
+		$shiporderdetailsdg.datagrid("cancelEdit", shiporderdetails_editIndex )
+				.datagrid("deleteRow", shiporderdetails_editIndex );
+		shiporderdetailseditIndex = undefined;
+	}
+   
+	function shiporderdetails_reject() {
+		$shiporderdetailsdg.datagrid("rejectChanges");
+		shiporderdetails_editIndex  = undefined;
+	}
+	function shiporderdetails_getChanges() {
+		var rows = $shiporderdetailsdg.datagrid("getChanges");
+		alert(rows.length + " rows are changed!");
+	}
+	function shiporderdetails_saveitem() {
+			if (shiporderdetails_endEditing()) {
+				if ($shiporderdetailsdg.datagrid("getChanges").length) {
+					var inserted = $shiporderdetailsdg.datagrid("getChanges", "inserted");
+					var deleted = $shiporderdetailsdg.datagrid("getChanges", "deleted");
+					var updated = $shiporderdetailsdg.datagrid("getChanges", "updated");
+					var effectRow = new Object();
+					if (inserted.length) {
+						effectRow.inserted = inserted;
+					}
+					if (deleted.length) {
+						effectRow.deleted = deleted;
+					}
+					if (updated.length) {
+						effectRow.updated = updated;
+					}
+					//console.log(JSON.stringify(effectRow));
+					$.post("/ShipOrderDetails/SaveData", effectRow, function (response) {
+						//console.log(response);
+						if (response.success) {
+							$.messager.alert("提示", "提交成功！");
+							$shiporderdetailsdg.datagrid("acceptChanges");
+							$shiporderdetailsdg.datagrid("reload");
+						}
+					}, "json").fail(function (response) {
+						//console.log(response);
+						$.messager.alert("错误", "提交错误了！","error");
+					  
+					});
+			  
+				}
+
+				//$shiporderdetailsdg.datagrid("acceptChanges");
+			}
+		}
+
+	 
+
+
+
+
+				
+		 
+
+</script>
+
+
