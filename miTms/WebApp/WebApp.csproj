@@ -412,6 +412,8 @@
     <Compile Include="Models\RegCarrierViewModel.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\RegionMetadata.cs" />
+    <Compile Include="Models\ShipOrder.cs" />
+    <Compile Include="Models\ShipOrderDetail.cs" />
     <Compile Include="Models\Shipper.cs" />
     <Compile Include="Models\ShipperMetadata.cs" />
     <Compile Include="Models\TransactionHistory.cs" />

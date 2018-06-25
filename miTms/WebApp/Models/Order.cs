@@ -14,7 +14,7 @@ namespace WebApp.Models
         public int Id { get; set; }
 
         #region 派车信息
-        [Display(Name = "派车单号", Description = "派车单号")]
+        [Display(Name = "订单号", Description = "订单号")]
         [MaxLength(20)]
         public string OrderNo { get; set; }
         [Display(Name = "对账单号", Description = "对账单号")]
@@ -39,7 +39,7 @@ namespace WebApp.Models
         [Display(Name = "是否带票", Description = "是否带票")]
         
         public bool TakeTicketFlag { get; set; }
-        [Display(Name = "价格类", Description = "价格类型（1：包车 价 2：单价 )")]
+        [Display(Name = "价格类", Description = "价格类型（1：包车价 2：单价 )")]
         [MaxLength(1)]
         public string PriceType { get; set; }
         [Display(Name = "货物托运车型要求", Description = "货物托运车型要求")]
