@@ -57,12 +57,13 @@ namespace WebApp.Controllers
             var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
             var totalCount = 0;
             //int pagenum = offset / limit +1;
-            var orders = await _orderService
-       .Query(new OrderQuery().Withfilter(filters)).Include(o => o.Shipper).Include(o => o.Vehicle)
+            var orders = await this._orderService
+       .Query(new OrderQuery().Withfilter(filters)).Include(o => o.Company).Include(o => o.Shipper).Include(o => o.Vehicle)
        .OrderBy(n => n.OrderBy(sort, order))
        .SelectPageAsync(page, rows, out totalCount);
-            var datarows = orders.Select(n => new
-            {
+            var datarows = orders.Select(n => new {
+
+                CompanyName = (n.Company == null ? "" : n.Company.Name),
                 ShipperName = (n.Shipper == null ? "" : n.Shipper.Name),
                 VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
@@ -74,31 +75,63 @@ namespace WebApp.Controllers
                 Requirements = n.Requirements,
                 PlanDeliveryDate = n.PlanDeliveryDate,
                 TimePeriod = n.TimePeriod,
-                Contact = n.Contact,
-                PhoneNumber = n.PhoneNumber,
+                TakeTicketFlag = n.TakeTicketFlag,
+                PriceType = n.PriceType,
+                VehicleTypeRequirement = n.VehicleTypeRequirement,
+                VehicleLengthRequirement = n.VehicleLengthRequirement,
+                LoadTransportStationCode = n.LoadTransportStationCode,
+                LoadTransportStationName = n.LoadTransportStationName,
+                ReceiptTransportStationCode = n.ReceiptTransportStationCode,
+                ReceiptTransportStationName = n.ReceiptTransportStationName,
                 VehicleId = n.VehicleId,
                 PlateNumber = n.PlateNumber,
                 Driver = n.Driver,
                 DriverPhone = n.DriverPhone,
                 ProductName = n.ProductName,
-                InputUser = n.InputUser,
-                PodNo = n.PodNo,
-                PodPhotographPath = n.PodPhotographPath,
-                CompanyId = n.CompanyId,
+                CargotypeClassificationCode = n.CargotypeClassificationCode,
+                PackageTypeCode = n.PackageTypeCode,
                 Packages = n.Packages,
                 Weight = n.Weight,
+                MeasurementUnitCode = n.MeasurementUnitCode,
                 Volume = n.Volume,
+                VolumeMeasurementUnitCode = n.VolumeMeasurementUnitCode,
                 Cartons = n.Cartons,
                 Pallets = n.Pallets,
+                BreakCartons = n.BreakCartons,
+                GoodsPrice = n.GoodsPrice,
+                TotalMonetaryAmount = n.TotalMonetaryAmount,
+                InputUser = n.InputUser,
                 Status = n.Status,
+                ResquestedLoadStartDatetime = n.ResquestedLoadStartDatetime,
+                ResquestedLoadEndDatetime = n.ResquestedLoadEndDatetime,
                 DeliveryDate = n.DeliveryDate,
                 CloseDate = n.CloseDate,
+                PodNo = n.PodNo,
+                PodPhotographPath = n.PodPhotographPath,
+                PodPhotograph = n.PodPhotograph,
                 ShipperId = n.ShipperId,
+                PhoneNumber = n.PhoneNumber,
+                MobileTelephoneNumber = n.MobileTelephoneNumber,
+                Contact = n.Contact,
+                PersonalIdentityTypeCode = n.PersonalIdentityTypeCode,
+                PersonalIdentityDocument = n.PersonalIdentityDocument,
+                CompanyId = n.CompanyId,
+                ContractNumber = n.ContractNumber,
+                RequestedInsuranceFlag = n.RequestedInsuranceFlag,
+                InsuranceCompany = n.InsuranceCompany,
+                InsuranceBillCode = n.InsuranceBillCode,
+                InsuranceAccessAddress = n.InsuranceAccessAddress,
+                Consignee = n.Consignee,
+                ConsiContactName = n.ConsiContactName,
+                ConsiTelephoneNumber = n.ConsiTelephoneNumber,
+                ConsiAddress = n.ConsiAddress,
+                ConsiMobileTelephoneNumber = n.ConsiMobileTelephoneNumber,
+                ConsiCountrySubdivisionCode = n.ConsiCountrySubdivisionCode,
+                ConsiCountrySubdivisionName = n.ConsiCountrySubdivisionName,
                 CreatedDate = n.CreatedDate,
                 CreatedBy = n.CreatedBy,
                 LastModifiedDate = n.LastModifiedDate,
                 LastModifiedBy = n.LastModifiedBy
-
             }).ToList();
             var pagelist = new { total = totalCount, rows = datarows };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
@@ -108,12 +141,13 @@ namespace WebApp.Controllers
         {
             var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
             var totalCount = 0;
-            var orders = await _orderService
-                       .Query(new OrderQuery().ByVehicleIdWithfilter(vehicleid, filters)).Include(o => o.Shipper).Include(o => o.Vehicle)
+            var orders = await this._orderService
+                       .Query(new OrderQuery().ByVehicleIdWithfilter(vehicleid, filters)).Include(o => o.Company).Include(o => o.Shipper).Include(o => o.Vehicle)
                        .OrderBy(n => n.OrderBy(sort, order))
                        .SelectPageAsync(page, rows, out totalCount);
-            var datarows = orders.Select(n => new
-            {
+            var datarows = orders.Select(n => new {
+
+                CompanyName = (n.Company == null ? "" : n.Company.Name),
                 ShipperName = (n.Shipper == null ? "" : n.Shipper.Name),
                 VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
                 Id = n.Id,
@@ -125,26 +159,59 @@ namespace WebApp.Controllers
                 Requirements = n.Requirements,
                 PlanDeliveryDate = n.PlanDeliveryDate,
                 TimePeriod = n.TimePeriod,
+                TakeTicketFlag = n.TakeTicketFlag,
+                PriceType = n.PriceType,
+                VehicleTypeRequirement = n.VehicleTypeRequirement,
+                VehicleLengthRequirement = n.VehicleLengthRequirement,
+                LoadTransportStationCode = n.LoadTransportStationCode,
+                LoadTransportStationName = n.LoadTransportStationName,
+                ReceiptTransportStationCode = n.ReceiptTransportStationCode,
+                ReceiptTransportStationName = n.ReceiptTransportStationName,
                 VehicleId = n.VehicleId,
                 PlateNumber = n.PlateNumber,
                 Driver = n.Driver,
                 DriverPhone = n.DriverPhone,
                 ProductName = n.ProductName,
-                InputUser = n.InputUser,
-                PodNo = n.PodNo,
-                PodPhotographPath = n.PodPhotographPath,
-                CompanyId = n.CompanyId,
-                PhoneNumber = n.PhoneNumber,
-                Contact = n.Contact,
+                CargotypeClassificationCode = n.CargotypeClassificationCode,
+                PackageTypeCode = n.PackageTypeCode,
                 Packages = n.Packages,
                 Weight = n.Weight,
+                MeasurementUnitCode = n.MeasurementUnitCode,
                 Volume = n.Volume,
+                VolumeMeasurementUnitCode = n.VolumeMeasurementUnitCode,
                 Cartons = n.Cartons,
                 Pallets = n.Pallets,
+                BreakCartons = n.BreakCartons,
+                GoodsPrice = n.GoodsPrice,
+                TotalMonetaryAmount = n.TotalMonetaryAmount,
+                InputUser = n.InputUser,
                 Status = n.Status,
+                ResquestedLoadStartDatetime = n.ResquestedLoadStartDatetime,
+                ResquestedLoadEndDatetime = n.ResquestedLoadEndDatetime,
                 DeliveryDate = n.DeliveryDate,
                 CloseDate = n.CloseDate,
+                PodNo = n.PodNo,
+                PodPhotographPath = n.PodPhotographPath,
+                PodPhotograph = n.PodPhotograph,
                 ShipperId = n.ShipperId,
+                PhoneNumber = n.PhoneNumber,
+                MobileTelephoneNumber = n.MobileTelephoneNumber,
+                Contact = n.Contact,
+                PersonalIdentityTypeCode = n.PersonalIdentityTypeCode,
+                PersonalIdentityDocument = n.PersonalIdentityDocument,
+                CompanyId = n.CompanyId,
+                ContractNumber = n.ContractNumber,
+                RequestedInsuranceFlag = n.RequestedInsuranceFlag,
+                InsuranceCompany = n.InsuranceCompany,
+                InsuranceBillCode = n.InsuranceBillCode,
+                InsuranceAccessAddress = n.InsuranceAccessAddress,
+                Consignee = n.Consignee,
+                ConsiContactName = n.ConsiContactName,
+                ConsiTelephoneNumber = n.ConsiTelephoneNumber,
+                ConsiAddress = n.ConsiAddress,
+                ConsiMobileTelephoneNumber = n.ConsiMobileTelephoneNumber,
+                ConsiCountrySubdivisionCode = n.ConsiCountrySubdivisionCode,
+                ConsiCountrySubdivisionName = n.ConsiCountrySubdivisionName,
                 CreatedDate = n.CreatedDate,
                 CreatedBy = n.CreatedBy,
                 LastModifiedDate = n.LastModifiedDate,
@@ -259,6 +326,24 @@ namespace WebApp.Controllers
                 CarType = n.CarType,
                 StrLoadWeight = n.StrLoadWeight,
                 Driver =n.Driver,
+                DriverPhone = n.DriverPhone
+
+            });
+            return Json(rows, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<JsonResult> GetAvailableVehiclesWithCarrierId(int carrierid,string q = "")
+        {
+            var vehicleRepository = _unitOfWork.RepositoryAsync<Vehicle>();
+            var data = await vehicleRepository.Queryable().Where(n => n.CarrierId==carrierid && (n.Status == "空车" || n.Status == "接单") && n.PlateNumber.Contains(q)).ToListAsync();
+            var rows = data.Select(n => new
+            {
+                Id = n.Id,
+                PlateNumber = n.PlateNumber,
+                Status = n.Status,
+                CarType = n.CarType,
+                StrLoadWeight = n.StrLoadWeight,
+                Driver = n.Driver,
                 DriverPhone = n.DriverPhone
 
             });

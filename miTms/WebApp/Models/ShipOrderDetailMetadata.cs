@@ -37,14 +37,14 @@ namespace WebApp.Models
         [Display(Name = "Location1")]
         public string Location1 { get; set; }
 
-        [Display(Name = "LoadTransportStation")]
-        public string LoadTransportStation { get; set; }
+        [Display(Name = "LoadTransportStationName")]
+        public string LoadTransportStationName { get; set; }
 
         [Display(Name = "Location2")]
         public string Location2 { get; set; }
 
-        [Display(Name = "ReceiptTransportStation")]
-        public string ReceiptTransportStation { get; set; }
+        [Display(Name = "ReceiptTransportStationName")]
+        public string ReceiptTransportStationName { get; set; }
 
         [Display(Name = "Status")]
         public int Status { get; set; }

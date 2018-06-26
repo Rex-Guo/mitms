@@ -26,14 +26,14 @@ namespace WebApp.Models
         public string Location1 { get; set; }
         [Display(Name = "装货点", Description = "装货点")]
         [MaxLength(50)]
-        public string LoadTransportStation { get; set; }
+        public string LoadTransportStationName { get; set; }
         [Display(Name = "终点", Description = "终点")]
         [MaxLength(120)]
         public string Location2 { get; set; }
     
         [Display(Name = "卸货点", Description = "卸货点")]
         [MaxLength(50)]
-        public string ReceiptTransportStation { get; set; }
+        public string ReceiptTransportStationName { get; set; }
         [Display(Name = "订单状态", Description = "订单状态")]
         public int Status { get; set; }
         [Display(Name = "总件数", Description = "总件数")]

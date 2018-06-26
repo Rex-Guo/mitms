@@ -409,6 +409,10 @@
     <Compile Include="Migrations\201806250758436_mdshiporder.Designer.cs">
       <DependentUpon>201806250758436_mdshiporder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806260044095_mdname.cs" />
+    <Compile Include="Migrations\201806260044095_mdname.Designer.cs">
+      <DependentUpon>201806260044095_mdname.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\CarrierMetadata.cs" />
     <Compile Include="Models\Driver.cs" />
@@ -4319,6 +4323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806250758436_mdshiporder.resx">
       <DependentUpon>201806250758436_mdshiporder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806260044095_mdname.resx">
+      <DependentUpon>201806260044095_mdname.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

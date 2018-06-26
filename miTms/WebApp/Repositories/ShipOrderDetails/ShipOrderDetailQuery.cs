@@ -29,7 +29,7 @@ namespace WebApp.Repositories
         public ShipOrderDetailQuery WithAnySearch(string search)
         {
             if (!string.IsNullOrEmpty(search))
-                And( x =>  x.Id.ToString().Contains(search) || x.OrderNo.Contains(search) || x.OrderId.ToString().Contains(search) || x.Location1.Contains(search) || x.LoadTransportStation.Contains(search) || x.Location2.Contains(search) || x.ReceiptTransportStation.Contains(search) || x.Status.ToString().Contains(search) || x.Packages.ToString().Contains(search) || x.Weight.ToString().Contains(search) || x.Volume.ToString().Contains(search) || x.Pallets.ToString().Contains(search) || x.Cartons.ToString().Contains(search) || x.BreakCartons.ToString().Contains(search) || x.ShipOrderId.ToString().Contains(search) || x.ShipOrderNo.Contains(search) );
+                And( x =>  x.Id.ToString().Contains(search) || x.OrderNo.Contains(search) || x.OrderId.ToString().Contains(search) || x.Location1.Contains(search) || x.LoadTransportStationName.Contains(search) || x.Location2.Contains(search) || x.ReceiptTransportStationName.Contains(search) || x.Status.ToString().Contains(search) || x.Packages.ToString().Contains(search) || x.Weight.ToString().Contains(search) || x.Volume.ToString().Contains(search) || x.Pallets.ToString().Contains(search) || x.Cartons.ToString().Contains(search) || x.BreakCartons.ToString().Contains(search) || x.ShipOrderId.ToString().Contains(search) || x.ShipOrderNo.Contains(search) );
             return this;
         }
 
@@ -123,9 +123,9 @@ namespace WebApp.Repositories
 					
 					
 				    				
-											if (rule.field == "LoadTransportStation"  && !string.IsNullOrEmpty(rule.value))
+											if (rule.field == "LoadTransportStationName"  && !string.IsNullOrEmpty(rule.value))
 						{
-							And(x => x.LoadTransportStation.Contains(rule.value));
+							And(x => x.LoadTransportStationName.Contains(rule.value));
 						}
 				    
 				    
@@ -141,9 +141,9 @@ namespace WebApp.Repositories
 					
 					
 				    				
-											if (rule.field == "ReceiptTransportStation"  && !string.IsNullOrEmpty(rule.value))
+											if (rule.field == "ReceiptTransportStationName"  && !string.IsNullOrEmpty(rule.value))
 						{
-							And(x => x.ReceiptTransportStation.Contains(rule.value));
+							And(x => x.ReceiptTransportStationName.Contains(rule.value));
 						}
 				    
 				    
@@ -567,9 +567,9 @@ namespace WebApp.Repositories
 					
 					
 				    				
-											if (rule.field == "LoadTransportStation"  && !string.IsNullOrEmpty(rule.value))
+											if (rule.field == "LoadTransportStationName"  && !string.IsNullOrEmpty(rule.value))
 						{
-							And(x => x.LoadTransportStation.Contains(rule.value));
+							And(x => x.LoadTransportStationName.Contains(rule.value));
 						}
 				    
 				    
@@ -585,9 +585,9 @@ namespace WebApp.Repositories
 					
 					
 				    				
-											if (rule.field == "ReceiptTransportStation"  && !string.IsNullOrEmpty(rule.value))
+											if (rule.field == "ReceiptTransportStationName"  && !string.IsNullOrEmpty(rule.value))
 						{
-							And(x => x.ReceiptTransportStation.Contains(rule.value));
+							And(x => x.ReceiptTransportStationName.Contains(rule.value));
 						}
 				    
 				    
@@ -956,9 +956,9 @@ namespace WebApp.Repositories
 					
 					
 				    				
-											if (rule.field == "LoadTransportStation"  && !string.IsNullOrEmpty(rule.value))
+											if (rule.field == "LoadTransportStationName"  && !string.IsNullOrEmpty(rule.value))
 						{
-							And(x => x.LoadTransportStation.Contains(rule.value));
+							And(x => x.LoadTransportStationName.Contains(rule.value));
 						}
 				    
 				    
@@ -974,9 +974,9 @@ namespace WebApp.Repositories
 					
 					
 				    				
-											if (rule.field == "ReceiptTransportStation"  && !string.IsNullOrEmpty(rule.value))
+											if (rule.field == "ReceiptTransportStationName"  && !string.IsNullOrEmpty(rule.value))
 						{
-							And(x => x.ReceiptTransportStation.Contains(rule.value));
+							And(x => x.ReceiptTransportStationName.Contains(rule.value));
 						}
 				    
 				    

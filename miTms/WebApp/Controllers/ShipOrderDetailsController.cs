@@ -65,9 +65,9 @@ namespace WebApp.Controllers
     OrderNo = n.OrderNo,
     OrderId = n.OrderId,
     Location1 = n.Location1,
-    LoadTransportStation = n.LoadTransportStation,
+    LoadTransportStationName = n.LoadTransportStationName,
     Location2 = n.Location2,
-    ReceiptTransportStation = n.ReceiptTransportStation,
+    ReceiptTransportStationName = n.ReceiptTransportStationName,
     Status = n.Status,
     Packages = n.Packages,
     Weight = n.Weight,
@@ -102,9 +102,9 @@ namespace WebApp.Controllers
     OrderNo = n.OrderNo,
     OrderId = n.OrderId,
     Location1 = n.Location1,
-    LoadTransportStation = n.LoadTransportStation,
+    LoadTransportStationName = n.LoadTransportStationName,
     Location2 = n.Location2,
-    ReceiptTransportStation = n.ReceiptTransportStation,
+    ReceiptTransportStationName = n.ReceiptTransportStationName,
     Status = n.Status,
     Packages = n.Packages,
     Weight = n.Weight,
@@ -139,9 +139,9 @@ namespace WebApp.Controllers
     OrderNo = n.OrderNo,
     OrderId = n.OrderId,
     Location1 = n.Location1,
-    LoadTransportStation = n.LoadTransportStation,
+    LoadTransportStationName = n.LoadTransportStationName,
     Location2 = n.Location2,
-    ReceiptTransportStation = n.ReceiptTransportStation,
+    ReceiptTransportStationName = n.ReceiptTransportStationName,
     Status = n.Status,
     Packages = n.Packages,
     Weight = n.Weight,
@@ -231,7 +231,7 @@ namespace WebApp.Controllers
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "Order,ShipOrder,Id,OrderNo,OrderId,Location1,LoadTransportStation,Location2,ReceiptTransportStation,Status,Packages,Weight,Volume,Pallets,Cartons,BreakCartons,ShipOrderId,ShipOrderNo,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] ShipOrderDetail shipOrderDetail)
+		public async Task<ActionResult> Create([Bind(Include = "Order,ShipOrder,Id,OrderNo,OrderId,Location1,LoadTransportStationName,Location2,ReceiptTransportStationName,Status,Packages,Weight,Volume,Pallets,Cartons,BreakCartons,ShipOrderId,ShipOrderNo,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] ShipOrderDetail shipOrderDetail)
 		{
 			if (ModelState.IsValid)
 			{
@@ -289,7 +289,7 @@ namespace WebApp.Controllers
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Edit([Bind(Include = "Order,ShipOrder,Id,OrderNo,OrderId,Location1,LoadTransportStation,Location2,ReceiptTransportStation,Status,Packages,Weight,Volume,Pallets,Cartons,BreakCartons,ShipOrderId,ShipOrderNo,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] ShipOrderDetail shipOrderDetail)
+		public async Task<ActionResult> Edit([Bind(Include = "Order,ShipOrder,Id,OrderNo,OrderId,Location1,LoadTransportStationName,Location2,ReceiptTransportStationName,Status,Packages,Weight,Volume,Pallets,Cartons,BreakCartons,ShipOrderId,ShipOrderNo,CreatedDate,CreatedBy,LastModifiedDate,LastModifiedBy")] ShipOrderDetail shipOrderDetail)
 		{
 			if (ModelState.IsValid)
 			{

@@ -186,7 +186,35 @@
                                 </section>
 
                             </div>
+                            <div class="row">
 
+                                <section class="col col-4">
+                                    <label class="input">
+                                        <i class="icon-append fa fa-calendar"></i>
+                                        <input name="ResquestedLoadStartDatetime" id="ResquestedLoadStartDatetime" class="datepicker" data-dateformat="mm/dd/yy" placeholder="要求装货时间">
+                                    </label>
+                                </section>
+                                <section class="col col-4">
+                                    <label class="select">
+                                        <select name="PriceType" id="PriceType">
+                                            <option value="0" selected="" disabled="">价格类型</option>
+                                            <option value="1">整车</option>
+                                            <option value="2">拼车</option>
+                                        </select> <i></i>
+                                    </label>
+                                </section>
+                                <section class="col col-4">
+                                    <label class="select">
+                                        <select name="TimePeriod" id="TimePeriod">
+                                            <option value="0" selected="" disabled="">时效</option>
+                                            <option value="12">当天达</option>
+                                            <option value="48">次日达</option>
+                                            <option value="72">隔天达</option>
+
+                                        </select> <i></i>
+                                    </label>
+                                </section>
+                            </div>
                             <div class="row">
 
                                 <section class="col col-4">
@@ -202,14 +230,9 @@
                                     </label>
                                 </section>
                                 <section class="col col-4">
-                                    <label class="select">
-                                        <select name="TimePeriod" id="TimePeriod">
-                                            <option value="0" selected="" disabled="">时效</option>
-                                            <option value="12">当天达</option>
-                                            <option value="48">次日达</option>
-                                            <option value="72">隔天达</option>
-
-                                        </select> <i></i>
+                                    <label class="input">
+                                        <i class="icon-prepend fa fa-map-marker"></i>
+                                        <input name="LoadTransportStationName" id="LoadTransportStationName" placeholder="装货点名称">
                                     </label>
                                 </section>
                             </div>
@@ -230,7 +253,7 @@
                                 <section class="col col-4">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-map-marker"></i>
-                                        <input name="ConsiAddress" id="ConsiAddress" placeholder="收货人地址">
+                                        <input name="ReceiptTransportStationName" id="ReceiptTransportStationName" placeholder="卸货点">
                                     </label>
                                 </section>
                             </div>
@@ -266,6 +289,7 @@
                             </section>
                         </fieldset>
                         @Html.AntiForgeryToken()
+                        <input type="hidden" id="OrderNo" name="OrderNo" value="" />
                         <input type="hidden" id="OrderNo" name="OrderNo" value="" />
                         <input type="hidden" id="Id" name="Id" value="-1" />
                         <input type="hidden" id="Packages" name="Packages" value="" />
@@ -318,7 +342,8 @@
                                type="text"
                                data-options="prompt:'派车单号',
 								 label:'',
-                                width:200,
+                                 width:200,
+                                 readonly:true,
 								 required:true ,validType:'length[0,20]'" />
                     </td>
                     <td class="control-label"> 派车时间 </td>
@@ -345,7 +370,10 @@
                                type="text"
                                data-options="prompt:'业务类型',
 								 label:'',
-                                width:200,
+                                 width:200,
+                                valueField:'id',
+                                textField:'text',
+                                 data:[{id:0,text:'干线运输'},{id:1,text:'城市配送'},{id:2,text:'集装箱运输'},{id:3,text:'农村配送'}],
 								 required:false ,validType:'length[0,8]'" />
                     </td>
                 </tr>
@@ -364,25 +392,40 @@
 						textField: 'Name' ,
 						url: '/ShipOrders/GetCarriers' ,
 						onSelect: function(item){
-						//console.log(item);
+						    let carrierid=item.Id;
+                            $('#VehicleId1').combogrid({
+                                width:200,
+                                panelWidth: 500,
+                                prompt: '车牌号',
+                                mode: 'remote',
+                                idField: 'Id',
+                                textField: 'PlateNumber',
+                                method: 'get',
+                                url: '/Orders/GetAvailableVehiclesWithCarrierId?carrierid=' + carrierid,
+                                required: true,
+                                columns: [[
+                                    { field: 'PlateNumber', title: '车牌号', width: 120 },
+                                    { field: 'CarType', title: '车型', width: 80 },
+                                    { field: 'Status', title: '状态', width: 80 },
+                                    { field: 'StrLoadWeight', title: '载重', width: 80, align: 'right' },
+                                    { field: 'Driver', title: '司机', width: 80 },
+                                    { field: 'DriverPhone', title: '司机电话', width: 80 }
+                                        ]],
+                                fitColumns: false,
+                                onSelect: function (index, row) {
+                                     $('#CarType').textbox('setValue',row.CarType);
+                                     $('#Driver').textbox('setValue',row.Driver);
+                                     $('#DriverPhone').textbox('setValue',row.DriverPhone);
+                                }
+                               })
 				        }">
                     </td>
                     <td class="control-label"> 承运车 </td>
                     <td>
-                        <input id="VehicleId"
+                        <input id="VehicleId1"
                                name="VehicleId"
                                value=""
-                               class="easyui-combobox" data-options="
-						prompt:'承运车' ,
-						label:'' ,
-                       width:200,
-						required:true ,
-						valueField: 'Id',
-						textField: 'PlateNumber' ,
-						url: '/ShipOrders/GetVehicles' ,
-						onSelect: function(item){
-						//console.log(item);
-				}">
+                               class="easyui-combogrid" >
                     </td>
                     <td class="control-label">车型</td>
                     <td>
@@ -443,7 +486,7 @@
                 <tr>
                     <td class="control-label"> 起点  </td>
                     <td>
-                        <input id="Location1"
+                        <input id="Location11"
                                name="Location1"
                                value=""
                                tabindex="14"
@@ -456,7 +499,7 @@
                     </td>
                     <td class="control-label"> 终点 </td>
                     <td>
-                        <input id="Location2"
+                        <input id="Location21"
                                name="Location2"
                                value=""
                                tabindex="15"
@@ -486,12 +529,12 @@
                     <td colspan="6">
                         <table style="width:100%">
                             <tr>
-                                <td>件数:</td>
-                                <td>总量：</td>
-                                <td>体积：</td>
-                                <td>栈板数：</td>
-                                <td>箱数：</td>
-                                <td>散箱数：</td>
+                                <td>件数:<span id="p1" class="badge bg-color-greenLight">0</span></td>
+                                <td>重量：<span id="p2" class="badge bg-color-greenLight">0</span></td>
+                                <td>体积：<span id="p3" class="badge bg-color-greenLight">0</span></td>
+                                <td>栈板数：<span id="p4" class="badge bg-color-greenLight">0</span></td>
+                                <td>箱数：<span id="p5" class="badge bg-color-greenLight">0</span></td>
+                                <td>散箱数：<span id="p6" class="badge bg-color-greenLight">0</span></td>
                             </tr>
                         </table>
                     </td>
@@ -539,14 +582,14 @@
                 var rows = $dg.datagrid("getChecked");
                 var selected = [];
                 $.each(rows, function (i, item) {
-                    console.log(item);
+                    //console.log(item);
                     if (item.Status === "新增") {
                         selected.push(item);
                     }
                 });
                 if (selected.length > 0) {
                     $('#shippingwindow').window('open');
-                    setshiporderdetaildg();
+                    setshiporderdetaildg(selected);
                 } else {
                     $.messager.alert("提示", "请选择新增的订单");
                 }
@@ -587,8 +630,31 @@
   function dohelp() {
 
                 }
+            //加载配载订单数据
+            function setshiporderdetaildg(data) {
+                let p1 = 0;
+                let p2 = 0;
+                let p3 = 0;
+                let p4 = 0;
+                let p5 = 0;
+                let p6 = 0;
+                console.log(p1);
+                $.each(data, function (i, item) {
+                    p1 += parseInt(item.Packages, 0)||0;
+                    p2 += parseInt(item.Weight, 0) || 0;
+                    p3 += parseInt(item.Volume, 0) || 0;
+                    p4 += parseInt(item.Pallets, 0) || 0;
+                    p5 += parseInt(item.Cartons, 0) || 0;
+                    p6 += parseInt(item.BreakCartons, 0) || 0;
+                });
+             
+                $('#p1').html(p1);
+                $('#p2').html(p2);
+                $('#p3').html(p3);
+                $('#p4').html(p4);
+                $('#p5').html(p5);
+                $('#p6').html(p6);
 
-            function setshiporderdetaildg() {
                 var $shiporderdetailsdg = $("#shiporderdetails_datagrid").datagrid({
                     rownumbers: true,
                     iconCls: 'fa fa-list',
@@ -597,7 +663,7 @@
                     sortOrder: 'asc',
                     remoteFilter: true,
                     singleSelect: true,
-                   
+                    data:data,
                     pagination: 'true',
                     striped: true,
                     columns: [[
@@ -631,7 +697,7 @@
                     }
                 },
                 {
-                    field: 'LoadTransportStation',
+                    field: 'LoadTransportStationName',
                         title: '装货点',
                             width: 140,
                                 editor: {
@@ -655,7 +721,7 @@
                     }
                 },
                 {
-                    field: 'ReceiptTransportStation',
+                    field: 'ReceiptTransportStationName',
                         title: '卸货点',
                             width: 140,
                                 editor: {
@@ -1587,6 +1653,9 @@
                         required: true,
                         maxlength: 120
                     },
+                    PriceType: {
+                        required:true
+                    },
                     TimePeriod: {
                         required: true
                     },
@@ -1609,7 +1678,9 @@
                     ExternalNo: {
                         required: '请输入客户对账单号'
                     },
-
+                    PriceType: {
+                        required: '请选择整车/拼车'
+                    },
                     Location1: {
                         required: '请输入起点'
                     },
