@@ -571,10 +571,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2018 16:49:17</publishTime>
     </File>
     <File Include="bin/WebApp.dll">
-      <publishTime>06/26/2018 15:06:24</publishTime>
+      <publishTime>06/26/2018 16:49:56</publishTime>
     </File>
     <File Include="bin/WebApp.pdb">
-      <publishTime>06/26/2018 15:06:24</publishTime>
+      <publishTime>06/26/2018 16:49:56</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/08/2018 16:49:17</publishTime>
@@ -10474,13 +10474,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2018 13:01:21</publishTime>
     </File>
     <File Include="Views/Orders/Index.cshtml">
-      <publishTime>06/26/2018 15:05:00</publishTime>
+      <publishTime>06/26/2018 16:19:29</publishTime>
     </File>
     <File Include="Views/Orders/POD.cshtml">
       <publishTime>06/05/2018 14:20:46</publishTime>
     </File>
     <File Include="Views/Orders/Shipping.cshtml">
-      <publishTime>06/05/2018 14:20:46</publishTime>
+      <publishTime>06/26/2018 16:46:22</publishTime>
     </File>
     <File Include="Views/Orders/_PopupDetailFormView.cshtml">
       <publishTime>05/30/2018 11:04:31</publishTime>

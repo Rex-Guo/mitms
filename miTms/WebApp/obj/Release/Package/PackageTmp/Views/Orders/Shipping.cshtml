@@ -122,14 +122,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Location1"> 起点 </label>
-                                    <input type="text" id="Location1" name="Location1" class="form-control" placeholder="起点" required />
+                                    <input type="text" id="Location1" name="Location1" class="form-control" placeholder="起点" readonly required />
                                 </div>
 
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Location2"> 终点 </label>
-                                    <input type="text" id="Location2" name="Location2" class="form-control" placeholder="终点" required />
+                                    <input type="text" id="Location2" name="Location2" class="form-control" placeholder="终点" readonly required />
                                 </div>
 
                             </div>
@@ -137,7 +137,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="ExternalNo"> 对账单号</label>
+                                    <label for="ExternalNo"> 出货单号 </label>
                                     <input type="text" class="form-control" id="ExternalNo" name="ExternalNo" placeholder="对账单号" />
                                 </div>
                             </div>
@@ -155,14 +155,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputloadnum"> 件数/板数/箱数 </label>
-                                    <input type="text" name="inputloadnum" id="inputloadnum" class="form-control" placeholder="件数/板数/箱数" />
+                                    <input type="text" name="inputloadnum" id="inputloadnum" class="form-control" placeholder="件数/板数/箱数" readonly/>
                                 </div>
 
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputloadsize"> 体积(立方)/重量(吨) </label>
-                                    <input type="text" name="inputloadsize" id="inputloadsize" class="form-control" placeholder="体积(立方)/重量(吨) " />
+                                    <input type="text" name="inputloadsize" id="inputloadsize" class="form-control" placeholder="体积(立方)/重量(吨) " readonly />
                                 </div>
 
                             </div>
@@ -311,13 +311,13 @@
                             }
                         }
                     },
-                    ExternalNo: {
-                        validators: {
-                            notEmpty: {
-                                message: '请输入对账单号(客户单号)'
-                            }
-                        }
-                    },
+                    //ExternalNo: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: '请输入对账单号(客户单号)'
+                    //        }
+                    //    }
+                    //},
                     Location1: {
                         validators: {
                             notEmpty: {
@@ -367,7 +367,7 @@
 //保存订单并更新车辆状态
         function doshippingorder() {
             var data = $('#shippingform').serializeJSON();
-            console.log(data);
+            //console.log(data);
             $.post('/Orders/DoShippingOrder', data, function (data) {
                 if (data.success) {
                     $('#myModal').modal('toggle');
@@ -461,7 +461,7 @@
                             editor: {
                                 type: 'textbox',
                                 options: {
-                                    prompt: '对账单号',
+                                    prompt: '出货单号',
                                     required: false,
                                     validType: 'length[0,20]'
                                 }
@@ -1116,7 +1116,8 @@
         function showdetailsformatter(value, row, index) {
             if (!row.Footer) {
                 if (row.Status == "空车")
-                    return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ' )" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 接单 </a>';
+                    return '<a class="btn btn-primary btn-sm" disabled href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 接单 </a>';
+                    //return '<a onclick="showDetailsWindow(' + row.Id + ',' + index + ' )" class="btn btn-primary btn-sm" disabled href="javascript:void(0)"><i class="fa fa-cart-plus"></i> 接单 </a>';
                 if (row.Status == "接单" || row.Status == "发车" || row.Status == "提货" ||
                     row.Status == "在途" || row.Status == "异常"
                 )
@@ -1133,7 +1134,7 @@
             $('#VehicleId').val(row.Id.toString());
             $('#Driver').val(row.Driver);
             $('#DriverPhone').val(row.DriverPhone);
-            if (row.OrderNo != null && row.ExternalNo != null && row.OrderId != null) {
+            if (row.OrderNo != null ) {
                 //console.log(row.ShipperId,row.OrderId);
                 $('#ShipperId').val(row.ShipperId);
                 $('#ShipperId').prop('readonly', 'readonly');
@@ -1232,7 +1233,7 @@
                 var data = $('#shippingform').serializeJSON();
                 data.Status = statetext;
                 //console.log(data);
-                $.post('/Orders/UpdateStatus', data, function (data) {
+                $.post('/ShipOrders/UpdateStatus', data, function (data) {
                     if (data.success) {
                         $('#myModal').modal('toggle');
                         reload();

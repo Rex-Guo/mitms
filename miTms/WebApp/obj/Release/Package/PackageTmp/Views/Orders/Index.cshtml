@@ -206,13 +206,8 @@
                                 </section>
                                 <section class="col col-4">
                                     <label class="select">
-                                        <select name="TimePeriod" id="TimePeriod">
-                                            <option value="0" selected="" disabled="">时效</option>
-                                            <option value="12">当天达</option>
-                                            <option value="48">次日达</option>
-                                            <option value="72">隔天达</option>
-
-                                        </select> <i></i>
+                                        @Html.DropDownList("TimePeriod", (IEnumerable
+<SelectListItem>)ViewBag.TimePeriod, new { @class = "form-control" }) <i></i>
                                     </label>
                                 </section>
                             </div>
