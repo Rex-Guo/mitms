@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<WebApp.Models.LineQuotes>
 @{
-	ViewBag.Title = "线路报价";
+    ViewBag.Title = "线路报价";
 }
 <!-- MAIN CONTENT -->
 <div id="content">
@@ -12,19 +12,17 @@
                 结算中心
                 <span>
                     >
-                  线路报价
+                    线路报价
                 </span>
             </h1>
         </div>
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-            
+
         </div>
     </div>
     <!-- end quick navigation bar -->
-
-
-     <!-- widget grid -->
-     <section id="widget-grid" class="">
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
         <!-- row -->
         <div class="row">
             <!-- NEW WIDGET START -->
@@ -47,7 +45,7 @@
                         <h2>线路报价</h2>
                     </header>
 
-                     <!-- widget div-->
+                    <!-- widget div-->
                     <div>
                         <!-- widget edit box -->
                         <div class="jarviswidget-editbox">
@@ -63,56 +61,55 @@
                                 <i class="fa-fw fa fa-info"></i>
                                 注意事项:维护报价仅供参考
                             </div>
-	 <!--begin datagrid-content -->
-	 <div class="table-responsive">
-		<table id="linequotes_datagrid">  
-		</table>
-				<div id="linequotes_toolbar" style="height:auto">
-                            @{
-                            //TODO: enable authorization 
-                            }
-							@*@if (Html.IsAuthorize("Create"))
-							{
-								<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
-							}
-							@if (Html.IsAuthorize("Delete"))
-							{
-							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
-							}
-							@if (Html.IsAuthorize("Edit"))
-							{
-								<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="accept()">保存</a>
-								<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="reject()">取消</a>
-							}
-							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
-							@if (Html.IsAuthorize("Import"))
-							{
-								 <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
-                                       <div id="importmenu" style="width:150px;">
-                                                <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
-                                                <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()" >下载用于导入的模板</div>
-                                        </div>
-                                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
-							}*@
-						    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
-							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
-							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="accept()">保存</a>
-							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="reject()">取消</a>
-							<a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
-                                       <div id="importmenu" style="width:150px;">
-                                                <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
-                                                <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()" >下载用于导入的模板</div>
-                                        </div>
-                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
-							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
-				            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-question-circle-o fa-fw',plain:true" onclick="dohelp()">帮助</a>
-                </div>
-		
-		
-		</div>
-		<!--end datagrid-content -->
-                        
-                         </div>
+                            <!--begin datagrid-content -->
+                            <div class="table-responsive">
+                                <table id="linequotes_datagrid"></table>
+                                <div id="linequotes_toolbar" style="height:auto">
+                                    @{
+                                        //TODO: enable authorization
+                                    }
+                                    @*@if (Html.IsAuthorize("Create"))
+                                        {
+                                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
+                                        }
+                                        @if (Html.IsAuthorize("Delete"))
+                                        {
+                                        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
+                                        }
+                                        @if (Html.IsAuthorize("Edit"))
+                                        {
+                                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="accept()">保存</a>
+                                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="reject()">取消</a>
+                                        }
+                                        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
+                                        @if (Html.IsAuthorize("Import"))
+                                        {
+                                             <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
+                                                   <div id="importmenu" style="width:150px;">
+                                                            <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
+                                                            <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()" >下载用于导入的模板</div>
+                                                    </div>
+                                             <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
+                                        }*@
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="accept()">保存</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="reject()">取消</a>
+                                    <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
+                                    <div id="importmenu" style="width:150px;">
+                                        <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
+                                        <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()">下载用于导入的模板</div>
+                                    </div>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-question-circle-o fa-fw',plain:true" onclick="dohelp()">帮助</a>
+                                </div>
+
+
+                            </div>
+                            <!--end datagrid-content -->
+
+                        </div>
                         <!-- end widget content -->
                     </div>
                     <!-- end widget div -->
@@ -128,20 +125,18 @@
         <!-- end row -->
     </section>
     <!-- end widget grid -->
-
-	<!-- file upload partial view -->
-	@Html.Partial("_ImportWindow",new  ViewDataDictionary { { "EntityName","LineQuotes" }})		 
-	<!-- end file upload partial view -->
-        
+    <!-- file upload partial view -->
+    @Html.Partial("_ImportWindow", new ViewDataDictionary { { "EntityName", "LineQuotes" } })
+    <!-- end file upload partial view -->
     <!-- detail popup window -->
-    @Html.Partial("_PopupDetailFormView",new WebApp.Models.LineQuotes() )
+    @Html.Partial("_PopupDetailFormView", new WebApp.Models.LineQuotes())
     <!-- end detail popup window -->
-            
+
 </div>
 <!-- END MAIN CONTENT -->
 
 @section Scripts {
-	<script type="text/javascript">
+    <script type="text/javascript">
         var entityname = "LineQuotes";
 
 
@@ -151,7 +146,7 @@
                             var url = "/ExcelTemplate/LineQuotes.xlsx";
                             $.fileDownload(url)
                              .fail(function () { $.messager.alert("错误","没有找到模板文件! {" + url + "}"); });
-                                                
+
                     }
 					//打开Excel上传导入
 					function importexcel() {
@@ -263,7 +258,7 @@
 					//console.log(JSON.stringify(effectRow));
 					$.post("/LineQuoteses/SaveData", effectRow, function (response) {
 						//console.log(response);
-						if (response.Success) {
+						if (response.success) {
 							$.messager.alert("提示", "提交成功！");
 							$dg.datagrid("acceptChanges");
 							$dg.datagrid("reload");
@@ -298,204 +293,221 @@
         var $dg = $("#linequotes_datagrid");
         $(function () {
 		 //定义datagrid结构
-         $dg.datagrid({
-                        rownumbers:true,
-				        checkOnSelect:true,
-				        selectOnCheck:true,
-				        idField:'Id',
-				        sortName:'Id',
-				        sortOrder:'desc',
-				        remoteFilter: true,
-				        singleSelect: true,
-				        toolbar: '#linequotes_toolbar',
-				        url: '/LineQuoteses/GetData',
-				        method: 'get',
-				        onClickCell: onClickCell,
-				        pagination: true,
-                        striped:true,   
-                        columns: [[
-                         /*开启CheckBox选择功能*/
-                         /*{ field: 'ck', checkbox: true },*/
-                         { 
-                            field: '_operate1',
-                            title:'操作',
-                            width: 120,
-                            sortable: false,
-                            resizable: true,
-                            formatter: function showdetailsformatter(value, row, index) {
-                                        return '<a onclick="showDetailsWindow(' + row.Id + ')" class="btn btn-default btn-sm" href="javascript:void(0)"><i class="fa fa-list"></i> 查看明细</a>';
-                                    }
-                          },
-		     /*{field:'Id',width:80 ,sortable:true,resizable:true }*/
-			{
-                 field:'Name', 
-                 title:'@Html.DisplayNameFor(model => model.Name)', 
-                 width:140,
-                 editor:{
-                          type:'textbox',
-                          options:{ prompt:'方案',required:true ,validType:'length[0,10]'  }  
-                       },
-                 sortable:true,
-                 resizable:true 
-			},
-			{
-                 field:'Location1', 
-                 title:'@Html.DisplayNameFor(model => model.Location1)', 
-                 width:140,
-                 editor:{
-                          type:'textbox',
-                          options:{ prompt:'起点',required:true ,validType:'length[0,50]'  }  
-                       },
-                 sortable:true,
-                 resizable:true 
-			},
-			{
-                 field:'Location2', 
-                 title:'@Html.DisplayNameFor(model => model.Location2)', 
-                 width:140,
-                 editor:{
-                          type:'textbox',
-                          options:{ prompt:'终点',required:true ,validType:'length[0,50]'  }  
-                       },
-                 sortable:true,
-                 resizable:true 
-			},
-			{
-                 field:'TimePeriod', 
-                 title:'@Html.DisplayNameFor(model => model.TimePeriod)', 
-                 width:100, 
-                 align:'right',
-                 editor:{
-                        type:'numberbox',
-                        options:{prompt:'时效', required:true   } 
+            $dg.datagrid({
+                rownumbers: true,
+                checkOnSelect: true,
+                selectOnCheck: true,
+                idField: 'Id',
+                sortName: 'Id',
+                sortOrder: 'desc',
+                remoteFilter: true,
+                singleSelect: true,
+                toolbar: '#linequotes_toolbar',
+                url: '/LineQuoteses/GetData',
+                method: 'get',
+                onClickCell: onClickCell,
+                pagination: true,
+                striped: true,
+                columns: [[
+                    /*开启CheckBox选择功能*/
+                    /*{ field: 'ck', checkbox: true },*/
+                    {
+                        field: '_operate1',
+                        title: '操作',
+                        width: 120,
+                        sortable: false,
+                        resizable: true,
+                        formatter: function showdetailsformatter(value, row, index) {
+                            return '<a onclick="showDetailsWindow(' + row.Id + ')" class="btn btn-default btn-sm" href="javascript:void(0)"><i class="fa fa-list"></i> 查看明细</a>';
+                        }
+                    },
+                    /*{field:'Id',width:80 ,sortable:true,resizable:true }*/
+                    {
+                        field: 'Name',
+                        title: '@Html.DisplayNameFor(model => model.Name)',
+                        width: 140,
+                        editor: {
+                            type: 'quoteeditor',
+                            options: { prompt: '方案', required: true, validType: 'length[0,10]' }
                         },
-                sortable:true,
-                resizable:true 
-			},
-			{
-                 field:'PiceVehicleType', 
-                 title:'@Html.DisplayNameFor(model => model.PiceVehicleType)', 
-                 width:140,
-                 editor:{
-                          type:'textbox',
-                          options:{ prompt:'计费车型',required:false ,validType:'length[0,20]'  }  
-                       },
-                 sortable:true,
-                 resizable:true 
-			},
-			{
-                 field:'PiceType', 
-                 title:'@Html.DisplayNameFor(model => model.PiceType)', 
-                 width:140,
-                 editor:{
-                          type:'textbox',
-                          options:{ prompt:'计费方式',required:false ,validType:'length[0,20]'  }  
-                       },
-                 sortable:true,
-                 resizable:true 
-			},
-			{
-                 field:'Price', 
-                 title:'@Html.DisplayNameFor(model => model.Price)', 
-                 width:100, 
-                 align:'right',
-                 editor:{
-                        type:'numberbox',
-                        options:{prompt:'单价', required:true   } 
+                        sortable: true,
+                        resizable: true,
+                        formatter: quoteformatter
+                    },
+                    {
+                        field: 'Location1',
+                        title: '@Html.DisplayNameFor(model => model.Location1)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '起点', required: true, validType: 'length[0,50]' }
                         },
-                sortable:true,
-                resizable:true 
-			},
-			{
-                 field:'Remark', 
-                 title:'@Html.DisplayNameFor(model => model.Remark)', 
-                 width:140,
-                 editor:{
-                          type:'textbox',
-                          options:{ prompt:'备注',required:false ,validType:'length[0,520]'  }  
-                       },
-                 sortable:true,
-                 resizable:true 
-			},
-			{
-                 field:'Description', 
-                 title:'@Html.DisplayNameFor(model => model.Description)', 
-                 width:140,
-                 editor:{
-                          type:'textbox',
-                          options:{ prompt:'详细说明',required:false   }  
-                       },
-                 sortable:true,
-                 resizable:true 
-			},
-			{
-                 field:'InputUser', 
-                 title:'@Html.DisplayNameFor(model => model.InputUser)', 
-                 width:140,
-                 editor:{
-                          type:'textbox',
-                          options:{ prompt:'输入人员',required:false ,validType:'length[0,20]'  }  
-                       },
-                 sortable:true,
-                 resizable:true 
-			},
-			{
-                field:'CarrierId',
-                title:'@Html.DisplayNameFor(model => model.CarrierId)',
-                width:160, 
-                sortable:true, 
-                resizable:true,
-                formatter:function(value,row) {
-				        return row.CarrierName;
-					},
-			    editor:{
-					    type:'combobox',
-					    options:{
-								prompt:'承运人' ,
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Location2',
+                        title: '@Html.DisplayNameFor(model => model.Location2)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '终点', required: true, validType: 'length[0,50]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'TimePeriod',
+                        title: '@Html.DisplayNameFor(model => model.TimePeriod)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'timeperiodeditor',
+                            options: { prompt: '时效', required: true }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: timeperiodformatter
+                    },
+                    {
+                        field: 'PiceVehicleType',
+                        title: '@Html.DisplayNameFor(model => model.PiceVehicleType)',
+                        width: 140,
+                        editor: {
+                            type: 'loadweighteditor',
+                            options: { prompt: '计费车型', required: false, validType: 'length[0,20]' }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: loadweightformatter
+                    },
+                    {
+                        field: 'PiceType',
+                        title: '@Html.DisplayNameFor(model => model.PiceType)',
+                        width: 140,
+                        editor: {
+                            type: 'pricetypeeditor',
+                            options: { prompt: '计费方式', required: false, validType: 'length[0,20]' }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: pricetypeformatter
+                    },
+                    {
+                        field: 'Price',
+                        title: '@Html.DisplayNameFor(model => model.Price)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '单价', required: true }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Remark',
+                        title: '@Html.DisplayNameFor(model => model.Remark)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '备注', required: false, validType: 'length[0,520]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Description',
+                        title: '@Html.DisplayNameFor(model => model.Description)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '详细说明', required: false }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'InputUser',
+                        title: '@Html.DisplayNameFor(model => model.InputUser)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '输入人员', required: false, validType: 'length[0,20]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'CarrierId',
+                        title: '@Html.DisplayNameFor(model => model.CarrierId)',
+                        width: 160,
+                        sortable: true,
+                        resizable: true,
+                        formatter: function (value, row) {
+                            return row.CarrierName;
+                        },
+                        editor: {
+                            type: 'combobox',
+                            options: {
+                                prompt: '承运人',
                                 mode: 'remote',
-								valueField:'Id',
-								textField:'Name',
-								method:'get',
-								url:'/LineQuoteses/GetCarriers',
-								required:false
-							}
-						}
-			},
-			{
-                field:'CompanyId',
-                title:'@Html.DisplayNameFor(model => model.CompanyId)',
-                width:160, 
-                sortable:true, 
-                resizable:true,
-                formatter:function(value,row) {
-				        return row.CompanyName;
-					},
-			    editor:{
-					    type:'combobox',
-					    options:{
-								prompt:'平台' ,
+                                valueField: 'Id',
+                                textField: 'Name',
+                                method: 'get',
+                                url: '/LineQuoteses/GetCarriers',
+                                required: false
+                            }
+                        }
+                    },
+                    {
+                        field: 'CompanyId',
+                        title: '@Html.DisplayNameFor(model => model.CompanyId)',
+                        width: 160,
+                        sortable: true,
+                        resizable: true,
+                        formatter: function (value, row) {
+                            return row.CompanyName;
+                        },
+                        editor: {
+                            type: 'combobox',
+                            options: {
+                                prompt: '平台',
                                 mode: 'remote',
-								valueField:'Id',
-								textField:'Name',
-								method:'get',
-								url:'/LineQuoteses/GetCompanies',
-								required:true
-							}
-						}
-			},
-                         ]]
-                 });
+                                valueField: 'Id',
+                                textField: 'Name',
+                                method: 'get',
+                                url: '/LineQuoteses/GetCompanies',
+                                required: true
+                            }
+                        }
+                    },
+                ]]
+            });
 
            $dg.datagrid("enableFilter",[
 				{
 					  field: "Id",
 					  type: "numberbox",
 					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
-				  },
+               },
+               {
+                   field: "PiceVehicleType",
+                   type:"loadweightfilter"
+               },
+               {
+                   field: "Name",
+                   type: "quotefilter",
+                  
+               },
+               {
+                   field: "PiceType",
+                   type:"pricetypefilter"
+               },
 				{
 					  field: "TimePeriod",
-					  type: "numberbox",
-					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+                    type: "timeperiodfilter"
+					 
 				  },
 				{
 					  field: "Price",
@@ -549,11 +561,11 @@
 		   ]);
 	 });
 
-	
-		
-  
-			 </script>
-     <script src="~/Scripts/jquery.filerupload.js"></script>
+
+
+
+    </script>
+    <script src="~/Scripts/jquery.filerupload.js"></script>
 }
 
- 
+

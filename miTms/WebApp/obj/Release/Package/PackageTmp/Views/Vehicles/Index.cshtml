@@ -209,7 +209,28 @@
                  formatter: showdetailsformatter
              },
              /*{field:'Id',width:80 ,sortable:true,resizable:true }*/
-
+             {
+                 field: 'CarrierId',
+                 title: '@Html.DisplayNameFor(model => model.CarrierId)',
+                 width: 140,
+                 sortable: true,
+                 resizable: true,
+                 formatter: function (value, row) {
+                     return row.CarrierName;
+                 },
+                 editor: {
+                     type: 'combobox',
+                     options: {
+                         prompt: '承运人',
+                         mode: 'remote',
+                         valueField: 'Id',
+                         textField: 'Name',
+                         method: 'get',
+                         url: '/Vehicles/GetCarriers',
+                         required: true
+                     }
+                 }
+             },
              {
                  field: 'PlateNumber',
                  title: '@Html.DisplayNameFor(model => model.PlateNumber)',
@@ -1549,7 +1570,7 @@
              //console.log(JSON.stringify(effectRow));
              $.post("/Vehicles/SaveData", effectRow, function(response) {
                  //console.log(response);
-                 if (response.Success) {
+                 if (response.success) {
                      $.messager.alert("提示", "提交成功！");
                      $dg.datagrid("acceptChanges");
                      $dg.datagrid("reload");

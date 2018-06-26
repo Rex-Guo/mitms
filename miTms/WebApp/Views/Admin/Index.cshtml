@@ -351,11 +351,12 @@ else
                                             <label class="select">
 
                                                 @Html.DropDownList("ShipperId", (IEnumerable
-<SelectListItem>)ViewBag.Shipper, new { @class = "form-control" })
+        <SelectListItem>)ViewBag.Shipper, new { @class = "form-control" })
                                                 <i></i>
                                             </label>
                                         </section>
-                                    </div><div class="row">
+                                    </div>
+                                    <div class="row">
                                         <section class="col col-6">
                                             <label class="input">
                                                 <i class="icon-prepend fa fa-map-marker"></i>
@@ -370,9 +371,24 @@ else
                                         </section>
 
                                     </div>
-
                                     <div class="row">
-                                        <section class="col col-6">
+
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                <input name="ResquestedLoadStartDatetime" id="ResquestedLoadStartDatetime" class="datepicker" data-dateformat="mm/dd/yy" placeholder="要求装货时间">
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <label class="select">
+                                                <select name="PriceType" id="PriceType">
+                                                    <option value="0" selected="" disabled="">价格类型</option>
+                                                    <option value="1">整车</option>
+                                                    <option value="2">拼车</option>
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
                                             <label class="select">
                                                 <select name="TimePeriod" id="TimePeriod">
                                                     <option value="0" selected="" disabled="">时效</option>
@@ -383,10 +399,46 @@ else
                                                 </select> <i></i>
                                             </label>
                                         </section>
-                                        <section class="col col-6">
+                                    </div>
+                                    <div class="row">
+
+                                        <section class="col col-4">
                                             <label class="input">
                                                 <i class="icon-prepend fa fa-phone"></i>
-                                                <input name="PhoneNumber" id="PhoneNumber" placeholder="联系电话" data-mask="999 9999 9999">
+                                                <input name="Contact" id="Contact" placeholder="托运联系人">
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-phone"></i>
+                                                <input name="PhoneNumber" id="PhoneNumber" placeholder="托运联系电话" data-mask="999 9999 9999">
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input name="LoadTransportStationName" id="LoadTransportStationName" placeholder="装货点名称">
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-phone"></i>
+                                                <input name="Consignee" id="Consignee" placeholder="收货人">
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-phone"></i>
+                                                <input name="ConsiMobileTelephoneNumber" id="ConsiMobileTelephoneNumber" placeholder="收货人移动电话" data-mask="999 9999 9999">
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input name="ReceiptTransportStationName" id="ReceiptTransportStationName" placeholder="卸货点">
                                             </label>
                                         </section>
                                     </div>
@@ -412,9 +464,6 @@ else
                                             </label>
                                         </section>
                                     </div>
-
-
-
                                     <section>
                                         <label class="textarea">
                                             <textarea rows="3" name="Requirements" id="Requirements" placeholder="额外要求"></textarea>
@@ -870,6 +919,9 @@ else
                         required: true,
                         maxlength: 30
                     },
+                    PriceType: {
+                        required: true
+                    },
                     ShipperId: {
                         required: true
                     },
@@ -895,6 +947,9 @@ else
                     },
                     PhoneNumber: {
                         maxlength: 20
+                    },
+                    ResquestedLoadStartDatetime: {
+                        required: true
                     }
                 },
 

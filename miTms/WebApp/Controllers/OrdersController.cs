@@ -47,6 +47,8 @@ namespace WebApp.Controllers
         {
             var customrep = this._unitOfWork.RepositoryAsync<Shipper>();
             ViewBag.Shipper = new SelectList(customrep.Queryable().OrderBy(n => n.Name).ToList(), "Id", "Name");
+            var coderep = this._unitOfWork.RepositoryAsync<CodeItem>();
+            ViewBag.TimePeriod = new SelectList(coderep.Queryable().Where(x => x.CodeType == "TimePeriod").OrderBy(n => n.Code).ToList(), "Code", "Text");
             return View();
         }
         // Get :Orders/PageList
@@ -529,30 +531,7 @@ namespace WebApp.Controllers
                
             }
         }
-        //更新订单状态
-        public async Task<ActionResult> UpdateStatus(Order order) {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    this._orderService.UpdateStatus(order);
-                    var result = await this._unitOfWork.SaveChangesAsync();
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-                }
-                catch (Exception e) {
-
-                    Console.Write(e);
-                    return Json(new { success = false, err = e.Message }, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else
-            {
-                var modelStateErrors = String.Join("", this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors.Select(n => n.ErrorMessage)));
-
-                return Json(new { success = false, err = modelStateErrors }, JsonRequestBehavior.AllowGet);
-
-            }
-        }
+        
         //POD查询
         public ActionResult Pod()
         {

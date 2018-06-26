@@ -1,0 +1,1056 @@
+﻿﻿@model WebApp.Models.ShipOrder
+ <!-- 输出form表单界面 -->
+<fieldset>
+    <div class="row">
+        	    			<section class="col col-4">
+           <label class="label">@Html.DisplayNameFor(model => model.Id) </label>
+           <label class="input">
+            <input id="@Html.IdFor(model => model.Id)" 
+                   name="@Html.NameFor(model => model.Id)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Id)" 
+                   value="@Html.ValueFor(model => model.Id)"
+                   tabindex="0"   
+                   type="text" 
+                   />
+                 <b class="tooltip tooltip-bottom-right">Id</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.ShipOrderNo) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.ShipOrderNo)" 
+				   name="@Html.NameFor(model => model.ShipOrderNo)" 
+                   placeholder="@Html.DisplayNameFor(model => model.ShipOrderNo)" 
+				   value="@Html.ValueFor(model => model.ShipOrderNo)"
+				   tabindex="1" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">派车单号</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.ExternalNo) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.ExternalNo)" 
+				   name="@Html.NameFor(model => model.ExternalNo)" 
+                   placeholder="@Html.DisplayNameFor(model => model.ExternalNo)" 
+				   value="@Html.ValueFor(model => model.ExternalNo)"
+				   tabindex="2" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">对账单号</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.OrderDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.OrderDate)" 
+			       name="@Html.NameFor(model => model.OrderDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.OrderDate)" 
+				   tabindex="3" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.OrderDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">派车时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.BusinessType) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.BusinessType)" 
+				   name="@Html.NameFor(model => model.BusinessType)" 
+                   placeholder="@Html.DisplayNameFor(model => model.BusinessType)" 
+				   value="@Html.ValueFor(model => model.BusinessType)"
+				   tabindex="4" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">业务类型</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Status) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Status)"
+				   name="@Html.NameFor(model => model.Status)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Status)" 
+				   value="@Html.ValueFor(model => model.Status)"
+				   tabindex="5" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">运单状态</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	                     <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.CarrierId) </label>
+            <label class="input">
+			      @Html.DropDownListFor(model => model.CarrierId, ViewBag.CarrierId as List<SelectListItem>, htmlAttributes: new { @class = "select2" }) 
+                 <b class="tooltip tooltip-bottom-right">承运人</b>
+			    </label>
+            </section>
+				 
+	  
+	    
+	                     <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.VehicleId) </label>
+            <label class="input">
+			      @Html.DropDownListFor(model => model.VehicleId, ViewBag.VehicleId as List<SelectListItem>, htmlAttributes: new { @class = "select2" }) 
+                 <b class="tooltip tooltip-bottom-right">承运车</b>
+			    </label>
+            </section>
+				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.CarType) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.CarType)" 
+				   name="@Html.NameFor(model => model.CarType)" 
+                   placeholder="@Html.DisplayNameFor(model => model.CarType)" 
+				   value="@Html.ValueFor(model => model.CarType)"
+				   tabindex="8" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">车辆类型</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Driver) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.Driver)" 
+				   name="@Html.NameFor(model => model.Driver)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Driver)" 
+				   value="@Html.ValueFor(model => model.Driver)"
+				   tabindex="9" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">司机</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.DriverPhone) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.DriverPhone)" 
+				   name="@Html.NameFor(model => model.DriverPhone)" 
+                   placeholder="@Html.DisplayNameFor(model => model.DriverPhone)" 
+				   value="@Html.ValueFor(model => model.DriverPhone)"
+				   tabindex="10" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">司机电话</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.ContractNumber) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.ContractNumber)" 
+				   name="@Html.NameFor(model => model.ContractNumber)" 
+                   placeholder="@Html.DisplayNameFor(model => model.ContractNumber)" 
+				   value="@Html.ValueFor(model => model.ContractNumber)"
+				   tabindex="11" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">合同编号</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.TotalMonetaryAmount) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.TotalMonetaryAmount)"
+				   name="@Html.NameFor(model => model.TotalMonetaryAmount)" 
+                   placeholder="@Html.DisplayNameFor(model => model.TotalMonetaryAmount)" 
+				   value="@Html.ValueFor(model => model.TotalMonetaryAmount)"
+				   tabindex="12" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">总运价</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Remark) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.Remark)" 
+				   name="@Html.NameFor(model => model.Remark)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Remark)" 
+				   value="@Html.ValueFor(model => model.Remark)"
+				   tabindex="13" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">备注</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Location1) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.Location1)" 
+				   name="@Html.NameFor(model => model.Location1)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Location1)" 
+				   value="@Html.ValueFor(model => model.Location1)"
+				   tabindex="14" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">起点</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Location2) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.Location2)" 
+				   name="@Html.NameFor(model => model.Location2)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Location2)" 
+				   value="@Html.ValueFor(model => model.Location2)"
+				   tabindex="15" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">终点</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Requirements) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.Requirements)" 
+				   name="@Html.NameFor(model => model.Requirements)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Requirements)" 
+				   value="@Html.ValueFor(model => model.Requirements)"
+				   tabindex="16" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">额外要求</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.TimePeriod) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.TimePeriod)"
+				   name="@Html.NameFor(model => model.TimePeriod)" 
+                   placeholder="@Html.DisplayNameFor(model => model.TimePeriod)" 
+				   value="@Html.ValueFor(model => model.TimePeriod)"
+				   tabindex="17" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">时效(小时)</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.PlanDepartDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.PlanDepartDate)" 
+			       name="@Html.NameFor(model => model.PlanDepartDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.PlanDepartDate)" 
+				   tabindex="18" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.PlanDepartDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">计划发车时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.PlanDeliveryDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.PlanDeliveryDate)" 
+			       name="@Html.NameFor(model => model.PlanDeliveryDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.PlanDeliveryDate)" 
+				   tabindex="19" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.PlanDeliveryDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">计划送达时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.DepartDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.DepartDate)" 
+			       name="@Html.NameFor(model => model.DepartDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.DepartDate)" 
+				   tabindex="20" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.DepartDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">实际发车时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.DeliveryDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.DeliveryDate)" 
+			       name="@Html.NameFor(model => model.DeliveryDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.DeliveryDate)" 
+				   tabindex="21" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.DeliveryDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">实际送达时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.ClosedDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.ClosedDate)" 
+			       name="@Html.NameFor(model => model.ClosedDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.ClosedDate)" 
+				   tabindex="22" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.ClosedDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">回单时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.ItemCount) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.ItemCount)"
+				   name="@Html.NameFor(model => model.ItemCount)" 
+                   placeholder="@Html.DisplayNameFor(model => model.ItemCount)" 
+				   value="@Html.ValueFor(model => model.ItemCount)"
+				   tabindex="23" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">订单数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Packages) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Packages)"
+				   name="@Html.NameFor(model => model.Packages)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Packages)" 
+				   value="@Html.ValueFor(model => model.Packages)"
+				   tabindex="24" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">总件数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Weight) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Weight)"
+				   name="@Html.NameFor(model => model.Weight)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Weight)" 
+				   value="@Html.ValueFor(model => model.Weight)"
+				   tabindex="25" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">重量(千克)</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Volume) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Volume)"
+				   name="@Html.NameFor(model => model.Volume)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Volume)" 
+				   value="@Html.ValueFor(model => model.Volume)"
+				   tabindex="26" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">体积(立方)</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Pallets) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Pallets)"
+				   name="@Html.NameFor(model => model.Pallets)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Pallets)" 
+				   value="@Html.ValueFor(model => model.Pallets)"
+				   tabindex="27" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">栈板数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.Cartons) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.Cartons)"
+				   name="@Html.NameFor(model => model.Cartons)" 
+                   placeholder="@Html.DisplayNameFor(model => model.Cartons)" 
+				   value="@Html.ValueFor(model => model.Cartons)"
+				   tabindex="28" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">箱数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			  			<section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.BreakCartons) </label>
+            <label class="input">
+            <input id="@Html.IdFor(model => model.BreakCartons)"
+				   name="@Html.NameFor(model => model.BreakCartons)" 
+                   placeholder="@Html.DisplayNameFor(model => model.BreakCartons)" 
+				   value="@Html.ValueFor(model => model.BreakCartons)"
+				   tabindex="29" 
+				   type="text" 
+				   />
+                 <b class="tooltip tooltip-bottom-right">散箱数</b>
+			    </label>
+            </section>
+              				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.InputUser) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.InputUser)" 
+				   name="@Html.NameFor(model => model.InputUser)" 
+                   placeholder="@Html.DisplayNameFor(model => model.InputUser)" 
+				   value="@Html.ValueFor(model => model.InputUser)"
+				   tabindex="30" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">调度人员</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	                     <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.CompanyId) </label>
+            <label class="input">
+			      @Html.DropDownListFor(model => model.CompanyId, ViewBag.CompanyId as List<SelectListItem>, htmlAttributes: new { @class = "select2" }) 
+                 <b class="tooltip tooltip-bottom-right">所属平台</b>
+			    </label>
+            </section>
+				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.CreatedDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.CreatedDate)" 
+			       name="@Html.NameFor(model => model.CreatedDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.CreatedDate)" 
+				   tabindex="32" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.CreatedDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">创建时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.CreatedBy) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.CreatedBy)" 
+				   name="@Html.NameFor(model => model.CreatedBy)" 
+                   placeholder="@Html.DisplayNameFor(model => model.CreatedBy)" 
+				   value="@Html.ValueFor(model => model.CreatedBy)"
+				   tabindex="33" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">创建用户</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.LastModifiedDate) </label>
+            <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+			<input id="@Html.IdFor(model => model.LastModifiedDate)" 
+			       name="@Html.NameFor(model => model.LastModifiedDate)" 
+                   placeholder="@Html.DisplayNameFor(model => model.LastModifiedDate)" 
+				   tabindex="34" 
+				   class="datepicker" data-dateformat="dd/mm/yy"
+				   type="text" 
+				   value="@Html.ValueFor(model => model.LastModifiedDate)"
+				    />
+             <b class="tooltip tooltip-bottom-right">最后更新时间</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	        			              <section class="col col-4">
+            <label class="label">@Html.DisplayNameFor(model => model.LastModifiedBy) </label>
+            <label class="input">
+			<input id="@Html.IdFor(model => model.LastModifiedBy)" 
+				   name="@Html.NameFor(model => model.LastModifiedBy)" 
+                   placeholder="@Html.DisplayNameFor(model => model.LastModifiedBy)" 
+				   value="@Html.ValueFor(model => model.LastModifiedBy)"
+				   tabindex="35" 
+				    type="text" 
+				   />
+             <b class="tooltip tooltip-bottom-right">最后更新用户</b>
+			    </label>
+            </section>
+			  				 
+	  
+	    
+	    </div>
+</fieldset>
+
+<!--========================================================================================-->
+ <fieldset>
+    <div class="row">
+        <section class="col col-md-12 col-lg-12">
+    <!-- details tabs -->
+    <div class="tabs-container">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#tab-shiporderdetails"> ShipOrderDetails</a></li>
+				   
+		 </ul>
+		 <!-- Tab panes -->
+         <div class="tab-content">
+		 		  <div id="tab-shiporderdetails" class="tab-pane active">
+            <div class="panel-body">
+                <div class="table-responsive">
+				<table id="shiporderdetails_datagrid" >
+                </table>
+				<div id="shiporderdetails_toolbar" style="height:auto">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="shiporderdetails_createitem()">新增</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="shiporderdetails_removeitem()">删除</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="shiporderdetails_saveitem()">保存</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="shiporderdetails_reject()">取消</a>
+                </div>
+                </div>
+            </div>
+        </div>
+		  	</div>
+	</div>
+ 
+<!--end details tabs -->
+        </section>
+    </div>
+</fieldset>
+
+
+
+ <script type="text/javascript">
+   var id=@Model.Id;
+       $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href") // activated tab
+                if(target=="#tab-shiporderdetails")
+             $shiporderdetailsdg.datagrid("resize");
+            });
+		 
+								//--------------------------------------------------------------------
+				// #shiporderdetails_datagrid functions
+				//--------------------------------------------------------------------
+				var $shiporderdetailsdg = $("#shiporderdetails_datagrid");
+
+				var shiporderdetails_editIndex = undefined;
+		function shiporderdetails_reload() {
+				$shiporderdetailsdg.datagrid("reload");
+			}
+	function shiporderdetails_endEditing() {
+		if ( shiporderdetails_editIndex == undefined) { return true }
+		if ($shiporderdetailsdg.datagrid("validateRow", shiporderdetails_editIndex)) {
+						var ed = $shiporderdetailsdg.datagrid("getEditor", { index: shiporderdetails_editIndex, field: "OrderId" });
+			var OrderOrderNo = $(ed.target).combobox("getText");
+			var OrderId = $(ed.target).combobox("getValue");
+		  
+			$shiporderdetailsdg.datagrid("getRows")[shiporderdetails_editIndex]["OrderOrderNo"] = OrderOrderNo;
+			$shiporderdetailsdg.datagrid("getRows")[shiporderdetails_editIndex]["OrderId"] = OrderId;
+			
+			
+						$shiporderdetailsdg.datagrid("endEdit", shiporderdetails_editIndex);
+			shiporderdetails_editIndex = undefined;
+
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function shiporderdetails_onClickCell(index, field) {
+		if (shiporderdetails_editIndex != index) {
+			if (shiporderdetails_endEditing()) {
+				$shiporderdetailsdg.datagrid("selectRow", index)
+						.datagrid("beginEdit", index);
+                shiporderdetails_editIndex  = index;
+				var ed = $shiporderdetailsdg.datagrid("getEditor", { index: index, field: field });
+				if (ed) {
+					($(ed.target).data("textbox") ? $(ed.target).textbox("textbox") : $(ed.target)).focus();
+				}
+				
+			} else {
+				$shiporderdetailsdg.datagrid("selectRow", shiporderdetails_editIndex);
+			}
+		}
+	}
+	function shiporderdetails_createitem() {
+		if (shiporderdetails_endEditing()) {
+			 var shiporder = $shiporderdetailsdg.datagrid("getSelected");
+
+			$shiporderdetailsdg.datagrid("appendRow", { ShipOrderId:id   });
+			shiporderdetailseditIndex = $shiporderdetailsdg.datagrid("getRows").length - 1;
+			$shiporderdetailsdg.datagrid("selectRow", shiporderdetails_editIndex )
+					.datagrid("beginEdit", shiporderdetails_editIndex);
+		}
+	}
+	function shiporderdetails_removeitem() {
+		if (shiporderdetails_editIndex  == undefined) { return }
+		$shiporderdetailsdg.datagrid("cancelEdit", shiporderdetails_editIndex )
+				.datagrid("deleteRow", shiporderdetails_editIndex );
+		shiporderdetailseditIndex = undefined;
+	}
+   
+	function shiporderdetails_reject() {
+		$shiporderdetailsdg.datagrid("rejectChanges");
+		shiporderdetails_editIndex  = undefined;
+	}
+	function shiporderdetails_getChanges() {
+		var rows = $shiporderdetailsdg.datagrid("getChanges");
+		alert(rows.length + " rows are changed!");
+	}
+	function shiporderdetails_saveitem() {
+			if (shiporderdetails_endEditing()) {
+				if ($shiporderdetailsdg.datagrid("getChanges").length) {
+					var inserted = $shiporderdetailsdg.datagrid("getChanges", "inserted");
+					var deleted = $shiporderdetailsdg.datagrid("getChanges", "deleted");
+					var updated = $shiporderdetailsdg.datagrid("getChanges", "updated");
+					var effectRow = new Object();
+					if (inserted.length) {
+						effectRow.inserted = inserted;
+					}
+					if (deleted.length) {
+						effectRow.deleted = deleted;
+					}
+					if (updated.length) {
+						effectRow.updated = updated;
+					}
+					//console.log(JSON.stringify(effectRow));
+					$.post("/ShipOrderDetails/SaveData", effectRow, function (response) {
+						//console.log(response);
+						if (response.success) {
+							$.messager.alert("提示", "提交成功！");
+							$shiporderdetailsdg.datagrid("acceptChanges");
+							$shiporderdetailsdg.datagrid("reload");
+						}
+					}, "json").fail(function (response) {
+						//console.log(response);
+						$.messager.alert("错误", "提交错误了！","error");
+					  
+					});
+			  
+				}
+
+				//$shiporderdetailsdg.datagrid("acceptChanges");
+			}
+		}
+
+	 
+
+
+
+
+				
+		 
+
+                     function initdatagrid(){
+               
+		          
+          $shiporderdetailsdg.datagrid({
+                    rownumbers: true,
+                    iconCls: 'fa fa-list',
+                    idField: 'Id',
+                    sortName: 'Id',
+                    sortOrder: 'asc',
+                    remoteFilter: true,
+                    singleSelect: true,
+                    toolbar: '#shiporderdetails_toolbar',
+                    method: 'get',
+                    onClickCell: shiporderdetails_onClickCell,
+                    pagination: 'true',
+                    url: '/ShipOrderDetails/GetDataByShipOrderId?shiporderid='+ id,
+                    striped: true,
+                    columns: [[
+                    														@*{field:'Id',
+                                   title:'Id',
+                                   width:80 },*@
+																															{ field:'OrderNo',
+                                  title:'订单号',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'订单号',
+                                                required:false ,validType:'length[0,20]'
+                                                 }
+                                           } },
+																															    {field:'OrderId',
+                                 title:'订单',
+                                 width:160,
+								 formatter:function(value,row){
+												return row.OrderOrderNo;
+											},
+								 editor:{
+                                         type:'combobox',
+										 options:{
+                                                prompt:'订单',
+												mode: 'remote',
+                                                valueField:'Id',
+											    textField:'OrderNo',
+												method:'get',
+												url:'/ShipOrders/GetOrders',
+												required:true 
+												}
+								 }},
+																															{ field:'Location1',
+                                  title:'起点',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'起点',
+                                                required:false ,validType:'length[0,120]'
+                                                 }
+                                           } },
+																																						{ field:'LoadTransportStationName',
+                                  title:'装货点',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'装货点',
+                                                required:false ,validType:'length[0,50]'
+                                                 }
+                                           } },
+																																						{ field:'Location2',
+                                  title:'终点',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'终点',
+                                                required:false ,validType:'length[0,120]'
+                                                 }
+                                           } },
+																																						{ field:'ReceiptTransportStationName',
+                                  title:'卸货点',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'卸货点',
+                                                required:false ,validType:'length[0,50]'
+                                                 }
+                                           } },
+																																					{ field:'Status',
+                                  title:'订单状态',
+                                  width:120,
+                                  align:'right',
+                                  editor:{ 
+                                        type:'combobox',
+                                            options:{
+                                                    prompt:'订单状态',
+                                                    panelHeight: 'auto',
+                                                    data: [ { value: '0', text: '启用' },{ value: '1', text: '禁用' } ],
+                                                    required:true 
+                                                    } 
+                                            }  ,formatter:statusformatter
+                                  },
+																																				     { field:'Packages',
+                                   title:'总件数',
+                                   width:120,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'总件数',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'Weight',
+                                   title:'重量(千克)',
+                                   width:120,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'重量(千克)',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'Volume',
+                                   title:'体积(立方)',
+                                   width:120,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'体积(立方)',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'Pallets',
+                                   title:'栈板数',
+                                   width:120,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'栈板数',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'Cartons',
+                                   title:'箱数',
+                                   width:120,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'箱数',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																				     { field:'BreakCartons',
+                                   title:'散箱数',
+                                   width:120,
+                                   align:'right',
+                                   editor:{
+                                           type:'numberbox',
+                                           options:{
+                                                   prompt:'散箱数',
+                                                   required:false 
+                                             } 
+                                           } ,
+                                   sortable:true,
+                                   resizable:true },
+																																																	{ field:'ShipOrderNo',
+                                  title:'发运单号',
+                                  width:140,
+                                  editor:{
+                                          type:'textbox',
+                                          options:{
+                                                prompt:'发运单号',
+                                                required:true ,validType:'length[0,20]'
+                                                 }
+                                           } },
+																		                    
+                    
+                    
+                    ]]
+          });
+                
+                $shiporderdetailsdg.datagrid("enableFilter", [
+                				{
+					  field: "Status",
+					  type: "combobox",
+					  options: {
+						   panelHeight: "auto",
+						   data: [{ value: "", text: "All" }, { value: 0, text: "启用" }, { value: 1, text: "禁用" }],
+						   onChange: function (value) {
+							  if (value == "") {
+								  $shiporderdetailsdg.datagrid("removeFilterRule", "Status");
+							  } else {
+								  $shiporderdetailsdg.datagrid("addFilterRule", {
+									  field: "Status",
+									  op: "equal",
+									  value: value
+								  });
+							  }
+							  $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   
+           				{
+					  field: "Id",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Status",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Packages",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Weight",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Volume",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Pallets",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "Cartons",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   				{
+					  field: "BreakCartons",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+		   
+
+		   		   
+		   		   {
+				 field: "OrderId",
+				 type:"combobox",
+				 options:{
+								valueField:"Id",
+								textField:"OrderNo",
+								method:"get",
+								url:"/ShipOrders/GetOrders",
+								onChange: function (value) {
+								if (value == "") {
+									$shiporderdetailsdg.datagrid("removeFilterRule", "OrderId");
+								} else {
+									$shiporderdetailsdg.datagrid("addFilterRule", {
+										field: "OrderId",
+										op: "equal",
+										value: value
+								});
+							}
+							$shiporderdetailsdg.datagrid("doFilter");
+						}
+					}
+		   },
+		   		   {
+				 field: "ShipOrderId",
+				 type:"combobox",
+				 options:{
+								valueField:"Id",
+								textField:"ShipOrderNo",
+								method:"get",
+								url:"/ShipOrders/GetShipOrders",
+								onChange: function (value) {
+								if (value == "") {
+									$shiporderdetailsdg.datagrid("removeFilterRule", "ShipOrderId");
+								} else {
+									$shiporderdetailsdg.datagrid("addFilterRule", {
+										field: "ShipOrderId",
+										op: "equal",
+										value: value
+								});
+							}
+							$shiporderdetailsdg.datagrid("doFilter");
+						}
+					}
+		   },
+		   									]);
+                  }
+         /* 初始化datagrid */
+         initdatagrid();
+
+  
+  
+
+ </script>
+

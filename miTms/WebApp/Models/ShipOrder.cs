@@ -21,7 +21,7 @@ namespace WebApp.Models
         [MaxLength(20)]
         [Required]
         public string ShipOrderNo { get; set; }
-        [Display(Name = "对账单号", Description = "对账单号")]
+        [Display(Name = "出货单", Description = "出货单")]
         [MaxLength(30)]
         public string ExternalNo { get; set; }
         [Display(Name = "派车时间", Description = "派车时间")]

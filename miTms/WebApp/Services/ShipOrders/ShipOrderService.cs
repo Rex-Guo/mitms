@@ -164,6 +164,7 @@ namespace WebApp.Services
         {
             shiporder.TrackingState = TrackableEntities.TrackingState.Added;
             shiporder.Status = 1;
+            var shipperid = 0;
             foreach (var item in shiporder.ShipOrderDetails) {
                 item.ShipOrder = shiporder;
                 item.ShipOrderId = shiporder.Id;
@@ -173,6 +174,7 @@ namespace WebApp.Services
                 var order = this.orderService.Find(item.Id);
                 order.Status = "接单";
                 this.orderService.Update(order);
+                shipperid = shipperid==0 ? order.ShipperId: shipperid;
                 item.Id = 0;
             }
             this.ApplyChanges(shiporder);
@@ -181,11 +183,11 @@ namespace WebApp.Services
             veh.OrderNo = shiporder.ShipOrderNo;
             veh.Status = "接单";
             veh.Location1 = shiporder.Location1;
-            //veh.ShipperId = shiporder.ShipperId;
+            veh.ShipperId = shipperid;
             veh.Location2 = shiporder.Location2;
             veh.UsingDate = shiporder.OrderDate;
             veh.ExternalNo = shiporder.ExternalNo;
-            veh.Requirements = shiporder.Requirements;
+            veh.Requirements = shiporder.Remark;
             veh.TimePeriod = shiporder.TimePeriod;
             veh.Packages = shiporder.Packages;
             veh.Pallets = shiporder.Pallets;
@@ -194,6 +196,98 @@ namespace WebApp.Services
             veh.Volume = shiporder.Volume;
             veh.Weight = shiporder.Weight;
             this.vehicleService.Update(veh);
+        }
+
+        private int ConvertStatus(string status) {
+            if (status == "新增")
+                return 0;
+            if (status == "接单")
+                return 1;
+            if (status == "发车")
+                return 2;
+            if (status == "提货")
+                return 3;
+            if (status == "在途")
+                return 4;
+            if (status == "卸货")
+                return 5;
+            if (status == "入库")
+                return 6;
+            if (status == "异常")
+                return 7;
+            if (status == "完成")
+                return 8;
+            if (status == "关闭")
+                return 9;
+            return 0;
+        }
+        public void UpdateStatus(Order order)
+        {
+            var item = this.Queryable().Where(x => x.ShipOrderNo == order.OrderNo).First();
+            item.Status = ConvertStatus(order.Status);
+            //item.Location1 = order.Location1;
+            //item.Location2 = order.Location2;
+            //item.Packages = order.Packages;
+            //item.Pallets = order.Pallets;
+            //item.Cartons = order.Cartons;
+            //item.Weight = order.Weight;
+            //item.Volume = order.Volume;
+            //item.TimePeriod = order.TimePeriod;
+            //item.PlanDeliveryDate = item.OrderDate.AddHours(order.TimePeriod);
+            item.InputUser = order.InputUser;
+            item.Requirements = order.Requirements;
+            item.Remark = item.Remark + order.Requirements;
+            if (order.Status == "入库" || order.Status == "完成" ||
+                order.Status == "卸货")
+            {
+                item.DeliveryDate = DateTime.Now;
+            }
+            this.Update(item);
+            var veh = this.vehicleService.Find(order.VehicleId);
+            veh.OrderId = item.Id;
+            //veh.ShipperId = order.ShipperId;
+            //veh.OrderNo = order.OrderNo;
+            veh.Status = order.Status;
+            //veh.Location1 = order.Location1;
+            //veh.Location2 = order.Location2;
+            //veh.ExternalNo = order.ExternalNo;
+            veh.Requirements = order.Requirements;
+            //veh.TimePeriod = order.TimePeriod;
+            //veh.Packages = order.Packages;
+            //veh.Pallets = order.Pallets;
+            //veh.Cartons = order.Cartons;
+            veh.InputUser = order.InputUser;
+            //veh.Volume = order.Volume;
+            //veh.Weight = order.Weight;
+
+            if (order.Status == "入库" || order.Status == "完成" ||
+                order.Status == "卸货")
+            {
+                veh.Status = "空车";
+                veh.OrderId = null;
+                veh.OrderNo = "";
+
+                veh.Location1 = "";
+                veh.Location2 = "";
+                veh.UsingDate = null;
+                veh.ExternalNo = "";
+                veh.Requirements = "";
+                veh.TimePeriod = 0;
+                veh.Packages = null;
+                veh.Pallets = null;
+                veh.Cartons = null;
+                veh.InputUser = "";
+                veh.Volume = null;
+                veh.Weight = null;
+            }
+            this.vehicleService.Update(veh);
+            TransactionHistory tran = new TransactionHistory();
+            tran.InputUser = item.InputUser;
+            tran.OrderNo = item.ShipOrderNo;
+            tran.PlateNumber = veh.PlateNumber;
+            tran.Status = order.Status;
+            tran.TransactioDateTime = DateTime.Now;
+            this.transactionHistoryService.Insert(tran);
         }
     }
 }

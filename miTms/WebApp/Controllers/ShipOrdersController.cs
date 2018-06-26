@@ -607,6 +607,32 @@ namespace WebApp.Controllers
                 return Json(new { success = false,err=e.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+        //更新订单状态
+        public async Task<ActionResult> UpdateStatus(Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    this.shipOrderService.UpdateStatus(order);
+                    var result = await this.unitOfWork.SaveChangesAsync();
+                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception e)
+                {
+
+                    Console.Write(e);
+                    return Json(new { success = false, err = e.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                var modelStateErrors = String.Join("", this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors.Select(n => n.ErrorMessage)));
+
+                return Json(new { success = false, err = modelStateErrors }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
         //生成发运单号
         public ActionResult GetShipOrderNo() {
 

@@ -2755,28 +2755,28 @@ liabilityeditor: {
 //-------运输车型---------//
 var loadweightfiltersource = [{ value: '', text: 'All'}];
 var loadweightdatasource = [];
-loadweightfiltersource.push({ value: '10',text:'10'  });
-loadweightdatasource.push({ value: '10',text:'10'  });
-loadweightfiltersource.push({ value: '2',text:'2'  });
-loadweightdatasource.push({ value: '2',text:'2'  });
+loadweightfiltersource.push({ value: '10吨',text:'10吨'  });
+loadweightdatasource.push({ value: '10吨',text:'10吨'  });
 loadweightfiltersource.push({ value: '20尺',text:'20尺'  });
 loadweightdatasource.push({ value: '20尺',text:'20尺'  });
-loadweightfiltersource.push({ value: '3',text:'3'  });
-loadweightdatasource.push({ value: '3',text:'3'  });
+loadweightfiltersource.push({ value: '2吨',text:'2吨'  });
+loadweightdatasource.push({ value: '2吨',text:'2吨'  });
+loadweightfiltersource.push({ value: '3吨',text:'3吨'  });
+loadweightdatasource.push({ value: '3吨',text:'3吨'  });
 loadweightfiltersource.push({ value: '40尺',text:'40尺'  });
 loadweightdatasource.push({ value: '40尺',text:'40尺'  });
 loadweightfiltersource.push({ value: '45尺',text:'45尺'  });
 loadweightdatasource.push({ value: '45尺',text:'45尺'  });
-loadweightfiltersource.push({ value: '5',text:'5'  });
-loadweightdatasource.push({ value: '5',text:'5'  });
 loadweightfiltersource.push({ value: '53尺',text:'53尺'  });
 loadweightdatasource.push({ value: '53尺',text:'53尺'  });
 loadweightfiltersource.push({ value: '58尺',text:'58尺'  });
 loadweightdatasource.push({ value: '58尺',text:'58尺'  });
+loadweightfiltersource.push({ value: '5吨',text:'5吨'  });
+loadweightdatasource.push({ value: '5吨',text:'5吨'  });
 loadweightfiltersource.push({ value: '63尺',text:'63尺'  });
 loadweightdatasource.push({ value: '63尺',text:'63尺'  });
-loadweightfiltersource.push({ value: '8',text:'8'  });
-loadweightdatasource.push({ value: '8',text:'8'  });
+loadweightfiltersource.push({ value: '8吨',text:'8吨'  });
+loadweightdatasource.push({ value: '8吨',text:'8吨'  });
 //for datagrid LoadWeight field  formatter
 function loadweightformatter(value, row, index) { 
      if (value === null || value === '' || value === undefined) 
@@ -4234,6 +4234,84 @@ quotationtypeeditor: {
         }
   }  
 });
+//-------报价方案---------//
+var quotefiltersource = [{ value: '', text: 'All'}];
+var quotedatasource = [];
+quotefiltersource.push({ value: '0',text:'整车'  });
+quotedatasource.push({ value: '0',text:'整车'  });
+quotefiltersource.push({ value: '1',text:'拼车'  });
+quotedatasource.push({ value: '1',text:'拼车'  });
+//for datagrid Quote field  formatter
+function quoteformatter(value, row, index) { 
+     if (value === null || value === '' || value === undefined) 
+     { 
+         return "";
+     } 
+     for (var i = 0; i < quotedatasource.length; i++) {
+      var item = quotedatasource[i];
+     if (item.value === value.toString())
+     {
+         return item.text;
+     }
+     };
+ return value;
+ } 
+//for datagrid   Quote  field filter 
+$.extend($.fn.datagrid.defaults.filters, {
+quotefilter: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+             panelHeight: "auto",
+             data: quotefiltersource
+         }
+         $.extend(options, myoptions);
+         input.combobox(options);
+         return input;
+      },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+     },
+     getValue: function(target) {
+         return $(target).combobox('getValue');
+     },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+     },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+     }
+   }
+});
+//for datagrid   Quote   field  editor 
+$.extend($.fn.datagrid.defaults.editors, {
+quoteeditor: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+         panelHeight: "auto",
+         data: quotedatasource,
+         valueField: 'value',
+         textField: 'text'
+     }
+    $.extend(options, myoptions);
+           input.combobox(options);
+           return input;
+       },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+        },
+     getValue: function(target) {
+        return $(target).combobox('getValue');
+        },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+         },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+        }
+  }  
+});
 //-------签收单---------//
 var receiptfiltersource = [{ value: '', text: 'All'}];
 var receiptdatasource = [];
@@ -5029,14 +5107,14 @@ tageditor: {
 //-------订单时效---------//
 var timeperiodfiltersource = [{ value: '', text: 'All'}];
 var timeperioddatasource = [];
-timeperiodfiltersource.push({ value: '24',text:'24'  });
-timeperioddatasource.push({ value: '24',text:'24'  });
-timeperiodfiltersource.push({ value: '48',text:'48'  });
-timeperioddatasource.push({ value: '48',text:'48'  });
-timeperiodfiltersource.push({ value: '72',text:'72'  });
-timeperioddatasource.push({ value: '72',text:'72'  });
-timeperiodfiltersource.push({ value: '8',text:'8'  });
-timeperioddatasource.push({ value: '8',text:'8'  });
+timeperiodfiltersource.push({ value: '24',text:'次日达'  });
+timeperioddatasource.push({ value: '24',text:'次日达'  });
+timeperiodfiltersource.push({ value: '48',text:'隔日达'  });
+timeperioddatasource.push({ value: '48',text:'隔日达'  });
+timeperiodfiltersource.push({ value: '72',text:'三天后达'  });
+timeperioddatasource.push({ value: '72',text:'三天后达'  });
+timeperiodfiltersource.push({ value: '8',text:'当日达'  });
+timeperioddatasource.push({ value: '8',text:'当日达'  });
 //for datagrid TimePeriod field  formatter
 function timeperiodformatter(value, row, index) { 
      if (value === null || value === '' || value === undefined) 
