@@ -65,6 +65,9 @@ namespace WebApp.Models
         [Display(Name = "起点", Description = "起点")]
         [MaxLength(120)]
         public string Location1 { get; set; }
+        [Display(Name = "途径地", Description = "途径地")]
+        [MaxLength(255)]
+        public string PassLocation { get; set; }
         [Display(Name = "终点", Description = "终点")]
         [MaxLength(120)]
         public string Location2 { get; set; }

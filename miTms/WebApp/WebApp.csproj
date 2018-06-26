@@ -413,6 +413,10 @@
     <Compile Include="Migrations\201806260044095_mdname.Designer.cs">
       <DependentUpon>201806260044095_mdname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806260312241_adpass.cs" />
+    <Compile Include="Migrations\201806260312241_adpass.Designer.cs">
+      <DependentUpon>201806260312241_adpass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\CarrierMetadata.cs" />
     <Compile Include="Models\Driver.cs" />
@@ -4326,6 +4330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806260044095_mdname.resx">
       <DependentUpon>201806260044095_mdname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806260312241_adpass.resx">
+      <DependentUpon>201806260312241_adpass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

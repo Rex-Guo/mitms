@@ -290,7 +290,7 @@
                         </fieldset>
                         @Html.AntiForgeryToken()
                         <input type="hidden" id="OrderNo" name="OrderNo" value="" />
-                        <input type="hidden" id="OrderNo" name="OrderNo" value="" />
+ 
                         <input type="hidden" id="Id" name="Id" value="-1" />
                         <input type="hidden" id="Packages" name="Packages" value="" />
                         <input type="hidden" id="Weight" name="Weight" value="" />
@@ -318,10 +318,20 @@
          data-options="modal:true,
                     closed:true,
                     iconcls:'icon-menu'
-                    " style="width:960px;height:520px">
+                    " style="width:960px;height:580px">
         <!--begin form表单界面-->
         <form id="shiporder_form" class="easyui-form form-horizontal" method="post" data-options="novalidate:true">
             @Html.AntiForgeryToken()
+            <input type="hidden" id="InputUser1" name="InputUser" value="@Auth.UserName" />
+            <input type="hidden" id="CompanyId1" name="CompanyId" value="@Auth.PlatformId" />
+            <input type="hidden" id="TimePeriod1" name="TimePeriod" value="" />
+            <input type="hidden" id="ItemCount1" name="ItemCount" value="" />
+            <input type="hidden" id="Packages1" name="Packages" value="" />
+            <input type="hidden" id="Weight1" name="Weight" value="" />
+            <input type="hidden" id="Volume1" name="Volume" value="" />
+            <input type="hidden" id="Pallets1" name="Pallets" value="" />
+            <input type="hidden" id="Cartons1" name="Cartons" value="" />
+            <input type="hidden" id="BreakCartons1" name="BreakCartons" value="" />
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -364,17 +374,17 @@
                     <td>
                         <input id="BusinessType"
                                name="BusinessType"
-                               value=""
+                               value="0"
                                tabindex="4"
                                class="easyui-combobox"
                                type="text"
                                data-options="prompt:'业务类型',
 								 label:'',
                                  width:200,
-                                valueField:'id',
-                                textField:'text',
+                                 valueField:'id',
+                                 textField:'text',
                                  data:[{id:0,text:'干线运输'},{id:1,text:'城市配送'},{id:2,text:'集装箱运输'},{id:3,text:'农村配送'}],
-								 required:false ,validType:'length[0,8]'" />
+								 required:true ,validType:'length[0,8]'" />
                     </td>
                 </tr>
                 <tr>
@@ -386,7 +396,7 @@
                                class="easyui-combobox" data-options="
 						prompt:'承运人' ,
 						label:'' ,
-                       width:200,
+                        width:200,
 						required:true ,
 						valueField: 'Id',
 						textField: 'Name' ,
@@ -425,7 +435,7 @@
                         <input id="VehicleId1"
                                name="VehicleId"
                                value=""
-                               class="easyui-combogrid" >
+                               class="easyui-combogrid">
                     </td>
                     <td class="control-label">车型</td>
                     <td>
@@ -437,7 +447,7 @@
                                type="text"
                                data-options="prompt:'车辆类型',
 								 label:'',
-                                width:200,
+                                 width:200,
 								 required:false ,validType:'length[0,20]'" />
                     </td>
                 </tr>
@@ -453,7 +463,7 @@
                                data-options="prompt:'司机',
 								 label:'',
                                 width:200,
-								 required:false ,validType:'length[0,30]'" />
+								 required:true ,validType:'length[0,30]'" />
                     </td>
                     <td class="control-label">司机联系电话</td>
                     <td>
@@ -466,7 +476,7 @@
                                data-options="prompt:'司机电话',
 								 label:'',
                                 width:200,
-								 required:false ,validType:'length[0,18]'" />
+								 required:true ,validType:'length[0,18]'" />
                     </td>
                     <td class="control-label">计划发车时间  </td>
                     <td>
@@ -479,7 +489,7 @@
                                data-options="prompt:'计划发车时间',
 								 label:'',
                                 width:200,
-								 required:false,
+								 required:true,
 								 formatter:datetimeformatter" />
                     </td>
                 </tr>
@@ -495,7 +505,20 @@
                                data-options="prompt:'起点',
 								 label:'',
                                 width:200,
-								 required:false ,validType:'length[0,120]'" />
+								 required:true ,validType:'length[0,120]'" />
+                    </td>
+                    <td class="control-label"> 途径地 </td>
+                    <td>
+                        <input id="PassLocation"
+                               name="PassLocation"
+                               value=""
+                               tabindex="15"
+                               class="easyui-textbox"
+                               type="text"
+                               data-options="prompt:'途径地',
+								 label:'',
+                                 width:200,
+								 required:false ,validType:'length[0,255]'" />
                     </td>
                     <td class="control-label"> 终点 </td>
                     <td>
@@ -508,7 +531,37 @@
                                data-options="prompt:'终点',
 								 label:'',
                                 width:200,
-								 required:false ,validType:'length[0,120]'" />
+								 required:true ,validType:'length[0,120]'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="control-label"> 出货单批号 </td>
+                    <td>
+                        <input id="ExternalNo1"
+                               name="ExternalNo"
+                               tabindex="19"
+                               class="easyui-textbox"
+                               type="text"
+                               value=''
+                               data-options="prompt:'出货单批号',
+								 label:'',
+                                 width:200,
+								 required:false
+								" />
+                    </td>
+                    <td class="control-label"> 备注 </td>
+                    <td>
+                        <input id="Remark"
+                               name="Remark"
+                               tabindex="19"
+                               class="easyui-textbox"
+                               type="text"
+                               value=''
+                               data-options="prompt:'备注说明',
+								 label:'',
+                                 width:200,
+								 required:false
+								 " />
                     </td>
                     <td class="control-label">计划送达时间 </td>
                     <td>
@@ -521,7 +574,7 @@
                                data-options="prompt:'计划送达时间',
 								 label:'',
                                 width:200,
-								 required:false,
+								 required:true,
 								 formatter:datetimeformatter" />
                     </td>
                 </tr>
@@ -567,8 +620,8 @@
         <!--end details tabs -->
         <div id="footer" style="text-align:right;padding:5px;">
 
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:alert('ok')" style="width:80px">发运</a>
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="javascript:alert('cancel')" style="width:80px">取消</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:createshiporder()" style="width:80px">发运</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="javascript:closeshiporderwindow()" style="width:80px">取消</a>
         </div>
     </div>
     <!-- END MAIN CONTENT -->
@@ -629,16 +682,68 @@
   //显示帮助信息
   function dohelp() {
 
+            }
+            //关闭发运窗口
+            function closeshiporderwindow() {
+                $('#shippingwindow').window('close');
+            }
+            var $shiporderdetailsdg = {};
+            //创建发运单
+            function createshiporder() {
+                let $editform = $('#shiporder_form');
+                if ($editform.form('enableValidation').form('validate')) {
+                    var shiporder = $editform.serializeJSON();
+                    var token = $('input[name="__RequestVerificationToken"]', $editform).val();
+                    var shiporderdetails = $shiporderdetailsdg.datagrid("getData").rows;
+                    var details = [];
+                    $.each(shiporderdetails, function (i, item) {
+                        item.OrderId = item.Id;
+                        //item.id = 0;
+                        details.push(item);
+                    });
+                    shiporder.ShipOrderDetails = details;
+                
+                    $.ajax({
+                        type: "POST",
+                        url: "/ShipOrders/CreateShipOrder",
+                        data: {
+                            __RequestVerificationToken: token,
+                            shiporder: shiporder
+                        },
+                        dataType: 'json',
+                        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                    })
+                        .done(function (response) {
+                            if (response.success) {
+                                $.messager.alert("提示", "保存成功！");
+                                $('#shippingwindow').window("close");
+                                $dg.datagrid('reload');
+                            } else {
+                                $.messager.alert("错误", "保存失败！" + response.err, "error");
+                            }
+                        })
+                        .fail(function (response) {
+                            $.messager.alert("错误", "保存失败！", "error");
+                        });
                 }
+
+            }
             //加载配载订单数据
             function setshiporderdetaildg(data) {
+                $.get("/ShipOrders/GetShipOrderNo", function (res) {
+                    
+                    $("#ShipOrderNo").textbox("setValue", res);
+                });
+                $('#Location11').textbox("setValue", data[0].Location1);
+                $('#Location21').textbox("setValue", data[0].Location2);
                 let p1 = 0;
                 let p2 = 0;
                 let p3 = 0;
                 let p4 = 0;
                 let p5 = 0;
                 let p6 = 0;
-                console.log(p1);
+               
+                let passlocation = [];
                 $.each(data, function (i, item) {
                     p1 += parseInt(item.Packages, 0)||0;
                     p2 += parseInt(item.Weight, 0) || 0;
@@ -646,25 +751,40 @@
                     p4 += parseInt(item.Pallets, 0) || 0;
                     p5 += parseInt(item.Cartons, 0) || 0;
                     p6 += parseInt(item.BreakCartons, 0) || 0;
+                    passlocation.push(item.Location1);
+                    passlocation.push(item.Location2);
                 });
-             
+                passlocation = passlocation.filter(function (item, pos) {
+                    return passlocation.indexOf(item) == pos;
+                })
+                passlocation = passlocation.slice(2, passlocation.length)
+                $('#TimePeriod1').val(data[0].TimePeriod.toString());
+                $('#PassLocation').textbox("setValue", passlocation.join(","));
+                $('#ItemCount1').val(data.length.toString());
+                $('#Packages1').val(p1.toString());
+                $('#Weight1').val(p2.toString());
+                $('#Volume1').val(p3.toString());
+                $('#Pallets1').val(p4.toString());
+                $('#Cartons1').val(p5.toString());
+                $('#BreakCartons1').val(p5.toString());
                 $('#p1').html(p1);
+
                 $('#p2').html(p2);
                 $('#p3').html(p3);
                 $('#p4').html(p4);
                 $('#p5').html(p5);
                 $('#p6').html(p6);
 
-                var $shiporderdetailsdg = $("#shiporderdetails_datagrid").datagrid({
+                $shiporderdetailsdg = $("#shiporderdetails_datagrid").datagrid({
                     rownumbers: true,
                     iconCls: 'fa fa-list',
                     idField: 'Id',
                     sortName: 'Id',
                     sortOrder: 'asc',
-                    remoteFilter: true,
+                    remoteFilter: false,
                     singleSelect: true,
                     data:data,
-                    pagination: 'true',
+                    pagination: 'false',
                     striped: true,
                     columns: [[
                     														@* {
