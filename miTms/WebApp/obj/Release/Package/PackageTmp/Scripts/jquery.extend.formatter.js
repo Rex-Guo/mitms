@@ -321,12 +321,16 @@ airtypeeditor: {
 //-------业务类型---------//
 var businesstypefiltersource = [{ value: '', text: 'All'}];
 var businesstypedatasource = [];
-businesstypefiltersource.push({ value: '干线业务',text:'干线业务'  });
-businesstypedatasource.push({ value: '干线业务',text:'干线业务'  });
-businesstypefiltersource.push({ value: '快递业务',text:'快递业务'  });
-businesstypedatasource.push({ value: '快递业务',text:'快递业务'  });
-businesstypefiltersource.push({ value: '电商业务',text:'电商业务'  });
-businesstypedatasource.push({ value: '电商业务',text:'电商业务'  });
+businesstypefiltersource.push({ value: '0',text:'干线运输'  });
+businesstypedatasource.push({ value: '0',text:'干线运输'  });
+businesstypefiltersource.push({ value: '1',text:'城市配送'  });
+businesstypedatasource.push({ value: '1',text:'城市配送'  });
+businesstypefiltersource.push({ value: '2',text:'集装箱运输'  });
+businesstypedatasource.push({ value: '2',text:'集装箱运输'  });
+businesstypefiltersource.push({ value: '3',text:'农村配送'  });
+businesstypedatasource.push({ value: '3',text:'农村配送'  });
+businesstypefiltersource.push({ value: '4',text:'快递配送'  });
+businesstypedatasource.push({ value: '4',text:'快递配送'  });
 //for datagrid BusinessType field  formatter
 function businesstypeformatter(value, row, index) { 
      if (value === null || value === '' || value === undefined) 
@@ -4767,6 +4771,100 @@ sexeditor: {
         var myoptions = {
          panelHeight: "auto",
          data: sexdatasource,
+         valueField: 'value',
+         textField: 'text'
+     }
+    $.extend(options, myoptions);
+           input.combobox(options);
+           return input;
+       },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+        },
+     getValue: function(target) {
+        return $(target).combobox('getValue');
+        },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+         },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+        }
+  }  
+});
+//-------发运单状态---------//
+var shiporderstatusfiltersource = [{ value: '', text: 'All'}];
+var shiporderstatusdatasource = [];
+shiporderstatusfiltersource.push({ value: '0',text:'新增'  });
+shiporderstatusdatasource.push({ value: '0',text:'新增'  });
+shiporderstatusfiltersource.push({ value: '1',text:'接单'  });
+shiporderstatusdatasource.push({ value: '1',text:'接单'  });
+shiporderstatusfiltersource.push({ value: '2',text:'发车'  });
+shiporderstatusdatasource.push({ value: '2',text:'发车'  });
+shiporderstatusfiltersource.push({ value: '3',text:'提货'  });
+shiporderstatusdatasource.push({ value: '3',text:'提货'  });
+shiporderstatusfiltersource.push({ value: '4',text:'在途'  });
+shiporderstatusdatasource.push({ value: '4',text:'在途'  });
+shiporderstatusfiltersource.push({ value: '5',text:'卸货'  });
+shiporderstatusdatasource.push({ value: '5',text:'卸货'  });
+shiporderstatusfiltersource.push({ value: '6',text:'入库'  });
+shiporderstatusdatasource.push({ value: '6',text:'入库'  });
+shiporderstatusfiltersource.push({ value: '7',text:'异常'  });
+shiporderstatusdatasource.push({ value: '7',text:'异常'  });
+shiporderstatusfiltersource.push({ value: '8',text:'完成'  });
+shiporderstatusdatasource.push({ value: '8',text:'完成'  });
+shiporderstatusfiltersource.push({ value: '9',text:'关闭'  });
+shiporderstatusdatasource.push({ value: '9',text:'关闭'  });
+//for datagrid ShipOrderStatus field  formatter
+function shiporderstatusformatter(value, row, index) { 
+     if (value === null || value === '' || value === undefined) 
+     { 
+         return "";
+     } 
+     for (var i = 0; i < shiporderstatusdatasource.length; i++) {
+      var item = shiporderstatusdatasource[i];
+     if (item.value === value.toString())
+     {
+         return item.text;
+     }
+     };
+ return value;
+ } 
+//for datagrid   ShipOrderStatus  field filter 
+$.extend($.fn.datagrid.defaults.filters, {
+shiporderstatusfilter: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+             panelHeight: "auto",
+             data: shiporderstatusfiltersource
+         }
+         $.extend(options, myoptions);
+         input.combobox(options);
+         return input;
+      },
+     destroy: function(target) {
+         $(target).combobox('destroy');
+     },
+     getValue: function(target) {
+         return $(target).combobox('getValue');
+     },
+     setValue: function(target, value) {
+         $(target).combobox('setValue', value);
+     },
+     resize: function(target, width) {
+         $(target).combobox('resize', width);
+     }
+   }
+});
+//for datagrid   ShipOrderStatus   field  editor 
+$.extend($.fn.datagrid.defaults.editors, {
+shiporderstatuseditor: {
+     init: function(container, options) {
+        var input = $('<input type="text">').appendTo(container);
+        var myoptions = {
+         panelHeight: "auto",
+         data: shiporderstatusdatasource,
          valueField: 'value',
          textField: 'text'
      }

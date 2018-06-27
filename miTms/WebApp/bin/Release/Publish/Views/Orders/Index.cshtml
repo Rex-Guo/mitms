@@ -160,7 +160,7 @@
                                 <section class="col col-6">
                                     <label class="input">
                                         <i class="icon-prepend fa fa-pencil"></i>
-                                        <input type="text" name="ExternalNo" id="ExternalNo" placeholder="对账单号">
+                                        <input type="text" name="ExternalNo" id="ExternalNo" placeholder="WMS出货单号">
                                     </label>
                                 </section>
                                 <section class="col col-6">
@@ -379,7 +379,7 @@
                                  width:200,
                                  valueField:'id',
                                  textField:'text',
-                                 data:[{id:0,text:'干线运输'},{id:1,text:'城市配送'},{id:2,text:'集装箱运输'},{id:3,text:'农村配送'}],
+                                 data:[{id:0,text:'干线运输'},{id:1,text:'城市配送'},{id:2,text:'集装箱运输'},{id:3,text:'农村配送'},{id:4,text:'快递配送'}],
 								 required:true ,validType:'length[0,8]'" />
                     </td>
                 </tr>
@@ -998,7 +998,7 @@
                   editor: {
                       type: 'textbox',
                       options: {
-                          prompt: '对账单号',
+                          prompt: 'WMS出货单号',
                           required: false,
                           validType: 'length[0,20]'
                       }
@@ -1220,7 +1220,7 @@
                       }
                   }
               },
-              {
+              @*{
                   field: 'PlateNumber',
                   title: '@Html.DisplayNameFor(model => model.PlateNumber)',
                   width: 140,
@@ -1234,7 +1234,7 @@
                   },
                   sortable: true,
                   resizable: true
-              },
+              },*@
               {
                   field: 'Driver',
                   title: '@Html.DisplayNameFor(model => model.Driver)',
@@ -1795,7 +1795,7 @@
                 // Messages for form validation
                 messages: {
                     ExternalNo: {
-                        required: '请输入客户对账单号'
+                        required: '请输入客户WMS出货单号'
                     },
                     PriceType: {
                         required: '请选择整车/拼车'
@@ -1835,6 +1835,7 @@
                         } else {
                             $.messager.alert('提示', res.message);
                             $(form).resetForm();
+                            $dg.datagrid('reload');
                             $('#myModal').modal('toggle');
                         }
                     });

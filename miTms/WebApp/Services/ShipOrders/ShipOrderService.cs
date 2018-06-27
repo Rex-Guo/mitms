@@ -32,14 +32,17 @@ namespace WebApp.Services
         private readonly IVehicleService vehicleService;
         private readonly ITransactionHistoryService transactionHistoryService;
         private readonly IRepositoryAsync<ShipOrder> _repository;
+        private readonly IShipOrderDetailService shipOrderDetailService;
         private readonly IDataTableImportMappingService _mappingservice;
         public ShipOrderService(
+            IShipOrderDetailService shipOrderDetailService,
             IOrderService orderService,
             IVehicleService vehicleService,
             ITransactionHistoryService transactionHistoryService,
             IRepositoryAsync<ShipOrder> repository, IDataTableImportMappingService mappingservice)
             : base(repository)
         {
+            this.shipOrderDetailService = shipOrderDetailService;
             this.orderService = orderService;
             this.vehicleService = vehicleService;
             this.transactionHistoryService = transactionHistoryService;
@@ -173,7 +176,13 @@ namespace WebApp.Services
                 item.TrackingState = TrackableEntities.TrackingState.Added;
                 var order = this.orderService.Find(item.Id);
                 order.Status = "接单";
+                order.VehicleId = shiporder.VehicleId;
+                order.Driver = shiporder.Driver;
+                order.DriverPhone = shiporder.DriverPhone;
+                var v=this.vehicleService.Find(shiporder.VehicleId);
+                order.PlateNumber = v.PlateNumber;
                 this.orderService.Update(order);
+                item.OrderId = order.Id;
                 shipperid = shipperid==0 ? order.ShipperId: shipperid;
                 item.Id = 0;
             }
@@ -224,16 +233,22 @@ namespace WebApp.Services
         public void UpdateStatus(Order order)
         {
             var item = this.Queryable().Where(x => x.ShipOrderNo == order.OrderNo).First();
+            var details = this.shipOrderDetailService.Queryable().Where(x => x.ShipOrderId == item.Id).ToList();
+            foreach (var detail in details) {
+                detail.Status = ConvertStatus(order.Status);
+                this.shipOrderDetailService.Update(detail);
+                var orderitem = this.orderService.Find(detail.OrderId);
+                orderitem.Status = order.Status;
+                if (order.Status == "入库" || order.Status == "完成" ||
+                order.Status == "卸货")
+                {
+                    orderitem.DeliveryDate = DateTime.Now;
+
+                }
+               
+                this.orderService.Update(orderitem);
+            }
             item.Status = ConvertStatus(order.Status);
-            //item.Location1 = order.Location1;
-            //item.Location2 = order.Location2;
-            //item.Packages = order.Packages;
-            //item.Pallets = order.Pallets;
-            //item.Cartons = order.Cartons;
-            //item.Weight = order.Weight;
-            //item.Volume = order.Volume;
-            //item.TimePeriod = order.TimePeriod;
-            //item.PlanDeliveryDate = item.OrderDate.AddHours(order.TimePeriod);
             item.InputUser = order.InputUser;
             item.Requirements = order.Requirements;
             item.Remark = item.Remark + order.Requirements;
@@ -242,24 +257,15 @@ namespace WebApp.Services
             {
                 item.DeliveryDate = DateTime.Now;
             }
+            else if (order.Status == "发车") {
+                item.DepartDate = DateTime.Now;
+            }
             this.Update(item);
             var veh = this.vehicleService.Find(order.VehicleId);
             veh.OrderId = item.Id;
-            //veh.ShipperId = order.ShipperId;
-            //veh.OrderNo = order.OrderNo;
             veh.Status = order.Status;
-            //veh.Location1 = order.Location1;
-            //veh.Location2 = order.Location2;
-            //veh.ExternalNo = order.ExternalNo;
             veh.Requirements = order.Requirements;
-            //veh.TimePeriod = order.TimePeriod;
-            //veh.Packages = order.Packages;
-            //veh.Pallets = order.Pallets;
-            //veh.Cartons = order.Cartons;
             veh.InputUser = order.InputUser;
-            //veh.Volume = order.Volume;
-            //veh.Weight = order.Weight;
-
             if (order.Status == "入库" || order.Status == "完成" ||
                 order.Status == "卸货")
             {

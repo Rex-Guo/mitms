@@ -571,10 +571,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2018 16:49:17</publishTime>
     </File>
     <File Include="bin/WebApp.dll">
-      <publishTime>06/26/2018 16:49:56</publishTime>
+      <publishTime>06/27/2018 08:05:14</publishTime>
     </File>
     <File Include="bin/WebApp.pdb">
-      <publishTime>06/26/2018 16:49:56</publishTime>
+      <publishTime>06/27/2018 08:05:14</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/08/2018 16:49:17</publishTime>
@@ -7873,7 +7873,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/04/2018 08:53:11</publishTime>
     </File>
     <File Include="Scripts/jquery.extend.formatter.js">
-      <publishTime>06/25/2018 11:16:19</publishTime>
+      <publishTime>06/27/2018 07:16:17</publishTime>
     </File>
     <File Include="Scripts/jquery.extend.formatter1.js">
       <publishTime>04/08/2018 16:49:10</publishTime>
@@ -10474,13 +10474,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2018 13:01:21</publishTime>
     </File>
     <File Include="Views/Orders/Index.cshtml">
-      <publishTime>06/26/2018 16:19:29</publishTime>
+      <publishTime>06/27/2018 07:23:19</publishTime>
     </File>
     <File Include="Views/Orders/POD.cshtml">
       <publishTime>06/05/2018 14:20:46</publishTime>
     </File>
     <File Include="Views/Orders/Shipping.cshtml">
-      <publishTime>06/26/2018 16:46:22</publishTime>
+      <publishTime>06/27/2018 06:55:59</publishTime>
     </File>
     <File Include="Views/Orders/_PopupDetailFormView.cshtml">
       <publishTime>05/30/2018 11:04:31</publishTime>

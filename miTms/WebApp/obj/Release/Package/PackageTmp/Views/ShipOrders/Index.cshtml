@@ -373,11 +373,12 @@
                  title:'@Html.DisplayNameFor(model => model.BusinessType)', 
                  width:140,
                  editor:{
-                          type:'textbox',
+                     type:'businesstypeeditor',
                           options:{ prompt:'业务类型',required:false ,validType:'length[0,8]'  }  
                        },
                  sortable:true,
-                 resizable:true 
+                resizable: true,
+                formatter: businesstypeformatter
 			},
 			{
                  field:'Status',
@@ -386,13 +387,13 @@
                  align:'right',
 			     editor:{ 
                        /*需要在键值对中维护status枚举值并生成JavaScript才能使用*/
-                       type:'statuseditor',
+                       type:'shiporderstatuseditor',
 					   options:{
 						     	prompt:'运单状态' ,
 								required:true
                                 } 
 					   },
-			     formatter: statusformatter
+			     formatter: shiporderstatusformatter
 			},
 			{
                 field:'CarrierId',
@@ -744,21 +745,24 @@
                 /*需要在键值队维护好status枚举值*/
 				{
 					  field: "Status",
-					  type: "statusfilter",
+					  type: "shiporderstatusfilter",
 					  options: {
 					
 						       }
-				 },
+               },
+               {
+                   field: "BusinessType",
+                   type: "businesstypefilter",
+                   options: {
+
+                   }
+               },
 				{
 					  field: "Id",
 					  type: "numberbox",
 					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
 				  },
-				{
-					  field: "Status",
-					  type: "numberbox",
-					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
-				  },
+				 
 				{
 					  field: "TotalMonetaryAmount",
 					  type: "numberbox",
@@ -766,8 +770,8 @@
 				  },
 				{
 					  field: "TimePeriod",
-					  type: "numberbox",
-					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+                    type: "timeperiodfilter"
+					
 				  },
 				{
 					  field: "ItemCount",

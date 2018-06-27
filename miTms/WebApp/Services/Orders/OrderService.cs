@@ -194,7 +194,8 @@ namespace WebApp.Services
                 order.Status == "卸货")
             {
                 item.DeliveryDate = DateTime.Now;
-            }
+            } 
+
             this.Update(item);
             var veh = this._vehicleService.Find(order.VehicleId);
             veh.OrderId = item.Id;
