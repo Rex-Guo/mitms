@@ -19,7 +19,7 @@ namespace WebApp
                     fullName = HttpContext.Current.User.Identity.Name;
                 }
                 else {
-                    fullName = "无名氏";
+                    fullName = "Demo";
                 }
 
 

@@ -12,7 +12,7 @@ using Z.EntityFramework.Plus;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AdminController : Controller
     {
         private readonly IVehicleService _vehicleService;

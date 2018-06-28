@@ -10,7 +10,7 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ManageController : Controller
     {
         public ManageController()

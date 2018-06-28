@@ -22,7 +22,7 @@ using WebApp.Services;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         // TODO: This should be moved to the constructor of the controller in combination with a DependencyResolver setup
