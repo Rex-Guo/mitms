@@ -3978,6 +3978,7 @@
     <Content Include="Views\ShipOrders\EditForm.cshtml" />
     <Content Include="Views\ShipOrders\_PopupDetailFormView.cshtml" />
     <Content Include="Views\ShipOrders\_ShipOrderDetailEditForm.cshtml" />
+    <Content Include="Views\ShipOrders\Cost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

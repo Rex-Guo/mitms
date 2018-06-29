@@ -39,6 +39,67 @@ namespace WebApp.Controllers
             this.shipOrderService = shipOrderService;
             this.unitOfWork = unitOfWork;
         }
+        //现实运单费用维护功能
+        public ActionResult Cost() {
+
+            return View();
+        }
+        public async Task<ActionResult> GetCostData(int page = 1, int rows = 10, string sort = "Id", string order = "asc", string filterRules = "")
+        {
+                var filters = JsonConvert.DeserializeObject<IEnumerable<filterRule>>(filterRules);
+                var totalCount = 0;
+                //int pagenum = offset / limit +1;
+                var shiporders = await this.shipOrderService
+           .Query(new ShipOrderQuery().Withfilter(filters)).Include(s => s.Carrier).Include(s => s.Company).Include(s => s.Vehicle)
+           .OrderBy(n => n.OrderBy(sort, order))
+           .SelectPageAsync(page, rows, out totalCount);
+                var datarows = shiporders.Select(n => new
+                {
+
+                    CarrierName = (n.Carrier == null ? "" : n.Carrier.Name),
+                    CompanyName = (n.Company == null ? "" : n.Company.Name),
+                    VehiclePlateNumber = (n.Vehicle == null ? "" : n.Vehicle.PlateNumber),
+                    Id = n.Id,
+                    ShipOrderNo = n.ShipOrderNo,
+                    ExternalNo = n.ExternalNo,
+                    OrderDate = n.OrderDate,
+                    BusinessType = n.BusinessType,
+                    Status = n.Status,
+                    CarrierId = n.CarrierId,
+                    VehicleId = n.VehicleId,
+                    CarType = n.CarType,
+                    Driver = n.Driver,
+                    DriverPhone = n.DriverPhone,
+                    ContractNumber = n.ContractNumber,
+                    TotalMonetaryAmount = n.TotalMonetaryAmount,
+                    Remark = n.Remark,
+                    Location1 = n.Location1,
+                    Location2 = n.Location2,
+                    Requirements = n.Requirements,
+                    TimePeriod = n.TimePeriod,
+                    PlanDepartDate = n.PlanDepartDate,
+                    PlanDeliveryDate = n.PlanDeliveryDate,
+                    DepartDate = n.DepartDate,
+                    DeliveryDate = n.DeliveryDate,
+                    ClosedDate = n.ClosedDate,
+                    ItemCount = n.ItemCount,
+                    Packages = n.Packages,
+                    Weight = n.Weight,
+                    Volume = n.Volume,
+                    Pallets = n.Pallets,
+                    Cartons = n.Cartons,
+                    BreakCartons = n.BreakCartons,
+                    InputUser = n.InputUser,
+                    CompanyId = n.CompanyId,
+                    CreatedDate = n.CreatedDate,
+                    CreatedBy = n.CreatedBy,
+                    LastModifiedDate = n.LastModifiedDate,
+                    LastModifiedBy = n.LastModifiedBy
+                }).ToList();
+                var pagelist = new { total = totalCount, rows = datarows };
+                return Json(pagelist, JsonRequestBehavior.AllowGet);
+            
+        }
         // GET: ShipOrders/Index
         //[OutputCache(Duration = 360, VaryByParam = "none")]
         public ActionResult Index()

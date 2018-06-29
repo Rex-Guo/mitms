@@ -1,0 +1,818 @@
+﻿@model IEnumerable<WebApp.Models.ShipOrder>
+@{
+    ViewBag.Title = "运费用管理";
+}
+<!-- MAIN CONTENT -->
+<div id="content">
+    <!-- quick navigation bar -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-table fa-fw "></i>
+                结算中心
+                <span>
+                    >
+                    运费用管理
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+
+        </div>
+    </div>
+    <!-- end quick navigation bar -->
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2>运费维护</h2>
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <div class="alert alert-warning no-margin fade in">
+                                <button class="close" data-dismiss="alert">
+                                    ×
+                                </button>
+                                <i class="fa-fw fa fa-info"></i>
+                                注意事项:
+                            </div>
+                            <!--begin datagrid-content -->
+                            <div class="table-responsive">
+                                <table id="shiporders_datagrid"></table>
+                                <div id="shiporders_toolbar" style="height:auto">
+                                    @{
+                                        //TODO: enable authorization
+                                    }
+                                    @*@if (Html.IsAuthorize("Create"))
+        {
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
+        }
+        @if (Html.IsAuthorize("Delete"))
+        {
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
+        }
+        @if (Html.IsAuthorize("Edit"))
+        {
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-floppy-o fa-fw',plain:true" onclick="accept()">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-undo fa-fw',plain:true" onclick="reject()">取消</a>
+        }
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
+        @if (Html.IsAuthorize("Import"))
+        {
+             <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
+                   <div id="importmenu" style="width:150px;">
+                            <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
+                            <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()" >下载用于导入的模板</div>
+                    </div>
+             <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
+        }
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="append()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-trash-o fa-fw',plain:true" onclick="removeit()">删除</a>
+                                    *@
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-plus fa-fw',plain:true" onclick="appendfee()">新增费用明细</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-check fa-fw',plain:true" onclick="sendchecking()">发送对账申请</a>
+                                    <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#importmenu',iconCls:'fa fa-upload fa-fw' " onclick="importexcel()">导入数据</a>
+                                    <div id="importmenu" style="width:150px;">
+                                        <div data-options="iconCls:'fa fa-file-excel-o fa-fw'" onclick="importexcel()">导入数据</div>
+                                        <div data-options="iconCls:'fa fa-cloud-download fa-fw'" onclick="downloadtemplate()">下载用于导入的模板</div>
+                                    </div>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-cloud-download fa-fw',plain:true" onclick="exportexcel()">导出至Excel</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-refresh fa-fw',plain:true" onclick="reload()">刷新</a>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'fa fa-question-circle-o fa-fw',plain:true" onclick="dohelp()">帮助</a>
+                                </div>
+
+
+                            </div>
+                            <!--end datagrid-content -->
+
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+    <!-- file upload partial view -->
+    @Html.Partial("_ImportWindow", new ViewDataDictionary { { "EntityName", "ShipOrder" } })
+    <!-- end file upload partial view -->
+    <!-- detail popup window -->
+    @Html.Partial("_PopupDetailFormView", new WebApp.Models.ShipOrder())
+    <!-- end detail popup window -->
+
+</div>
+<!-- END MAIN CONTENT -->
+
+@section Scripts {
+    <script type="text/javascript">
+        var entityname = "ShipOrder";
+        //添加费用
+        function appendfee() {
+        }
+        //发送对账申请
+        function sendchecking() {
+
+        }
+
+			        //下载Excel导入模板
+                    function downloadtemplate() {
+                            //TODO: 修改下载模板的路径
+                            var url = "/ExcelTemplate/ShipOrder.xlsx";
+                            $.fileDownload(url)
+                             .fail(function () { $.messager.alert("错误","没有找到模板文件! {" + url + "}"); });
+
+                    }
+					//打开Excel上传导入
+					function importexcel() {
+						$("#importwindow").window("open");
+					}
+					 //执行Excel到处下载
+					function exportexcel() {
+						var filterRules = JSON.stringify($dg.datagrid("options").filterRules);
+						//console.log(filterRules);
+						$.messager.progress({ title: "正在执行导出！" });
+						var formData = new FormData();
+						formData.append("filterRules", filterRules);
+						formData.append("sort", "Id");
+						formData.append("order", "asc");
+						$.postDownload("/ShipOrders/ExportExcel", formData, function (fileName) {
+							$.messager.progress("close");
+							console.log(fileName);
+
+						})
+					}
+        //显示帮助信息
+        function dohelp() {
+
+        }
+        var editIndex = undefined;
+    //重新加载数据
+	function reload() {
+				 if (endEditing()) {
+						$dg.datagrid("reload");
+				 }
+			}
+    
+        //弹出明细信息
+		function showDetailsWindow(id) {
+			//console.log(index, row);
+            $.getJSON('/ShipOrders/PopupEdit/' + id, function (data, status, xhr) {
+                //console.log(data);
+                $('#detailswindow').window('open');
+                loadData(id,data);
+            });
+		}
+
+        //初始化定义datagrid
+        var $dg = $("#shiporders_datagrid");
+        $(function () {
+		 //定义datagrid结构
+            $dg.datagrid({
+                rownumbers: true,
+                checkOnSelect: true,
+                selectOnCheck: true,
+                idField: 'Id',
+                sortName: 'Id',
+                sortOrder: 'desc',
+                remoteFilter: true,
+                singleSelect: false,
+                toolbar: '#shiporders_toolbar',
+                url: '/ShipOrders/GetCostData',
+                method: 'get',
+                pagination: true,
+                striped: true,
+                columns: [[
+                    /*开启CheckBox选择功能*/
+                    { field: 'ck', checkbox: true },
+                    {
+                        field: '_operate1',
+                        title: '操作',
+                        width: 120,
+                        sortable: false,
+                        resizable: true,
+                        formatter: function showdetailsformatter(value, row, index) {
+                            return '<a onclick="showDetailsWindow(' + row.Id + ')" class="btn btn-default btn-sm" href="javascript:void(0)"><i class="fa fa-list"></i> 费用明细</a>';
+                        }
+                    },
+                    /*{field:'Id',width:80 ,sortable:true,resizable:true }*/
+                    {
+                        field: 'ShipOrderNo',
+                        title: '@Html.DisplayNameFor(model => model.ShipOrderNo)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '派车单号', required: true, validType: 'length[0,20]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Location1',
+                        title: '@Html.DisplayNameFor(model => model.Location1)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '起点', required: false, validType: 'length[0,120]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Location2',
+                        title: '@Html.DisplayNameFor(model => model.Location2)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '终点', required: false, validType: 'length[0,120]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'TotalMonetaryAmount',
+                        title: '@Html.DisplayNameFor(model => model.TotalMonetaryAmount)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '总运价', required: false }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Remark',
+                        title: '@Html.DisplayNameFor(model => model.Remark)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '备注', required: false, validType: 'length[0,255]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'ExternalNo',
+                        title: '@Html.DisplayNameFor(model => model.ExternalNo)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '出货单', required: false, validType: 'length[0,30]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'OrderDate',
+                        title: '@Html.DisplayNameFor(model => model.OrderDate)',
+                        width: 120,
+                        align: 'right',
+                        editor: {
+                            type: 'datebox',
+                            options: { prompt: '派车时间', required: true }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: datetimeformatter
+                    },
+
+                    {
+                        field: 'BusinessType',
+                        title: '@Html.DisplayNameFor(model => model.BusinessType)',
+                        width: 140,
+                        editor: {
+                            type: 'businesstypeeditor',
+                            options: { prompt: '业务类型', required: false, validType: 'length[0,8]' }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: businesstypeformatter
+                    },
+                    {
+                        field: 'Status',
+                        title: '@Html.DisplayNameFor(model => model.Status)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            /*需要在键值对中维护status枚举值并生成JavaScript才能使用*/
+                            type: 'shiporderstatuseditor',
+                            options: {
+                                prompt: '运单状态',
+                                required: true
+                            }
+                        },
+                        formatter: shiporderstatusformatter
+                    },
+                    {
+                        field: 'CarrierId',
+                        title: '@Html.DisplayNameFor(model => model.CarrierId)',
+                        width: 160,
+                        sortable: true,
+                        resizable: true,
+                        formatter: function (value, row) {
+                            return row.CarrierName;
+                        },
+                        editor: {
+                            type: 'combobox',
+                            options: {
+                                prompt: '承运人',
+                                mode: 'remote',
+                                valueField: 'Id',
+                                textField: 'Name',
+                                method: 'get',
+                                url: '/ShipOrders/GetCarriers',
+                                required: true
+                            }
+                        }
+                    },
+                    {
+                        field: 'VehicleId',
+                        title: '@Html.DisplayNameFor(model => model.VehicleId)',
+                        width: 160,
+                        sortable: true,
+                        resizable: true,
+                        formatter: function (value, row) {
+                            return row.VehiclePlateNumber;
+                        },
+                        editor: {
+                            type: 'combobox',
+                            options: {
+                                prompt: '承运车',
+                                mode: 'remote',
+                                valueField: 'Id',
+                                textField: 'PlateNumber',
+                                method: 'get',
+                                url: '/ShipOrders/GetVehicles',
+                                required: true
+                            }
+                        }
+                    },
+                    {
+                        field: 'CarType',
+                        title: '@Html.DisplayNameFor(model => model.CarType)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '车辆类型', required: false, validType: 'length[0,20]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+
+                    {
+                        field: 'PlanDepartDate',
+                        title: '@Html.DisplayNameFor(model => model.PlanDepartDate)',
+                        width: 120,
+                        align: 'right',
+                        editor: {
+                            type: 'datebox',
+                            options: { prompt: '计划发车时间', required: false }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: datetimeformatter
+                    },
+
+                    {
+                        field: 'PlanDeliveryDate',
+                        title: '@Html.DisplayNameFor(model => model.PlanDeliveryDate)',
+                        width: 120,
+                        align: 'right',
+                        editor: {
+                            type: 'datebox',
+                            options: { prompt: '计划送达时间', required: false }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: datetimeformatter
+                    },
+
+                    {
+                        field: 'DepartDate',
+                        title: '@Html.DisplayNameFor(model => model.DepartDate)',
+                        width: 120,
+                        align: 'right',
+                        editor: {
+                            type: 'datebox',
+                            options: { prompt: '实际发车时间', required: false }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: datetimeformatter
+                    },
+
+                    {
+                        field: 'DeliveryDate',
+                        title: '@Html.DisplayNameFor(model => model.DeliveryDate)',
+                        width: 120,
+                        align: 'right',
+                        editor: {
+                            type: 'datebox',
+                            options: { prompt: '实际送达时间', required: false }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: datetimeformatter
+                    },
+
+                    {
+                        field: 'ClosedDate',
+                        title: '@Html.DisplayNameFor(model => model.ClosedDate)',
+                        width: 120,
+                        align: 'right',
+                        editor: {
+                            type: 'datebox',
+                            options: { prompt: '回单时间', required: false }
+                        },
+                        sortable: true,
+                        resizable: true,
+                        formatter: datetimeformatter
+                    },
+
+                    {
+                        field: 'ItemCount',
+                        title: '@Html.DisplayNameFor(model => model.ItemCount)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '订单数', required: true }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Packages',
+                        title: '@Html.DisplayNameFor(model => model.Packages)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '总件数', required: false }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Weight',
+                        title: '@Html.DisplayNameFor(model => model.Weight)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '重量(千克)', required: false }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Volume',
+                        title: '@Html.DisplayNameFor(model => model.Volume)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '体积(立方)', required: false }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Pallets',
+                        title: '@Html.DisplayNameFor(model => model.Pallets)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '栈板数', required: false }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'Cartons',
+                        title: '@Html.DisplayNameFor(model => model.Cartons)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '箱数', required: false }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'BreakCartons',
+                        title: '@Html.DisplayNameFor(model => model.BreakCartons)',
+                        width: 100,
+                        align: 'right',
+                        editor: {
+                            type: 'numberbox',
+                            options: { prompt: '散箱数', required: false }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'InputUser',
+                        title: '@Html.DisplayNameFor(model => model.InputUser)',
+                        width: 140,
+                        editor: {
+                            type: 'textbox',
+                            options: { prompt: '调度人员', required: true, validType: 'length[0,20]' }
+                        },
+                        sortable: true,
+                        resizable: true
+                    },
+                    {
+                        field: 'CompanyId',
+                        title: '@Html.DisplayNameFor(model => model.CompanyId)',
+                        width: 160,
+                        sortable: true,
+                        resizable: true,
+                        formatter: function (value, row) {
+                            return row.CompanyName;
+                        },
+                        editor: {
+                            type: 'combobox',
+                            options: {
+                                prompt: '所属平台',
+                                mode: 'remote',
+                                valueField: 'Id',
+                                textField: 'Name',
+                                method: 'get',
+                                url: '/ShipOrders/GetCompanies',
+                                required: true
+                            }
+                        }
+                    },
+                ]]
+            });
+
+           $dg.datagrid("enableFilter",[
+                /*需要在键值队维护好status枚举值*/
+				{
+					  field: "Status",
+					  type: "shiporderstatusfilter",
+					  options: {
+
+						       }
+               },
+               {
+                   field: "BusinessType",
+                   type: "businesstypefilter",
+                   options: {
+
+                   }
+               },
+				{
+					  field: "Id",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+
+				{
+					  field: "TotalMonetaryAmount",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+				{
+					  field: "TimePeriod",
+                    type: "timeperiodfilter"
+
+				  },
+				{
+					  field: "ItemCount",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+				{
+					  field: "Packages",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+				{
+					  field: "Weight",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+				{
+					  field: "Volume",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+				{
+					  field: "Pallets",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+				{
+					  field: "Cartons",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+				{
+					  field: "BreakCartons",
+					  type: "numberbox",
+					  op:['equal','notequal','less','lessorequal','greater','greaterorequal']
+				  },
+				{
+					  field: "OrderDate",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "OrderDate",
+									  op: "between",
+									  value: value
+								  });
+
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+				{
+					  field: "PlanDepartDate",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "PlanDepartDate",
+									  op: "between",
+									  value: value
+								  });
+
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+				{
+					  field: "PlanDeliveryDate",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "PlanDeliveryDate",
+									  op: "between",
+									  value: value
+								  });
+
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+				{
+					  field: "DepartDate",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "DepartDate",
+									  op: "between",
+									  value: value
+								  });
+
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+				{
+					  field: "DeliveryDate",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "DeliveryDate",
+									  op: "between",
+									  value: value
+								  });
+
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+				{
+					  field: "ClosedDate",
+					  type: "dateRange",
+					  options: {
+						  onChange: function (value) {
+							    $dg.datagrid("addFilterRule", {
+									  field: "ClosedDate",
+									  op: "between",
+									  value: value
+								  });
+
+							    $dg.datagrid("doFilter");
+						  }
+					  }
+				  },
+		   {
+				 field: "CarrierId",
+				 type:"combobox",
+				 options:{
+								valueField:"Id",
+								textField:"Name",
+								method:"get",
+								url:"/ShipOrders/GetCarriers",
+								onChange: function (value) {
+								if (value == "") {
+									$dg.datagrid("removeFilterRule", "CarrierId");
+								} else {
+									$dg.datagrid("addFilterRule", {
+										field: "CarrierId",
+										op: "equal",
+										value: value
+								});
+							}
+							$dg.datagrid("doFilter");
+						}
+					}
+		   },
+		   {
+				 field: "VehicleId",
+				 type:"combobox",
+				 options:{
+								valueField:"Id",
+								textField:"PlateNumber",
+								method:"get",
+								url:"/ShipOrders/GetVehicles",
+								onChange: function (value) {
+								if (value == "") {
+									$dg.datagrid("removeFilterRule", "VehicleId");
+								} else {
+									$dg.datagrid("addFilterRule", {
+										field: "VehicleId",
+										op: "equal",
+										value: value
+								});
+							}
+							$dg.datagrid("doFilter");
+						}
+					}
+		   },
+		   {
+				 field: "CompanyId",
+				 type:"combobox",
+				 options:{
+								valueField:"Id",
+								textField:"Name",
+								method:"get",
+								url:"/ShipOrders/GetCompanies",
+								onChange: function (value) {
+								if (value == "") {
+									$dg.datagrid("removeFilterRule", "CompanyId");
+								} else {
+									$dg.datagrid("addFilterRule", {
+										field: "CompanyId",
+										op: "equal",
+										value: value
+								});
+							}
+							$dg.datagrid("doFilter");
+						}
+					}
+		   },
+		   ]);
+	 });
+
+
+
+
+    </script>
+    <script src="~/Scripts/jquery.filerupload.js"></script>
+}
+
+
