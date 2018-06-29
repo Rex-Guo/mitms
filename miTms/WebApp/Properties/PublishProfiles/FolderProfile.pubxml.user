@@ -571,10 +571,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2018 16:49:17</publishTime>
     </File>
     <File Include="bin/WebApp.dll">
-      <publishTime>06/29/2018 07:41:13</publishTime>
+      <publishTime>06/29/2018 15:34:53</publishTime>
     </File>
     <File Include="bin/WebApp.pdb">
-      <publishTime>06/29/2018 07:41:13</publishTime>
+      <publishTime>06/29/2018 15:34:53</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/08/2018 16:49:17</publishTime>
@@ -10534,7 +10534,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2018 16:49:12</publishTime>
     </File>
     <File Include="Views/Shared/_Aside.cshtml">
-      <publishTime>06/25/2018 15:23:30</publishTime>
+      <publishTime>06/29/2018 11:07:38</publishTime>
     </File>
     <File Include="Views/Shared/_ChangePasswordPartial.cshtml">
       <publishTime>04/08/2018 16:49:12</publishTime>
@@ -10589,6 +10589,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/ShipOrderDetails/_PopupDetailFormView.cshtml">
       <publishTime>06/26/2018 08:43:20</publishTime>
+    </File>
+    <File Include="Views/ShipOrders/Cost.cshtml">
+      <publishTime>06/29/2018 15:31:53</publishTime>
     </File>
     <File Include="Views/ShipOrders/Create.cshtml">
       <publishTime>06/25/2018 16:12:02</publishTime>

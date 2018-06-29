@@ -72,15 +72,14 @@
                     </li>
                 </ul>
             </li>
-            <li class="@Html.IsSelected(controller: "Finances,LineQuoteses")">
+            <li class="@Html.IsSelected(controller: "Finances,LineQuoteses,ShipOrders")">
                 <a href="#" title="结算中心"><i class="fa fa-lg fa-fw fa-folder-o"></i> <span class="menu-item-parent">结算中心</span></a>
                 <ul>
                     <li class="@Html.IsSelected(action: "Index", controller: "LineQuoteses")">
                         <a href="@Url.Action("Index", "LineQuoteses")" title="线路报价"><span class="menu-item-parent">线路报价</span></a>
                     </li>
-                    
-                    <li class="@Html.IsSelected(action: "Index", controller: "Finances")">
-                        <a href="@Url.Action("Index", "Finances")" title="费用管理"><span class="menu-item-parent">费用管理</span></a>
+                    <li class="@Html.IsSelected(action: "Cost", controller: "ShipOrders")">
+                        <a href="@Url.Action("Cost", "ShipOrders")" title="运费用管理"><span class="menu-item-parent">运费用管理</span></a>
                     </li>
                     <li class="@Html.IsSelected(action: "Billing", controller: "Finances")">
                         <a href="@Url.Action("Billing", "Finances")" title="开票操作"><span class="menu-item-parent">开票操作 </span></a>

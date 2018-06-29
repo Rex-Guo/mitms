@@ -41,7 +41,8 @@ namespace WebApp.Controllers
         }
         //现实运单费用维护功能
         public ActionResult Cost() {
-
+            var coderep = this.unitOfWork.RepositoryAsync<CodeItem>();
+            ViewBag.FeeName = new SelectList(coderep.Queryable().Where(x => x.CodeType == "FeeName").OrderBy(n => n.Code).ToList(), "Code", "Text");
             return View();
         }
         public async Task<ActionResult> GetCostData(int page = 1, int rows = 10, string sort = "Id", string order = "asc", string filterRules = "")
